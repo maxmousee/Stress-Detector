@@ -22,6 +22,18 @@
 		3A6455691867A928004C70D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6455671867A928004C70D6 /* InfoPlist.strings */; };
 		3A64556B1867A928004C70D6 /* VSDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A64556A1867A928004C70D6 /* VSDTests.m */; };
 		3A6455751867AA9D004C70D6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A6455741867AA9D004C70D6 /* CoreAudio.framework */; };
+		3AA7CF631867BB5000E44D9B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF5E1867BB4F00E44D9B /* Accelerate.framework */; };
+		3AA7CF641867BB5000E44D9B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF5F1867BB4F00E44D9B /* AudioToolbox.framework */; };
+		3AA7CF651867BB5000E44D9B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF601867BB4F00E44D9B /* AVFoundation.framework */; };
+		3AA7CF661867BB5000E44D9B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF611867BB4F00E44D9B /* CoreFoundation.framework */; };
+		3AA7CF671867BB5000E44D9B /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF621867BB5000E44D9B /* libiconv.dylib */; };
+		3AA7CF731867CFBC00E44D9B /* CADebugPrintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7CF6A1867CFBC00E44D9B /* CADebugPrintf.cpp */; };
+		3AA7CF741867CFBC00E44D9B /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7CF6D1867CFBC00E44D9B /* CAXException.cpp */; };
+		3AA7CF751867CFBC00E44D9B /* KeyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7CF701867CFBC00E44D9B /* KeyHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3AA7CF761867CFBC00E44D9B /* RIOInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AA7CF721867CFBC00E44D9B /* RIOInterface.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3AA7CF781867D00B00E44D9B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF771867D00B00E44D9B /* CoreVideo.framework */; };
+		3AA7CF7A1867D01B00E44D9B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF791867D01B00E44D9B /* CoreMedia.framework */; };
+		3AA7CF7C1867D02100E44D9B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7CF7B1867D02100E44D9B /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +67,24 @@
 		3A6455681867A928004C70D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A64556A1867A928004C70D6 /* VSDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSDTests.m; sourceTree = "<group>"; };
 		3A6455741867AA9D004C70D6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		3AA7CF5E1867BB4F00E44D9B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		3AA7CF5F1867BB4F00E44D9B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3AA7CF601867BB4F00E44D9B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3AA7CF611867BB4F00E44D9B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3AA7CF621867BB5000E44D9B /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		3AA7CF691867CFBC00E44D9B /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
+		3AA7CF6A1867CFBC00E44D9B /* CADebugPrintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugPrintf.cpp; sourceTree = "<group>"; };
+		3AA7CF6B1867CFBC00E44D9B /* CADebugPrintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugPrintf.h; sourceTree = "<group>"; };
+		3AA7CF6C1867CFBC00E44D9B /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
+		3AA7CF6D1867CFBC00E44D9B /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
+		3AA7CF6E1867CFBC00E44D9B /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
+		3AA7CF6F1867CFBC00E44D9B /* KeyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyHelper.h; sourceTree = "<group>"; };
+		3AA7CF701867CFBC00E44D9B /* KeyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyHelper.m; sourceTree = "<group>"; };
+		3AA7CF711867CFBC00E44D9B /* RIOInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIOInterface.h; sourceTree = "<group>"; };
+		3AA7CF721867CFBC00E44D9B /* RIOInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RIOInterface.mm; sourceTree = "<group>"; };
+		3AA7CF771867D00B00E44D9B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		3AA7CF791867D01B00E44D9B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		3AA7CF7B1867D02100E44D9B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +92,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA7CF7C1867D02100E44D9B /* QuartzCore.framework in Frameworks */,
+				3AA7CF7A1867D01B00E44D9B /* CoreMedia.framework in Frameworks */,
+				3AA7CF781867D00B00E44D9B /* CoreVideo.framework in Frameworks */,
+				3AA7CF631867BB5000E44D9B /* Accelerate.framework in Frameworks */,
+				3AA7CF641867BB5000E44D9B /* AudioToolbox.framework in Frameworks */,
+				3AA7CF651867BB5000E44D9B /* AVFoundation.framework in Frameworks */,
+				3AA7CF661867BB5000E44D9B /* CoreFoundation.framework in Frameworks */,
+				3AA7CF671867BB5000E44D9B /* libiconv.dylib in Frameworks */,
 				3A6455751867AA9D004C70D6 /* CoreAudio.framework in Frameworks */,
 				3A6455421867A928004C70D6 /* CoreGraphics.framework in Frameworks */,
 				3A6455441867A928004C70D6 /* UIKit.framework in Frameworks */,
@@ -104,6 +142,14 @@
 		3A64553E1867A928004C70D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AA7CF7B1867D02100E44D9B /* QuartzCore.framework */,
+				3AA7CF791867D01B00E44D9B /* CoreMedia.framework */,
+				3AA7CF771867D00B00E44D9B /* CoreVideo.framework */,
+				3AA7CF5E1867BB4F00E44D9B /* Accelerate.framework */,
+				3AA7CF5F1867BB4F00E44D9B /* AudioToolbox.framework */,
+				3AA7CF601867BB4F00E44D9B /* AVFoundation.framework */,
+				3AA7CF611867BB4F00E44D9B /* CoreFoundation.framework */,
+				3AA7CF621867BB5000E44D9B /* libiconv.dylib */,
 				3A6455741867AA9D004C70D6 /* CoreAudio.framework */,
 				3A64553F1867A928004C70D6 /* Foundation.framework */,
 				3A6455411867A928004C70D6 /* CoreGraphics.framework */,
@@ -116,6 +162,7 @@
 		3A6455451867A928004C70D6 /* VSD */ = {
 			isa = PBXGroup;
 			children = (
+				3AA7CF681867CF6000E44D9B /* AudioProcessing */,
 				3A64554E1867A928004C70D6 /* AppDelegate.h */,
 				3A64554F1867A928004C70D6 /* AppDelegate.m */,
 				3A6455511867A928004C70D6 /* Main.storyboard */,
@@ -154,6 +201,23 @@
 				3A6455671867A928004C70D6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3AA7CF681867CF6000E44D9B /* AudioProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				3AA7CF691867CFBC00E44D9B /* CADebugMacros.h */,
+				3AA7CF6A1867CFBC00E44D9B /* CADebugPrintf.cpp */,
+				3AA7CF6B1867CFBC00E44D9B /* CADebugPrintf.h */,
+				3AA7CF6C1867CFBC00E44D9B /* CAStreamBasicDescription.h */,
+				3AA7CF6D1867CFBC00E44D9B /* CAXException.cpp */,
+				3AA7CF6E1867CFBC00E44D9B /* CAXException.h */,
+				3AA7CF6F1867CFBC00E44D9B /* KeyHelper.h */,
+				3AA7CF701867CFBC00E44D9B /* KeyHelper.m */,
+				3AA7CF711867CFBC00E44D9B /* RIOInterface.h */,
+				3AA7CF721867CFBC00E44D9B /* RIOInterface.mm */,
+			);
+			name = AudioProcessing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,9 +317,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA7CF741867CFBC00E44D9B /* CAXException.cpp in Sources */,
+				3AA7CF731867CFBC00E44D9B /* CADebugPrintf.cpp in Sources */,
 				3A6455561867A928004C70D6 /* ViewController.m in Sources */,
 				3A6455501867A928004C70D6 /* AppDelegate.m in Sources */,
 				3A64554C1867A928004C70D6 /* main.m in Sources */,
+				3AA7CF751867CFBC00E44D9B /* KeyHelper.m in Sources */,
+				3AA7CF761867CFBC00E44D9B /* RIOInterface.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +532,7 @@
 				3A6455701867A928004C70D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A6455711867A928004C70D6 /* Build configuration list for PBXNativeTarget "VSDTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +541,7 @@
 				3A6455731867A928004C70D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

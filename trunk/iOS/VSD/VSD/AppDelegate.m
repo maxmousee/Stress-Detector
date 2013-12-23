@@ -12,6 +12,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /**RIO session setup */
+	RIOInterface *rioRef = [RIOInterface sharedInstance];
+	[rioRef setSampleRate:48000];
+	[rioRef setFrequency:294];
+    [rioRef initializeAudioSession];
+    
     // Override point for customization after application launch.
     return YES;
 }

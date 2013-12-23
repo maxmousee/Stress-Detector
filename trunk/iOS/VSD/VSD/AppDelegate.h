@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RIOInterface.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
