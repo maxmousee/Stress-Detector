@@ -50,24 +50,36 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
-#import "BufferManager.h"
-#import "DCRejectionFilter.h"
+#import "CAStreamBasicDescription.h"
 
+#define kInputBus 1
+#define kOutputBus 0
+#define kBufferSize 1024
+#define kBufferCount 1
+#define N 10
+#define kSampleRate 8000
 
 @interface AudioController : NSObject {
     
-    AudioUnit               _rioUnit;
-    BufferManager*          _bufferManager;
-    DCRejectionFilter*      _dcRejectionFilter;
-    BOOL                    _audioChainIsBeingReconstructed;
+    // Audio Graph Members
+    AUGraph processingGraph;
+	AudioUnit ioUnit;
+
+    AudioStreamBasicDescription streamFormat;
+    
+    float sampleRate;
+    AudioBufferList* bufferList;
+    
+    void *dataBuffer;
+	float *outputBuffer;
+	size_t bufferCapacity;	// In samples
+	size_t index;	// In samples
+
 }
 
-@property (nonatomic, assign) BOOL muteAudio;
-@property (nonatomic, assign, readonly) BOOL audioChainIsBeingReconstructed;
-
-- (BufferManager*) getBufferManagerInstance;
-- (OSStatus)    startIOUnit;
-- (OSStatus)    stopIOUnit;
-- (double)      sessionSampleRate;
+- (void)initializeAudioSession;
+- (void)createAUProcessingGraph;
+- (void)initializeAndStartProcessingGraph;
+- (void)stopAUGraph;
 
 @end

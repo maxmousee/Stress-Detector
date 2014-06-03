@@ -56,331 +56,196 @@
 #import "CAXException.h"
 #import "CAStreamBasicDescription.h"
 
-typedef enum aurioTouchDisplayMode {
-	aurioTouchDisplayModeOscilloscopeWaveform,
-	aurioTouchDisplayModeOscilloscopeFFT,
-	aurioTouchDisplayModeSpectrum
-} aurioTouchDisplayMode;
-
-
-struct CallbackData {
-    AudioUnit               rioUnit;
-    BufferManager*          bufferManager;
-    DCRejectionFilter*      dcRejectionFilter;
-    BOOL*                   muteAudio;
-    BOOL*                   audioChainIsBeingReconstructed;
-    
-    CallbackData(): rioUnit(NULL), bufferManager(NULL), muteAudio(NULL), audioChainIsBeingReconstructed(NULL) {}
-} cd;
-
-// Render callback function
-static OSStatus	performRender (void                         *inRefCon,
-                               AudioUnitRenderActionFlags 	*ioActionFlags,
-                               const AudioTimeStamp 		*inTimeStamp,
-                               UInt32 						inBusNumber,
-                               UInt32 						inNumberFrames,
-                               AudioBufferList              *ioData)
-{
-    OSStatus err = noErr;
-    if (*cd.audioChainIsBeingReconstructed == NO)
-    {
-        // we are calling AudioUnitRender on the input bus of AURemoteIO
-        // this will store the audio data captured by the microphone in ioData
-        err = AudioUnitRender(cd.rioUnit, ioActionFlags, inTimeStamp, 1, inNumberFrames, ioData);
-        
-        // filter out the DC component of the signal
-        cd.dcRejectionFilter->ProcessInplace((Float32*) ioData->mBuffers[0].mData, inNumberFrames);
-        
-        // based on the current display mode, copy the required data to the buffer manager
-        if (cd.bufferManager->GetDisplayMode() == aurioTouchDisplayModeOscilloscopeWaveform)
-        {
-            cd.bufferManager->CopyAudioDataToDrawBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
-        }
-        
-        else if ((cd.bufferManager->GetDisplayMode() == aurioTouchDisplayModeSpectrum) || (cd.bufferManager->GetDisplayMode() == aurioTouchDisplayModeOscilloscopeFFT))
-        {
-            if (cd.bufferManager->NeedsNewFFTData())
-                cd.bufferManager->CopyAudioDataToFFTInputBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
-        }
-        
-        // mute audio if needed
-        if (*cd.muteAudio)
-        {
-            for (UInt32 i=0; i<ioData->mNumberBuffers; ++i)
-                memset(ioData->mBuffers[i].mData, 0, ioData->mBuffers[i].mDataByteSize);
-        }
-    }
-    
-    return err;
-}
-
-
-@interface AudioController()
-
-- (void)setupAudioSession;
-- (void)setupIOUnit;
-- (void)setupAudioChain;
-
-@end
-
 @implementation AudioController
 
-@synthesize muteAudio = _muteAudio;
-
-- (id)init
-{
-    if (self = [super init]) {
-        _bufferManager = NULL;
-        _dcRejectionFilter = NULL;
-        _muteAudio = YES;
-        [self setupAudioChain];
-    }
-    return self;
+// Clean up memory
+- (void)dealloc {
+	if (processingGraph)
+    {
+		AUGraphStop(processingGraph);
+	}
+	
+	// Clean up the audio session
+	AVAudioSession *session = [AVAudioSession sharedInstance];
+	[session setActive:NO error:nil];
+	
+	[super dealloc];
 }
 
-
-- (void)handleInterruption:(NSNotification *)notification
+// starts render
+- (void)initializeAndStartProcessingGraph
 {
-    try {
-        UInt8 theInterruptionType = [[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey] intValue];
-        NSLog(@"Session interrupted > --- %s ---\n", theInterruptionType == AVAudioSessionInterruptionTypeBegan ? "Begin Interruption" : "End Interruption");
-        
-        if (theInterruptionType == AVAudioSessionInterruptionTypeBegan) {
-            [self stopIOUnit];
-        }
-        
-        if (theInterruptionType == AVAudioSessionInterruptionTypeEnded) {
-            // make sure to activate the session
-            NSError *error = nil;
-            [[AVAudioSession sharedInstance] setActive:YES error:&error];
-            if (nil != error) NSLog(@"AVAudioSession set active failed with error: %@", error);
-            
-            [self startIOUnit];
-        }
-    } catch (CAXException e) {
-        char buf[256];
-        fprintf(stderr, "Error: %s (%s)\n", e.mOperation, e.FormatError(buf));
-    }
+	OSStatus result = AUGraphInitialize(processingGraph);
+	if (result >= 0) {
+		AUGraphStart(processingGraph);
+	} else {
+		NSLog(@"AUGraphInitialize ERR %d", (int)result);
+	}
 }
 
-
-- (void)handleRouteChange:(NSNotification *)notification
+// stops render
+- (void)stopAUGraph
 {
-    UInt8 reasonValue = [[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey] intValue];
-    AVAudioSessionRouteDescription *routeDescription = [notification.userInfo valueForKey:AVAudioSessionRouteChangePreviousRouteKey];
+    AUGraphStop(processingGraph);
+}
+
+#pragma mark -
+#pragma mark Audio Session/Graph Setup
+// Sets up the audio session based on the properties that were set in the init
+// method.
+- (void)initializeAudioSession {
+	NSError	*err = nil;
+	AVAudioSession *session = [AVAudioSession sharedInstance];
+	
+    //	[session setPreferredHardwareSampleRate:sampleRate error:&err];
+    [session setPreferredSampleRate:sampleRate error:&err];
+  	[session setCategory:AVAudioSessionCategoryPlayAndRecord error:&err];
+	[session setActive:YES error:&err];
+	
+	// After activation, update our sample rate. We need to update because there
+	// is a possibility the system cannot grant our request.
+    //	sampleRate = [session currentHardwareSampleRate];
+    sampleRate = kSampleRate;
+}
+
+-(void)createAUProcessingGraph {
     
-    NSLog(@"Route change:");
-    switch (reasonValue) {
-        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
-            NSLog(@"     NewDeviceAvailable");
-            break;
-        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
-            NSLog(@"     OldDeviceUnavailable");
-            break;
-        case AVAudioSessionRouteChangeReasonCategoryChange:
-            NSLog(@"     CategoryChange");
-            NSLog(@" New Category: %@", [[AVAudioSession sharedInstance] category]);
-            break;
-        case AVAudioSessionRouteChangeReasonOverride:
-            NSLog(@"     Override");
-            break;
-        case AVAudioSessionRouteChangeReasonWakeFromSleep:
-            NSLog(@"     WakeFromSleep");
-            break;
-        case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory:
-            NSLog(@"     NoSuitableRouteForCategory");
-            break;
-        default:
-            NSLog(@"     ReasonUnknown");
-    }
+    OSStatus err;
+	// Configure the search parameters to find the default playback output unit
+	// (called the kAudioUnitSubType_RemoteIO on iOS but
+	// kAudioUnitSubType_DefaultOutput on Mac OS X)
+	AudioComponentDescription ioUnitDescription;
+	ioUnitDescription.componentType = kAudioUnitType_Output;
+	ioUnitDescription.componentSubType = kAudioUnitSubType_RemoteIO;
+	ioUnitDescription.componentManufacturer = kAudioUnitManufacturer_Apple;
+	ioUnitDescription.componentFlags = 0;
+	ioUnitDescription.componentFlagsMask = 0;
+	
+	// Declare and instantiate an audio processing graph
+	NewAUGraph(&processingGraph);
+	
+	// Add an audio unit node to the graph, then instantiate the audio unit.
+	/*
+	 An AUNode is an opaque type that represents an audio unit in the context
+	 of an audio processing graph. You receive a reference to the new audio unit
+	 instance, in the ioUnit parameter, on output of the AUGraphNodeInfo
+	 function call.
+	 */
+	AUNode ioNode;
+	AUGraphAddNode(processingGraph, &ioUnitDescription, &ioNode);
+	
+	AUGraphOpen(processingGraph); // indirectly performs audio unit instantiation
+	
+	// Obtain a reference to the newly-instantiated I/O unit. Each Audio Unit
+	// requires its own configuration.
+	AUGraphNodeInfo(processingGraph, ioNode, NULL, &ioUnit);
+	
+	// Initialize below.
+	AURenderCallbackStruct callbackStruct = {0};
+	UInt32 enableInput;
+	UInt32 enableOutput;
+	
+	// Enable input and disable output.
+	enableInput = 1; enableOutput = 0;
+	callbackStruct.inputProc = renderInput;
+	callbackStruct.inputProcRefCon = self;
+	
+	err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_EnableIO,
+							   kAudioUnitScope_Input,
+							   kInputBus, &enableInput, sizeof(enableInput));
+	
+	err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_EnableIO,
+							   kAudioUnitScope_Output,
+							   kOutputBus, &enableOutput, sizeof(enableOutput));
+	
+	err = AudioUnitSetProperty(ioUnit, kAudioOutputUnitProperty_SetInputCallback,
+							   kAudioUnitScope_Input,
+							   kOutputBus, &callbackStruct, sizeof(callbackStruct));
+	
     
-    NSLog(@"Previous route:\n");
-    NSLog(@"%@", routeDescription);
+	// Set the stream format.
+	size_t bytesPerSample = [self ASBDForSoundMode];
+	
+	err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_StreamFormat,
+							   kAudioUnitScope_Output,
+							   kInputBus, &streamFormat, sizeof(streamFormat));
+	
+	err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_StreamFormat,
+							   kAudioUnitScope_Input,
+							   kOutputBus, &streamFormat, sizeof(streamFormat));
+	
+	
+	
+	
+	// Disable system buffer allocation. We'll do it ourselves.
+	UInt32 flag = 0;
+	err = AudioUnitSetProperty(ioUnit, kAudioUnitProperty_ShouldAllocateBuffer,
+                               kAudioUnitScope_Output,
+                               kInputBus, &flag, sizeof(flag));
+    
+    
+	// Allocate AudioBuffers for use when listening.
+	// TODO: Move into initialization...should only be required once.
+	bufferList = (AudioBufferList *)malloc(sizeof(AudioBuffer));
+	bufferList->mNumberBuffers = 1;
+	bufferList->mBuffers[0].mNumberChannels = 1;
+	
+	bufferList->mBuffers[0].mDataByteSize = kBufferSize*bytesPerSample;
+	bufferList->mBuffers[0].mData = calloc(kBufferSize, bytesPerSample);
+	
 }
 
-- (void)handleMediaServerReset:(NSNotification *)notification
+// audio render procedure, don't allocate memory, don't take any locks, don't waste time
+static OSStatus renderInput(void					*inRefCon,
+                            AudioUnitRenderActionFlags 	*ioActionFlags,
+                            const AudioTimeStamp			*inTimeStamp,
+                            UInt32 						inBusNumber,
+                            UInt32 						inNumberFrames,
+                            AudioBufferList				*ioData)
 {
-    NSLog(@"Media server has reset");
-    _audioChainIsBeingReconstructed = YES;
     
-    usleep(25000); //wait here for some time to ensure that we don't delete these objects while they are being accessed elsewhere
-    
-    // rebuild the audio chain
-    delete _bufferManager;      _bufferManager = NULL;
-    delete _dcRejectionFilter;  _dcRejectionFilter = NULL;
-    
-    [self setupAudioChain];
-    [self startIOUnit];
-    
-    _audioChainIsBeingReconstructed = NO;
+	return noErr;
 }
 
-- (void)setupAudioSession
-{
-    try {
-        // Configure the audio session
-        AVAudioSession *sessionInstance = [AVAudioSession sharedInstance];
-        
-        // we are going to play and record so we pick that category
-        NSError *error = nil;
-        [sessionInstance setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
-        XThrowIfError((OSStatus)error.code, "couldn't set session's audio category");
-        
-        // set the buffer duration to 5 ms
-        NSTimeInterval bufferDuration = .005;
-        [sessionInstance setPreferredIOBufferDuration:bufferDuration error:&error];
-        XThrowIfError((OSStatus)error.code, "couldn't set session's I/O buffer duration");
-        
-        // set the session's sample rate
-        [sessionInstance setPreferredSampleRate:16000 error:&error];
-        XThrowIfError((OSStatus)error.code, "couldn't set session's preferred sample rate");
-        
-        // add interruption handler
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleInterruption:)
-                                                     name:AVAudioSessionInterruptionNotification
-                                                   object:sessionInstance];
-        
-        // we don't do anything special in the route change notification
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleRouteChange:)
-                                                     name:AVAudioSessionRouteChangeNotification
-                                                   object:sessionInstance];
-        
-        // if media services are reset, we need to rebuild our audio chain
-        [[NSNotificationCenter defaultCenter]	addObserver:	self
-                                                 selector:	@selector(handleMediaServerReset:)
-                                                     name:	AVAudioSessionMediaServicesWereResetNotification
-                                                   object:	sessionInstance];
-        
-        // activate the audio session
-        [[AVAudioSession sharedInstance] setActive:YES error:&error];
-        XThrowIfError((OSStatus)error.code, "couldn't set session active");
-    }
-    
-    catch (CAXException &e) {
-        NSLog(@"Error returned from setupAudioSession: %d: %s", (int)e.mError, e.mOperation);
-    }
-    catch (...) {
-        NSLog(@"Unknown error returned from setupAudioSession");
-    }
-    
-    return;
+// Set the AudioStreamBasicDescription for listening to audio data. Set the
+// stream member var here as well.
+- (size_t)ASBDForSoundMode {
+	AudioStreamBasicDescription asbd = {0};
+	size_t bytesPerSample;
+	bytesPerSample = sizeof(SInt16);
+	asbd.mFormatID = kAudioFormatLinearPCM;
+	asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
+	asbd.mBitsPerChannel = 8 * bytesPerSample;
+	asbd.mFramesPerPacket = 1;
+	asbd.mChannelsPerFrame = 1;
+	asbd.mBytesPerPacket = bytesPerSample * asbd.mFramesPerPacket;
+	asbd.mBytesPerFrame = bytesPerSample * asbd.mChannelsPerFrame;
+	asbd.mSampleRate = sampleRate;
+	
+	streamFormat = asbd;
+	[self printASBD:streamFormat];
+	
+	return bytesPerSample;
 }
 
-
-- (void)setupIOUnit
+#pragma mark -
+#pragma mark Utility
+- (void)printASBD:(AudioStreamBasicDescription)asbd
 {
-    try {
-        // Create a new instance of AURemoteIO
-        
-        AudioComponentDescription desc;
-        desc.componentType = kAudioUnitType_Output;
-        desc.componentSubType = kAudioUnitSubType_RemoteIO;
-        desc.componentManufacturer = kAudioUnitManufacturer_Apple;
-        desc.componentFlags = 0;
-        desc.componentFlagsMask = 0;
-        
-        AudioComponent comp = AudioComponentFindNext(NULL, &desc);
-        XThrowIfError(AudioComponentInstanceNew(comp, &_rioUnit), "couldn't create a new instance of AURemoteIO");
-        
-        //  Enable input and output on AURemoteIO
-        //  Input is enabled on the input scope of the input element
-        //  Output is enabled on the output scope of the output element
-        
-        UInt32 one = 1;
-        XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, 1, &one, sizeof(one)), "could not enable input on AURemoteIO");
-        XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output, 0, &one, sizeof(one)), "could not enable output on AURemoteIO");
-        
-        // Explicitly set the input and output client formats
-        // sample rate = 16000, num channels = 1, format = 32 bit floating point
-        
-        CAStreamBasicDescription ioFormat = CAStreamBasicDescription(16000, 1, CAStreamBasicDescription::kPCMFormatFloat32, false);
-        XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &ioFormat, sizeof(ioFormat)), "couldn't set the input client format on AURemoteIO");
-        XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &ioFormat, sizeof(ioFormat)), "couldn't set the output client format on AURemoteIO");
-        
-        // Set the MaximumFramesPerSlice property. This property is used to describe to an audio unit the maximum number
-        // of samples it will be asked to produce on any single given call to AudioUnitRender
-        UInt32 maxFramesPerSlice = 4096;
-        XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFramesPerSlice, sizeof(UInt32)), "couldn't set max frames per slice on AURemoteIO");
-        
-        // Get the property value back from AURemoteIO. We are going to use this value to allocate buffers accordingly
-        UInt32 propSize = sizeof(UInt32);
-        XThrowIfError(AudioUnitGetProperty(_rioUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFramesPerSlice, &propSize), "couldn't get max frames per slice on AURemoteIO");
-        
-        _bufferManager = new BufferManager(maxFramesPerSlice);
-        _dcRejectionFilter = new DCRejectionFilter;
-        
-        // We need references to certain data in the render callback
-        // This simple struct is used to hold that information
-        
-        cd.rioUnit = _rioUnit;
-        cd.bufferManager = _bufferManager;
-        cd.dcRejectionFilter = _dcRejectionFilter;
-        cd.muteAudio = &_muteAudio;
-        cd.audioChainIsBeingReconstructed = &_audioChainIsBeingReconstructed;
-        
-        // Set the render callback on AURemoteIO
-        AURenderCallbackStruct renderCallback;
-        renderCallback.inputProc = performRender;
-        renderCallback.inputProcRefCon = NULL;
-        XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioUnitProperty_SetRenderCallback, kAudioUnitScope_Input, 0, &renderCallback, sizeof(renderCallback)), "couldn't set render callback on AURemoteIO");
-        
-        // Initialize the AURemoteIO instance
-        XThrowIfError(AudioUnitInitialize(_rioUnit), "couldn't initialize AURemoteIO instance");
-    }
-    
-    catch (CAXException &e) {
-        NSLog(@"Error returned from setupIOUnit: %d: %s", (int)e.mError, e.mOperation);
-    }
-    catch (...) {
-        NSLog(@"Unknown error returned from setupIOUnit");
-    }
-    
-    return;
-}
-
-- (void)setupAudioChain
-{
-    [self setupAudioSession];
-    [self setupIOUnit];
-}
-
-- (OSStatus)startIOUnit
-{
-    OSStatus err = AudioOutputUnitStart(_rioUnit);
-    if (err) NSLog(@"couldn't start AURemoteIO: %d", (int)err);
-    return err;
-}
-
-- (OSStatus)stopIOUnit
-{
-    OSStatus err = AudioOutputUnitStop(_rioUnit);
-    if (err) NSLog(@"couldn't stop AURemoteIO: %d", (int)err);
-    return err;
-}
-
-- (double)sessionSampleRate
-{
-    return [[AVAudioSession sharedInstance] sampleRate];
-}
-
-- (BufferManager*)getBufferManagerInstance
-{
-    return _bufferManager;
-}
-
-- (BOOL)audioChainIsBeingReconstructed
-{
-    return _audioChainIsBeingReconstructed;
-}
-
-- (void)dealloc
-{
-    delete _bufferManager;      _bufferManager = NULL;
-    delete _dcRejectionFilter;  _dcRejectionFilter = NULL;
-    
-    [super dealloc];
+	
+    char formatIDString[5];
+    UInt32 formatID = CFSwapInt32HostToBig (asbd.mFormatID);
+    bcopy (&formatID, formatIDString, 4);
+    formatIDString[4] = '\0';
+	
+    NSLog (@"  Sample Rate:         %10.0f",  asbd.mSampleRate);
+    NSLog (@"  Format ID:           %10s",    formatIDString);
+    NSLog (@"  Format Flags:        %10lX",    asbd.mFormatFlags);
+    NSLog (@"  Bytes per Packet:    %10ld",    asbd.mBytesPerPacket);
+    NSLog (@"  Frames per Packet:   %10ld",    asbd.mFramesPerPacket);
+    NSLog (@"  Bytes per Frame:     %10ld",    asbd.mBytesPerFrame);
+    NSLog (@"  Channels per Frame:  %10ld",    asbd.mChannelsPerFrame);
+    NSLog (@"  Bits per Channel:    %10ld",    asbd.mBitsPerChannel);
 }
 
 @end

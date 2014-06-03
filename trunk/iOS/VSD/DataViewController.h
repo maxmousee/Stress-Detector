@@ -12,11 +12,10 @@
 #import "AudioController.h"
 
 @interface DataViewController : UIViewController {
-    AudioController*            audioController;
-
-    Float32*					l_fftData;
+    //IBOutlet AudioController*   audioController;
 }
 
+@property (strong, nonatomic) IBOutlet AudioController *audioController;
 @property (strong, nonatomic) IBOutlet UILabel *dataLabel;
 @property (strong, nonatomic) id dataObject;
 

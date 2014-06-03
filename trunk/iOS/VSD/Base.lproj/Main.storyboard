@@ -39,10 +39,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="audioController" destination="0jF-km-JT7" id="ZE6-Iy-glY"/>
                         <outlet property="dataLabel" destination="i7n-lc-4In" id="8Kj-KN-eO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHE-GN-Yf3" sceneMemberID="firstResponder"/>
+                <customObject id="0jF-km-JT7" customClass="AudioController"/>
             </objects>
             <point key="canvasLocation" x="772" y="476"/>
         </scene>
