@@ -32,6 +32,7 @@
 		3AD8A319193996960009D4C0 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A314193996960009D4C0 /* CAStreamBasicDescription.cpp */; };
 		3AD8A31A193996960009D4C0 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A316193996960009D4C0 /* CAXException.cpp */; };
 		3AD8A31D193A3BFC0009D4C0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */; };
+		3ADAEF54193EB299001AA2B5 /* BufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAEF52193EB299001AA2B5 /* BufferManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		3AD8A316193996960009D4C0 /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
 		3AD8A317193996960009D4C0 /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
 		3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3ADAEF52193EB299001AA2B5 /* BufferManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferManager.cpp; sourceTree = "<group>"; };
+		3ADAEF53193EB299001AA2B5 /* BufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 			children = (
 				3AD8A301193995190009D4C0 /* AudioController.h */,
 				3AD8A302193995190009D4C0 /* AudioController.mm */,
+				3ADAEF52193EB299001AA2B5 /* BufferManager.cpp */,
+				3ADAEF53193EB299001AA2B5 /* BufferManager.h */,
 			);
 			name = AudioController;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD8A31A193996960009D4C0 /* CAXException.cpp in Sources */,
+				3ADAEF54193EB299001AA2B5 /* BufferManager.cpp in Sources */,
 				3AD8A2D119398CC20009D4C0 /* DataViewController.mm in Sources */,
 				3AD8A2CB19398CC20009D4C0 /* AppDelegate.mm in Sources */,
 				3AD8A2D419398CC20009D4C0 /* ModelController.mm in Sources */,

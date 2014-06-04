@@ -51,19 +51,22 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "CAStreamBasicDescription.h"
+#import "BufferManager.h"
 
 #define kInputBus 1
 #define kOutputBus 0
 #define kBufferSize 1024
 #define kBufferCount 1
 #define N 10
-#define kSampleRate 8000
+#define kSampleRate 8000.0
+//#define kBufferLength 8096
+#define kMaxFramesPerSlice 4096
 
 @interface AudioController : NSObject {
     
     // Audio Graph Members
     AUGraph processingGraph;
-	AudioUnit ioUnit;
+	AudioUnit _ioUnit;
 
     AudioStreamBasicDescription streamFormat;
     
@@ -74,12 +77,18 @@
 	float *outputBuffer;
 	size_t bufferCapacity;	// In samples
 	size_t index;	// In samples
+    
+    BufferManager*          _bufferManager;
+    
+    BOOL                    _audioChainIsBeingReconstructed;
 
 }
 
-- (void)initializeAudioSession;
-- (void)createAUProcessingGraph;
-- (void)initializeAndStartProcessingGraph;
-- (void)stopAUGraph;
+@property (nonatomic, assign, readonly) BOOL audioChainIsBeingReconstructed;
+
+- (BufferManager*) getBufferManagerInstance;
+- (OSStatus)    startIOUnit;
+- (OSStatus)    stopIOUnit;
+- (double)      sessionSampleRate;
 
 @end

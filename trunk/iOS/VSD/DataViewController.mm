@@ -26,17 +26,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     //NSLog(@"ViewWillDisappear!");
-    [audioController stopAUGraph];
+    [audioController stopIOUnit];
 }
 
 - (void)setUpAudio
 {
     //if(audioController != NULL) {
         audioController = [[AudioController alloc] init];
-    
-    [audioController initializeAudioSession];
-    [audioController createAUProcessingGraph];
-	[audioController initializeAndStartProcessingGraph];
+    [audioController startIOUnit];
     
     /*
     
