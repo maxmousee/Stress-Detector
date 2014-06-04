@@ -38,6 +38,7 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
             //printf("%f", inputBuffer[i]);
         }
         inputBufferFrameIndex = 0;
-        inputBuffer = (Float32*) calloc(inputMaxFramesPerSlice, sizeof(Float32));
+        //free(inputBuffer);
+        //inputBuffer = (Float32*) calloc(inputMaxFramesPerSlice, sizeof(Float32));
     }
 }
