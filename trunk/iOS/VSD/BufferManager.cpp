@@ -33,7 +33,7 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
     if (inputBufferFrameIndex >= kBufferLength) {
         //OSAtomicIncrement32(&mHasNewFFTData);
         //OSAtomicDecrement32(&mNeedsNewFFTData);
-        printf("BUFFER FULL, DISPATCH NOTIFICATION %zu frameindex %f\n", inputBufferFrameIndex, inputBuffer[0]);
+        //printf("BUFFER FULL, DISPATCH NOTIFICATION %zu frameindex %f\n", inputBufferFrameIndex, inputBuffer[0]);
         for(int i = 0; i < kBufferLength; i++){
             //printf("%f", inputBuffer[i]);
         }

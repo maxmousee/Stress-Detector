@@ -346,7 +346,11 @@ static OSStatus renderInput(void					*inRefCon,
     if (*cd.audioChainIsBeingReconstructed == NO)
     {
         err = AudioUnitRender(cd.rioUnit, ioActionFlags, inTimeStamp, 1, inNumberFrames, ioData);
-        if(err == noErr) cd.bufferManager->CopyAudioDataToInputBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
+        if(err == noErr) {
+            cd.bufferManager->CopyAudioDataToInputBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
+            for (UInt32 i=0; i<ioData->mNumberBuffers; ++i)
+                memset(ioData->mBuffers[i].mData, 0, ioData->mBuffers[i].mDataByteSize);
+        }
     }
     //CopyAudioDataToInputBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
 	return err;
