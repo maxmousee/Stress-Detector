@@ -12,7 +12,7 @@
 #import "AudioController.h"
 
 @interface DataViewController : UIViewController {
-    //IBOutlet AudioController*   audioController;
+    
 }
 
 @property (strong, nonatomic) IBOutlet AudioController *audioController;

@@ -31,56 +31,38 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
     memcpy(inputBuffer + inputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
     inputBufferFrameIndex += framesToCopy * sizeof(Float32);
     if (inputBufferFrameIndex >= kBufferLength) {
-        //OSAtomicIncrement32(&mHasNewFFTData);
-        //OSAtomicDecrement32(&mNeedsNewFFTData);
-        //printf("BUFFER FULL, DISPATCH NOTIFICATION %zu frameindex %f\n", inputBufferFrameIndex, inputBuffer[0]);
-        //emxArray_real_T *inputDataReal;
-        //inputDataReal = emxCreateWrapper_real_T(inputBufferDouble, 1, kBufferLength);
-        
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            int stopProcess = 0;
-            while (stopProcess == 0){
-                
-                int nComponent = finalIMF;
-                
-                double stressCoefficient = 0.0;
-                double inputBufferDouble[kBufferLength];
-                int lowPassFreq = 256;
-                Filter *my_filter;
-                my_filter = new Filter(LPF, lowPassFreq, 8, 0.05);
-                if( my_filter->get_error_flag() < 0 ) {
-                    printf("ERR CREATING LOW PASS FILTER\n");
-                    exit(1);
-                }
-                for(int i = 0; i < kBufferLength - 1; i++){
-                    inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
-                }
-                
-                stressCoefficient = processAudio(inputBufferDouble, nComponent);
-                nComponent++;
-                printf("%.2f \n", stressCoefficient);
-                //printf("nComponent %d\n", nComponent);
-                if(stressCoefficient >= 3 && stressCoefficient <= 50) {
-                    stopProcess = 1;
-                    printf("FOUND STRESS COEFICIENT, STOP\n");
-                }
-                //if (stressCoefficient <= 3 && nComponent >= finalIMF) {
-                if (nComponent >= finalIMF) {
-                    stopProcess = 1;
-                    printf("REACHED FINAL, STOP\n");
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Update the UI
-                    
-                });
+        int stopProcess = 0;
+        while (stopProcess == 0){
+            int nComponent = finalIMF;
+            double stressCoefficient = 0.0;
+            double inputBufferDouble[kBufferLength];
+            int num_taps = 950; //900, 0.18
+            double lowPassFreq = 0.017;
+            Filter *my_filter;
+            my_filter = new Filter(LPF, num_taps, 8, lowPassFreq);
+            if( my_filter->get_error_flag() < 0 ) {
+                printf("ERR CREATING LOW PASS FILTER\n");
+                exit(1);
             }
-        });
-        
-        inputBufferFrameIndex -= kBufferLength;
-        //printf("stressCoefficient %d ", stressCoefficient);
-        //free(inputBuffer);
-        //inputBuffer = (Float32*) calloc(inputMaxFramesPerSlice, sizeof(Float32));
+            for(int i = 0; i < kBufferLength - 1; i++){
+                inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
+            }
+            inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
+            
+            stressCoefficient = processAudio(inputBufferDouble, nComponent);
+            nComponent++;
+            //printf("nComponent %d\n", nComponent);
+            if(stressCoefficient >= 3 && stressCoefficient <= 50) {
+                stopProcess = 1;
+                printf("FOUND STRESS COEFICIENT, STOP\n");
+                printf("%.2f \n", stressCoefficient);
+                //printf("BUFFER FULL, DISPATCH NOTIFICATION %zu frameindex %f\n", inputBufferFrameIndex, inputBuffer[0]);
+            }
+            if (nComponent >= finalIMF) {
+                stopProcess = 1;
+                //printf("REACHED FINAL, STOP\n");
+            }
+            inputBufferFrameIndex -= kBufferLength;
+        }
     }
 }

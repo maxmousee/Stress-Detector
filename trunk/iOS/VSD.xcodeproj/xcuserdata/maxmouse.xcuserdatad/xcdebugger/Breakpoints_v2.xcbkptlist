@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.cpp"
-            timestampString = "423797803.782493"
+            timestampString = "423803640.568296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.cpp"
-            timestampString = "423797803.782493"
+            timestampString = "423803640.568296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -106,11 +106,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.cpp"
-            timestampString = "423799138.455127"
+            timestampString = "423803640.568296"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VSD/BufferManager.cpp"
+            timestampString = "423803640.568296"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )"
             landmarkType = "5">
          </BreakpointContent>

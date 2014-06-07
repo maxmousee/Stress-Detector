@@ -25,34 +25,13 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    //NSLog(@"ViewWillDisappear!");
     [audioController stopIOUnit];
 }
 
 - (void)setUpAudio
 {
-    //if(audioController != NULL) {
-        audioController = [[AudioController alloc] init];
+    audioController = [[AudioController alloc] init];
     [audioController startIOUnit];
-    
-    /*
-    
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            
-            for(;;) {
-                sleep(1);
-                
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                //Stop your activity indicator or anything else with the GUI
-                //Code here is run on the main thread
-                
-            });
-        });
-    //}
-     */
-    
 }
 
 - (void)didReceiveMemoryWarning

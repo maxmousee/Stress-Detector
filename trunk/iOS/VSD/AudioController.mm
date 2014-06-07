@@ -290,7 +290,7 @@
         
         // Set the MaximumFramesPerSlice property. This property is used to describe to an audio unit the maximum number
         // of samples it will be asked to produce on any single given call to AudioUnitRender
-        UInt32 maxFramesPerSlice = 4096;
+        UInt32 maxFramesPerSlice = 8192;
         XThrowIfError(AudioUnitSetProperty(_ioUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFramesPerSlice, sizeof(UInt32)), "couldn't set max frames per slice on AURemoteIO");
         
         // Get the property value back from AURemoteIO. We are going to use this value to allocate buffers accordingly

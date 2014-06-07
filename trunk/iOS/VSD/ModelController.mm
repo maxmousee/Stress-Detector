@@ -25,7 +25,7 @@
     self = [super init];
     if (self) {
         // Create the data model.
-        _pageData = [NSArray arrayWithObjects:@"realtime", @"history", nil];
+        _pageData = [NSArray arrayWithObjects:@"realtime", nil];
     }
     return self;
 }
