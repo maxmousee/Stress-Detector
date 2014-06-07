@@ -12,7 +12,11 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include <libkern/OSAtomic.h>
 
-#define kBufferLength 8000
+#include "processAudio.h"
+#include "filt.h"
+
+#define kBufferLength 8192
+#define finalIMF 2
 
 class BufferManager
 {
@@ -24,7 +28,7 @@ public:
     UInt32          inputBufferLen;
     UInt32          inputMaxFramesPerSlice;
     void            CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames );
-
+    
 };
 
 #endif /* defined(__VSD__BufferManager__) */
