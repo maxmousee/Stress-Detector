@@ -46,12 +46,15 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                 
                 double stressCoefficient = 0.0;
                 double inputBufferDouble[kBufferLength];
-                int lowPassFreq = 30;
+                int lowPassFreq = 256;
                 Filter *my_filter;
-                my_filter = new Filter(LPF, lowPassFreq, 8, 3.0);
-                
-                for(int i = 0; i < kBufferLength; i++){
-                    inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i]);
+                my_filter = new Filter(LPF, lowPassFreq, 8, 0.05);
+                if( my_filter->get_error_flag() < 0 ) {
+                    printf("ERR CREATING LOW PASS FILTER\n");
+                    exit(1);
+                }
+                for(int i = 0; i < kBufferLength - 1; i++){
+                    inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
                 }
                 
                 stressCoefficient = processAudio(inputBufferDouble, nComponent);
