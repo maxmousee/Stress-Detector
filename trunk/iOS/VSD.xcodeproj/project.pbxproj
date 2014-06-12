@@ -41,7 +41,6 @@
 		3AD8A31A193996960009D4C0 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A316193996960009D4C0 /* CAXException.cpp */; };
 		3AD8A31D193A3BFC0009D4C0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */; };
 		3AFBA6AD1940119000E8D9F0 /* BufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAEF52193EB299001AA2B5 /* BufferManager.cpp */; };
-		3AFBA6B1194016E100E8D9F0 /* libgcc_s.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFBA6B0194016E100E8D9F0 /* libgcc_s.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +113,6 @@
 		3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3ADAEF52193EB299001AA2B5 /* BufferManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferManager.cpp; sourceTree = "<group>"; };
 		3ADAEF53193EB299001AA2B5 /* BufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferManager.h; sourceTree = "<group>"; };
-		3AFBA6B0194016E100E8D9F0 /* libgcc_s.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgcc_s.1.dylib; path = usr/lib/libgcc_s.1.dylib; sourceTree = SDKROOT; };
 		3AFBA6B2194016F500E8D9F0 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -123,7 +121,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AFBA6B1194016E100E8D9F0 /* libgcc_s.1.dylib in Frameworks */,
 				3AD8A31D193A3BFC0009D4C0 /* AudioToolbox.framework in Frameworks */,
 				3AD8A2FF1939912A0009D4C0 /* CoreAudio.framework in Frameworks */,
 				3AD8A3001939912B0009D4C0 /* OpenGLES.framework in Frameworks */,
@@ -203,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				3AFBA6B2194016F500E8D9F0 /* libstdc++.6.0.9.dylib */,
-				3AFBA6B0194016E100E8D9F0 /* libgcc_s.1.dylib */,
 				3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */,
 				3AD8A2FC1939912A0009D4C0 /* CoreAudio.framework */,
 				3AD8A2FD1939912A0009D4C0 /* OpenGLES.framework */,

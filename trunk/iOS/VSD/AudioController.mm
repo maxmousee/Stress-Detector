@@ -364,11 +364,11 @@ static OSStatus renderInput(void					*inRefCon,
 	bytesPerSample = sizeof(SInt16);
 	asbd.mFormatID = kAudioFormatLinearPCM;
 	asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
-	asbd.mBitsPerChannel = 8 * bytesPerSample;
+	asbd.mBitsPerChannel = (UInt32)(8 * bytesPerSample);
 	asbd.mFramesPerPacket = 1;
 	asbd.mChannelsPerFrame = 1;
-	asbd.mBytesPerPacket = bytesPerSample * asbd.mFramesPerPacket;
-	asbd.mBytesPerFrame = bytesPerSample * asbd.mChannelsPerFrame; //bytesPerSample * mChannelsPerFrame
+	asbd.mBytesPerPacket = (UInt32)(bytesPerSample * asbd.mFramesPerPacket);
+	asbd.mBytesPerFrame = (UInt32)(bytesPerSample * asbd.mChannelsPerFrame); //bytesPerSample * mChannelsPerFrame
 	asbd.mSampleRate = sampleRate;
 	
 	streamFormat = asbd;

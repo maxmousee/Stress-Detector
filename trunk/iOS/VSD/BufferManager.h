@@ -20,6 +20,8 @@
 
 class BufferManager
 {
+private:
+    //nothing
 public:
     BufferManager( UInt32 inMaxFramesPerSlice );
     ~BufferManager();
@@ -28,7 +30,6 @@ public:
     UInt32          inputBufferLen;
     UInt32          inputMaxFramesPerSlice;
     void            CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames );
-    
 };
 
 #endif /* defined(__VSD__BufferManager__) */

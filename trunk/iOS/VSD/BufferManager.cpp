@@ -27,42 +27,49 @@ BufferManager::~BufferManager()
 
 void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )
 {
-    UInt32 framesToCopy = min(numFrames, kBufferLength - inputBufferFrameIndex);
-    memcpy(inputBuffer + inputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
-    inputBufferFrameIndex += framesToCopy * sizeof(Float32);
-    if (inputBufferFrameIndex >= kBufferLength) {
-        int stopProcess = 0;
-        while (stopProcess == 0){
-            int nComponent = finalIMF;
-            double stressCoefficient = 0.0;
-            double inputBufferDouble[kBufferLength];
-            int num_taps = 950; //900, 0.18
-            double lowPassFreq = 0.017;
-            Filter *my_filter;
-            my_filter = new Filter(LPF, num_taps, 8, lowPassFreq);
-            if( my_filter->get_error_flag() < 0 ) {
-                printf("ERR CREATING LOW PASS FILTER\n");
-                exit(1);
-            }
-            for(int i = 0; i < kBufferLength - 1; i++){
-                inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
-            }
-            inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
+        UInt32 framesToCopy = min(numFrames, kBufferLength - inputBufferFrameIndex);
+        memcpy(inputBuffer + inputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
+        inputBufferFrameIndex += framesToCopy * sizeof(Float32);
+        if (inputBufferFrameIndex >= kBufferLength) {
             
-            stressCoefficient = processAudio(inputBufferDouble, nComponent);
-            nComponent++;
-            //printf("nComponent %d\n", nComponent);
-            if(stressCoefficient >= 3 && stressCoefficient <= 50) {
-                stopProcess = 1;
-                printf("FOUND STRESS COEFICIENT, STOP\n");
-                printf("%.2f \n", stressCoefficient);
-                //printf("BUFFER FULL, DISPATCH NOTIFICATION %zu frameindex %f\n", inputBufferFrameIndex, inputBuffer[0]);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            
+            int stopProcess = 0;
+            while (stopProcess == 0){
+                int nComponent = finalIMF;
+                double stressCoefficient = 0.0;
+                double inputBufferDouble[kBufferLength];
+                int num_taps = 950; //900, 0.18
+                double lowPassFreq = 0.017; //0.017
+                Filter *my_filter;
+                my_filter = new Filter(LPF, num_taps, 8, lowPassFreq);
+                if( my_filter->get_error_flag() < 0 ) {
+                    printf("ERR CREATING LOW PASS FILTER\n");
+                    exit(1);
+                }
+                for(int i = 0; i < kBufferLength - 1; i++){
+                    inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
+                }
+                inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
+                
+                stressCoefficient = processAudio(inputBufferDouble, nComponent);
+                nComponent++;
+                //printf("nComponent %d\n", nComponent);
+                if(stressCoefficient >= 3 && stressCoefficient <= 40) {
+                    stopProcess = 1;
+                    printf("FOUND STRESS COEFICIENT, STOP\n");
+                    printf("%.2f \n", stressCoefficient);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //BUFFER FULL, Update the UI
+                        
+                    });
+                }
+                if (nComponent >= finalIMF) {
+                    stopProcess = 1;
+                    //printf("REACHED FINAL, STOP\n");
+                }
+                inputBufferFrameIndex -= kBufferLength;
             }
-            if (nComponent >= finalIMF) {
-                stopProcess = 1;
-                //printf("REACHED FINAL, STOP\n");
-            }
-            inputBufferFrameIndex -= kBufferLength;
+            });
         }
-    }
 }
