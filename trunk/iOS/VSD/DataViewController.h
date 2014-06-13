@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 // Local includes
 #import "AudioController.h"
+#import "BufferManager.h"
 
 @interface DataViewController : UIViewController {
-    
+    CATextLayer *stressTL;
 }
 
 @property (strong, nonatomic) IBOutlet AudioController *audioController;

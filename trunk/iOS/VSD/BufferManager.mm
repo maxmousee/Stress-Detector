@@ -27,12 +27,12 @@ BufferManager::~BufferManager()
 
 void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )
 {
-        UInt32 framesToCopy = min(numFrames, kBufferLength - inputBufferFrameIndex);
-        memcpy(inputBuffer + inputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
-        inputBufferFrameIndex += framesToCopy * sizeof(Float32);
-        if (inputBufferFrameIndex >= kBufferLength) {
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    UInt32 framesToCopy = min(numFrames, kBufferLength - inputBufferFrameIndex);
+    memcpy(inputBuffer + inputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
+    inputBufferFrameIndex += framesToCopy * sizeof(Float32);
+    if (inputBufferFrameIndex >= kBufferLength) {
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             
             int stopProcess = 0;
             while (stopProcess == 0){
@@ -57,10 +57,17 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                 //printf("nComponent %d\n", nComponent);
                 if(stressCoefficient >= 3 && stressCoefficient <= 40) {
                     stopProcess = 1;
-                    printf("FOUND STRESS COEFICIENT, STOP\n");
+                    //printf("FOUND STRESS COEFICIENT, STOP\n");
                     printf("%.2f \n", stressCoefficient);
+                    
+                    NSNumber *stressCoefNSNumber = [NSNumber numberWithFloat:stressCoefficient];
+                    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kStressProcessedNotification object:nil userInfo:userInfo];
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         //BUFFER FULL, Update the UI
+                        
                         
                     });
                 }
@@ -70,6 +77,6 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                 }
                 inputBufferFrameIndex -= kBufferLength;
             }
-            });
-        }
+        });
+    }
 }

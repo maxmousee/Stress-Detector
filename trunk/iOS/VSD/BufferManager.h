@@ -9,6 +9,9 @@
 #ifndef __VSD__BufferManager__
 #define __VSD__BufferManager__
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #include <AudioToolbox/AudioToolbox.h>
 #include <libkern/OSAtomic.h>
 
@@ -17,6 +20,9 @@
 
 #define kBufferLength 8192
 #define finalIMF 2
+
+#define kStressProcessedNotification @"stressProcessed"
+#define kStressCoefVarName @"stressCoef"
 
 class BufferManager
 {
