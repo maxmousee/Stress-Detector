@@ -55,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A2C17C91979E90800DF5FE9 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_120.png; path = ../icons/icon_120.png; sourceTree = "<group>"; };
+		3A2C17CA1979E93D00DF5FE9 /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_80.png; path = ../icons/icon_80.png; sourceTree = "<group>"; };
+		3A2C17CB1979E95300DF5FE9 /* icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_58.png; path = ../icons/icon_58.png; sourceTree = "<group>"; };
 		3A36280B1942A28700452C7E /* filt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filt.h; sourceTree = "<group>"; };
 		3A36280C1942A28700452C7E /* filt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filt.cpp; sourceTree = "<group>"; };
 		3A40D1C6194A746D0067B456 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -241,6 +244,9 @@
 		3AD8A2C119398CC20009D4C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3A2C17CB1979E95300DF5FE9 /* icon_58.png */,
+				3A2C17CA1979E93D00DF5FE9 /* icon_80.png */,
+				3A2C17C91979E90800DF5FE9 /* icon_120.png */,
 				3AD8A2C219398CC20009D4C0 /* VSD-Info.plist */,
 				3AD8A2C319398CC20009D4C0 /* InfoPlist.strings */,
 				3AD8A2C619398CC20009D4C0 /* main.m */,
@@ -534,7 +540,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
@@ -555,7 +560,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
