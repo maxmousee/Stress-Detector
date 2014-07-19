@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import <AVFoundation/AVAudioSession.h>
 
 // Local includes
 #import "AudioController.h"
 #import "BufferManager.h"
+
+#ifndef __IPHONE_7_0
+typedef void (^PermissionBlock)(BOOL granted);
+#endif
 
 @interface DataViewController : UIViewController {
     CATextLayer *stressTL;
