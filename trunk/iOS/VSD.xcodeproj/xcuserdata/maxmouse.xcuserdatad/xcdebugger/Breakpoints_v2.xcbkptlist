@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.mm"
-            timestampString = "427422639.691453"
+            timestampString = "427600874.230092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.mm"
-            timestampString = "427422639.691453"
+            timestampString = "427600874.230092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.mm"
-            timestampString = "427422639.691453"
+            timestampString = "427600874.230092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/BufferManager.mm"
-            timestampString = "427422639.691453"
+            timestampString = "427600874.230092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )"
             landmarkType = "5">
          </BreakpointContent>

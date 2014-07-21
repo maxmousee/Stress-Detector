@@ -20,7 +20,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self setUpAudio];
     
     stressTL = [[CATextLayer alloc] init];
     
@@ -38,6 +37,7 @@
                                              selector:@selector(updateStressView:)
                                                  name:kStressProcessedNotification
                                                object:nil];
+    [self setUpAudio];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -51,8 +51,18 @@
     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
         if (granted)
         {
-            audioController = [[AudioController alloc] init];
-            [audioController startIOUnit];
+            
+            dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
+            dispatch_async(myQueue, ^{
+                audioController = [[AudioController alloc] init];
+                [audioController startIOUnit];
+                /*
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI
+                    
+                });
+                 */
+            });
         }
         else
         {
