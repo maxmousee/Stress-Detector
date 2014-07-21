@@ -17,7 +17,7 @@ inputBufferFrameIndex(0),
 inputBufferLen(inMaxFramesPerSlice)
 {
     inputBuffer = (Float32*) calloc(inMaxFramesPerSlice, sizeof(Float32));
-    inputBufferFrameIndex = inMaxFramesPerSlice;
+    inputBufferFrameIndex = 0;
 }
 
 BufferManager::~BufferManager()
@@ -28,10 +28,11 @@ BufferManager::~BufferManager()
 void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )
 {
     UInt32 framesToCopy = min(numFrames, kBufferLength - inputBufferFrameIndex);
-    memcpy(inputBuffer, inData, framesToCopy * sizeof(Float32));
-    //memcpy(inputBuffer + inputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
-    
-    inputBufferFrameIndex += framesToCopy * sizeof(Float32);
+    int i = 0;
+    for (i = inputBufferFrameIndex; i < (inputBufferFrameIndex + numFrames); i++) {
+        inputBuffer[i] = inData[i - inputBufferFrameIndex];
+    }
+    inputBufferFrameIndex += framesToCopy;
     if (inputBufferFrameIndex >= kBufferLength) {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -77,7 +78,7 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                     stopProcess = 1;
                     //printf("REACHED FINAL, STOP\n");
                 }
-                inputBufferFrameIndex -= kBufferLength;
+                inputBufferFrameIndex = 0;
             }
         });
     }
