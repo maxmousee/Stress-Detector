@@ -42,8 +42,8 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                 int nComponent = finalIMF;
                 double stressCoefficient = 0.0;
                 double inputBufferDouble[kBufferLength];
-                int num_taps = 768; //950, 0.18
-                double lowPassFreq = 0.019; //0.017
+                int num_taps = 950; //950, 0.18
+                double lowPassFreq = 0.018; //0.017
                 Filter *my_filter;
                 my_filter = new Filter(LPF, num_taps, 8, lowPassFreq);
                 if( my_filter->get_error_flag() < 0 ) {
