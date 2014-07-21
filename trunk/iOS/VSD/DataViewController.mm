@@ -47,7 +47,8 @@
 
 - (void)setUpAudio
 {
-    PermissionBlock permissionBlock = ^(BOOL granted) {
+    
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
         if (granted)
         {
             audioController = [[AudioController alloc] init];
@@ -55,20 +56,14 @@
         }
         else
         {
-            UIAlertView *alertMic = [[UIAlertView alloc] initWithTitle: @"OPS :(" message: @"Please, enable Microphone access to use the app" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertMic show];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Microphone Access Denied"
+                                                            message:@"You must allow microphone access in Settings > Privacy > Microphone"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
-    };
-    if([[AVAudioSession sharedInstance] respondsToSelector:@selector(requestRecordPermission:)])
-    {
-        [[AVAudioSession sharedInstance] performSelector:@selector(requestRecordPermission:)
-                                              withObject:permissionBlock];
-    }
-    else
-    {
-        audioController = [[AudioController alloc] init];
-        [audioController startIOUnit];
-    }
+    }];
 }
 
 - (void)updateStressView:(NSNotification *)theNotification

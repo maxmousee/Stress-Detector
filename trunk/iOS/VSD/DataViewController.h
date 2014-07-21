@@ -14,10 +14,6 @@
 #import "AudioController.h"
 #import "BufferManager.h"
 
-#ifndef __IPHONE_7_0
-typedef void (^PermissionBlock)(BOOL granted);
-#endif
-
 @interface DataViewController : UIViewController {
     CATextLayer *stressTL;
 }
