@@ -24,6 +24,11 @@
     stressTL = [[CATextLayer alloc] init];
     
     stressTL.backgroundColor = [UIColor orangeColor].CGColor;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        /* Device is iPad */
+        stressTL.fontSize = 2*stressTL.fontSize;
+    }
     stressTL.cornerRadius = 0.0;
     stressTL.alignmentMode = kCAAlignmentCenter;
     stressTL.contentsScale = [[UIScreen mainScreen] scale];

@@ -159,6 +159,13 @@
 			name = LowPassFilter;
 			sourceTree = "<group>";
 		};
+		3A6E3E1E199C4CAD003E5D19 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		3AA5242619400E6700838171 /* AudioProcessing */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +229,7 @@
 		3AD8A2C019398CC20009D4C0 /* VSD */ = {
 			isa = PBXGroup;
 			children = (
+				3A6E3E1E199C4CAD003E5D19 /* iPad */,
 				3A36280A1942A26600452C7E /* LowPassFilter */,
 				3AA5242619400E6700838171 /* AudioProcessing */,
 				3AD8A30F193996830009D4C0 /* PublicUtility */,
@@ -551,9 +559,10 @@
 				GCC_PREFIX_HEADER = "VSD/VSD-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = "VSD/VSD-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -572,9 +581,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VSD/VSD-Prefix.pch";
 				INFOPLIST_FILE = "VSD/VSD-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
