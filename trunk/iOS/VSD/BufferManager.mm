@@ -66,13 +66,8 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:kStressProcessedNotification object:nil userInfo:userInfo];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //BUFFER FULL, Update the UI
-                        
-                        
-                    });
                 }
+                
                 if (nComponent >= finalIMF) {
                     stopProcess = 1;
                     //printf("REACHED FINAL, STOP\n");
