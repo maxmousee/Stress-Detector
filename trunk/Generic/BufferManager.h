@@ -27,7 +27,7 @@
 class BufferManager
 {
 private:
-    //nothing
+    Filter *my_filter;
 public:
     BufferManager( UInt32 inMaxFramesPerSlice );
     ~BufferManager();
