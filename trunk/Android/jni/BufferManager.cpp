@@ -31,6 +31,7 @@ BufferManager::~BufferManager()
 double BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames )
 {
     UInt32 framesToCopy = min(numFrames, kBufferLength - inputBufferFrameIndex);
+    double stressCoefficient = 0.0;
     int i = 0;
     for (i = inputBufferFrameIndex; i < (inputBufferFrameIndex + numFrames); i++) {
         inputBuffer[i] = inData[i - inputBufferFrameIndex];
@@ -40,7 +41,6 @@ double BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFra
         int stopProcess = 0;
         while (stopProcess == 0){
             int nComponent = finalIMF;
-            double stressCoefficient = 0.0;
             double inputBufferDouble[kBufferLength];
             if( my_filter->get_error_flag() < 0 ) {
                 printf("ERR CREATING LOW PASS FILTER\n");
