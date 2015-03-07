@@ -83,7 +83,7 @@ public class LiveStressActivity extends Activity {
 
 	private void writeAudioDataToFile() {
 		// Write the output audio in byte
-		String filePath = "/sdcard/8k16bitMono.pcm";
+		String filePath = android.os.Environment.getExternalStorageDirectory().getPath() + "/8k16bitMono.pcm";
 
 		short sData[] = new short[BufferElements2Rec];
 
