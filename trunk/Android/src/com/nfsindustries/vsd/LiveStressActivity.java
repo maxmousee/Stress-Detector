@@ -36,6 +36,12 @@ public class LiveStressActivity extends Activity {
 		int bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,
 				RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
 	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		stopRecording();
+	}
 
 
 	int BufferElements2Rec = 1024; // want to play 2048 (2K) since 2 bytes we use only 1024
@@ -99,6 +105,8 @@ public class LiveStressActivity extends Activity {
 				os.write(bData, 0, BufferElements2Rec * BytesPerElement);
 
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
