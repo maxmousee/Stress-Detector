@@ -40,6 +40,11 @@ public class LiveStressActivity extends Activity {
 	@Override
 	public void onPause() {
 		super.onPause();
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
 		stopRecording();
 	}
 
@@ -80,6 +85,17 @@ public class LiveStressActivity extends Activity {
 		}
 		return bytes;
 	}
+	
+	private double rootMeanSquared(short[] nums)
+    {
+        double ms = 0;
+        for (int i = 0; i < nums.length; i++)
+        {
+            ms += nums[i] * nums[i];
+        }
+        ms /= nums.length;
+        return Math.sqrt(ms);
+    }
 
 	private void writeAudioDataToFile() {
 		// Write the output audio in byte
@@ -97,7 +113,9 @@ public class LiveStressActivity extends Activity {
 		while (isRecording) {
 			// gets the voice output from microphone to byte format
 			recorder.read(sData, 0, BufferElements2Rec);
-			System.out.println("Short wirting to file" + sData.toString());
+			double currentVolume = rootMeanSquared(sData);
+			//System.out.println("Short wirting to file " + sData.toString());
+			System.out.println("Double read " + currentVolume);
 			try {
 				// writes the data to file from buffer stores the voice buffer
 				byte bData[] = short2byte(sData);
