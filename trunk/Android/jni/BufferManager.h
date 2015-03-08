@@ -9,9 +9,7 @@
 #ifndef __VSD__BufferManager__
 #define __VSD__BufferManager__
 
-#include <jni.h>
 #include "processAudio.h"
-#include "filt.h"
 
 #define kBufferLength 8192
 #define finalIMF 2
@@ -22,15 +20,18 @@
 class BufferManager
 {
 private:
-    Filter *my_filter;
+	/*
+    int          inputBufferFrameIndex = 0;
+    int          inputBufferLen;
+*/
 public:
-    BufferManager( UInt32 inMaxFramesPerSlice );
-    ~BufferManager();
-    Float32*        inputBuffer;
-    UInt32          inputBufferFrameIndex;
-    UInt32          inputBufferLen;
-    UInt32          inputMaxFramesPerSlice;
-    double            CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrames );
+#ifdef __cplusplus
+        extern "C" {
+#endif
+        double CopyAudioDataToInputBuffer( double inputBuffer[8192] )
+#ifdef __cplusplus
+        }
+#endif
 };
 
 #endif /* defined(__VSD__BufferManager__) */
