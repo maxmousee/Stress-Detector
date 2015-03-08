@@ -9,6 +9,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,9 @@ public class LiveStressActivity extends Activity {
 	private AudioRecord recorder = null;
 	private Thread recordingThread = null;
 	private boolean isRecording = false;
+	
+	private double audioRawData[] = null;
+	private int bufPosition = 0;
 	
 	int BufferElements2Rec = 1024; // want to play 2048 (2K) since 2 bytes we use only 1024
 	int BytesPerElement = 2; // 2 bytes in 16bit format
@@ -140,6 +144,8 @@ public class LiveStressActivity extends Activity {
 	
 	private int n = 0;
 	private double[] x = new double[N];
+	
+    public native double CopyAudioDataToInputBuffer(double[] arr );
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -150,6 +156,8 @@ public class LiveStressActivity extends Activity {
 
 		int bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,
 				RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
+		
+		Log.d("LiveStressActivity", "BUFFERSIZE " + bufferSize);
 	}
 	
 	@Override
@@ -162,6 +170,10 @@ public class LiveStressActivity extends Activity {
 		super.onStop();
 		stopRecording();
 	}
+	
+	static {
+        //System.loadLibrary("BufferManager");
+    }
 
 	public double filter(double x_in)
 	{
@@ -191,6 +203,8 @@ public class LiveStressActivity extends Activity {
 		recorder.startRecording();
 
 		isRecording = true;
+		
+		audioRawData = new double[8192];
 
 		recordingThread = new Thread(new Runnable() {
 
@@ -254,7 +268,14 @@ public class LiveStressActivity extends Activity {
 			//System.out.println("Short wirting to file " + sData.toString());
 			for (int j=0;j<BufferElements2Rec;j++) {
 				doubleData[j] = filter(doubleData[j]);
+				audioRawData[j + bufPosition] = doubleData[j];
 				//System.out.println("Double read filtered" + doubleData[j]);
+			}
+			if(bufPosition < 7168) bufPosition += BufferElements2Rec;
+			else {
+				bufPosition = 0;
+				//PROCESS AUDIO DATA
+				Log.d("LiveStressRecorder", "Buffer full, will process data...");
 			}
 			try {
 				// writes the data to file from buffer stores the voice buffer
@@ -287,6 +308,8 @@ public class LiveStressActivity extends Activity {
 
 			recorder = null;
 			recordingThread = null;
+			bufPosition = 0;
+			audioRawData = null;
 		}
 	}
 
