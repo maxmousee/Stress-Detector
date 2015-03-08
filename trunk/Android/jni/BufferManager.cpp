@@ -12,7 +12,7 @@
 #define min(x,y) (x < y) ? x : y
 
 
-extern "C" JNIEXPORT jdouble JNICALL //HOLD ON MFUCKER
+//extern "C" JNIEXPORT jdouble JNICALL //HOLD ON MFUCKER
 
 double CopyAudioDataToInputBuffer( double inputBuffer[8192] )
 {
