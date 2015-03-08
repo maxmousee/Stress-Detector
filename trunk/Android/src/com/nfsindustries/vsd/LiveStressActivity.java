@@ -172,7 +172,11 @@ public class LiveStressActivity extends Activity {
 	}
 	
 	static {
-        //System.loadLibrary("BufferManager");
+		try{
+			System.loadLibrary("BufferManager");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
     }
 
 	public double filter(double x_in)
@@ -275,7 +279,7 @@ public class LiveStressActivity extends Activity {
 			else {
 				bufPosition = 0;
 				//PROCESS AUDIO DATA
-				Log.d("LiveStressRecorder", "Buffer full, will process data...");
+				//Log.d("LiveStressRecorder", "Buffer full, will process data...");
 			}
 			try {
 				// writes the data to file from buffer stores the voice buffer
