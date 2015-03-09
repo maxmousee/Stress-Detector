@@ -43,5 +43,5 @@ jdouble JNICALL Java_com_nfsindustries_vsd_LiveStressActivity_CopyAudioDataToInp
           //printf("REACHED FINAL, STOP -- HAMMERTIME\n");
        }
     }
-    return -1.0; //SHOULD NOT REACH THIS SH*T
+    return stressCoefficient; //SHOULD NOT REACH THIS SH*T
 }
