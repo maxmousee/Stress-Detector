@@ -265,11 +265,8 @@ public class LiveStressActivity extends Activity {
 			}
 			if(bufPosition < 7168) bufPosition += BufferElements2Rec;
 			else {
-				//10x essa merda pra dar -120dB?
-				for(int k = 0; k < 10; k++){
-					for(int j = 0; j < 8192; j++){
-						audioRawData[j] = filter(audioRawData[j]);
-					}
+				for(int j = 0; j < 8192; j++){
+					audioRawData[j] = filter(audioRawData[j]);
 				}
 				double stressCoef = CopyAudioDataToInputBuffer(audioRawData);
 				Log.d("Stress Coef", "" + stressCoef);
