@@ -1,11 +1,12 @@
 /*
  * File: processAudio_initialize.c
  *
- * MATLAB Coder version            : 2.6
- * C/C++ source code generated on  : 06-Jun-2014 20:32:45
+ * MATLAB Coder version            : 2.7
+ * C/C++ source code generated on  : 26-May-2015 20:44:52
  */
 
-/* Include files */
+/* Include Files */
+#include "rt_nonfinite.h"
 #include "processAudio.h"
 #include "processAudio_initialize.h"
 
@@ -17,6 +18,7 @@
  */
 void processAudio_initialize(void)
 {
+  rt_InitInfAndNaN(8U);
 }
 
 /*

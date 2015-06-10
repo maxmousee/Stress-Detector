@@ -1,28 +1,29 @@
 /*
  * File: processAudio_emxutil.c
  *
- * MATLAB Coder version            : 2.6
- * C/C++ source code generated on  : 06-Jun-2014 20:32:45
+ * MATLAB Coder version            : 2.7
+ * C/C++ source code generated on  : 26-May-2015 20:44:52
  */
 
-/* Include files */
+/* Include Files */
+#include "rt_nonfinite.h"
 #include "processAudio.h"
 #include "processAudio_emxutil.h"
 
 /* Function Definitions */
 
 /*
- * Arguments    : emxArray_real_T **pEmxArray
+ * Arguments    : emxArray_creal_T **pEmxArray
  *                int numDimensions
  * Return Type  : void
  */
-void b_emxInit_real_T(emxArray_real_T **pEmxArray, int numDimensions)
+void b_emxInit_creal_T(emxArray_creal_T **pEmxArray, int numDimensions)
 {
-  emxArray_real_T *emxArray;
+  emxArray_creal_T *emxArray;
   int i;
-  *pEmxArray = (emxArray_real_T *)malloc(sizeof(emxArray_real_T));
+  *pEmxArray = (emxArray_creal_T *)malloc(sizeof(emxArray_creal_T));
   emxArray = *pEmxArray;
-  emxArray->data = (double *)NULL;
+  emxArray->data = (creal_T *)NULL;
   emxArray->numDimensions = numDimensions;
   emxArray->size = (int *)malloc((unsigned int)(sizeof(int) * numDimensions));
   emxArray->allocatedSize = 0;
@@ -73,6 +74,40 @@ void emxEnsureCapacity(emxArray__common *emxArray, int oldNumel, int elementSize
 }
 
 /*
+ * Arguments    : emxArray_creal_T **pEmxArray
+ * Return Type  : void
+ */
+void emxFree_creal_T(emxArray_creal_T **pEmxArray)
+{
+  if (*pEmxArray != (emxArray_creal_T *)NULL) {
+    if (((*pEmxArray)->data != (creal_T *)NULL) && (*pEmxArray)->canFreeData) {
+      free((void *)(*pEmxArray)->data);
+    }
+
+    free((void *)(*pEmxArray)->size);
+    free((void *)*pEmxArray);
+    *pEmxArray = (emxArray_creal_T *)NULL;
+  }
+}
+
+/*
+ * Arguments    : emxArray_int32_T **pEmxArray
+ * Return Type  : void
+ */
+void emxFree_int32_T(emxArray_int32_T **pEmxArray)
+{
+  if (*pEmxArray != (emxArray_int32_T *)NULL) {
+    if (((*pEmxArray)->data != (int *)NULL) && (*pEmxArray)->canFreeData) {
+      free((void *)(*pEmxArray)->data);
+    }
+
+    free((void *)(*pEmxArray)->size);
+    free((void *)*pEmxArray);
+    *pEmxArray = (emxArray_int32_T *)NULL;
+  }
+}
+
+/*
  * Arguments    : emxArray_real_T **pEmxArray
  * Return Type  : void
  */
@@ -86,6 +121,48 @@ void emxFree_real_T(emxArray_real_T **pEmxArray)
     free((void *)(*pEmxArray)->size);
     free((void *)*pEmxArray);
     *pEmxArray = (emxArray_real_T *)NULL;
+  }
+}
+
+/*
+ * Arguments    : emxArray_creal_T **pEmxArray
+ *                int numDimensions
+ * Return Type  : void
+ */
+void emxInit_creal_T(emxArray_creal_T **pEmxArray, int numDimensions)
+{
+  emxArray_creal_T *emxArray;
+  int i;
+  *pEmxArray = (emxArray_creal_T *)malloc(sizeof(emxArray_creal_T));
+  emxArray = *pEmxArray;
+  emxArray->data = (creal_T *)NULL;
+  emxArray->numDimensions = numDimensions;
+  emxArray->size = (int *)malloc((unsigned int)(sizeof(int) * numDimensions));
+  emxArray->allocatedSize = 0;
+  emxArray->canFreeData = true;
+  for (i = 0; i < numDimensions; i++) {
+    emxArray->size[i] = 0;
+  }
+}
+
+/*
+ * Arguments    : emxArray_int32_T **pEmxArray
+ *                int numDimensions
+ * Return Type  : void
+ */
+void emxInit_int32_T(emxArray_int32_T **pEmxArray, int numDimensions)
+{
+  emxArray_int32_T *emxArray;
+  int i;
+  *pEmxArray = (emxArray_int32_T *)malloc(sizeof(emxArray_int32_T));
+  emxArray = *pEmxArray;
+  emxArray->data = (int *)NULL;
+  emxArray->numDimensions = numDimensions;
+  emxArray->size = (int *)malloc((unsigned int)(sizeof(int) * numDimensions));
+  emxArray->allocatedSize = 0;
+  emxArray->canFreeData = true;
+  for (i = 0; i < numDimensions; i++) {
+    emxArray->size[i] = 0;
   }
 }
 

@@ -133,7 +133,7 @@ public class LiveStressActivity extends Activity {
 	private int n = 0;
 	private double[] x = new double[N];
 	
-    public native double CopyAudioDataToInputBuffer(double[] arr );
+    public native double processAudio(double[] arr, int L, int Fs );
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -161,7 +161,7 @@ public class LiveStressActivity extends Activity {
 	
 	static {
 		try{
-			System.loadLibrary("BufferManager");
+			System.loadLibrary("processAudio");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -197,7 +197,7 @@ public class LiveStressActivity extends Activity {
 
 		isRecording = true;
 		
-		audioRawData = new double[8192];
+		audioRawData = new double[RECORDER_SAMPLERATE];
 
 		recordingThread = new Thread(new Runnable() {
 
@@ -254,21 +254,27 @@ public class LiveStressActivity extends Activity {
 			
 			double[] doubleData = new double[BufferElements2Rec];
 
-			for (int j=0;j<BufferElements2Rec;j++) {
+			for (int j = 0; j < BufferElements2Rec; j++) {
 				doubleData[j] = (double)sData[j]/32768.0;
 			}
 			
 			//System.out.println("Short wirting to file " + sData.toString());
-			for (int j=0;j<BufferElements2Rec;j++) {
-				audioRawData[j + bufPosition] = doubleData[j];
+			for (int j = 0; j < BufferElements2Rec; j++) {
+				int currentPosition = j + bufPosition;
+				if(currentPosition < RECORDER_SAMPLERATE) {
+					audioRawData[j + bufPosition] = doubleData[j];
+				} else { 
+					//Log.d("BUFFER_OVERFLOW", "BUFFER_OVERFLOW " + currentPosition);
+				}
 				//System.out.println("Double read filtered" + doubleData[j]);
 			}
-			if(bufPosition < 7168) bufPosition += BufferElements2Rec;
+			if((bufPosition + BufferElements2Rec) < RECORDER_SAMPLERATE) bufPosition += BufferElements2Rec; //7168
 			else {
-				for(int j = 0; j < 8192; j++){
+				for(int j = 0; j < RECORDER_SAMPLERATE; j++){
 					audioRawData[j] = filter(audioRawData[j]);
 				}
-				double stressCoef = CopyAudioDataToInputBuffer(audioRawData);
+				double stressCoef = processAudio(audioRawData, RECORDER_SAMPLERATE, RECORDER_SAMPLERATE);
+				//TODO FIX
 				Log.d("Stress Coef", "" + stressCoef);
 				bufPosition = 0;
 				//PROCESS AUDIO DATA

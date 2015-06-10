@@ -1,8 +1,8 @@
 /* 
  * File: rtwtypes.h 
  *  
- * MATLAB Coder version            : 2.6 
- * C/C++ source code generated on  : 06-Jun-2014 20:32:45 
+ * MATLAB Coder version            : 2.7 
+ * C/C++ source code generated on  : 26-May-2015 20:44:52 
  */
 
 #ifndef __RTWTYPES_H__
@@ -12,11 +12,11 @@
 
 /*=======================================================================* 
  * Target hardware information
- *   Device type: ARM Compatible->ARM Cortex
+ *   Device type: Generic->Unspecified (assume 32-bit Generic)
  *   Number of bits:     char:   8    short:   16    int:  32
  *                       long:  32
  *                       native word size:  32
- *   Byte ordering: LittleEndian
+ *   Byte ordering: Unspecified
  *   Signed integer division rounds to: Undefined
  *   Shift right on a signed integer as arithmetic shift: on
  *=======================================================================*/
