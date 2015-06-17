@@ -12,7 +12,6 @@ from scipy.io import wavfile
 import emd
 import os
 import matplotlib.pyplot as plt
-from numpy.core.defchararray import count
 rate1,dat1 = wavfile.read(os.getcwd() + "/rain_man_driver_8000.wav")
 #print dat1
 #print rate1
@@ -47,7 +46,7 @@ print "total number of elements is {}".format(len(mydata))
     
 #plt.plot(myemd[imfCount-1])
 
-print "number of crossing zeros {}".format(countZeros)
+#print "number of crossing zeros {}".format(countZeros)
 audiotimelength = len(mydata)/float(rate1)
 print "total audio file length in seconds is {}".format(audiotimelength)
 
