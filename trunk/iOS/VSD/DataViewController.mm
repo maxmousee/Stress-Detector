@@ -61,12 +61,6 @@
             dispatch_async(myQueue, ^{
                 audioController = [[AudioController alloc] init];
                 [audioController startIOUnit];
-                /*
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Update the UI
-                    
-                });
-                 */
             });
         }
         else
