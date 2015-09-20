@@ -90,10 +90,14 @@
         } else if(stressCoef > 12 && stressCoef <= 13) {
             [stressMessage appendString:@"marginal stress"];
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
+        } else if(stressCoef <= 3 || stressCoef >= 40) {
+            [stressMessage appendString:@"can't process"];
+            stressTL.backgroundColor = [UIColor blackColor].CGColor;
         } else {
             [stressMessage appendString:@"stress"];
             stressTL.backgroundColor = [UIColor redColor].CGColor;
         }
+        //[stressMessage appendFormat:@"\n%.2fHz", stressCoef];
         [stressTL setString:stressMessage];
         [stressTL performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:0 waitUntilDone:NO];
         NSLog(@"%@", stressMessage);

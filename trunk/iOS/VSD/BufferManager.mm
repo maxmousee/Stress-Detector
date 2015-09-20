@@ -57,21 +57,16 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
                 stressCoefficient = processAudio(inputBufferDouble, nComponent);
                 nComponent++;
                 //printf("nComponent %d\n", nComponent);
-                if(stressCoefficient >= 3 && stressCoefficient <= 40) {
-                    stopProcess = 1;
-                    //printf("FOUND STRESS COEFICIENT, STOP\n");
-                    printf("%.2f \n", stressCoefficient);
-                    
-                    NSNumber *stressCoefNSNumber = [NSNumber numberWithFloat:stressCoefficient];
-                    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];
-                    
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kStressProcessedNotification object:nil userInfo:userInfo];
-                }
                 
-                if (nComponent >= finalIMF) {
-                    stopProcess = 1;
-                    //printf("REACHED FINAL, STOP\n");
-                }
+                stopProcess = 1;
+                //printf("FOUND STRESS COEFICIENT, STOP\n");
+                printf("%.2f \n", stressCoefficient);
+                
+                NSNumber *stressCoefNSNumber = [NSNumber numberWithFloat:stressCoefficient];
+                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:kStressProcessedNotification object:nil userInfo:userInfo];
+                
                 inputBufferFrameIndex = 0;
             }
         });
