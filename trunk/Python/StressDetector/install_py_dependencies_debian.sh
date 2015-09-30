@@ -1,5 +1,6 @@
 apt-get install python-pip;
 apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose;
+apt-get install git;
 cd ~/;
 mkdir repo;
 cd repo;
