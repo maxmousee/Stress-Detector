@@ -21,17 +21,6 @@ def internalerror():
     #return web.internalerror("Bad, bad server. No donut for you.")
     return json.dumps({'ok':0, 'errcode': 500})
 
-def Base64Encode(ndarray):
-    return json.dumps([str(ndarray.dtype),base64.b64encode(ndarray),ndarray.shape])
-
-def Base64Decode(jsonDump):
-    loaded = json.loads(jsonDump)
-    dtype = np.dtype(loaded[0])
-    arr = np.frombuffer(base64.decodestring(loaded[1]),dtype)
-    if len(loaded) > 2:
-        return arr.reshape(loaded[2])
-    return arr
-
 urls = (
     '/(.*)', 'processAudio'
 )
@@ -42,17 +31,14 @@ app.internalerror = internalerror
 
 class processAudio:        
 	def POST(self,  method_id):
-		#rate3,dat3 = wavfile.read(os.getcwd() + "/rain_man_driver_8000.wav")
 		i = web.input()
 		dat2 = web.data()
-		dat1 = np.array(json.loads(dat2))
-		print dat1
-		rate1 = 8000 
-		#send it using this sample rate or die, your choice
+		dat2 = dat2[2:-2]
+		dat1 = np.fromstring(dat2, dtype=int, sep=', ')
+		rate1 = len(dat1)
 		myemd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
 		countZeros = 0
 		imfCount = len(myemd[0])
-		print imfCount
 		if imfCount > 3:
 			imfCount = imfCount - 1
 
