@@ -52,7 +52,6 @@ class processAudio:
 
 		stresstremoravg = countZeros - 1
 		stresstremoravg = stresstremoravg/audiotimelength
-		underStress = False
 		if stresstremoravg > 12:
 			underStress = True
 		elif stresstremoravg < 8:
