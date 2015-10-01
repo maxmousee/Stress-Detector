@@ -4,13 +4,9 @@ Created on 22 Jan 2014
 @author: maxmouse
 '''
 
-from scipy.io import wavfile
 import emd
-import os
 import web
 import json
-import simplejson
-import matplotlib.pyplot as plt
 import numpy as np
 
 def notfound():
