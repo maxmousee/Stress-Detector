@@ -1,7 +1,8 @@
-apt-get install python-pip;
-apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose;
-apt-get install git;
-apt-get install curl;
+sudo apt-get install python-pip;
+sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose;
+sudo apt-get install git;
+sudo apt-get install curl;
+sudo easy_install web.py;
 cd ~/;
 mkdir repo;
 cd repo;

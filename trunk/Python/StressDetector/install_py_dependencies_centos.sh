@@ -1,0 +1,12 @@
+sudo yum -y install epel-release;
+sudo yum update;
+sudo yum repolist;
+sudo yum -y install python python-pip;
+sudo yum -y install git;
+sudo yum -y install curl;
+sudo yum -y install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose;
+sudo sudo easy_install web.py;
+cd ~/;
+mkdir repo;
+cd repo;
+git clone https://github.com/maxmousee/Stress-Detector.git -b master;
