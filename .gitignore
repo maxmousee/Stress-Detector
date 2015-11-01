@@ -32,3 +32,7 @@ proguard/
 *.xcuserstate
 
 trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
+
+trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.pyc
