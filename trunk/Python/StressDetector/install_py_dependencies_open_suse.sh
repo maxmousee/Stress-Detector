@@ -1,13 +1,14 @@
-sudo apt-get install python-pip;
-sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose;
-sudo apt-get install git;
-sudo apt-get install curl;
-sudo easy_install web.py;
+#on terminal: sudo bash install_py_depedencies_open_suse.sh
+yast2 --install python;
+yast2 --install python-pip;
+yast2 --install python-numpy python-scipy python-matplotlib python-pandas python-sympy python-nose;
+yast2 --install git;
+yast2 --install curl;
+pip2.7 install web.py;
 cd ~/;
 mkdir repo;
 cd repo;
 git clone https://github.com/maxmousee/Stress-Detector.git -b master
-#on terminal: sh install_py_depedencies_debian.sh
 #need to change this
 #to run it just go to the folder and type "python StressDetector.py" without the quotes
 #it will run as a http service listening to port 8080
