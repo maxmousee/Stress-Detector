@@ -6,7 +6,7 @@ function stressFreq = vsd(input)
  %Y=fft(stressComponentArray, L);
  %fft starts here
  hfft = dsp.FFT('FFTLengthSource', 'Property', ...
-    'FFTLength', 8000);
+    'FFTLength', L);
  Y = hfft(stressComponentArray); 
  
  %fft ends here
