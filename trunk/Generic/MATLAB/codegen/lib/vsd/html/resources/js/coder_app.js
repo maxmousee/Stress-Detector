@@ -1,4 +1,4 @@
-/* Copyright 2013-2015 The MathWorks, Inc. */
+/* Copyright 2013-2016 The MathWorks, Inc. */
 function queryByClassName(className, elem) {
     if (!elem) elem = document.body;
     if (typeof elem.querySelectorAll === "function") {
@@ -217,6 +217,27 @@ function updateToken(codeElement) {
         var o = top.fileSelector.document.getElementById('fileSelector');
         if (o) {
             o.value = filename;
+        }
+    }
+   //  add links to line numbers
+    var hasLineFlag = null;
+    if (top.TraceInfoLineFlag && top.TraceInfoLineFlag.instance) {
+        hasLineFlag =  true;
+    } else {
+        hasLineFlag = false;
+    }
+
+    if(hasLineFlag) {
+        var lines = queryByClassName("ln", codeElement);
+        var lineTraceFlag = top.TraceInfoLineFlag.instance.lineTraceFlag;
+        var lineNo = null;
+        for (var i=0; i<lines.length; i++) {
+            lineNo = lines[i].id.substring(1)
+            if(lineTraceFlag[srcFilename+":"+ lineNo]) {
+                lines[i].className += " active";
+                lines[i].href = "matlab:rtw.report.code2model(\'" + top.reportModel 
+                    + "\',\'" + srcFilename + "\',\'" + lineNo + "')";
+            }
         }
     }
 }

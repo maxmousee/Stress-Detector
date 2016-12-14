@@ -1,4 +1,4 @@
-// Copyright 2008-2015 The MathWorks, Inc.
+// Copyright 2008-2016 The MathWorks, Inc.
 
 // Pointer to the active file/function we're looking at.
 var activeFcn = {};
@@ -11,27 +11,34 @@ var messageStrs;
 // Keeps track of the id of the top-most object the mouse is hovering over.
 var mouseid = "";
 var isIE = !!$.browser.msie;
+// Indicates a function selection is currently being processed
+var isLoadingFunction = false;
+// Next selection in the form of a function
+var nextSelectionTask = null;
+
+// CSS selector for the currently selected expected difference message.
+var currentExpDiff = "";
 
 // Basic setup of user interactions with the text.
 function setupInteractions() {
-    
+
     // A blank query with no matched elements.
     queries.empty = $("empty", "<div/>");
-    
+
     // The main div with the code in it.
     queries.codeDiv = $("div.code", queries.center);
-    
+
     // The tag where the title of the function will be inserted.
     queries.functionTitle = $("span.functiontitle", queries.center);
-    
+
     // Set up the main interactions.
     staticCache = initializeStaticCache();
     setupHovering(staticCache, queries.empty, $("tbody > tr", queries.messages));
-        
+
     // Get the datatype tooltips and message tooltips in order
     initializeTooltips();
     initializeMessages();
-    
+
     // Hot keys
     document.body.addEventListener("mousedown", function (evt) {
         if (evt.which == 2) {
@@ -42,16 +49,17 @@ function setupInteractions() {
         .bind('keydown',keyBindings.selectMCodeTab,     function(evt) { selectMCodeTab();      return false; })
         .bind('keydown',keyBindings.selectCallStackTab, function(evt) { selectCallStackTab();  return false; })
         .bind('keydown',keyBindings.selectCCodeTab,     function(evt) { selectCCodeTab();      return false; })
-    
+
         .bind('keydown',keyBindings.selectReportTab,    function(evt) { selectReportTab();     return false; })
         .bind('keydown',keyBindings.selectCenterPanel,  function(evt) { selectCenterPanel();   return false; })
-    
+
         .bind('keydown',keyBindings.selectSummaryTab,   function(evt) { selectSummaryTab();    return false; })
         .bind('keydown',keyBindings.selectMessagesTab,  function(evt) { selectMessagesTab();   return false; })
         .bind('keydown',keyBindings.selectWatchListTab, function(evt) { selectWatchListTab();  return false; })
-        .bind('keydown',keyBindings.selectBuildLogTab,  function(evt) { selectBuildLogTab();   return false; });
-    
-};
+        .bind('keydown',keyBindings.selectBuildLogTab,  function(evt) { selectBuildLogTab();   return false; })
+
+        .bind('keydown',keyBindings.clearAllHighlights, function(evt) {clearAllHighlights();   return false; });
+}
 
 // Helper function to scroll to a variable with a specific varid, but only if the cursor
 // is directly on the variable.
@@ -93,11 +101,11 @@ function unhighlightActiveFcn() {
 }
 
 // Highlights all instances of the active function in blue; if the active function is a MATLAB file
-// (i.e. an inference file instead of a target code file), then we also have to search through the 
+// (i.e. an inference file instead of a target code file), then we also have to search through the
 // messages pane.
 function updateActiveFunction() {
     highlightActiveFcn(true);
-    
+
     if (!activeFcn.isUnderWarning) {
         queries.functionTitle.html(activeFcn.functionTitle);
     }
@@ -110,38 +118,38 @@ function initializeWatchList(id) {
 
 // Executed every time an inference report function is brought up for the first time
 // (but not for target code functions, they have another initializer).  This performs
-// all of the queries to make the interactions between variables, mxinfos, messages, 
+// all of the queries to make the interactions between variables, mxinfos, messages,
 // and functions within the code.
 function initializeFcnData(id) {
-    
+
     // This object will cache everything related to the active function.
     activeFcn.id = id;
     activeFcn.type = "m";
     activeFcn.cursorLine = null;
-    
+
     activeFcn.code = queries.codeDiv.children(0);
 
     // Update highlighting of the active function instances.
     updateActiveFunction();
-    
+
     // Expand the links to the source files.
     $(".lineno>a",queries.codeDiv).each(function() {
         var $this = $(this);
         var pieces = $this.attr("href").split(",");
         $this.attr("href", "matlab: emlcprivate('irOpenToLine','" + scriptInfoTable["fpath" + pieces[0]] + "'," + pieces[1] + ");");
     });
-    
+
     // Query the code for any objects we want to highlight.
     activeFcn.vars = $(".var",queries.codeDiv);
     activeFcn.messages = $(".message",queries.codeDiv);
-    
+
     // Initialize this function's cache with the static cache values.
     activeFcn.cache = initializeCache();
-    
+
     // Add to the cache the hovering information.  By caching it ahead of time we get
     // much, much faster performance than recomputing these queries each time the mouse moves.
     setupHovering(activeFcn.cache, activeFcn.vars, activeFcn.messages);
-    
+
     // Populate the call sites
     var $callSiteSelectTable = $("#callsiteselecttable");
     var $callSiteLabel = $("#callsiteselectlabel");
@@ -217,7 +225,7 @@ function showWatchDataLoading(start)
     var $lnkshow = start ? queries.watchloadlink : queries.watchlistlink;
     var $objhide = $lnkhide.parent();
     var $objshow = $lnkshow.parent();
-    
+
     $objhide.addClass('hidden');
     $objhide.removeClass('ui-tabs-selected');
     $objshow.removeClass('hidden');
@@ -240,7 +248,7 @@ function loadWatchData(id)
             queries.watchlist.load(watchFilename, function() {
                 setupWatchList();
                 initializeWatchList();
-                activeFcn.watchID = id; 
+                activeFcn.watchID = id;
                 showWatchDataLoading(false);
                 focusWatchListTab();
             });
@@ -253,12 +261,12 @@ function loadWatchData(id)
 function loadFunctionData(id,pieces)
 {
     try {
-        // AJAX load.  
+        // AJAX load.
         // Once completely loaded into the DOM, execute initializeFcnData.
         activeFcn = {};
         activeFcn.functionTitle = functionInfoTable["title" + id];
         queries.functionTitle.html(activeFcn.functionTitle);
-        
+
         var mcodeFilename = functionInfoTable["MATLABcode" + id];
         queries.codeDiv.load(mcodeFilename, function(responseText, textStatus, XMLHttpRequest) {
             initializeFcnData(id);
@@ -280,13 +288,24 @@ function loadFunctionData(id,pieces)
                     scrollToObj(queries.codeDiv, $target);
                 }
                 highlightCurrentLine($target);
+                clearExpectedDifferenceHighlights();
+                highlightCurrentExpectedDifference();
             }
             loadWatchData(id);
-            // When load function data, add highlights for 
+            // When load function data, add highlights for
             // single/double/expensive fixed point operations if user wants to see them
             refreshShowOptHighlight();
+
+            if (RangeHighlighter) {
+                var functionPositions = functionInfoTable["positions" + id];
+                RangeHighlighter.setActiveScript(functionInfoTable["fpath" + id],
+                    functionPositions[0], functionPositions[1]);
+            }
+
+            postAsyncLoad();
         });
     } catch (err) {
+        postAsyncLoad();
     }
 }
 function makeCTitle(filename)
@@ -295,15 +314,15 @@ function makeCTitle(filename)
     var suffix = filename.match(re);
 
     if (suffix == null) {
-        re = /(_vhd|_v|_txt|_html).html$/;   
+        re = /(_vhd|_v|_txt|_html).html$/;
         suffix = filename.match(re);
-        //alert(suffix.length);     
+        //alert(suffix.length);
     }
 
     var newsuffix = suffix[0].substr(1,suffix[0].length-6);
-    var displayname = filename.replace(re,'.'+newsuffix); 
+    var displayname = filename.replace(re,'.'+newsuffix);
     var title = 'File: <span class="functionname">' + displayname + '</span>';
-    
+
     return title;
 }
 function loadCData(filename,pieces,isUnderWarning)
@@ -321,16 +340,18 @@ function loadCData(filename,pieces,isUnderWarning)
                     // Scroll the file if requested.
                     scrollToObj(queries.codeDiv, $('a[name="' + pieces[1] + '"]'));
                 }
+                postAsyncLoad();
             });
         }
     } catch (err) {
+        postAsyncLoad();
     }
 }
 
 function loadReportData(filename,pieces)
 {
     try {
-        // Perform an AJAX load, and execute initializeReportData when done.        
+        // Perform an AJAX load, and execute initializeReportData when done.
         var selector = filename;
         queries.codeDiv.load(selector, function() {
             initializeReportData(filename);
@@ -338,8 +359,10 @@ function loadReportData(filename,pieces)
                 // Scroll the file if requested.
                 scrollToObj(queries.codeDiv, $('a[name="' + pieces[1] + '"]'));
             }
+            postAsyncLoad();
         });
     } catch (err) {
+        postAsyncLoad();
     }
 }
 
@@ -395,36 +418,34 @@ function openFunction(aId, aOptions) {
         // Scrolling within the current C file
         var $target = $('a[name="' + pieces[1] + '"]');
         scrollToObj(queries.codeDiv, $target);
-        
+
         return;
     }
-    
+
     // Remove highlighting from all links to the active function, as we're about to change it.
     unhighlightActiveFcn();
-        
+
     // Update the history
-    var len = window.history.length;
-    var oldState = window.history.state;
     var newState = {
         id: aId,
         options: aOptions
     };
-    if (aOptions.isPopState) {
+    var newHash = "#" + aId;
+    if (!aOptions.isPopState) {
         try { // JxBrowser can error here.
-            window.history.replaceState(newState, aId, document.location);
+            history.pushState(newState, aId, newHash);
         } catch (err) {
-        }
-    } else {
-        try { // JxBrowser can error here.
-            window.history.pushState(newState, aId, document.location);
-        } catch (err) {
+            // Log the error and keep going so that the report loads.
+            console.log(err);
         }
     }
 
     // Save the previous function's code locations so we can call it up later if the function
     // is reopened.
     cacheCode();
-    
+
+    isLoadingFunction = true;
+
     if (intId == id) {
         // Load an inference report MATLAB file.
         unselectCCodeTab();
@@ -453,6 +474,28 @@ function openFunction(aId, aOptions) {
     }
 }
 
+function postAsyncLoad() {
+    isLoadingFunction = false;
+    if (nextSelectionTask) {
+        try {
+            nextSelectionTask();
+        } finally {
+            nextSelectionTask = null;
+        }
+    }
+}
+
+// Opens a function if no M function is being loaded
+function openFunctionWhenIdle(aId, aOptions) {
+    if (!isLoadingFunction) {
+        openFunction(aId, aOptions);
+    } else {
+        nextSelectionTask = function() {
+            openFunction(aId, aOptions);
+        };
+    }
+}
+
 // This function is executed each time a target code file is opened for the first time.
 function initializeCData(filename, isUnderWarning) {
     // Set up the cache to store the information on this function.
@@ -461,10 +504,10 @@ function initializeCData(filename, isUnderWarning) {
     activeFcn.type = "c";
     activeFcn.cursorLine = null;
     activeFcn.isUnderWarning = isUnderWarning;
-    
+
     var $callSiteSelectTable = $("#callsiteselecttable");
     $callSiteSelectTable.addClass("hidden");
-    
+
     // Extract the title from the C code file.
     var $title = $("h4 a", queries.codeDiv);
     var filelink = $title.html();
@@ -474,18 +517,18 @@ function initializeCData(filename, isUnderWarning) {
     var shownFile = '';
     if (filelink != null) {
         htmlRoot = functionInfoTable.htmlRoot.replace(/'/g,"''");
-        shownFile = ' (<a href="matlab: coder.report.HTMLLinkManager.openSourceFile(\'' + htmlRoot + '\',\''+$title.attr('href')+'\')">' + fileshow + '</a>)'
+        shownFile = 'File: <a href="matlab: coder.report.HTMLLinkManager.openSourceFile(\'' + htmlRoot + '\',\''+$title.attr('href')+'\')">' + fileshow + '</a>';
     }
-    
+
     // Make the title for the file and insert it into the DOM.
-    activeFcn.functionTitle = makeCTitle(filename) + shownFile;
+    activeFcn.functionTitle = shownFile;
     activeFcn.code = queries.codeDiv.children(0);
     updateActiveFunction();
-    
+
     if (isUnderWarning) {
         return;
     }
-       
+
     // For each link in the target code file, disable the links and turn them into AJAX loads.
     $("a",queries.codeDiv).each(function() {
         if (this.getAttribute("href") != null) {
@@ -497,10 +540,10 @@ function initializeCData(filename, isUnderWarning) {
             } else {
                 $this
                 .attr("fcnid", $this.attr("href"))
-                .attr("href", 'javascript:openFunction("' + $this.attr("href") + '");')
-                .attr("target", "")
-                .click(function() {
+                .click(function(evt) {
                     queries.ccoderows.removeClass("fcnid-hover");
+                    openFunction($this.attr("href"));
+                    return false; // Return false to prevent default href navigation.
                 })
                 .mouseover(function() {
                     // When we hover over a link, make it turn green in the contents list.
@@ -525,12 +568,12 @@ function initializeReportData(filename) {
     activeFcn.type = "report";
     activeFcn.cursorLine = null;
     activeFcn.isUnderWarning = false;
-    
+
     var $callSiteSelectTable = $("#callsiteselecttable");
     $callSiteSelectTable.addClass("hidden");
 
     var $title = $("h1", queries.codeDiv);
-    // Make the title for the file and insert it into the DOM.    
+    // Make the title for the file and insert it into the DOM.
     activeFcn.functionTitle = $title.html();
     activeFcn.code = queries.codeDiv.children(0);
     updateActiveFunction();
@@ -545,10 +588,10 @@ function initializeReportData(filename) {
                 str = str.substr(str.lastIndexOf("/")+1);
                 $this
                 .attr("fcnid", str)
-                .attr("href", 'javascript:openFunction("' + $this.attr("href") + '");')
-                .attr("target", "")
-                .click(function() {
+                .click(function(evt) {
                     queries.ccoderows.removeClass("fcnid-hover");
+                    openFunction($this.attr("href"));
+                    return false; // Return false to prevent default href navigation.
                 })
                 .mouseover(function() {
                     // When we hover over a link, make it turn green in the contents list.
@@ -600,9 +643,9 @@ function forceHideTooltip()
 function hideTooltip(evt,c) {
     if (tooltip.counter <= c) {
 	$(evt.target).unbind('mouseleave');
-	setTimeout(function () { 	
+	setTimeout(function () {
 	    if(tooltip.counter == c) {
-		tooltip.parent.hide(); 
+		tooltip.parent.hide();
 	    }
 	}, 200);
 	mouseid = "";
@@ -757,7 +800,7 @@ function collapsibleClick(evt, $body) {
 }
 
 function methodSetClick(evt) {
-    collapsibleClick(evt, queries.classlistbody); 
+    collapsibleClick(evt, queries.classlistbody);
 }
 
 function functionSetClick(evt) {
@@ -782,10 +825,10 @@ function refreshShowOptHighlight() {
 
 // Toggle between highlight and unhighlight of single/double/expensive fixed point operations
 function toggleFcnsWithViolations($obj, $id, highlightClass) {
-    // If checkbox is "checked", highlight 
+    // If checkbox is "checked", highlight
     if ($obj.is(":checked")) {
         $id.addClass(highlightClass);
-        
+
     }
     // If checkbox is "unchecked", unhighlight
     if (!$obj.is(":checked")) {
@@ -903,7 +946,7 @@ function watchMouseOut(evt) {
             if ($obj.hasClass('haschild')) {
                 $obj.next().removeClass("var-hover-direct");
             }
-            
+
             mouseid = "";
         }
     } else if ($obj.hasClass("mxinfo")) {
@@ -926,7 +969,7 @@ function msgHoverCssId($obj) {
         cssid = "error-hover";
     }
     return cssid;
-};
+}
 function highlightCurrentMessage($target,highlight)
 {
     var cssid = msgHoverCssId($target);
@@ -943,11 +986,7 @@ function highlightCurrentMessage($target,highlight)
 }
 // This executes whenever the user clicks on an MATLAB code link in a message.
 function messagesClick(evt) {
-    $obj = $(evt.target ? evt.target : evt.srcElement);
-    if (!$obj.attr("id"))
-        $obj = $obj.parent();
-    if (!$obj.attr("id"))
-        $obj = $obj.parent();
+    $obj = getMessageClickTarget(evt);
     var intids = decodeMessageID($obj.attr("id"));
     openFunction(intids[1]+"#M"+intids[0]);
 }
@@ -969,27 +1008,59 @@ function messagesMouseOut(evt) {
     highlightCurrentMessage($obj,false);
     mouseid = "";
 }
+function clickExpectedDifferenceMessage(evt) {
+    $obj = getMessageClickTarget(evt);
+    clearExpectedDifferenceHighlights();
+    currentExpDiff = $obj.attr("id");
+    highlightExpectedDifference(currentExpDiff);
+}
+function highlightCurrentExpectedDifference() {
+    if (currentExpDiff.trim()) {
+        highlightExpectedDifference(currentExpDiff);
+    }
+}
+function highlightExpectedDifference(ed) {
+    $("." + ed).addClass("expDiffHighlight");
+    $("#" + ed).addClass("expDiffHighlight");
+}
+function clearExpectedDifferenceHighlights() {
+    $(".expDiffHighlight").removeClass("expDiffHighlight");
+}
+function getMessageClickTarget(evt) {
+    $obj = $(evt.target ? evt.target : evt.srcElement);
+    if (!$obj.attr("id"))
+        $obj = $obj.parent();
+    if (!$obj.attr("id"))
+        $obj = $obj.parent();
+    return $obj;
+}
+function clearAllHighlights() {
+    clearExpectedDifferenceHighlights();
+
+    // Selecting another function should not add highlights back.
+    currentExpDiff = "";
+}
 
 function fcnNameHover($src, doAdd) {
     var strids = decodeFunctionID($src.attr("id"));
     var wrappedSet = $('[id*="' + encodeFunctionID(strids[1],strids[2]) + '"]', queries.west);
     if (doAdd) {
-        wrappedSet.addClass("fcnnameid-hover");
+        addHovering(wrappedSet, "fcnnameid-hover");
     } else {
-        wrappedSet.removeClass("fcnnameid-hover");
+        removeHovering(wrappedSet, "fcnnameid-hover");
     }
 }
 
 // When the user clicks in the code, scroll to its position in the watchlist
 function mcodeClick(evt) {
     $obj = $(evt.target ? evt.target : evt.srcElement);
-    
+
     while (!$obj.hasClass('code')) {
         if ($obj.hasClass("fcn")) {
-            // When we click on a function, it opens it up; thus, be sure to 
-            // unhighlight the previous function first, or else it will remain 
+            // When we click on a function, it opens it up; thus, be sure to
+            // unhighlight the previous function first, or else it will remain
             // highlighted if we navigate back to it.
-            
+
             if ($obj.is("span")) {
                 var $parent = $obj.parent();
                 if ($parent.hasClass("message")) {
@@ -1043,8 +1114,8 @@ function mcodeMouseOver(evt) {
                 return;
             } else if ($obj.hasClass("mxinfo")) {
                 mouseid = $obj.attr("id");
-                $obj.addClass("mxinfo-hover");
-                
+                addHovering($obj, "mxinfo-hover");
+
                 makeTypeTooltip(evt,$obj);
                 return;
             } else if ($obj.hasClass("fcn")) {
@@ -1063,7 +1134,7 @@ function mcodeMouseOver(evt) {
                     var intids = decodeMessageID(mouseid);
                     addHovering(activeFcn.cache.messages[intids[0]], cssid);
                 }
-                
+
                 makeMsgTooltip(evt,$obj);
                 return;
             }
@@ -1083,15 +1154,14 @@ function mcodeMouseOut(evt) {
             if (watch) {
                 removeHovering(watch, "var-hover");
             }
-            $obj.removeClass("var-hover-direct");
-                
+            removeHovering($obj, "var-hover-direct");
+
         } else if ($obj.hasClass("mxinfo")) {
-            $obj.removeClass("mxinfo-hover");
+            removeHovering($obj, "mxinfo-hover");
 
         } else if ($obj.hasClass("fcn")) {
             fcnNameHover($obj, false);
-            $obj.parent().removeClass("mxinfo-hover");
-            
+            removeHovering($obj.parent(), "mxinfo-hover");
         } else if ($obj.hasClass("message")) {
             var cssid = msgHoverCssId($obj);
             if (cssid) {
@@ -1161,6 +1231,7 @@ function openFunctionInFile(fcnId) {
 
 // This executes whenever the user clicks in the call or class tree.
 function genericTreeClick(evt, $allnodes) {
+    evt.preventDefault();
     $obj = $(evt.target ? evt.target : evt.srcElement);
     while (!$obj.is("a") && !$obj.is("div")) {
         $obj = $obj.parent();
@@ -1202,7 +1273,7 @@ function callSiteChange(evt) {
 }
 
 function setupHovering(cache, vars, messages) {
-    
+
     vars.each(function() {
         var idstr = convertMcodeID2WatchID(this.getAttribute("id"));
         if (cache.vars[idstr] == null)
@@ -1221,11 +1292,19 @@ function setupHovering(cache, vars, messages) {
 // Add classes to all matching objects when the mouse hovers over them.
 function addHovering(objs, cssClass) {
     $(objs).addClass(cssClass);
+    if (RangeHighlighter) {
+        // Temporarily hide range highlights in the relevant region in favor of hovering
+        RangeHighlighter.hide(objs);
+}
 }
 
 // Remove the hovering classes.
 function removeHovering(objs, cssClass) {
     $(objs).removeClass(cssClass);
+    if (RangeHighlighter) {
+        // Restore disabled highlights
+        RangeHighlighter.show(objs);
+}
 }
 
 // Highlight the current line
@@ -1256,7 +1335,7 @@ function makeAutoExtrinsicTooltip(evt,$obj) {
 // Make all of the tooltip strings for the different mxinfos and variables
 function makeTypeTooltip(evt,$obj) {
     var typestr = '<div class="label info\">' + localizedMessages.infoForExpression + '</div>';
-    
+
     var re = /T(\d+):/;
     var strids = re.exec($obj.attr("id"));
     if (strids && parseInt(strids[1]) > 0)
@@ -1274,7 +1353,7 @@ function makeVarTooltip(evt, $obj, ids) {
         typestr = '<div class="label type1">' + localizedMessages.infoForVarType + '</div>';
     } else if ($obj.hasClass("type2")) {
         typestr = '<div class="label type2">' + localizedMessages.infoForVarConst + '</div>';
-    }    
+    }
     if (typeid > 0) {
         var ttable = tooltipStrs.filter("#TT"+typeid).clone();
         var valueid = ids[1];
@@ -1300,7 +1379,7 @@ function makeMsgTooltip(evt,$obj) {
     } else if ($obj.hasClass("info")) {
         msgHeading = "Notice";
         msgClass = "info";
-    }  
+    }
     var intids = decodeMessageID($obj.attr("id"));
     var msgText = messageStrs[intids[0]];
     var typestr = '<div class="label message"><span class="' + msgClass + '">' + msgHeading + '</span><span class="msgtext"><br/>' + msgText + "</span></div>";
@@ -1326,7 +1405,7 @@ function initializeMessages() {
 function scrollToObj($obj, $target) {
     if ($target == null || $target.offset() == null)
         return;
-        
+
     var obj = $obj.get(0);
     var targetOffset = $target.offset()['top'] + (obj['scrollTop'] - $obj.offset()['top']);
     $obj.animate({scrollTop: targetOffset}, 'fast');

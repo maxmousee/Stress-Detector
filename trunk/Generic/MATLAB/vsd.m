@@ -1,14 +1,20 @@
 function stressFreq = vsd(input)
- Fs = length(input);
+ %Fs = length(input);
+ %The code has fixed length anyway, so it wont work with different
+ %sample rate anyway
+ Fs = 8000;
  imf = emd(input(1:Fs));
  stressComponentArray = imf;
  L = length(stressComponentArray);
- %Y=fft(stressComponentArray, L);
  %fft starts here
- hfft = dsp.FFT('FFTLengthSource', 'Property', ...
-    'FFTLength', L);
- Y = hfft(stressComponentArray); 
- 
+ Y = complex(zeros(size(stressComponentArray),class(stressComponentArray)));
+ %dirty hack because matlab only generates fft code for power of 2
+ %nPointDFT=nextpow2(L);
+ %remember that nPointDFT should be a power of 2 or matlab coder wont
+ %generate anything
+ %nPointDFT=8192;
+ %Y=fft(stressComponentArray, nPointDFT);
+ Y=fft(stressComponentArray, 8192);
  %fft ends here
  P2 = abs(Y/L);
  P1 = P2(1:L/2+1);

@@ -82,7 +82,7 @@ function rtwannotate_do(xmlDoc) {
 
     function annotate_code_table(rtwCode) {
         var tr, td;
-        var left_padding = "   ";
+        var left_padding = "  ";
         var right_padding = "  ";
         var lines = rtwCode.rows;
         var lineNum = 0;

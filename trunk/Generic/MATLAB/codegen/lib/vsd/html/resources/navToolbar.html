@@ -10,14 +10,18 @@
         if (node && top.RTW_TraceArgs.instance) {
             var sid = top.RTW_TraceArgs.instance.getBlock();
             if (sid) {
-                var block = sid;
-                if (top.RTW_rtwnameSIDMap && top.RTW_rtwnameSIDMap.instance && top.RTW_rtwnameSIDMap.instance.getRtwname(sid)) {
-                    block = top.RTW_rtwnameSIDMap.instance.getRtwname(sid).rtwname;
+                if (top.RTW_TraceArgs.instance.getNumBlocks() === 1) {
+                    var block = sid;
+                    if (top.RTW_rtwnameSIDMap && top.RTW_rtwnameSIDMap.instance && top.RTW_rtwnameSIDMap.instance.getRtwname(sid)) {
+                        block = top.RTW_rtwnameSIDMap.instance.getRtwname(sid).rtwname;
+                    }
+                    if (block) {
+                        node.textContent = "'" + block + "'";
+                    }
+                    td1.className = "";
+                } else {
+                    td1.innerHTML = "<b>Highlight code for selected blocks:</b>";
                 }
-                if (block) {
-                    node.textContent = "'" + block + "'";
-                }
-                td1.className = "";
             } else {
                 td1.className = "hidden";
             }

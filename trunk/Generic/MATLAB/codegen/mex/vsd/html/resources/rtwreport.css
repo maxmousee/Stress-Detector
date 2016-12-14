@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 The MathWorks, Inc. */
+/* Copyright 2011-2016 The MathWorks, Inc. */
 body,p,table {font-family: calibri, verdana, sans-serif;}
 button,.buton {font-family: calibri, verdana, sans-serif;}  
 button,.button {font-size: small;}
@@ -214,4 +214,14 @@ select#fileSelector {
    line-height: 1;
    border-radius: 0;
    height: 34px;
+}
+
+.treeTable table{
+   table-layout: fixed;
+}
+.treeTable td:first-child > span{
+   display: inline-block;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   width: 100%;
 }

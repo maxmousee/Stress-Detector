@@ -1,5 +1,5 @@
 /*
- * Copyright 2008-2015 The MathWorks, Inc.
+ * Copyright 2008-2016 The MathWorks, Inc.
  * Compilation Report Styles
 */
 
@@ -25,12 +25,12 @@ body {
 	border: 1px solid #cccccc;
 	z-index: 2;
 }
-.center-title 
+.center-title
 {
 	overflow:hidden;
 	width:100%;
 }
-.center .ui-tabs-nav-item 
+.center .ui-tabs-nav-item
 {
 	white-space:nowrap;
 	overflow:hidden;
@@ -44,8 +44,8 @@ body {
 	color: #000000;
 }
 .ui-tabs-nav-item .tab-link {
-	margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; 
-	font-size: 100%; 
+	margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none;
+	font-size: 100%;
 	list-style: none;
 	float: left;
 	font-size: 1em;
@@ -68,10 +68,10 @@ body {
 	color: #000000;
 }
 .ui-tabs-panel {
-	margin: 0; padding: 0; border: 0; outline: 0; 
+	margin: 0; padding: 0; border: 0; outline: 0;
 	line-height: 1.4;
-	text-decoration: none; 
-	font-size: 100%; 
+	text-decoration: none;
+	font-size: 100%;
 	list-style: none;
 	clear:left;
 	border: 1px solid #cccccc;
@@ -94,6 +94,14 @@ body {
 {
     float:left;
     overflow:hidden;
+    width: 60%;
+    text-overflow: ellipsis;
+}
+.center #callsiteselectlabel {
+    width: 30%;
+}
+.center #callsiteselect {
+    width: 70%;
 }
 .call-sites-tbl
 {
@@ -103,6 +111,8 @@ body {
   	margin-right:0px;
   	margin-bottom:-3px;
   	margin-left:0px;
+    width: 40%;
+    text-align: right;
 }
 
 .functionname
@@ -152,13 +162,13 @@ select:focus
     background-color:#add8e6;
 }
 
-.myfunc-filter-tbl td.checkbox input 
+.myfunc-filter-tbl td.checkbox input
 {
 	width:auto;
 	float:left;
 }
 
-.filter-enable-lbl 
+.filter-enable-lbl
 {
 	padding-top:3px;
 	padding-left:3px;
@@ -226,7 +236,7 @@ table.myfunc-list td {
 	background: transparent url(document.gif) no-repeat 2px 0px;
 }
 
-table.myfunc-list tr.subtitle td 
+table.myfunc-list tr.subtitle td
 {
 	text-decoration:none;
 	padding: 2px 2px 4px 2px;
@@ -275,13 +285,13 @@ div.function-options {
 	font-weight:normal;
 }
 
-div.function-options .caption 
+div.function-options .caption
 {
 	float:left;
 	margin-top:1px;
 }
-		
-select.color-filter, select.highlighting 
+
+select.color-filter, select.highlighting
 {
 	float:left;
 	width:120px;
@@ -291,7 +301,7 @@ select.highlighting {
 	margin-right:15px;
 }
 
-.show-opt-tbl td.checkbox input 
+.show-opt-tbl td.checkbox input
 {
 	width:auto;
 	float:left;
@@ -345,13 +355,14 @@ select.highlighting {
 	overflow:visible;
 	padding-right:5px;
 	margin:0px;
+	white-space: normal;
 }
 
 .center .line {
 	padding-left:1em;
 }
 
-.dead 
+.dead
 {
     background:whitesmoke;
     opacity:0.5;
@@ -364,6 +375,14 @@ select.highlighting {
     padding-bottom:3px;
 }
 
+.center .line, .lineno {
+		white-space: pre;
+}
+
+.center .srcline {
+    display: inherit;
+}
+
 .center .code a
 {
     text-decoration: none;
@@ -371,17 +390,17 @@ select.highlighting {
 
 
 /* Child rows */
-tr.detail td 
+tr.detail td
 {
-    padding-top:2px; padding-bottom:6px; 
+    padding-top:2px; padding-bottom:6px;
 }
-table.detail tr th, table.detail tr td 
+table.detail tr th, table.detail tr td
 {
     padding:1px 3px;
     border:none;
     background:none;
 }
-table.detail td 
+table.detail td
 {
     text-align:left;
     font-weight:bold;
@@ -436,39 +455,39 @@ table.grid thead, table.grid .collapsible, table.grid #blank {
 table.grid tr.error-hover td.failed,
 table.grid tr.odd.error-hover td.failed {
 	background: #FF6633 url(status_failed.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
 table.grid tr.odd td.failed {
 	background: #F5F5F5 url(status_failed.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
 table.grid td.failed {
 	background: #f9f9f9 url(status_failed.png) no-repeat center;
     background-position: 50% 5px;
-	width:50px;	
+	width:50px;
 	text-align:center;
 }
 
 table.grid tr.warning-hover td.warning,
 table.grid tr.odd.warning-hover td.warning {
 	background: #FFCC99 url(status_warning.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
 table.grid tr.odd td.warning {
 	background: #F5F5F5 url(status_warning.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
 table.grid td.warning {
 	background: #f9f9f9 url(status_warning.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
@@ -476,19 +495,19 @@ table.grid td.warning {
 table.grid tr.info-hover td.info,
 table.grid tr.odd.info-hover td.info {
 	background: #FFCC99 url(status_warning.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
 table.grid tr.odd td.info {
 	background: #F5F5F5 url(status_warning.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
 table.grid td.info {
 	background: #f9f9f9 url(status_warning.png) no-repeat center;
-	width:50px;	
+	width:50px;
 	text-align:center;
     background-position: 50% 5px;
 }
@@ -505,9 +524,9 @@ table.grid td.location {
 }
 table.grid td.text {width:500px;}
 table.grid #msgorder {width:50px;}
-table.grid #msgtype 
+table.grid #msgtype
 {
-	width:50px;	
+	width:50px;
 	text-align:center;
 }
 table.grid #function {width:100px;}
@@ -531,11 +550,11 @@ table.grid #wl {width:50px;}
 table.grid #fl {width:50px;}
 table.grid #slope {width:50px;}
 table.grid #bias {width:50px;}
-table.grid tr.field 
+table.grid tr.field
 {
     display:none;
 }
-table.grid a.field 
+table.grid a.field
 {
     font-style:italic;
 }
@@ -548,7 +567,7 @@ table.grid td.text a {
 /*
 ** Titles in the 'Variables' tab
 */
-table.grid a 
+table.grid a
 {
     color:#606060;
     text-decoration: none;
@@ -567,7 +586,7 @@ table.grid thead th .d1 {
 	max-width:720px; /* Constrained by width of url(tablesorter_bkgrd.png) */
 }
 
-table.grid thead th#blank 
+table.grid thead th#blank
 {
 	padding:0px;
 }
@@ -594,25 +613,25 @@ table.grid th.headerSortDown .d2 {
 }
 
 .td-linebottomrt {
-  border-bottom:1px solid #BBB;  
-  border-right:1px solid #BBB;  
+  border-bottom:1px solid #BBB;
+  border-right:1px solid #BBB;
 }
 
 .td-linebottomrt-gray {
-  border-bottom:1px solid #BBB;  
+  border-bottom:1px solid #BBB;
   border-right:1px solid #BBB;
   background-color:#F0F0F0;
 }
 
 .td-linebottomrt-link {
-  border-bottom:1px solid #BBB;  
+  border-bottom:1px solid #BBB;
   border-right:1px solid #BBB;
   color:Blue;
 }
 
 .td-script {
-  border-top:1px solid #CCC;  
-  border-left:1px solid #BBB;  
+  border-top:1px solid #CCC;
+  border-left:1px solid #BBB;
   background: #FFE;
   width: 100%;
 }
@@ -641,13 +660,12 @@ table.grid th.headerSortDown .d2 {
 .cursorline
 {
 	background: lightyellow;
-	float:right;
 	width:100%;
 }
 
 .grayline {
-  border-top:1px solid #CCC;  
-  margin-top:4px; 
+  border-top:1px solid #CCC;
+  margin-top:4px;
   margin-bottom:4px;
 }
 
@@ -667,8 +685,8 @@ table.grid .collapsible {
 	margin: 2px;
 	display: block;
 	width: 15px;
-	height: 15px;	
-	outline: 0;	
+	height: 15px;
+	outline: 0;
 }
 
 .collapsible a.expanded {
@@ -681,14 +699,14 @@ table.grid .collapsible {
 
 /* Function/method sets */
 
-.methodset a 
+.methodset a
 {
 	cursor: pointer;
 	font-weight:bold;
 	padding-left:16px;
 	padding-bottom:1px;
 }
-.methodset a.expanded 
+.methodset a.expanded
 {
 	background: url(nolines_minus.gif) no-repeat 0px -1px;
 }
@@ -704,7 +722,7 @@ table.grid .collapsible {
 	padding:0;
 }
 .tree ul {
-	margin:0; 
+	margin:0;
 	padding:4px 0px 0px;
 }
 .tree li {
@@ -716,7 +734,7 @@ table.grid .collapsible {
 /*
 ** Call Stack
 */
-.tree .uncollapsed 
+.tree .uncollapsed
 {
     background: url(cs_folder_open_check.png) 0 0px no-repeat;
 }
@@ -732,23 +750,23 @@ table.grid .collapsible {
 {
     background: url(cs_folder_open_error.png) 0 0px no-repeat;
 }
-.tree .collapsed 
+.tree .collapsed
 {
     background: url(cs_folder_close_check.png) 0 0px no-repeat;
 }
-.tree .collapsed.info 
+.tree .collapsed.info
 {
     background: url(cs_folder_close_warning.png) 0 0px no-repeat;
 }
-.tree .collapsed.warning 
+.tree .collapsed.warning
 {
     background: url(cs_folder_close_warning.png) 0 0px no-repeat;
 }
-.tree .collapsed.failed 
+.tree .collapsed.failed
 {
     background: url(cs_folder_close_error.png) 0 0px no-repeat;
 }
-.tree .leaf 
+.tree .leaf
 {
     background: url(cs_document_check.png) 16px 0px no-repeat;
 }
@@ -765,7 +783,7 @@ table.grid .collapsible {
     background: url(cs_document_error.png) 16px 0px no-repeat;
 }
 
-span.default 
+span.default
 {
 	font-style:italic;
 }
@@ -799,17 +817,21 @@ div.functionwrapper {
 
 /* Main hovering colors */
 
-.code .mxinfo-hover, 
-.code .var-hover-direct, 
+.code .mxinfo-hover,
+.code .var-hover-direct,
 .code .message-hover
  {
 	border:1px solid #666 !important;
 	margin:-1px;
+    z-index: 1;
+    position:relative;
 }
 
 .code .var-hover {
 	border:1px solid #ccc;
 	margin:-1px;
+    z-index: 1;
+    position:relative;
 }
 
 span.mxinfo-hover,
@@ -817,8 +839,8 @@ span.mxinfo-hover,
 span.mxinfo-hover .fcnid-hover,
 div.tooltip .info {background:#ccf;}
 
-.var-hover.type1, 
-.var-hover-direct.type1, 
+.var-hover.type1,
+.var-hover-direct.type1,
 div.tooltip .type1,
 .fcnid-hover {background:#88ff88;}
 
@@ -831,12 +853,12 @@ div.tooltip  ,
 .var-hover-direct.type0,
 div.tooltip .type0 {background:#ffbbbb;}
 
-.var.type2 
+.var.type2
 {
 	font-weight:bold;
 	color:Orange;
 }
-.var-hover.type2 
+.var-hover.type2
 {
 	font-weight:bold;
 	color:Orange;
@@ -869,7 +891,7 @@ div.tooltip .type0 {background:#ffbbbb;}
 	border-bottom: solid 1px orange;
 }
 .code .info-hover,
-.code .warning-hover 
+.code .warning-hover
 {
     /*background:#FFCC99 !important;*/
 	border-bottom: solid 2px orange;
@@ -878,6 +900,11 @@ div.tooltip .type0 {background:#ffbbbb;}
 .grid .warning-hover
 {
     background:#FFCC99 !important;
+}
+
+.expDiffHighlight
+{
+    background: #FFFF00; /* yellow */
 }
 
 div.tooltip .message .error,
@@ -896,17 +923,17 @@ div.tooltip .message .msgtext
 }
 /*
 .code .message .label-hover,
-div.tooltip .message 
+div.tooltip .message
 {
     background:lightyellow !important;
 }
 */
 
 .hidden  {
-	display:none; 
+	display:none;
 }
 
-.invisible  
+.invisible
 {
     visibility:hidden;
 }
@@ -932,7 +959,7 @@ table.tooltip th, table.tooltip td {
 table.tooltip {
 	font-size:80%;
 }
-div.tooltip .label 
+div.tooltip .label
 {
 	padding:2px 0.5em;
 }
@@ -986,7 +1013,7 @@ tr.activeFcn td div {
    text-decoration:underline;
 }
 
-.classroot 
+.classroot
 {
 	cursor:pointer;
 }

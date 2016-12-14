@@ -1,4 +1,4 @@
-// Copyright 2008-2014 The MathWorks, Inc.
+// Copyright 2008-2016 The MathWorks, Inc.
 
 queries = {};
 
@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     queries.summary = $("> div#summarybody", queries.south);
     queries.messages = $("> div#messagesbody", queries.south);
+    queries.expectedDifferences = $("> div#expectedDifferencesBody", queries.south);
     queries.watchlist = $("> div#watchlistbody", queries.south);
     queries.buildlog = $("> div#buildlog1body", queries.south);
     queries.ccode = $("> div#ccodebody", queries.west);
@@ -23,10 +24,10 @@ $(document).ready(function() {
         queries.ccodelistbody[i] = $("> div#ccodelistbody" + (i + 1), queries.ccode);
     }
     queries.externalLibs = $("> div#externalLibsBody", queries.ccode);
-    
+
     // Make the tab logic.
     tabify($("> ul > li > span", queries.south));
-    tabify($("> ul > li > span", queries.west)); 
+    tabify($("> ul > li > span", queries.west));
 
     // These correspond to the tab links (i.e. the span you click on to activate the tab).
     queries.mcodelink = $('> ul > li > span#MATLABcode', queries.west);
@@ -35,11 +36,12 @@ $(document).ready(function() {
     queries.reportlink = $('> ul > li > span#report', queries.west);
     queries.summarylink = $('> ul > li > span#summary', queries.south);
     queries.messageslink = $('> ul > li > span#messages', queries.south);
+    queries.expectedDifferencesLink = $('> ul > li > span#expectedDifferences', queries.south);
     queries.watchlistlink = $('> ul > li > span#watchlist', queries.south);
     queries.watchloadlink = $('> ul > li > span#watchload', queries.south);
     queries.buildloglink = $('> ul > li > span#buildlog1', queries.south);
     queries.watchTable = $(".grid", queries.watchlist);
-    
+
     setupFunctionList();
     setupFunctionTree();
     setupClassList();
@@ -49,12 +51,15 @@ $(document).ready(function() {
     setupCallStack();
     setupLayout();
 
-    setupMessages();    
-    
+    setupMessages();
+    setupExpectedDifferences();
+
     // Sets up all of the tooltips, page loading, etc.
     setupInteractions();
-    
+
     selectMCodeTab();
+
+    setupRangeHighlighting();
 
     // Open the initial page
     var firstPageId = functionInfoTable['firstPage'];
@@ -65,13 +70,20 @@ $(document).ready(function() {
 
     // History
     window.onpopstate = function (event) {
-        if (event.state == null) {
+        if (event.state === null) {
         } else {
             var options = event.state.options;
             options.isPopState = true;
-            openFunction(event.state.id, options);
+            openFunction(document.location.hash.substring(1), options);
         }
     };
+
+    // Signal to the ReportBrowser that the report scripts are ready for interaction
+    var messagingAnchor = $('<a id="messagingAnchor" href="rb:ready" style="display:none"></a>');
+    queries.body.append(messagingAnchor);
+    // Click from DOMElement rather than jQuery as it doesn't support this use case
+    messagingAnchor[0].click();
+    messagingAnchor.remove();
 });
 
 function debugprint(what) {
@@ -100,6 +112,12 @@ function setupMessages() {
             return $node.html();
         }
     });
+}
+
+// Make the expected differences table sortable.
+function setupExpectedDifferences() {
+    queries.expDiffTable = $(".grid", $("> div#expectedDifferencesBody", queries.south));
+    queries.expDiffTable.tablesorter();
 }
 
 // Make the tablesorter object on the watchlist, and make the rows collapsible.
@@ -139,7 +157,7 @@ function tabLinkMouseDown($this) {
 function tabify(link) {
     link.mousedown(function() {
         tabLinkMouseDown($(this));
-        
+
         if (watchListTabSelected()) {
             loadWatchData(activeFcn.id);
         }
@@ -194,6 +212,11 @@ function selectSummaryTab() {
 function selectMessagesTab() {
     queries.messageslink.mousedown();
     $('a',queries.messages).filter(':first').focus();
+}
+
+function selectExpectedDifferencesTab() {
+    queries.expectedDifferencesLink.mousedown();
+    $('a', queries.expectedDifferences).filter(':first').focus();
 }
 
 function watchListTabSelected() {
@@ -272,7 +295,7 @@ function setupFiltering() {
     var enablers = selectfilterby.add(selectwl).add(selectwloperator).add($("select.myfunc-filter", queries.filtertbl));
     var filtercounter = $(">.myfunc-count", queries.filterbody);
     var labels = $(".myfunc-filterby-lbl, .myfunc-filterstr-lbl", queries.filtertbl).add(filtercounter);
-    
+
     var filterFunctionList = function() {
         var $functionRows = $("> #functiontreebody div.functionwrapper li.leaf", queries.fcnlist);
         var $methodRows = $("> #classlistbody div.classwrapper li.leaf", queries.fcnlist);
@@ -284,7 +307,7 @@ function setupFiltering() {
         } else {
             enablers.attr("disabled", "");
             labels.removeClass("filtered");
-        
+
             var id = $("option:selected", selectfilterby).attr("id");
             var fcns = "-1";
             var fcnids = [];
@@ -302,7 +325,7 @@ function setupFiltering() {
                 else
                     fcnids = [];
             }
-            
+
             $('a', $functionRows).addClass("filtered").removeAttr('href');
             $('a', $methodRows).addClass("filtered").removeAttr('href');
             for (var i = 0; i < fcnids.length; i++) {
@@ -319,8 +342,8 @@ function setupFiltering() {
         var nMatchedMethods = nMethods - $('a', $methods).filter(".filtered").length;
         var fmt = localizedMessages['infoForFilter'];
         filtercounter.text(sprintf(fmt, nMatchedFunctions, nFunctions, nMatchedMethods, nMethods));
-    }
-    
+    };
+
     var selectChanged = function() {
         inputs.hide().filter("." + $("select.myfunc-filterby option:selected").attr("id")).show();
         filterFunctionList();
@@ -335,7 +358,7 @@ function setupFiltering() {
         }
         filterFunctionList();
     };
-    
+
     // Add the events to handle updating the filtered function list whenever the options change.
     selectfilterby.change(selectChanged).keyup(selectChanged).trigger("change");
     selectwloperator.change(operatorChanged).keyup(operatorChanged).trigger("change");
@@ -351,7 +374,7 @@ function setupFiltering() {
 }
 
 // Put body of "Show optimization opportunities" to queries.showoptbody
-// Add contents to this function when adding more advice type of checks 
+// Add contents to this function when adding more advice type of checks
 function setupShowOpt() {
     queries.showoptbody = $(">div#showoptbody", queries.fcnlist);
 }
@@ -364,12 +387,12 @@ function setupFunctionList() {
     queries.myfunclist = $(">table.myfunc-list", queries.fcnlist);
     queries.filtertbl = $(">.myfunc-filter-tbl", queries.filterbody);
     queries.filterenable = $("input.filterenable", queries.filtertbl);
-    
+
     // Make some CSS adjustments if the script parse errors table is visible.
     if (queries.myscriptlist.length > 0) {
         queries.myfunclist.css("top", queries.myscriptlist.height() + queries.filtertbl.height());
     }
-    
+
     // Manually add hovering to target code list table rows.
     queries.ccoderows.hover(function() {
         $(this).addClass("fcnid-hover");
@@ -402,11 +425,11 @@ function initializeCallTree($root,$allnodes) {
     });
     $('.leaf:last-child, .node:last-child', $root).addClass('last');
 }
-    
+
 function toggleCallTreeNode($node,$allnodes)
 {
     if ($node.hasClass('collapsed')) {
-        if ($('>ul',$node).length > 0) {	        
+        if ($('>ul',$node).length > 0) {
             $('>ul',$node).show();
         } else {
             var strids = decodeFunctionID($('a',$node).attr("id"));
@@ -426,7 +449,7 @@ function makeCallStackTree(tree) {
         toggleCallTreeNode($('.tree > .node:first-child', queries.callstackbody), queries.allcalltreenodes);
     }
 }
-    
+
 function makeClassListTree(tree) {
     if (tree != null && (tree.length > 0)) {
         initializeCallTree(tree, queries.allclasstreenodes);
@@ -468,7 +491,7 @@ function setupReportTree() {
     makeReportTree($("> div.reportwrapper > ol.tree", queries.reporttreebody));
 }
 
-function setupLayout() {    
+function setupLayout() {
     //Make resizable west/south panes.
     var westwidth = 0;
     $('> ul > li', queries.west).each(function(n) {
@@ -492,7 +515,7 @@ function setupLayout() {
         west: {
             size: westwidth+5,
             minsize: westwidth
-        } 
+        }
     });
 }
 
@@ -506,17 +529,17 @@ function ilayout(custom_config)
         south: null,
         west: null,
         center: null
-    }
+    };
 
     var defaultPosition = {
         resizable: true,
         size: 150,
         minsize: 100,
         resizeFcn: null,
-        
+
         element: jQuery(null),
         wrapper: jQuery(null)
-    }
+    };
     var defaultSouth = $.extend({}, defaultPosition);
     var defaultWest  = $.extend({}, defaultPosition);
 
@@ -524,19 +547,19 @@ function ilayout(custom_config)
         minWidth: 350,
         minHeight: 100,
         element: {}
-    }
+    };
 
     var numCurCSS = function (object, property) {
         return parseInt(jQuery.curCSS(object[0], property, true), 10) || 0;
-    }
-    
+    };
+
     // Executed each time the layout is resized; it sets the sizes for each of the major components: west, south, center.
     var apply = function () {
         var center_top = config.spacing;
         var center_right = config.spacing;
         var center_bottom = config.spacing;
         var center_left = config.spacing;
-        
+
         if (config.west.element.length) {
             config.west.element.css({
                 position: 'absolute',
@@ -610,7 +633,7 @@ function ilayout(custom_config)
                     numCurCSS(config.south.wrapper, 'borderBottomWidth') -
                     numCurCSS(config.south.wrapper, 'paddingTop') -
                     numCurCSS(config.south.wrapper, 'paddingBottom') -
-                    config.spacing);			
+                    config.spacing);
             }
             center_bottom += config.south.size;
         }
@@ -631,7 +654,7 @@ function ilayout(custom_config)
                 config.center.element.height(config.parent.height() - center_top - center_bottom);
             }
         }
-    }
+    };
 
     var config = $.extend(defaultConfig, custom_config);
     var $window = jQuery(window);
@@ -666,8 +689,8 @@ function ilayout(custom_config)
         else
             obj.size = obj.element.outerWidth();
         apply();
-    }
-    
+    };
+
     // Use the Jquery resizable object.
     var makeResizable = function (obj, handle) {
         if (typeof jQuery.fn.resizable == "function") {
@@ -687,7 +710,7 @@ function ilayout(custom_config)
                 obj.element.resizable('enable');
             }
         }
-    }
+    };
 
     // Handle browser resizing.
     $window.resize(function() {
@@ -706,7 +729,7 @@ function fcnClick(evt) {
         obj = obj.parent();
     if (!obj.is("tr") && !obj.is("span"))
         obj = obj.parent();
-        
+
     // Load up the file specified by the fcnid attribute
     var options = defaultOpenFunctionOptions();
     openFunction(obj.attr("fcnid"), options);
@@ -720,10 +743,10 @@ function getFunction(evt) {
         obj = obj.parent();
     if (!obj.is("tr"))
         obj = obj.parent();
-        
+
     return obj.attr("id");
 }
-    
+
 // Executed whenever a C-code link is clicked.
 function cFileClick(evt) {
     // Load up the file specified by the file attribute.
@@ -750,7 +773,7 @@ function dismissMexWarning() {
         functionUnderWarning = null;
     }
 }
-    
+
 // Executed whenever a C-code link for a MEX file is clicked.
 function cFileClickWithMexWarning(evt) {
     if (!mexWarningDismissed) {
@@ -764,3 +787,54 @@ function cFileClickWithMexWarning(evt) {
     }
 }
 
+// Set up traceability range highligting
+function setupRangeHighlighting() {
+    if (typeof RangeHighlighter === "undefined") {
+		RangeHighlighter = null;
+        return;
+    }
+
+    RangeHighlighter.init('div.center div.code');
+
+    RangeHighlighter.setSelectionHook(function(scriptIdentifier, representativePosition) {
+        var functionId = isNaN(scriptIdentifier) ?
+            scriptPathToFunctionId(scriptIdentifier, representativePosition) :
+            scriptIdentifier;
+        if (functionId) {
+            openFunctionWhenIdle(functionId);
+        }
+    });
+    RangeHighlighter.setPostHighlightHook(function(elements) {
+        var firstElement = $(elements[0]);
+        if (firstElement.offset() !== null) {
+            scrollToObj(queries.codeDiv, firstElement);
+        }
+    });
+
+    RangeHighlighter.setScriptContextProvider({
+        getLineNumberFromElement: function(element) {
+            var lineParent = (element.is("span.srcline") ? element : element.parents("span.srcline")).find("span.lineno > a");
+            return lineParent.length ? parseInt(lineParent.eq(0).attr("id").substring("srcline".length)) : 0;
+        }
+    });
+
+    function scriptPathToFunctionId(scriptIdentifier, representativePosition) {
+        // Treat as script path and convert to function id
+        var maxLen = Object.keys(functionInfoTable).length;
+        for (var i = 1; i <= maxLen; i++) {
+            var pathKey = "fpath" + i;
+            var posKey = "positions" + i;
+
+            if (functionInfoTable.hasOwnProperty(pathKey) && functionInfoTable.hasOwnProperty(posKey)) {
+                if (functionInfoTable[pathKey] === scriptIdentifier) {
+                    var functionPositions = functionInfoTable[posKey];
+                  if (functionPositions[0] <= representativePosition && representativePosition < functionPositions[1]) {
+                    return i.toString();
+                  }
+                }
+            } else {
+                return null;
+            }
+        }
+    }
+}

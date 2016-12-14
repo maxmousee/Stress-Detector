@@ -1,4 +1,4 @@
-// Copyright 2007-2015 The MathWorks, Inc.
+// Copyright 2007-2016 The MathWorks, Inc.
 
 // Class RTW_Hash ------------------------------------------------------------
 // Internal web browser doesn't change window.location.hash if the link points
@@ -33,8 +33,8 @@ function RTW_TraceInfo(aFileLinks) {
     this.fNumLines = new Array();
     this.fFileIdxCache = new Array();
     this.fDisablePanel = false;
-    this.fCurrFileIdx = 0;
-    this.fCurrLineIdx = 0;
+    this.fCurrFileIdx = -1;
+    this.fCurrLineIdx = -1;
     this.fCurrCodeNode = null;
     this.getHtmlFileName = function(aIndex) {
         if (aIndex < this.fFileLinks.length) {
@@ -137,8 +137,8 @@ function RTW_TraceInfo(aFileLinks) {
         if (this.getPrevButton()) { this.getPrevButton().disabled = true; }
         if (this.getNextButton()) { this.getNextButton().disabled = true; }
         if (this.getPanel()) { this.getPanel().style.display = "none"; }
-        this.fCurrFileIdx = 0;
-        this.fCurrLineIdx = 0;
+        this.fCurrFileIdx = -1;
+        this.fCurrLineIdx = -1;
     }
     this.setCurrLineIdx = function(aLineIdx) {
         this.fCurrLineIdx = aLineIdx;
@@ -289,7 +289,7 @@ function RTW_TraceInfo(aFileLinks) {
             }
         }
         if (fileIdx == null || lineIdx == null)
-            this.setCurrent(0,-1);
+            this.setCurrent(-1,-1);
         else
             this.setCurrent(fileIdx,lineIdx);
     }
@@ -328,6 +328,7 @@ RTW_TraceArgs = function(aHash) {
     this.fLines = new Array();
     this.fMessage = null;
     this.fBlock = null;  
+    this.fNumBlocks = 0;
     this.fUseExternalBrowser = true;
     this.fInStudio = false;
     this.fModel2CodeSrc = null;
@@ -368,6 +369,9 @@ RTW_TraceArgs = function(aHash) {
                 case "block":
                     this.fBlock = unescape(opt);
                     break;
+                case "numblocks":
+                    this.fNumBlocks = parseInt(opt);
+                    break;
                 case "sid":
                     this.fSID = opt;
                     // convert sid to code location
@@ -393,13 +397,14 @@ RTW_TraceArgs = function(aHash) {
         }    
     }
     this.parseUrlHash = function(aHash) {
-        var rows;
+        var rows, sep, assignSep;
         if (aHash) {
             args = aHash.split('&');
             for (var i = 0; i < args.length; ++i) {
                 var arg = args[i];
                 sep = arg.indexOf(':');
-                if (sep != -1) {
+                assignSep = arg.indexOf('=');
+                if (sep !== -1 && assignSep === -1) {
                     var fileLines = arg.split(':');
                     var htmlFileName = RTW_TraceArgs.toHtmlFileName(fileLines[0]);
                     this.fFileIdx[htmlFileName] = i;
@@ -484,6 +489,7 @@ RTW_TraceArgs = function(aHash) {
     this.getRows = function(aIdx) { return this.fRows[aIdx];}
     this.getIDs = function(aIdx) { return this.fIDs[aIdx]; }
     this.getBlock = function() { return this.fBlock; }
+    this.getNumBlocks = function() { return this.fNumBlocks; }
     // constructor
     this.parseCommand(aHash);
 }
@@ -954,8 +960,7 @@ function rtwMainOnLoadFcn(topDocObj,aLoc,aPanel,forceReload) {
 
     // get highlight url using sid
     if (RTW_TraceArgs.instance.hasSid()) {
-        sid = RTW_TraceArgs.instance.getSID();
-        aHash = RTW_Sid2UrlHash.instance.getUrlHash(sid);    
+        aHash = getCodeLines();  
     }
     // parse hash to look for msg=...&block=... pattern
     RTW_TraceArgs.instance.parseCommand(aHash);
@@ -1046,17 +1051,18 @@ function rtwMainOnLoadFcn(topDocObj,aLoc,aPanel,forceReload) {
         try {
             var fileDocObj = top.rtwreport_document_frame.document;
             is_same_page = isSamePage(fileDocObj.location.href, initPage);
-        } catch(e) {};
+        } catch(e) {};     
         if (document.getElementById("rtwreport_document_frame")) {
             document.getElementById("rtwreport_document_frame").setAttribute("src", initPage);
-	} else {
-	    top.rtwreport_document_frame.location.href = initPage;
-	}
+        } else {
+            top.rtwreport_document_frame.location.href = initPage;
+        }
+                
         if (is_same_page) {
             // Goto the same page won't trigger onload function.
             // Call it manuelly to highligh new code location.
-            rtwFileOnLoad(top.rtwreport_document_frame.document);
-        }
+            rtwFileOnLoad(top.rtwreport_document_frame.document);        
+        } 
     }
 }
 
@@ -1418,8 +1424,10 @@ function inCodeTraceOnload() {
     // set number of total lines
     RTW_TraceInfo.instance.setTotalLines(tLines);
     // update highligthed from
-    var node = tocDoc.getElementById("rtwIdTraceBlock");
-    if (node) node.textContent = RTW_TraceArgs.instance.getBlock();
+    if (RTW_TraceArgs.instance.getNumBlocks() === 1) {
+        var node = tocDoc.getElementById("rtwIdTraceBlock");
+        if (node) node.textContent = RTW_TraceArgs.instance.getBlock();
+    }
     // set the initial file and line
     fileIdx = top.RTW_TraceArgs.instance.getFileIdx(files[0]);
     rows = top.RTW_TraceArgs.instance.getRows(fileIdx);
@@ -1662,8 +1670,12 @@ function getInspectData(file, anchorObj) {
                 size = "(" + metricsData.size + " byte)";
             } else if (type === "fcn") {
                 type = "Function";
-                size = "(stack: " + metricsData.stack + " byte, total stack: "
-                    + metricsData.stackTotal + " byte)";
+                if (metricsData.stackTotal === -1) {
+                    size = "(stack: " + metricsData.stack + " byte, total stack: recursion)";
+                } else {
+                    size = "(stack: " + metricsData.stack + " byte, total stack: "
+                        + metricsData.stackTotal + " byte)";
+                }
             }            
         }
     }    
@@ -1998,4 +2010,40 @@ function getCodeLocation() {
         alink.style.display = "";
     }
     return codeLocation;
+}
+// get code lines for the input SIDs
+function getCodeLines()
+{
+        var codeLocs = "";
+        var sid = RTW_TraceArgs.instance.getSID();
+        sid = sid.split(",");
+        if(sid.length == 1) {
+            codeLocs = RTW_Sid2UrlHash.instance.getUrlHash(sid[0]);     
+        }
+        else {
+            var fileLocs = [];
+            for(var i=0; i < sid.length; ++i) {
+                var locstr = RTW_Sid2UrlHash.instance.getUrlHash(sid[i]);  
+                var locs = locstr.split("&");
+                for(var j=0; j< locs.length; ++j) {
+                    locElems = locs[j].split(":");
+                    if(fileLocs[locElems[0]] == null) {
+                        fileLocs[locElems[0]] = locElems[1];
+                    } 
+                    else {
+                        fileLocs[locElems[0]] = fileLocs[locElems[0]].concat(",", locElems[1]);                        
+                    }
+                }
+            }
+    
+            // join all locations
+            Object.keys(fileLocs).forEach(function(key) {
+                if(codeLocs.length != 0) {
+                    codeLocs = codeLocs.concat("&", key, ":", fileLocs[key]);
+                } else {
+                    codeLocs = codeLocs.concat(key, ":", fileLocs[key]);
+                }
+            });
+        }
+    return codeLocs;
 }
