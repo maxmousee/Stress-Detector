@@ -1,19 +1,23 @@
 package com.nfsindustries.vsd;
 
+import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static android.media.AudioRecord.READ_BLOCKING;
+import static android.media.AudioRecord.STATE_UNINITIALIZED;
 
 public class Realtime extends AppCompatActivity {
 
     private static final int RECORDER_SAMPLERATE = 8000;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+    private static final String VSD_THREAD_CONST = "VSD_THREAD";
     private AudioRecord recorder = null;
     private Thread vsdThread = null;
     private boolean isReadingMic = false;
@@ -66,14 +70,24 @@ public class Realtime extends AppCompatActivity {
                 RECORDER_SAMPLERATE, RECORDER_CHANNELS,
                 RECORDER_AUDIO_ENCODING, RECORDER_SAMPLERATE);
                 //RECORDER_AUDIO_ENCODING, BufferElements2Rec * BytesPerElement);
+        if (recorder.getState() != STATE_UNINITIALIZED) {
+            //object is unusable due to invalid parameters
+            Context context = getApplicationContext();
+            CharSequence text = "Device incompatible! Probably some weird Android implementation." +
+                    "Stay tuned for updates ;)";
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            return;
+        }
 
         recorder.startRecording();
         isReadingMic = true;
         vsdThread = new Thread(new Runnable() {
             public void run() {
-                writeAudioDataToFile();
+                processAudio();
             }
-        }, "VSD Thread");
+        }, VSD_THREAD_CONST);
         vsdThread.start();
     }
 
@@ -92,15 +106,16 @@ public class Realtime extends AppCompatActivity {
     }
     */
 
-    private void writeAudioDataToFile() {
-        // Write the output audio in byte
+    private void processAudio() {
+        // Use MATLAB generated function to process audio read from microphone
 
         float sData[] = new float[RECORDER_SAMPLERATE];
 
         while (isReadingMic) {
             // gets the voice output from microphone to byte format
 
-            recorder.read(sData, 0, BufferElements2Rec, READ_BLOCKING);
+            //recorder.read(sData, 0, BufferElements2Rec, READ_BLOCKING);
+            recorder.read(sData, 0, RECORDER_SAMPLERATE, READ_BLOCKING);
             System.out.println("float read from microphone" + sData.toString());
 
         }
@@ -122,5 +137,6 @@ public class Realtime extends AppCompatActivity {
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native String stringFromJNI();
+    //public native String stringFromJNI();
+    //public native Double vsd(double[] input);
 }
