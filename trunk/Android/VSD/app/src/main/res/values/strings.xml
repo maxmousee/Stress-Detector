@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VSD</string>
+    <string name="processing">processing</string>
+    <string name="stressed">stressed</string>
+    <string name="not_stressed">not stressed</string>
+    <string name="marginal_stress">marginal stress</string>
+    <string name="too_noisy">too noisy</string>
+</resources>
