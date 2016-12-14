@@ -6,6 +6,7 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ public class Realtime extends AppCompatActivity {
     int BufferElements2Rec = 1024; // want to play 2048 (2K) since 2 bytes we use only 1024
     int BytesPerElement = 2; // 2 bytes in 16bit format
 
+    TextView stressFreqTextView;
+
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -38,7 +41,7 @@ public class Realtime extends AppCompatActivity {
                 RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
 
         // Example of a call to a native method
-        TextView stressFreqTextView = (TextView) findViewById(R.id.stressFreqTextView);
+        stressFreqTextView = (TextView) findViewById(R.id.stressFreqTextView);
         //tv.setText(stringFromJNI());
         startVSD();
     }
@@ -116,10 +119,25 @@ public class Realtime extends AppCompatActivity {
 
             //recorder.read(sData, 0, BufferElements2Rec, READ_BLOCKING);
             recorder.read(sData, 0, RECORDER_SAMPLERATE, READ_BLOCKING);
-            System.out.println("float read from microphone" + sData.toString());
-
+            //matlab uses double, so we shall convert data to double
+            double sDataDouble[] = new double[sData.length];
+            for (int i = 0 ; i < sDataDouble.length; i++)
+            {
+                sDataDouble[i] = (double) sData[i];
+            }
+            Log.d("data from microphone", sData.toString());
+            //double stressFrequency = vsd(sDataDouble);
+            double stressFrequency = 0.0d;
+            if (stressFrequency > 8 && stressFrequency < 14) {
+                stressFreqTextView.setText(R.string.not_stressed);
+            } else if (stressFrequency == 8 || stressFrequency == 14) {
+                stressFreqTextView.setText(R.string.marginal_stress);
+            } else if (stressFrequency > 0) {
+                stressFreqTextView.setText(R.string.not_stressed);
+            } else if (stressFrequency <= 0) {
+                stressFreqTextView.setText(R.string.too_noisy);
+            }
         }
-
     }
 
     private void stopVSD() {
