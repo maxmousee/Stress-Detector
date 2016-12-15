@@ -13,6 +13,10 @@ import AVFoundation
 class ViewController: UIViewController {
     var stressTL: CATextLayer!;
     var vsdGCDQueue = "com.nfsindustries.VSD";
+    var loadingString = "\nloading...";
+    var stressedString = "\nstressed";
+    var notStressedString = "\nnot stressed";
+    var tooNoisyString = "\ntoo noisy, can't process";
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -31,7 +35,7 @@ class ViewController: UIViewController {
                                 width: self.view.bounds.size.width,
                                 height: self.view.bounds.size.height/4);
         
-        stressTL.string = "\nprocessing...";
+        stressTL.string = loadingString;
         self.view.layer.addSublayer(stressTL);
         setUpAudio();
     }
