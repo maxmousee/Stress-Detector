@@ -21,6 +21,7 @@ import static android.media.AudioRecord.READ_BLOCKING;
 public class Realtime extends AppCompatActivity {
 
     private static final int RECORDER_SAMPLERATE = 8000;
+    private static final int RECORDER_LENGTH = 8192;
     private static final int RECORD_AUDIO_REQUEST_CODE = 1;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_FLOAT;
     private static final String VSD_THREAD_CONST = "VSD_THREAD";
@@ -194,13 +195,13 @@ public class Realtime extends AppCompatActivity {
     private void processAudio() {
         // Use MATLAB generated function to process audio read from microphone
 
-        float sData[] = new float[RECORDER_SAMPLERATE];
+        float sData[] = new float[RECORDER_LENGTH];
 
         //while (isReadingMic) {
             // gets the voice output from microphone to byte format
             recorder.read(sData, 0, RECORDER_SAMPLERATE, READ_BLOCKING);
             //matlab uses double, so we shall convert data to double
-            double sDataDouble[] = new double[sData.length];
+            double sDataDouble[] = new double[RECORDER_LENGTH];
             for (int i = 0 ; i < sDataDouble.length; i++)
             {
                 sDataDouble[i] = (double) sData[i];

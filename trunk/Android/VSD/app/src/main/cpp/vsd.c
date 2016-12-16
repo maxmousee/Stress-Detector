@@ -116,7 +116,7 @@ static rtBoundsCheckInfo g_emlrtBCI = { -1,/* iFirst */
  */
 JNIEXPORT jdouble JNICALL Java_com_nfsindustries_vsd_Realtime_vsd(JNIEnv * env, jobject obj, jdoubleArray jInput)
 {
-  static double imf_data[8000];
+  static double imf_data[8192];
   int imf_size[2];
   int ixstart;
   emxArray_creal_T *Y;
@@ -130,11 +130,11 @@ JNIEXPORT jdouble JNICALL Java_com_nfsindustries_vsd_Realtime_vsd(JNIEnv * env, 
   double d0;
   int ix;
   int iv0[2];
-  double P1_data[4001];
+  double P1_data[4097];
   double *input;
   int i1;
   int i2;
-  double y_data[4001];
+  double y_data[4097];
   boolean_T exitg1;
 
   input=(*env)->GetDoubleArrayElements(env, jInput,NULL);
