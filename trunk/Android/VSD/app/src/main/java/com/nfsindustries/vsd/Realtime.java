@@ -3,9 +3,11 @@ package com.nfsindustries.vsd;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,14 +22,14 @@ public class Realtime extends AppCompatActivity {
 
     private static final int RECORDER_SAMPLERATE = 8000;
     private static final int RECORD_AUDIO_REQUEST_CODE = 1;
-    private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
-    private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+    private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_FLOAT;
     private static final String VSD_THREAD_CONST = "VSD_THREAD";
     private AudioRecord recorder = null;
     private Thread vsdThread = null;
     private boolean isReadingMic = false;
+    private double stressFrequency = 0.0;
 
-    TextView stressFreqTextView;
+    private TextView stressFreqTextView;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -38,9 +40,6 @@ public class Realtime extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_realtime);
-
-        int bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,
-                RECORDER_CHANNELS, RECORDER_AUDIO_ENCODING);
 
         // Example of a call to a native method
         stressFreqTextView = (TextView) findViewById(R.id.stressFreqTextView);
@@ -115,8 +114,7 @@ public class Realtime extends AppCompatActivity {
 
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.RECORD_AUDIO},
-                        RECORD_AUDIO_REQUEST_CODE
-                        );
+                        RECORD_AUDIO_REQUEST_CODE);
             }
         }
     }
@@ -128,7 +126,32 @@ public class Realtime extends AppCompatActivity {
             isReadingMic = true;
             vsdThread = new Thread(new Runnable() {
                 public void run() {
-                    processAudio();
+                    stressFrequency = processAudio();
+                    Handler mainHandler = new Handler(getApplicationContext().getMainLooper());
+                    mainHandler.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            // run code on main thread
+                            if (stressFrequency > 8 && stressFrequency < 14) {
+                                stressFreqTextView.setText(R.string.not_stressed);
+                                stressFreqTextView.setBackgroundColor(Color.GREEN);
+                            } else if (stressFrequency == 8 || stressFrequency == 14) {
+                                stressFreqTextView.setText(R.string.marginal_stress);
+                                stressFreqTextView.setBackgroundColor(Color.rgb(255, 165, 0));
+                            } else if (stressFrequency > 0 && stressFrequency < 8) {
+                                stressFreqTextView.setText(R.string.stressed);
+                                stressFreqTextView.setBackgroundColor(Color.RED);
+                            } else if (stressFrequency > 14 ) {
+                                stressFreqTextView.setText(R.string.stressed);
+                                stressFreqTextView.setBackgroundColor(Color.RED);
+                            } else if (stressFrequency <= 0) {
+                                stressFreqTextView.setText(R.string.too_noisy);
+                                stressFreqTextView.setBackgroundColor(Color.BLACK);
+                            }
+                        }
+                    });
+
                 }
             }, VSD_THREAD_CONST);
             vsdThread.start();
@@ -146,7 +169,7 @@ public class Realtime extends AppCompatActivity {
     private static int[] mSampleRates = new int[] { 8000 };
     public AudioRecord findAudioRecord() {
         for (int rate : mSampleRates) {
-            for (short audioFormat : new short[] { AudioFormat.ENCODING_PCM_FLOAT }) {
+            for (short audioFormat : new short[] { RECORDER_AUDIO_ENCODING }) {
                 for (short channelConfig : new short[] { AudioFormat.CHANNEL_IN_MONO, AudioFormat.CHANNEL_IN_STEREO }) {
                     try {
                         Log.d("FIND_SAMPLE_RATE", "Attempting rate " + rate + "Hz, bits: " + audioFormat + ", channel: "
@@ -169,7 +192,7 @@ public class Realtime extends AppCompatActivity {
         return null;
     }
 
-    private void processAudio() {
+    private double processAudio() {
         // Use MATLAB generated function to process audio read from microphone
 
         float sData[] = new float[RECORDER_SAMPLERATE];
@@ -185,19 +208,9 @@ public class Realtime extends AppCompatActivity {
             }
             //Log.d("data from microphone", sData.toString());
             //double stressFrequency = vsd(sDataDouble);
-            /*
-            double stressFrequency = 0.0d;
-            if (stressFrequency > 8 && stressFrequency < 14) {
-                stressFreqTextView.setText(R.string.not_stressed);
-            } else if (stressFrequency == 8 || stressFrequency == 14) {
-                stressFreqTextView.setText(R.string.marginal_stress);
-            } else if (stressFrequency > 0) {
-                stressFreqTextView.setText(R.string.not_stressed);
-            } else if (stressFrequency <= 0) {
-                stressFreqTextView.setText(R.string.too_noisy);
-            }
-            */
+            return -1.0d;
         }
+        return -1.0d;
     }
 
     private void stopVSD() {
@@ -208,6 +221,7 @@ public class Realtime extends AppCompatActivity {
             recorder.release();
             recorder = null;
             vsdThread = null;
+            //stop task
         }
     }
 

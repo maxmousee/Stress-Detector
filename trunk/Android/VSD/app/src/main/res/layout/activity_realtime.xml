@@ -12,9 +12,13 @@
 
     <TextView
         android:id="@+id/stressFreqTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/processing"
+        android:gravity="center"
+        android:text="@string/loading"
+        android:textSize="@dimen/font_size"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/whiteColor"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
