@@ -2,7 +2,7 @@
  * File: _coder_vsd_info.h 
  *  
  * MATLAB Coder version            : 3.2 
- * C/C++ source code generated on  : 13-Dec-2016 23:51:29 
+ * C/C++ source code generated on  : 16-Dec-2016 08:11:00 
  */
 
 #ifndef _CODER_VSD_INFO_H
@@ -14,8 +14,8 @@
 
 
 /* Function Declarations */ 
-extern const mxArray *emlrtMexFcnResolvedFunctionsInfo();
-MEXFUNCTION_LINKAGE mxArray *emlrtMexFcnProperties();
+extern const mxArray *emlrtMexFcnResolvedFunctionsInfo(void);
+MEXFUNCTION_LINKAGE mxArray *emlrtMexFcnProperties(void);
 
 #endif
 /* 

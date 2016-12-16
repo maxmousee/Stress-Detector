@@ -1,14 +1,15 @@
-//
-// File: vsd_emxutil.h
-//
-// MATLAB Coder version            : 3.2
-// C/C++ source code generated on  : 13-Dec-2016 23:51:29
-//
+/*
+ * File: vsd_emxutil.h
+ *
+ * MATLAB Coder version            : 3.2
+ * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ */
+
 #ifndef VSD_EMXUTIL_H
 #define VSD_EMXUTIL_H
 
-// Include Files
-#include <cmath>
+/* Include Files */
+#include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,7 +17,7 @@
 #include "rtwtypes.h"
 #include "vsd_types.h"
 
-// Function Declarations
+/* Function Declarations */
 extern void emxEnsureCapacity(emxArray__common *emxArray, int oldNumel, int
   elementSize);
 extern void emxFree_creal_T(emxArray_creal_T **pEmxArray);
@@ -27,8 +28,8 @@ extern void emxInit_real_T1(emxArray_real_T **pEmxArray, int numDimensions);
 
 #endif
 
-//
-// File trailer for vsd_emxutil.h
-//
-// [EOF]
-//
+/*
+ * File trailer for vsd_emxutil.h
+ *
+ * [EOF]
+ */

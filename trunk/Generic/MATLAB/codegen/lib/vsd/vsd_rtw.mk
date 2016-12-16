@@ -2,7 +2,7 @@
 ## Makefile generated for MATLAB file/project 'vsd'. 
 ## 
 ## Makefile     : vsd_rtw.mk
-## Generated on : Tue Dec 13 23:48:51 2016
+## Generated on : Fri Dec 16 08:11:10 2016
 ## MATLAB Coder version: 3.2 (R2016b)
 ## 
 ## Build Info:
@@ -186,7 +186,7 @@ DEFINES = $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/codegen/lib/vsd/vsd_rtwutil.cpp $(START_DIR)/codegen/lib/vsd/vsd_initialize.cpp $(START_DIR)/codegen/lib/vsd/vsd_terminate.cpp $(START_DIR)/codegen/lib/vsd/vsd.cpp $(START_DIR)/codegen/lib/vsd/emd.cpp $(START_DIR)/codegen/lib/vsd/findpeaks.cpp $(START_DIR)/codegen/lib/vsd/diff.cpp $(START_DIR)/codegen/lib/vsd/error.cpp $(START_DIR)/codegen/lib/vsd/sum.cpp $(START_DIR)/codegen/lib/vsd/abs.cpp $(START_DIR)/codegen/lib/vsd/spline.cpp $(START_DIR)/codegen/lib/vsd/chckxy.cpp $(START_DIR)/codegen/lib/vsd/pwchcore.cpp $(START_DIR)/codegen/lib/vsd/bsearch.cpp $(START_DIR)/codegen/lib/vsd/power.cpp $(START_DIR)/codegen/lib/vsd/fft.cpp $(START_DIR)/codegen/lib/vsd/indexShapeCheck.cpp $(START_DIR)/codegen/lib/vsd/vsd_emxutil.cpp $(START_DIR)/codegen/lib/vsd/rt_nonfinite.cpp $(START_DIR)/codegen/lib/vsd/rtGetNaN.cpp $(START_DIR)/codegen/lib/vsd/rtGetInf.cpp
+SRCS = $(START_DIR)/codegen/lib/vsd/vsd_rtwutil.c $(START_DIR)/codegen/lib/vsd/vsd_initialize.c $(START_DIR)/codegen/lib/vsd/vsd_terminate.c $(START_DIR)/codegen/lib/vsd/vsd.c $(START_DIR)/codegen/lib/vsd/emd.c $(START_DIR)/codegen/lib/vsd/findpeaks.c $(START_DIR)/codegen/lib/vsd/diff.c $(START_DIR)/codegen/lib/vsd/error.c $(START_DIR)/codegen/lib/vsd/sum.c $(START_DIR)/codegen/lib/vsd/abs.c $(START_DIR)/codegen/lib/vsd/spline.c $(START_DIR)/codegen/lib/vsd/chckxy.c $(START_DIR)/codegen/lib/vsd/pwchcore.c $(START_DIR)/codegen/lib/vsd/bsearch.c $(START_DIR)/codegen/lib/vsd/power.c $(START_DIR)/codegen/lib/vsd/fft.c $(START_DIR)/codegen/lib/vsd/indexShapeCheck.c $(START_DIR)/codegen/lib/vsd/vsd_emxutil.c $(START_DIR)/codegen/lib/vsd/rt_nonfinite.c $(START_DIR)/codegen/lib/vsd/rtGetNaN.c $(START_DIR)/codegen/lib/vsd/rtGetInf.c
 
 ALL_SRCS = $(SRCS)
 
@@ -214,7 +214,7 @@ LIBS =
 ## SYSTEM LIBRARIES
 ###########################################################################
 
-SYSTEM_LIBS =  -lm -lstdc++
+SYSTEM_LIBS =  -lm
 
 ###########################################################################
 ## ADDITIONAL TOOLCHAIN FLAGS

@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2016a">
-  <configuration build-checksum="1364183074" file="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.prj" location="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="2728206323" file="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.prj" location="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -166,7 +166,7 @@
       <param.CustomSource />
       <param.CustomLibrary />
       <param.PostCodeGenCommand />
-      <param.TargetLangStandard>C++03 (ISO)</param.TargetLangStandard>
+      <param.TargetLangStandard>C89/C90 (ANSI)</param.TargetLangStandard>
       <param.CodeReplacementLibrary>None</param.CodeReplacementLibrary>
       <param.DeprecatedCRLFlag>false</param.DeprecatedCRLFlag>
       <param.SameHardware>true</param.SameHardware>
@@ -228,7 +228,7 @@
       <param.IncludeTerminateFcn>true</param.IncludeTerminateFcn>
       <param.GenerateExampleMain>option.GenerateExampleMain.GenerateCodeOnly</param.GenerateExampleMain>
       <param.PreserveVariableNames>option.PreserveVariableNames.None</param.PreserveVariableNames>
-      <param.TargetLang>option.TargetLang.CPP</param.TargetLang>
+      <param.TargetLang>option.TargetLang.C</param.TargetLang>
       <param.CCompilerOptimization>option.CCompilerOptimization.Off</param.CCompilerOptimization>
       <param.CCompilerCustomOptimizations />
       <param.GenerateMakefile>true</param.GenerateMakefile>
@@ -327,6 +327,7 @@
         <param.IncludeTerminateFcn />
         <param.GenerateExampleMain />
         <param.PreserveVariableNames />
+        <param.TargetLang />
         <param.CCompilerOptimization />
         <param.CCompilerCustomOptimizations />
         <param.GenerateMakefile />
@@ -721,7 +722,7 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen/lib/vsd</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>1806576637</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>2736917067</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen/mex/vsd</var.cfi.lastOutputRoot>
     <var.cfi.preBuildChecksum>1800310041</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>[x,Fs] = audioread('rain_man_driver_8000.wav'); vsd(x);</var.lastCfiTestSnippet>

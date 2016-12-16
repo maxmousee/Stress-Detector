@@ -2,7 +2,7 @@
  * File: _coder_vsd_mex.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 13-Dec-2016 23:51:29
+ * C/C++ source code generated on  : 16-Dec-2016 08:11:00
  */
 
 #ifndef _CODER_VSD_MEX_H
