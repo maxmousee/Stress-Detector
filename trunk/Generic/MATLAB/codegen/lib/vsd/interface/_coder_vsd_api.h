@@ -2,7 +2,7 @@
  * File: _coder_vsd_api.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef _CODER_VSD_API_H
@@ -21,7 +21,7 @@ extern emlrtCTX emlrtRootTLSGlobal;
 extern emlrtContext emlrtContextGlobal;
 
 /* Function Declarations */
-extern real_T vsd(real_T input[8000]);
+extern real_T vsd(real_T input[8192]);
 extern void vsd_api(const mxArray *prhs[1], const mxArray *plhs[1]);
 extern void vsd_atexit(void);
 extern void vsd_initialize(void);

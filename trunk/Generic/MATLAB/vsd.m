@@ -2,7 +2,7 @@ function stressFreq = vsd(input)
  %Fs = length(input);
  %The code has fixed length anyway, so it wont work with different
  %sample rate anyway
- Fs = 8000;
+ Fs = 8192;
  imf = emd(input(1:Fs));
  stressComponentArray = imf;
  L = length(stressComponentArray);
@@ -12,8 +12,6 @@ function stressFreq = vsd(input)
  %nPointDFT=nextpow2(L);
  %remember that nPointDFT should be a power of 2 or matlab coder wont
  %generate anything
- %nPointDFT=8192;
- %Y=fft(stressComponentArray, nPointDFT);
  Y=fft(stressComponentArray, 8192);
  %fft ends here
  P2 = abs(Y/L);

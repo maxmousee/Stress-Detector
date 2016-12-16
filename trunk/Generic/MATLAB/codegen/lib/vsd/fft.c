@@ -2,7 +2,7 @@
  * File: fft.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /* Include Files */
@@ -10,160 +10,26 @@
 #include "vsd.h"
 #include "fft.h"
 #include "vsd_emxutil.h"
-#include "vsd_rtwutil.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-/* Variable Definitions */
-static rtRunTimeErrorInfo g_emlrtRTEI = { 18,/* lineNo */
-  19,                                  /* colNo */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m"/* pName */
-};
-
-static rtBoundsCheckInfo ce_emlrtBCI = { -1,/* iFirst */
-  -1,                                  /* iLast */
-  442,                                 /* lineNo */
-  21,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo de_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  401,                                 /* lineNo */
-  21,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo ee_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  400,                                 /* lineNo */
-  17,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo fe_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  402,                                 /* lineNo */
-  26,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo ge_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  402,                                 /* lineNo */
-  17,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo he_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  337,                                 /* lineNo */
-  20,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo ie_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  339,                                 /* lineNo */
-  17,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo je_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  338,                                 /* lineNo */
-  13,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo ke_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  340,                                 /* lineNo */
-  22,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo le_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  340,                                 /* lineNo */
-  13,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo me_emlrtBCI = { 1,/* iFirst */
-  8192,                                /* iLast */
-  399,                                 /* lineNo */
-  29,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo ne_emlrtBCI = { -1,/* iFirst */
-  -1,                                  /* iLast */
-  314,                                 /* lineNo */
-  15,                                  /* colNo */
-  "",                                  /* aName */
-  "eml_fft",                           /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/datafun/private/eml_fft.m",/* pName */
-  0                                    /* checkKind */
-};
 
 /* Function Declarations */
-static void r2br_r2dit_trig(const double x_data[], const int x_size[2],
-  emxArray_creal_T *y);
-static void r2br_r2dit_trig_impl(const double x_data[], const int x_size[2], int
-  xoffInit, const double costab[4097], const double sintab[4097], creal_T y[8192]);
+static void r2br_r2dit_trig(const emxArray_real_T *x, emxArray_creal_T *y);
+static void r2br_r2dit_trig_impl(const emxArray_real_T *x, int xoffInit, const
+  double costab[4097], const double sintab[4097], creal_T y[8192]);
 
 /* Function Definitions */
 
 /*
- * Arguments    : const double x_data[]
- *                const int x_size[2]
+ * Arguments    : const emxArray_real_T *x
  *                emxArray_creal_T *y
  * Return Type  : void
  */
-static void r2br_r2dit_trig(const double x_data[], const int x_size[2],
-  emxArray_creal_T *y)
+static void r2br_r2dit_trig(const emxArray_real_T *x, emxArray_creal_T *y)
 {
   short sx[2];
+  int k;
   short sz[2];
-  int i20;
   int loop_ub;
-  int l;
+  int i11;
   static const double dv4[4097] = { 1.0, 0.99999970586288223,
     0.99999882345170188, 0.99999735276697821, 0.99999529380957619,
     0.99999264658070719, 0.9999894110819284, 0.9999855873151432,
@@ -2897,58 +2763,47 @@ static void r2br_r2dit_trig(const double x_data[], const int x_size[2],
     -0.00076699031874270449, -0.0 };
 
   creal_T rwork[8192];
-  for (i20 = 0; i20 < 2; i20++) {
-    sx[i20] = (short)x_size[i20];
-    sz[i20] = (short)x_size[i20];
+  for (k = 0; k < 2; k++) {
+    sx[k] = (short)x->size[k];
   }
 
-  i20 = y->size[0] * y->size[1];
+  for (k = 0; k < 2; k++) {
+    sz[k] = (short)x->size[k];
+  }
+
+  k = y->size[0] * y->size[1];
   y->size[0] = 8192;
   y->size[1] = sz[1];
   y->size[0] = 8192;
-  emxEnsureCapacity((emxArray__common *)y, i20, (int)sizeof(creal_T));
+  emxEnsureCapacity((emxArray__common *)y, k, (int)sizeof(creal_T));
   loop_ub = y->size[1];
-  for (i20 = 0; i20 < loop_ub; i20++) {
-    for (l = 0; l < 8192; l++) {
-      y->data[l + y->size[0] * i20].re = 0.0;
-      y->data[l + y->size[0] * i20].im = 0.0;
+  for (k = 0; k < loop_ub; k++) {
+    for (i11 = 0; i11 < 8192; i11++) {
+      y->data[i11 + y->size[0] * k].re = 0.0;
+      y->data[i11 + y->size[0] * k].im = 0.0;
     }
   }
 
-  for (loop_ub = 1; loop_ub <= sx[1]; loop_ub++) {
-    r2br_r2dit_trig_impl(x_data, x_size, (loop_ub - 1) * x_size[0], dv4, dv5,
-                         rwork);
-    for (l = 0; l < 8192; l++) {
-      i20 = y->size[1];
-      if (!(loop_ub <= i20)) {
-        rtDynamicBoundsError(loop_ub, 1, i20, &ce_emlrtBCI);
-      }
-
-      y->data[l + y->size[0] * (loop_ub - 1)].re = rwork[l].re;
-      i20 = y->size[1];
-      if (!(loop_ub <= i20)) {
-        rtDynamicBoundsError(loop_ub, 1, i20, &ce_emlrtBCI);
-      }
-
-      y->data[l + y->size[0] * (loop_ub - 1)].im = rwork[l].im;
+  for (k = 0; k + 1 <= sx[1]; k++) {
+    r2br_r2dit_trig_impl(x, k * x->size[0], dv4, dv5, rwork);
+    for (loop_ub = 0; loop_ub < 8192; loop_ub++) {
+      y->data[loop_ub + y->size[0] * k] = rwork[loop_ub];
     }
   }
 }
 
 /*
- * Arguments    : const double x_data[]
- *                const int x_size[2]
+ * Arguments    : const emxArray_real_T *x
  *                int xoffInit
  *                const double costab[4097]
  *                const double sintab[4097]
  *                creal_T y[8192]
  * Return Type  : void
  */
-static void r2br_r2dit_trig_impl(const double x_data[], const int x_size[2], int
-  xoffInit, const double costab[4097], const double sintab[4097], creal_T y[8192])
+static void r2br_r2dit_trig_impl(const emxArray_real_T *x, int xoffInit, const
+  double costab[4097], const double sintab[4097], creal_T y[8192])
 {
   int i;
-  int i21;
   int iDelta;
   double temp_re;
   int iDelta2;
@@ -2960,18 +2815,12 @@ static void r2br_r2dit_trig_impl(const double x_data[], const int x_size[2], int
   double twid_re;
   double twid_im;
   int ihi;
-  int i22;
   for (i = 0; i < 8192; i++) {
     y[i].re = 0.0;
     y[i].im = 0.0;
   }
 
-  i21 = x_size[0] * x_size[1];
-  if (!((xoffInit + 1 >= 1) && (xoffInit + 1 <= i21))) {
-    rtDynamicBoundsError(xoffInit + 1, 1, i21, &ne_emlrtBCI);
-  }
-
-  y[0].re = x_data[xoffInit];
+  y[0].re = x->data[xoffInit];
   y[0].im = 0.0;
   for (i = 0; i <= 8191; i += 2) {
     temp_re = y[i + 1].re;
@@ -2987,51 +2836,13 @@ static void r2br_r2dit_trig_impl(const double x_data[], const int x_size[2], int
   k = 2048;
   iheight = 8189;
   while (k > 0) {
-    for (i = 1; i - 1 < iheight; i += iDelta2) {
-      i21 = i + iDelta;
-      if (!((i21 >= 1) && (i21 <= 8192))) {
-        rtDynamicBoundsError(i21, 1, 8192, &he_emlrtBCI);
-      }
-
-      temp_re = y[i21 - 1].re;
-      i21 = i + iDelta;
-      if (!((i21 >= 1) && (i21 <= 8192))) {
-        rtDynamicBoundsError(i21, 1, 8192, &he_emlrtBCI);
-      }
-
-      temp_im = y[i21 - 1].im;
-      i21 = i + iDelta;
-      if (!((i21 >= 1) && (i21 <= 8192))) {
-        rtDynamicBoundsError(i21, 1, 8192, &je_emlrtBCI);
-      }
-
-      if (!((i >= 1) && (i <= 8192))) {
-        rtDynamicBoundsError(i, 1, 8192, &ie_emlrtBCI);
-      }
-
-      y[i21 - 1].re = y[i - 1].re - temp_re;
-      if (!((i >= 1) && (i <= 8192))) {
-        rtDynamicBoundsError(i, 1, 8192, &ie_emlrtBCI);
-      }
-
-      i21 = i + iDelta;
-      if (!((i21 >= 1) && (i21 <= 8192))) {
-        rtDynamicBoundsError(i21, 1, 8192, &je_emlrtBCI);
-      }
-
-      y[i21 - 1].im = y[i - 1].im - temp_im;
-      if (!((i >= 1) && (i <= 8192))) {
-        rtDynamicBoundsError(i, 1, 8192, &le_emlrtBCI);
-        rtDynamicBoundsError(i, 1, 8192, &ke_emlrtBCI);
-      }
-
-      y[i - 1].re += temp_re;
-      if (!((i >= 1) && (i <= 8192))) {
-        rtDynamicBoundsError(i, 1, 8192, &ke_emlrtBCI);
-        rtDynamicBoundsError(i, 1, 8192, &le_emlrtBCI);
-      }
-
-      y[i - 1].im += temp_im;
+    for (i = 0; i < iheight; i += iDelta2) {
+      temp_re = y[i + iDelta].re;
+      temp_im = y[i + iDelta].im;
+      y[i + iDelta].re = y[i].re - temp_re;
+      y[i + iDelta].im = y[i].im - temp_im;
+      y[i].re += temp_re;
+      y[i].im += temp_im;
     }
 
     istart = 1;
@@ -3041,59 +2852,11 @@ static void r2br_r2dit_trig_impl(const double x_data[], const int x_size[2], int
       i = istart;
       ihi = istart + iheight;
       while (i < ihi) {
-        i21 = (i + iDelta) + 1;
-        if (!((i21 >= 1) && (i21 <= 8192))) {
-          rtDynamicBoundsError(i21, 1, 8192, &me_emlrtBCI);
-        }
-
-        i22 = (i + iDelta) + 1;
-        if (!((i22 >= 1) && (i22 <= 8192))) {
-          rtDynamicBoundsError(i22, 1, 8192, &me_emlrtBCI);
-        }
-
-        temp_re = twid_re * y[i21 - 1].re - twid_im * y[i22 - 1].im;
-        i21 = (i + iDelta) + 1;
-        if (!((i21 >= 1) && (i21 <= 8192))) {
-          rtDynamicBoundsError(i21, 1, 8192, &me_emlrtBCI);
-        }
-
-        i22 = (i + iDelta) + 1;
-        if (!((i22 >= 1) && (i22 <= 8192))) {
-          rtDynamicBoundsError(i22, 1, 8192, &me_emlrtBCI);
-        }
-
-        temp_im = twid_re * y[i21 - 1].im + twid_im * y[i22 - 1].re;
-        i21 = (i + iDelta) + 1;
-        if (!((i21 >= 1) && (i21 <= 8192))) {
-          rtDynamicBoundsError(i21, 1, 8192, &ee_emlrtBCI);
-        }
-
-        if (!((i + 1 >= 1) && (i + 1 <= 8192))) {
-          rtDynamicBoundsError(i + 1, 1, 8192, &de_emlrtBCI);
-        }
-
-        y[i21 - 1].re = y[i].re - temp_re;
-        if (!((i + 1 >= 1) && (i + 1 <= 8192))) {
-          rtDynamicBoundsError(i + 1, 1, 8192, &de_emlrtBCI);
-        }
-
-        i21 = (i + iDelta) + 1;
-        if (!((i21 >= 1) && (i21 <= 8192))) {
-          rtDynamicBoundsError(i21, 1, 8192, &ee_emlrtBCI);
-        }
-
-        y[i21 - 1].im = y[i].im - temp_im;
-        if (!((i + 1 >= 1) && (i + 1 <= 8192))) {
-          rtDynamicBoundsError(i + 1, 1, 8192, &ge_emlrtBCI);
-          rtDynamicBoundsError(i + 1, 1, 8192, &fe_emlrtBCI);
-        }
-
+        temp_re = twid_re * y[i + iDelta].re - twid_im * y[i + iDelta].im;
+        temp_im = twid_re * y[i + iDelta].im + twid_im * y[i + iDelta].re;
+        y[i + iDelta].re = y[i].re - temp_re;
+        y[i + iDelta].im = y[i].im - temp_im;
         y[i].re += temp_re;
-        if (!((i + 1 >= 1) && (i + 1 <= 8192))) {
-          rtDynamicBoundsError(i + 1, 1, 8192, &fe_emlrtBCI);
-          rtDynamicBoundsError(i + 1, 1, 8192, &ge_emlrtBCI);
-        }
-
         y[i].im += temp_im;
         i += iDelta2;
       }
@@ -3109,40 +2872,35 @@ static void r2br_r2dit_trig_impl(const double x_data[], const int x_size[2], int
 }
 
 /*
- * Arguments    : const double x_data[]
- *                const int x_size[2]
+ * Arguments    : const emxArray_real_T *x
  *                emxArray_creal_T *y
  * Return Type  : void
  */
-void fft(const double x_data[], const int x_size[2], emxArray_creal_T *y)
+void fft(const emxArray_real_T *x, emxArray_creal_T *y)
 {
   short sz[2];
-  int i18;
+  int i9;
   int loop_ub;
-  int i19;
-  if (x_size[0] == 1) {
-    rtErrorWithMessageID(&g_emlrtRTEI);
-  }
-
-  if ((x_size[0] == 0) || (x_size[1] == 0)) {
-    for (i18 = 0; i18 < 2; i18++) {
-      sz[i18] = (short)x_size[i18];
+  int i10;
+  if ((x->size[0] == 0) || (x->size[1] == 0)) {
+    for (i9 = 0; i9 < 2; i9++) {
+      sz[i9] = (short)x->size[i9];
     }
 
-    i18 = y->size[0] * y->size[1];
+    i9 = y->size[0] * y->size[1];
     y->size[0] = 8192;
     y->size[1] = sz[1];
     y->size[0] = 8192;
-    emxEnsureCapacity((emxArray__common *)y, i18, (int)sizeof(creal_T));
+    emxEnsureCapacity((emxArray__common *)y, i9, (int)sizeof(creal_T));
     loop_ub = y->size[1];
-    for (i18 = 0; i18 < loop_ub; i18++) {
-      for (i19 = 0; i19 < 8192; i19++) {
-        y->data[i19 + y->size[0] * i18].re = 0.0;
-        y->data[i19 + y->size[0] * i18].im = 0.0;
+    for (i9 = 0; i9 < loop_ub; i9++) {
+      for (i10 = 0; i10 < 8192; i10++) {
+        y->data[i10 + y->size[0] * i9].re = 0.0;
+        y->data[i10 + y->size[0] * i9].im = 0.0;
       }
     }
   } else {
-    r2br_r2dit_trig(x_data, x_size, y);
+    r2br_r2dit_trig(x, y);
   }
 }
 

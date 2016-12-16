@@ -18,7 +18,7 @@ while ~ismonotonic(x)
       x1 = x2;
    end
    
-   if (N <= 7)
+   if (N <= 8)
     imf = x1;
    end
    x          = x-x1;

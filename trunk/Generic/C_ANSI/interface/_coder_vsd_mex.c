@@ -2,15 +2,12 @@
  * File: _coder_vsd_mex.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /* Include Files */
 #include "_coder_vsd_api.h"
 #include "_coder_vsd_mex.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /* Function Declarations */
 static void vsd_mexFunction(int32_T nlhs, mxArray *plhs[1], int32_T nrhs, const

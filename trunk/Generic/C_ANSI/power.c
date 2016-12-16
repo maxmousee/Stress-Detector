@@ -2,28 +2,25 @@
  * File: power.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /* Include Files */
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "power.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /* Function Definitions */
 
 /*
- * Arguments    : const double a[8000]
- *                double y[8000]
+ * Arguments    : const double a[8192]
+ *                double y[8192]
  * Return Type  : void
  */
-void power(const double a[8000], double y[8000])
+void power(const double a[8192], double y[8192])
 {
   int k;
-  for (k = 0; k < 8000; k++) {
+  for (k = 0; k < 8192; k++) {
     y[k] = a[k] * a[k];
   }
 }

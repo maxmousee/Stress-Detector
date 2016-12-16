@@ -2,7 +2,7 @@
  * File: vsd.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef VSD_H
@@ -18,7 +18,7 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern double vsd(const double input[8000]);
+extern double vsd(const double input[8192]);
 
 #endif
 

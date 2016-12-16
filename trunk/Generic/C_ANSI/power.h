@@ -2,7 +2,7 @@
  * File: power.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef POWER_H
@@ -18,7 +18,7 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void power(const double a[8000], double y[8000]);
+extern void power(const double a[8192], double y[8192]);
 
 #endif
 

@@ -2,7 +2,7 @@
  * File: bsearch.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef BSEARCH_H
@@ -18,7 +18,7 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern int b_bsearch(const double x_data[], const int x_size[2], double xi);
+extern int b_bsearch(const emxArray_real_T *x, double xi);
 
 #endif
 

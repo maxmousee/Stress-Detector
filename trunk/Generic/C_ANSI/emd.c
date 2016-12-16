@@ -2,7 +2,7 @@
  * File: emd.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /* Include Files */
@@ -11,149 +11,102 @@
 #include "emd.h"
 #include "sum.h"
 #include "power.h"
-#include "vsd_rtwutil.h"
-#include "bsearch.h"
 #include "vsd_emxutil.h"
+#include "bsearch.h"
 #include "spline.h"
 #include "findpeaks.h"
-#include "error.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-/* Variable Definitions */
-static rtBoundsCheckInfo q_emlrtBCI = { -1,/* iFirst */
-  -1,                                  /* iLast */
-  134,                                 /* lineNo */
-  16,                                  /* colNo */
-  "",                                  /* aName */
-  "ppval",                             /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/polyfun/ppval.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo r_emlrtBCI = { -1,/* iFirst */
-  -1,                                  /* iLast */
-  135,                                 /* lineNo */
-  12,                                  /* colNo */
-  "",                                  /* aName */
-  "ppval",                             /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/polyfun/ppval.m",/* pName */
-  0                                    /* checkKind */
-};
-
-static rtBoundsCheckInfo s_emlrtBCI = { -1,/* iFirst */
-  -1,                                  /* iLast */
-  137,                                 /* lineNo */
-  25,                                  /* colNo */
-  "",                                  /* aName */
-  "ppval",                             /* fName */
-  "/Applications/MATLAB/MATLAB_R2016b.app/toolbox/eml/lib/matlab/polyfun/ppval.m",/* pName */
-  0                                    /* checkKind */
-};
 
 /* Function Declarations */
-static void getspline(const double x[8000], double s_data[], int s_size[2]);
-static double isimf(const double x[8000]);
-static double ismonotonic(const double x[8000]);
+static void getspline(const double x[8192], emxArray_real_T *s);
+static double isimf(const double x[8192]);
+static double ismonotonic(const double x[8192]);
 
 /* Function Definitions */
 
 /*
- * Arguments    : const double x[8000]
- *                double s_data[]
- *                int s_size[2]
+ * Arguments    : const double x[8192]
+ *                emxArray_real_T *s
  * Return Type  : void
  */
-static void getspline(const double x[8000], double s_data[], int s_size[2])
+static void getspline(const double x[8192], emxArray_real_T *s)
 {
-  static double p_data[7998];
+  emxArray_real_T *r1;
+  static double p_data[8190];
   int p_size[2];
-  static double tmp_data[8000];
-  int tmp_size[2];
-  int numTerms;
-  int i8;
-  static double b_tmp_data[8000];
-  int b_tmp_size[2];
-  emxArray_real_T *pp_coefs;
-  static double pp_breaks_data[8000];
-  int pp_breaks_size[2];
-  int ix;
   int ip;
+  int loop_ub;
+  emxArray_real_T *r2;
+  emxArray_real_T *pp_breaks;
+  emxArray_real_T *pp_coefs;
+  int numTerms;
   double xloc;
   double v;
   int ic;
-  int i9;
+  emxInit_real_T(&r1, 2);
   findpeaks(x, p_data, p_size);
-  tmp_size[0] = 1;
-  tmp_size[1] = 2 + p_size[1];
-  tmp_data[0] = 0.0;
-  numTerms = p_size[1];
-  for (i8 = 0; i8 < numTerms; i8++) {
-    tmp_data[i8 + 1] = p_data[p_size[0] * i8];
+  ip = r1->size[0] * r1->size[1];
+  r1->size[0] = 1;
+  r1->size[1] = 2 + p_size[1];
+  emxEnsureCapacity((emxArray__common *)r1, ip, (int)sizeof(double));
+  r1->data[0] = 0.0;
+  loop_ub = p_size[1];
+  for (ip = 0; ip < loop_ub; ip++) {
+    r1->data[r1->size[0] * (ip + 1)] = p_data[p_size[0] * ip];
   }
 
-  tmp_data[1 + p_size[1]] = 8001.0;
-  b_tmp_size[0] = 1;
-  b_tmp_size[1] = 2 + p_size[1];
-  b_tmp_data[0] = 0.0;
-  numTerms = p_size[1];
-  for (i8 = 0; i8 < numTerms; i8++) {
-    b_tmp_data[i8 + 1] = x[(int)p_data[p_size[0] * i8] - 1];
+  emxInit_real_T(&r2, 2);
+  r1->data[r1->size[0] * (1 + p_size[1])] = 8193.0;
+  ip = r2->size[0] * r2->size[1];
+  r2->size[0] = 1;
+  r2->size[1] = 2 + p_size[1];
+  emxEnsureCapacity((emxArray__common *)r2, ip, (int)sizeof(double));
+  r2->data[0] = 0.0;
+  loop_ub = p_size[1];
+  for (ip = 0; ip < loop_ub; ip++) {
+    r2->data[r2->size[0] * (ip + 1)] = x[(int)p_data[p_size[0] * ip] - 1];
   }
 
+  emxInit_real_T(&pp_breaks, 2);
   emxInit_real_T1(&pp_coefs, 3);
-  b_tmp_data[1 + p_size[1]] = 0.0;
-  splinepp(tmp_data, tmp_size, b_tmp_data, b_tmp_size, pp_breaks_data,
-           pp_breaks_size, pp_coefs);
+  r2->data[r2->size[0] * (1 + p_size[1])] = 0.0;
+  splinepp(r1, r2, pp_breaks, pp_coefs);
   numTerms = pp_coefs->size[2];
-  for (i8 = 0; i8 < 2; i8++) {
-    s_size[i8] = 1 + 7999 * i8;
+  emxFree_real_T(&r2);
+  emxFree_real_T(&r1);
+  for (ip = 0; ip < 2; ip++) {
+    loop_ub = s->size[0] * s->size[1];
+    s->size[ip] = 1 + 8191 * ip;
+    emxEnsureCapacity((emxArray__common *)s, loop_ub, (int)sizeof(double));
   }
 
-  for (ix = 0; ix < 8000; ix++) {
-    ip = b_bsearch(pp_breaks_data, pp_breaks_size, 1.0 + (((double)ix + 1.0) -
-      1.0));
-    if (!((ip >= 1) && (ip <= pp_breaks_size[1]))) {
-      rtDynamicBoundsError(ip, 1, pp_breaks_size[1], &q_emlrtBCI);
-    }
-
-    xloc = (1.0 + (((double)ix + 1.0) - 1.0)) - pp_breaks_data[ip - 1];
-    i8 = pp_coefs->size[1] * pp_coefs->size[2];
-    if (!((ip >= 1) && (ip <= i8))) {
-      rtDynamicBoundsError(ip, 1, i8, &r_emlrtBCI);
-    }
-
-    v = pp_coefs->data[ip - 1];
+  for (loop_ub = 0; loop_ub < 8192; loop_ub++) {
+    ip = b_bsearch(pp_breaks, 1.0 + (((double)loop_ub + 1.0) - 1.0)) - 1;
+    xloc = (1.0 + (((double)loop_ub + 1.0) - 1.0)) - pp_breaks->data[ip];
+    v = pp_coefs->data[ip];
     for (ic = 2; ic <= numTerms; ic++) {
-      i8 = pp_coefs->size[1] * pp_coefs->size[2];
-      i9 = ip + (ic - 1) * (pp_breaks_size[1] - 1);
-      if (!((i9 >= 1) && (i9 <= i8))) {
-        rtDynamicBoundsError(i9, 1, i8, &s_emlrtBCI);
-      }
-
-      v = xloc * v + pp_coefs->data[i9 - 1];
+      v = xloc * v + pp_coefs->data[ip + (ic - 1) * (pp_breaks->size[1] - 1)];
     }
 
-    s_data[ix] = v;
+    s->data[loop_ub] = v;
   }
 
   emxFree_real_T(&pp_coefs);
+  emxFree_real_T(&pp_breaks);
 }
 
 /*
- * Arguments    : const double x[8000]
+ * Arguments    : const double x[8192]
  * Return Type  : double
  */
-static double isimf(const double x[8000])
+static double isimf(const double x[8192])
 {
-  static double tmp_data[7998];
+  static double tmp_data[8190];
   int tmp_size[2];
-  static double b_x[8000];
-  int i7;
+  static double b_x[8192];
+  int i5;
   int b_tmp_size[2];
-  boolean_T c_x[7999];
-  static const short iv2[7999] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+  boolean_T c_x[8191];
+  static const short iv1[8191] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
     14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
     33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
     52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
@@ -756,9 +709,24 @@ static double isimf(const double x[8000])
     7948, 7949, 7950, 7951, 7952, 7953, 7954, 7955, 7956, 7957, 7958, 7959, 7960,
     7961, 7962, 7963, 7964, 7965, 7966, 7967, 7968, 7969, 7970, 7971, 7972, 7973,
     7974, 7975, 7976, 7977, 7978, 7979, 7980, 7981, 7982, 7983, 7984, 7985, 7986,
-    7987, 7988, 7989, 7990, 7991, 7992, 7993, 7994, 7995, 7996, 7997, 7998 };
+    7987, 7988, 7989, 7990, 7991, 7992, 7993, 7994, 7995, 7996, 7997, 7998, 7999,
+    8000, 8001, 8002, 8003, 8004, 8005, 8006, 8007, 8008, 8009, 8010, 8011, 8012,
+    8013, 8014, 8015, 8016, 8017, 8018, 8019, 8020, 8021, 8022, 8023, 8024, 8025,
+    8026, 8027, 8028, 8029, 8030, 8031, 8032, 8033, 8034, 8035, 8036, 8037, 8038,
+    8039, 8040, 8041, 8042, 8043, 8044, 8045, 8046, 8047, 8048, 8049, 8050, 8051,
+    8052, 8053, 8054, 8055, 8056, 8057, 8058, 8059, 8060, 8061, 8062, 8063, 8064,
+    8065, 8066, 8067, 8068, 8069, 8070, 8071, 8072, 8073, 8074, 8075, 8076, 8077,
+    8078, 8079, 8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 8090,
+    8091, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8100, 8101, 8102, 8103,
+    8104, 8105, 8106, 8107, 8108, 8109, 8110, 8111, 8112, 8113, 8114, 8115, 8116,
+    8117, 8118, 8119, 8120, 8121, 8122, 8123, 8124, 8125, 8126, 8127, 8128, 8129,
+    8130, 8131, 8132, 8133, 8134, 8135, 8136, 8137, 8138, 8139, 8140, 8141, 8142,
+    8143, 8144, 8145, 8146, 8147, 8148, 8149, 8150, 8151, 8152, 8153, 8154, 8155,
+    8156, 8157, 8158, 8159, 8160, 8161, 8162, 8163, 8164, 8165, 8166, 8167, 8168,
+    8169, 8170, 8171, 8172, 8173, 8174, 8175, 8176, 8177, 8178, 8179, 8180, 8181,
+    8182, 8183, 8184, 8185, 8186, 8187, 8188, 8189, 8190 };
 
-  static const short iv3[7999] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+  static const short iv2[8191] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
     15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
     34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52,
     53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71,
@@ -1361,37 +1329,52 @@ static double isimf(const double x[8000])
     7949, 7950, 7951, 7952, 7953, 7954, 7955, 7956, 7957, 7958, 7959, 7960, 7961,
     7962, 7963, 7964, 7965, 7966, 7967, 7968, 7969, 7970, 7971, 7972, 7973, 7974,
     7975, 7976, 7977, 7978, 7979, 7980, 7981, 7982, 7983, 7984, 7985, 7986, 7987,
-    7988, 7989, 7990, 7991, 7992, 7993, 7994, 7995, 7996, 7997, 7998, 7999 };
+    7988, 7989, 7990, 7991, 7992, 7993, 7994, 7995, 7996, 7997, 7998, 7999, 8000,
+    8001, 8002, 8003, 8004, 8005, 8006, 8007, 8008, 8009, 8010, 8011, 8012, 8013,
+    8014, 8015, 8016, 8017, 8018, 8019, 8020, 8021, 8022, 8023, 8024, 8025, 8026,
+    8027, 8028, 8029, 8030, 8031, 8032, 8033, 8034, 8035, 8036, 8037, 8038, 8039,
+    8040, 8041, 8042, 8043, 8044, 8045, 8046, 8047, 8048, 8049, 8050, 8051, 8052,
+    8053, 8054, 8055, 8056, 8057, 8058, 8059, 8060, 8061, 8062, 8063, 8064, 8065,
+    8066, 8067, 8068, 8069, 8070, 8071, 8072, 8073, 8074, 8075, 8076, 8077, 8078,
+    8079, 8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 8090, 8091,
+    8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099, 8100, 8101, 8102, 8103, 8104,
+    8105, 8106, 8107, 8108, 8109, 8110, 8111, 8112, 8113, 8114, 8115, 8116, 8117,
+    8118, 8119, 8120, 8121, 8122, 8123, 8124, 8125, 8126, 8127, 8128, 8129, 8130,
+    8131, 8132, 8133, 8134, 8135, 8136, 8137, 8138, 8139, 8140, 8141, 8142, 8143,
+    8144, 8145, 8146, 8147, 8148, 8149, 8150, 8151, 8152, 8153, 8154, 8155, 8156,
+    8157, 8158, 8159, 8160, 8161, 8162, 8163, 8164, 8165, 8166, 8167, 8168, 8169,
+    8170, 8171, 8172, 8173, 8174, 8175, 8176, 8177, 8178, 8179, 8180, 8181, 8182,
+    8183, 8184, 8185, 8186, 8187, 8188, 8189, 8190, 8191 };
 
   findpeaks(x, tmp_data, tmp_size);
-  for (i7 = 0; i7 < 8000; i7++) {
-    b_x[i7] = -x[i7];
+  for (i5 = 0; i5 < 8192; i5++) {
+    b_x[i5] = -x[i5];
   }
 
   findpeaks(b_x, tmp_data, b_tmp_size);
-  for (i7 = 0; i7 < 7999; i7++) {
-    c_x[i7] = (x[iv2[i7]] * x[iv3[i7]] < 0.0);
+  for (i5 = 0; i5 < 8191; i5++) {
+    c_x[i5] = (x[iv1[i5]] * x[iv2[i5]] < 0.0);
   }
 
   return !(fabs(sum(c_x) - (double)(tmp_size[1] + b_tmp_size[1])) > 1.0);
 }
 
 /*
- * Arguments    : const double x[8000]
+ * Arguments    : const double x[8192]
  * Return Type  : double
  */
-static double ismonotonic(const double x[8000])
+static double ismonotonic(const double x[8192])
 {
-  static double tmp_data[7998];
+  static double tmp_data[8190];
   int tmp_size[2];
-  static double b_x[8000];
-  int i4;
+  static double b_x[8192];
+  int i2;
   int b_tmp_size[2];
 
   /*  FUNCTIONS */
   findpeaks(x, tmp_data, tmp_size);
-  for (i4 = 0; i4 < 8000; i4++) {
-    b_x[i4] = -x[i4];
+  for (i2 = 0; i2 < 8192; i2++) {
+    b_x[i2] = -x[i2];
   }
 
   findpeaks(b_x, tmp_data, b_tmp_size);
@@ -1402,95 +1385,82 @@ static double ismonotonic(const double x[8000])
  * Empiricial Mode Decomposition (Hilbert-Huang Transform)
  *  imf = emd(x)
  *  Func : findpeaks
- * Arguments    : const double x[8000]
- *                double imf_data[]
- *                int imf_size[2]
+ * Arguments    : const double x[8192]
+ *                emxArray_real_T *imf
  * Return Type  : void
  */
-void emd(const double x[8000], double imf_data[], int imf_size[2])
+void emd(const double x[8192], emxArray_real_T *imf)
 {
-  static double b_x[8000];
+  static double b_x[8192];
+  int i1;
   double N;
-  int exitg1;
+  emxArray_real_T *s1;
+  emxArray_real_T *s2;
+  static double x1[8192];
   double sd;
-  static double x1[8000];
-  int exitg2;
-  boolean_T guard1 = false;
-  static double s1_data[8000];
-  int s1_size[2];
-  static double b_x1[8000];
-  int i3;
-  static double s2_data[8000];
-  static double x2[8000];
-  static double dv0[8000];
-  static double dv1[8000];
-  memcpy(&b_x[0], &x[0], 8000U * sizeof(double));
-  imf_size[0] = 0;
-  imf_size[1] = 0;
+  static double b_x1[8192];
+  static double x2[8192];
+  static double dv0[8192];
+  static double dv1[8192];
+  memcpy(&b_x[0], &x[0], sizeof(double) << 13);
+  i1 = imf->size[0] * imf->size[1];
+  imf->size[0] = 0;
+  imf->size[1] = 0;
+  emxEnsureCapacity((emxArray__common *)imf, i1, (int)sizeof(double));
   N = 1.0;
-  do {
-    exitg1 = 0;
-    sd = ismonotonic(b_x);
-    if (rtIsNaN(sd)) {
-      error();
-    }
-
-    if (!(sd != 0.0)) {
-      memcpy(&x1[0], &b_x[0], 8000U * sizeof(double));
-      sd = rtInf;
-      do {
-        exitg2 = 0;
-        guard1 = false;
-        if (sd > 0.1) {
-          guard1 = true;
-        } else {
-          sd = isimf(x1);
-          if (rtIsNaN(sd)) {
-            error();
-          }
-
-          if (!(sd != 0.0)) {
-            guard1 = true;
-          } else {
-            exitg2 = 1;
-          }
-        }
-
-        if (guard1) {
-          getspline(x1, s1_data, s1_size);
-          for (i3 = 0; i3 < 8000; i3++) {
-            b_x1[i3] = -x1[i3];
-          }
-
-          getspline(b_x1, s2_data, s1_size);
-          for (i3 = 0; i3 < 8000; i3++) {
-            sd = x1[i3] - (s1_data[i3] + -s2_data[i3]) / 2.0;
-            b_x1[i3] = x1[i3] - sd;
-            x2[i3] = sd;
-          }
-
-          power(b_x1, dv0);
-          power(x1, dv1);
-          sd = b_sum(dv0) / b_sum(dv1);
-          memcpy(&x1[0], &x2[0], 8000U * sizeof(double));
-        }
-      } while (exitg2 == 0);
-
-      if (N <= 7.0) {
-        imf_size[0] = 1;
-        imf_size[1] = 8000;
-        memcpy(&imf_data[0], &x1[0], 8000U * sizeof(double));
+  emxInit_real_T(&s1, 2);
+  emxInit_real_T(&s2, 2);
+  while (!(ismonotonic(b_x) != 0.0)) {
+    memcpy(&x1[0], &b_x[0], sizeof(double) << 13);
+    sd = rtInf;
+    while ((sd > 0.1) || (!(isimf(x1) != 0.0))) {
+      getspline(x1, s1);
+      for (i1 = 0; i1 < 8192; i1++) {
+        b_x1[i1] = -x1[i1];
       }
 
-      for (i3 = 0; i3 < 8000; i3++) {
-        b_x[i3] -= x1[i3];
+      getspline(b_x1, s2);
+      i1 = s2->size[0] * s2->size[1];
+      s2->size[0] = 1;
+      s2->size[1] = 8192;
+      emxEnsureCapacity((emxArray__common *)s2, i1, (int)sizeof(double));
+      for (i1 = 0; i1 < 8192; i1++) {
+        s2->data[i1] = -s2->data[i1];
       }
 
-      N++;
-    } else {
-      exitg1 = 1;
+      for (i1 = 0; i1 < 8192; i1++) {
+        x2[i1] = x1[i1] - (s1->data[i1] + s2->data[i1]) / 2.0;
+      }
+
+      for (i1 = 0; i1 < 8192; i1++) {
+        b_x1[i1] = x1[i1] - x2[i1];
+      }
+
+      power(b_x1, dv0);
+      power(x1, dv1);
+      sd = b_sum(dv0) / b_sum(dv1);
+      memcpy(&x1[0], &x2[0], sizeof(double) << 13);
     }
-  } while (exitg1 == 0);
+
+    if (N <= 8.0) {
+      i1 = imf->size[0] * imf->size[1];
+      imf->size[0] = 1;
+      imf->size[1] = 8192;
+      emxEnsureCapacity((emxArray__common *)imf, i1, (int)sizeof(double));
+      for (i1 = 0; i1 < 8192; i1++) {
+        imf->data[i1] = x1[i1];
+      }
+    }
+
+    for (i1 = 0; i1 < 8192; i1++) {
+      b_x[i1] -= x1[i1];
+    }
+
+    N++;
+  }
+
+  emxFree_real_T(&s2);
+  emxFree_real_T(&s1);
 }
 
 /*

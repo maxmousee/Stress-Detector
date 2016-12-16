@@ -2,29 +2,26 @@
  * File: sum.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /* Include Files */
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "sum.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /* Function Definitions */
 
 /*
- * Arguments    : const double x[8000]
+ * Arguments    : const double x[8192]
  * Return Type  : double
  */
-double b_sum(const double x[8000])
+double b_sum(const double x[8192])
 {
   double y;
   int k;
   y = x[0];
-  for (k = 0; k < 7999; k++) {
+  for (k = 0; k < 8191; k++) {
     y += x[k + 1];
   }
 
@@ -32,15 +29,15 @@ double b_sum(const double x[8000])
 }
 
 /*
- * Arguments    : const boolean_T x[7999]
+ * Arguments    : const boolean_T x[8191]
  * Return Type  : double
  */
-double sum(const boolean_T x[7999])
+double sum(const boolean_T x[8191])
 {
   double y;
   int k;
   y = x[0];
-  for (k = 0; k < 7998; k++) {
+  for (k = 0; k < 8190; k++) {
     y += (double)x[k + 1];
   }
 

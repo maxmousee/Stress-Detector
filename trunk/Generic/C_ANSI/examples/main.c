@@ -2,7 +2,7 @@
  * File: main.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /*************************************************************************/
@@ -35,27 +35,24 @@
 #include "main.h"
 #include "vsd_terminate.h"
 #include "vsd_initialize.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 /* Function Declarations */
-static void argInit_8000x1_real_T(double result[8000]);
+static void argInit_8192x1_real_T(double result[8192]);
 static double argInit_real_T(void);
 static void main_vsd(void);
 
 /* Function Definitions */
 
 /*
- * Arguments    : double result[8000]
+ * Arguments    : double result[8192]
  * Return Type  : void
  */
-static void argInit_8000x1_real_T(double result[8000])
+static void argInit_8192x1_real_T(double result[8192])
 {
   int idx0;
 
   /* Loop over the array to initialize each element. */
-  for (idx0 = 0; idx0 < 8000; idx0++) {
+  for (idx0 = 0; idx0 < 8192; idx0++) {
     /* Set the value of the array element.
        Change this value to the value that the application requires. */
     result[idx0] = argInit_real_T();
@@ -77,13 +74,13 @@ static double argInit_real_T(void)
  */
 static void main_vsd(void)
 {
-  static double dv6[8000];
+  static double dv6[8192];
   double stressFreq;
 
   /* Initialize function 'vsd' input arguments. */
   /* Initialize function input argument 'input'. */
   /* Call the entry-point 'vsd'. */
-  argInit_8000x1_real_T(dv6);
+  argInit_8192x1_real_T(dv6);
   stressFreq = vsd(dv6);
 }
 

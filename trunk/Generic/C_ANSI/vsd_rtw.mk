@@ -2,7 +2,7 @@
 ## Makefile generated for MATLAB file/project 'vsd'. 
 ## 
 ## Makefile     : vsd_rtw.mk
-## Generated on : Fri Dec 16 08:11:10 2016
+## Generated on : Fri Dec 16 20:24:29 2016
 ## MATLAB Coder version: 3.2 (R2016b)
 ## 
 ## Build Info:
@@ -112,15 +112,15 @@ ECHO                = @echo
 MV                  = @mv
 RUN                 =
 
-#--------------------------------------
-# "Faster Runs" Build Configuration
-#--------------------------------------
+#----------------------------------------
+# "Faster Builds" Build Configuration
+#----------------------------------------
 
 ARFLAGS              = ruvs
 CFLAGS               = -c -isysroot $(XCODE_SDK_ROOT) -arch $(ARCHS) $(ANSI_OPTS) \
-                       -O3
+                       -O0
 CPPFLAGS             = -c -isysroot $(XCODE_SDK_ROOT) -arch $(ARCHS) $(CPP_ANSI_OPTS) \
-                       -O3
+                       -O0
 CPP_LDFLAGS          = -arch $(ARCHS) -isysroot $(XCODE_SDK_ROOT) -Wl,-rpath,$(MATLAB_ARCH_BIN) -Wl,-rpath,@executable_path -Wl,-rpath,@executable_path/$(RELATIVE_PATH_TO_ANCHOR) -L"$(MATLAB_ARCH_BIN)"
 CPP_SHAREDLIB_LDFLAGS  = -dynamiclib -install_name @rpath/$(notdir $(PRODUCT)) -isysroot $(XCODE_SDK_ROOT) -L"$(MATLAB_ARCH_BIN)" \
                          -Wl,$(LD_NAMESPACE) $(LD_UNDEFS)
@@ -130,7 +130,7 @@ LDFLAGS              = -arch $(ARCHS) -isysroot $(XCODE_SDK_ROOT) -Wl,-rpath,$(M
 MEX_CFLAGS           = -MATLAB_ARCH=$(ARCH) $(INCLUDES) \
                          \
                        COPTIMFLAGS="$(ANSI_OPTS)  \
-                       -O3 \
+                       -O0 \
                         $(DEFINES)" \
                          \
                        -silent
@@ -186,7 +186,7 @@ DEFINES = $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/codegen/lib/vsd/vsd_rtwutil.c $(START_DIR)/codegen/lib/vsd/vsd_initialize.c $(START_DIR)/codegen/lib/vsd/vsd_terminate.c $(START_DIR)/codegen/lib/vsd/vsd.c $(START_DIR)/codegen/lib/vsd/emd.c $(START_DIR)/codegen/lib/vsd/findpeaks.c $(START_DIR)/codegen/lib/vsd/diff.c $(START_DIR)/codegen/lib/vsd/error.c $(START_DIR)/codegen/lib/vsd/sum.c $(START_DIR)/codegen/lib/vsd/abs.c $(START_DIR)/codegen/lib/vsd/spline.c $(START_DIR)/codegen/lib/vsd/chckxy.c $(START_DIR)/codegen/lib/vsd/pwchcore.c $(START_DIR)/codegen/lib/vsd/bsearch.c $(START_DIR)/codegen/lib/vsd/power.c $(START_DIR)/codegen/lib/vsd/fft.c $(START_DIR)/codegen/lib/vsd/indexShapeCheck.c $(START_DIR)/codegen/lib/vsd/vsd_emxutil.c $(START_DIR)/codegen/lib/vsd/rt_nonfinite.c $(START_DIR)/codegen/lib/vsd/rtGetNaN.c $(START_DIR)/codegen/lib/vsd/rtGetInf.c
+SRCS = $(START_DIR)/codegen/lib/vsd/vsd_initialize.c $(START_DIR)/codegen/lib/vsd/vsd_terminate.c $(START_DIR)/codegen/lib/vsd/vsd.c $(START_DIR)/codegen/lib/vsd/emd.c $(START_DIR)/codegen/lib/vsd/findpeaks.c $(START_DIR)/codegen/lib/vsd/diff.c $(START_DIR)/codegen/lib/vsd/sum.c $(START_DIR)/codegen/lib/vsd/abs.c $(START_DIR)/codegen/lib/vsd/spline.c $(START_DIR)/codegen/lib/vsd/pwchcore.c $(START_DIR)/codegen/lib/vsd/bsearch.c $(START_DIR)/codegen/lib/vsd/power.c $(START_DIR)/codegen/lib/vsd/fft.c $(START_DIR)/codegen/lib/vsd/vsd_emxutil.c $(START_DIR)/codegen/lib/vsd/rt_nonfinite.c $(START_DIR)/codegen/lib/vsd/rtGetNaN.c $(START_DIR)/codegen/lib/vsd/rtGetInf.c
 
 ALL_SRCS = $(SRCS)
 
@@ -194,7 +194,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = vsd_rtwutil.o vsd_initialize.o vsd_terminate.o vsd.o emd.o findpeaks.o diff.o error.o sum.o abs.o spline.o chckxy.o pwchcore.o bsearch.o power.o fft.o indexShapeCheck.o vsd_emxutil.o rt_nonfinite.o rtGetNaN.o rtGetInf.o
+OBJS = vsd_initialize.o vsd_terminate.o vsd.o emd.o findpeaks.o diff.o sum.o abs.o spline.o pwchcore.o bsearch.o power.o fft.o vsd_emxutil.o rt_nonfinite.o rtGetNaN.o rtGetInf.o
 
 ALL_OBJS = $(OBJS)
 

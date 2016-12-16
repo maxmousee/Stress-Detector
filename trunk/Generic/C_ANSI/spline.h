@@ -2,7 +2,7 @@
  * File: spline.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef SPLINE_H
@@ -18,9 +18,8 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void splinepp(const double x_data[], const int x_size[2], const double
-                     y_data[], const int y_size[2], double pp_breaks_data[], int
-                     pp_breaks_size[2], emxArray_real_T *pp_coefs);
+extern void splinepp(const emxArray_real_T *x, const emxArray_real_T *y,
+                     emxArray_real_T *pp_breaks, emxArray_real_T *pp_coefs);
 
 #endif
 

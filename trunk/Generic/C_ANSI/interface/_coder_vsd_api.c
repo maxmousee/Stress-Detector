@@ -2,7 +2,7 @@
  * File: _coder_vsd_api.c
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 /* Include Files */
@@ -25,11 +25,11 @@ emlrtContext emlrtContextGlobal = { true,/* bFirstTime */
 
 /* Function Declarations */
 static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
-  emlrtMsgIdentifier *parentId))[8000];
+  emlrtMsgIdentifier *parentId))[8192];
 static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
-  const emlrtMsgIdentifier *msgId))[8000];
+  const emlrtMsgIdentifier *msgId))[8192];
 static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *input,
-  const char_T *identifier))[8000];
+  const char_T *identifier))[8192];
 static const mxArray *emlrt_marshallOut(const real_T u);
 
 /* Function Definitions */
@@ -38,12 +38,12 @@ static const mxArray *emlrt_marshallOut(const real_T u);
  * Arguments    : const emlrtStack *sp
  *                const mxArray *u
  *                const emlrtMsgIdentifier *parentId
- * Return Type  : real_T (*)[8000]
+ * Return Type  : real_T (*)[8192]
  */
 static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
-  emlrtMsgIdentifier *parentId))[8000]
+  emlrtMsgIdentifier *parentId))[8192]
 {
-  real_T (*y)[8000];
+  real_T (*y)[8192];
   y = c_emlrt_marshallIn(sp, emlrtAlias(u), parentId);
   emlrtDestroyArray(&u);
   return y;
@@ -52,16 +52,16 @@ static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
  * Arguments    : const emlrtStack *sp
  *                const mxArray *src
  *                const emlrtMsgIdentifier *msgId
- * Return Type  : real_T (*)[8000]
+ * Return Type  : real_T (*)[8192]
  */
   static real_T (*c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src,
-  const emlrtMsgIdentifier *msgId))[8000]
+  const emlrtMsgIdentifier *msgId))[8192]
 {
-  real_T (*ret)[8000];
-  static const int32_T dims[1] = { 8000 };
+  real_T (*ret)[8192];
+  static const int32_T dims[1] = { 8192 };
 
   emlrtCheckBuiltInR2012b(sp, msgId, src, "double", false, 1U, dims);
-  ret = (real_T (*)[8000])mxGetData(src);
+  ret = (real_T (*)[8192])mxGetData(src);
   emlrtDestroyArray(&src);
   return ret;
 }
@@ -70,12 +70,12 @@ static real_T (*b_emlrt_marshallIn(const emlrtStack *sp, const mxArray *u, const
  * Arguments    : const emlrtStack *sp
  *                const mxArray *input
  *                const char_T *identifier
- * Return Type  : real_T (*)[8000]
+ * Return Type  : real_T (*)[8192]
  */
 static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *input,
-  const char_T *identifier))[8000]
+  const char_T *identifier))[8192]
 {
-  real_T (*y)[8000];
+  real_T (*y)[8192];
   emlrtMsgIdentifier thisId;
   thisId.fIdentifier = identifier;
   thisId.fParent = NULL;
@@ -105,7 +105,7 @@ static real_T (*emlrt_marshallIn(const emlrtStack *sp, const mxArray *input,
  */
 void vsd_api(const mxArray *prhs[1], const mxArray *plhs[1])
 {
-  real_T (*input)[8000];
+  real_T (*input)[8192];
   real_T stressFreq;
   emlrtStack st = { NULL,              /* site */
     NULL,                              /* tls */

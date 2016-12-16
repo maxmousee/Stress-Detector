@@ -2,7 +2,7 @@
  * File: pwchcore.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef PWCHCORE_H
@@ -18,14 +18,11 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void b_pwchcore(const double x_data[], const int x_size[2], const double
-  y_data[], const int y_size[2], int yoffset, const double s_data[], const int
-  s_size[2], const double dx_data[], const int dx_size[2], const double
-  divdif_data[], const int divdif_size[2], double pp_breaks_data[], int
-  pp_breaks_size[2], emxArray_real_T *pp_coefs);
-extern void pwchcore(const double x_data[], const int x_size[2], const double
-                     y_data[], const int y_size[2], const double s[2], double
-                     pp_breaks_data[], int pp_breaks_size[2], double pp_coefs[4]);
+extern void b_pwchcore(const emxArray_real_T *x, const emxArray_real_T *y, int
+  yoffset, const emxArray_real_T *s, const double dx_data[], const double
+  divdif_data[], emxArray_real_T *pp_breaks, emxArray_real_T *pp_coefs);
+extern void pwchcore(const emxArray_real_T *x, const emxArray_real_T *y, const
+                     double s[2], emxArray_real_T *pp_breaks, double pp_coefs[4]);
 
 #endif
 

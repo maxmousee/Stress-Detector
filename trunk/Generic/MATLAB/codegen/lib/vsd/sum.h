@@ -2,7 +2,7 @@
  * File: sum.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef SUM_H
@@ -18,8 +18,8 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern double b_sum(const double x[8000]);
-extern double sum(const boolean_T x[7999]);
+extern double b_sum(const double x[8192]);
+extern double sum(const boolean_T x[8191]);
 
 #endif
 

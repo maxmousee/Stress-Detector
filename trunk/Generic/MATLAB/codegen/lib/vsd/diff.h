@@ -2,7 +2,7 @@
  * File: diff.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef DIFF_H
@@ -18,8 +18,8 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void b_diff(const boolean_T x[7999], double y[7998]);
-extern void diff(const double x[8000], double y[7999]);
+extern void b_diff(const boolean_T x[8191], double y[8190]);
+extern void diff(const double x[8192], double y[8191]);
 
 #endif
 

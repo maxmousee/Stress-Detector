@@ -2,7 +2,7 @@
  * File: emd.h
  *
  * MATLAB Coder version            : 3.2
- * C/C++ source code generated on  : 16-Dec-2016 08:11:00
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
 #ifndef EMD_H
@@ -18,7 +18,7 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void emd(const double x[8000], double imf_data[], int imf_size[2]);
+extern void emd(const double x[8192], emxArray_real_T *imf);
 
 #endif
 
