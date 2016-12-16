@@ -1,9 +1,13 @@
 package com.nfsindustries.vsd;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +20,7 @@ import static android.media.AudioRecord.STATE_UNINITIALIZED;
 public class Realtime extends AppCompatActivity {
 
     private static final int RECORDER_SAMPLERATE = 8000;
+    private static final int RECORD_AUDIO_REQUEST_CODE = 1;
     private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
     private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
     private static final String VSD_THREAD_CONST = "VSD_THREAD";
@@ -43,7 +48,6 @@ public class Realtime extends AppCompatActivity {
         // Example of a call to a native method
         stressFreqTextView = (TextView) findViewById(R.id.stressFreqTextView);
         //tv.setText(stringFromJNI());
-        startVSD();
     }
 
     /**
@@ -64,17 +68,81 @@ public class Realtime extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        requestRecordAudioPermission();
         startVSD();
     }
 
-    private void startVSD() {
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case RECORD_AUDIO_REQUEST_CODE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay!
 
-        recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,
+                } else {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please, allow VSD to read microphone data. This is required ;)";
+                    int duration = Toast.LENGTH_LONG;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    this.finishAffinity();
+                    // permission denied, boo!
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    private void requestRecordAudioPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.RECORD_AUDIO)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.RECORD_AUDIO},
+                        RECORD_AUDIO_REQUEST_CODE
+                        );
+            }
+        }
+    }
+
+    private void startVSD() {
+        try {
+            recorder = findAudioRecord();
+            //recorder.release();
+
+            /* recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,
                 RECORDER_SAMPLERATE, RECORDER_CHANNELS,
-                RECORDER_AUDIO_ENCODING, RECORDER_SAMPLERATE);
-                //RECORDER_AUDIO_ENCODING, BufferElements2Rec * BytesPerElement);
-        if (recorder.getState() != STATE_UNINITIALIZED) {
-            //object is unusable due to invalid parameters
+                //RECORDER_AUDIO_ENCODING, RECORDER_SAMPLERATE);
+                RECORDER_AUDIO_ENCODING, BufferElements2Rec * BytesPerElement);
+                */
+            recorder.startRecording();
+            isReadingMic = true;
+            vsdThread = new Thread(new Runnable() {
+                public void run() {
+                    processAudio();
+                }
+            }, VSD_THREAD_CONST);
+            vsdThread.start();
+        } catch (NullPointerException exception) {
             Context context = getApplicationContext();
             CharSequence text = "Device incompatible! Probably some weird Android implementation." +
                     "Stay tuned for updates ;)";
@@ -83,15 +151,32 @@ public class Realtime extends AppCompatActivity {
             toast.show();
             return;
         }
+    }
 
-        recorder.startRecording();
-        isReadingMic = true;
-        vsdThread = new Thread(new Runnable() {
-            public void run() {
-                processAudio();
+    private static int[] mSampleRates = new int[] { 8000 };
+    public AudioRecord findAudioRecord() {
+        for (int rate : mSampleRates) {
+            for (short audioFormat : new short[] { AudioFormat.ENCODING_PCM_FLOAT }) {
+                for (short channelConfig : new short[] { AudioFormat.CHANNEL_IN_MONO, AudioFormat.CHANNEL_IN_STEREO }) {
+                    try {
+                        Log.d("FIND_SAMPLE_RATE", "Attempting rate " + rate + "Hz, bits: " + audioFormat + ", channel: "
+                                + channelConfig);
+                        int bufferSize = AudioRecord.getMinBufferSize(rate, channelConfig, audioFormat);
+
+                        if (bufferSize != AudioRecord.ERROR_BAD_VALUE) {
+                            // check if we can instantiate and have a success
+                            AudioRecord aRecorder = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, rate, channelConfig, audioFormat, bufferSize);
+
+                            if (aRecorder.getState() == AudioRecord.STATE_INITIALIZED)
+                                return aRecorder;
+                        }
+                    } catch (Exception e) {
+                        Log.e("NO_SAMPLE_RATE", rate + "Exception, keep trying.",e);
+                    }
+                }
             }
-        }, VSD_THREAD_CONST);
-        vsdThread.start();
+        }
+        return null;
     }
 
     //convert short to byte
@@ -125,8 +210,9 @@ public class Realtime extends AppCompatActivity {
             {
                 sDataDouble[i] = (double) sData[i];
             }
-            Log.d("data from microphone", sData.toString());
+            //Log.d("data from microphone", sData.toString());
             //double stressFrequency = vsd(sDataDouble);
+            /*
             double stressFrequency = 0.0d;
             if (stressFrequency > 8 && stressFrequency < 14) {
                 stressFreqTextView.setText(R.string.not_stressed);
@@ -137,6 +223,7 @@ public class Realtime extends AppCompatActivity {
             } else if (stressFrequency <= 0) {
                 stressFreqTextView.setText(R.string.too_noisy);
             }
+            */
         }
     }
 
