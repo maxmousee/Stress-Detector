@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var stressedString = "\nstressed";
     var notStressedString = "\nnot stressed";
     var tooNoisyString = "\ntoo noisy, can't process";
+    //var audioController: AudioController!;
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -56,6 +57,7 @@ class ViewController: UIViewController {
                 vsdQueue.async {
                     // Detect Voice Stress in the background
                     //self.stressTL.string = "\nAsync";
+                    
                 }
                 vsdQueue.sync {
                     //self.stressTL.string = "\nDone";
