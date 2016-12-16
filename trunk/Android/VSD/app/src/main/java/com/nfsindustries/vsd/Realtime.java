@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.media.AudioRecord.READ_BLOCKING;
-import static android.media.AudioRecord.STATE_UNINITIALIZED;
 
 public class Realtime extends AppCompatActivity {
 
@@ -27,8 +26,6 @@ public class Realtime extends AppCompatActivity {
     private AudioRecord recorder = null;
     private Thread vsdThread = null;
     private boolean isReadingMic = false;
-    int BufferElements2Rec = 1024; // want to play 2048 (2K) since 2 bytes we use only 1024
-    int BytesPerElement = 2; // 2 bytes in 16bit format
 
     TextView stressFreqTextView;
 
@@ -127,13 +124,6 @@ public class Realtime extends AppCompatActivity {
     private void startVSD() {
         try {
             recorder = findAudioRecord();
-            //recorder.release();
-
-            /* recorder = new AudioRecord(MediaRecorder.AudioSource.MIC,
-                RECORDER_SAMPLERATE, RECORDER_CHANNELS,
-                //RECORDER_AUDIO_ENCODING, RECORDER_SAMPLERATE);
-                RECORDER_AUDIO_ENCODING, BufferElements2Rec * BytesPerElement);
-                */
             recorder.startRecording();
             isReadingMic = true;
             vsdThread = new Thread(new Runnable() {
@@ -179,21 +169,6 @@ public class Realtime extends AppCompatActivity {
         return null;
     }
 
-    //convert short to byte
-    /*
-    private byte[] short2byte(short[] sData) {
-        int shortArrsize = sData.length;
-        byte[] bytes = new byte[shortArrsize * 2];
-        for (int i = 0; i < shortArrsize; i++) {
-            bytes[i * 2] = (byte) (sData[i] & 0x00FF);
-            bytes[(i * 2) + 1] = (byte) (sData[i] >> 8);
-            sData[i] = 0;
-        }
-        return bytes;
-
-    }
-    */
-
     private void processAudio() {
         // Use MATLAB generated function to process audio read from microphone
 
@@ -201,8 +176,6 @@ public class Realtime extends AppCompatActivity {
 
         while (isReadingMic) {
             // gets the voice output from microphone to byte format
-
-            //recorder.read(sData, 0, BufferElements2Rec, READ_BLOCKING);
             recorder.read(sData, 0, RECORDER_SAMPLERATE, READ_BLOCKING);
             //matlab uses double, so we shall convert data to double
             double sDataDouble[] = new double[sData.length];
