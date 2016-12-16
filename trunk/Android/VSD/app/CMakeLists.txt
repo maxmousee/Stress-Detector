@@ -18,7 +18,27 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              # Associated headers in the same location as their source
              # file are automatically included.
-             src/main/cpp/native-lib.cpp )
+             src/main/cpp/abs.c
+             src/main/cpp/bsearch.c
+             src/main/cpp/chckxy.c
+             src/main/cpp/diff.c
+             src/main/cpp/emd.c
+             src/main/cpp/error.c
+             src/main/cpp/fft.c
+             src/main/cpp/findpeaks.c
+             src/main/cpp/indexShapeCheck.c
+             src/main/cpp/power.c
+             src/main/cpp/pwchcore.c
+             src/main/cpp/rt_nonfinite.c
+             src/main/cpp/rtGetInf.c
+             src/main/cpp/rtGetNaN.c
+             src/main/cpp/spline.c
+             src/main/cpp/sum.c
+             src/main/cpp/vsd_emxutil.c
+             src/main/cpp/vsd_initialize.c
+             src/main/cpp/vsd_rtwutil.c
+             src/main/cpp/vsd_terminate.c
+             src/main/cpp/vsd.c)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because system libraries are included in the search path by

@@ -1,0 +1,55 @@
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="25,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T3U3">imf</span> = emd(<span class="var type1" id="S3T2U6">x</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="25,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">% Empiricial Mode Decomposition (Hilbert-Huang Transform)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">% imf = emd(x)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% Func : findpeaks</span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,5" id="srcline5"> 5</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,6" id="srcline6"> 6</a></span><span class="line"><span class="mxinfo " id="T4:U3"><span class="var type1" id="S3T4U9">x</span>   = <span class="mxinfo " id="T4:U5">transpose(<span class="mxinfo " id="T2:U6"><span class="var type1" id="S3T2U13">x</span>(:)</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,7" id="srcline7"> 7</a></span><span class="line"><span class="mxinfo " id="T3:U8"><span class="var type1" id="S2T3U17">imf</span> = <span class="mxinfo " id="T30:U10">[]</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,8" id="srcline8"> 8</a></span><span class="line"><span class="mxinfo " id="T1:U11"><span class="var type1" id="S5T1U22">N</span> = <span class="mxinfo " id="T1:U13">1</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,9" id="srcline9"> 9</a></span><span class="line"><span class="keyword">while</span> <span class="mxinfo " id="T10:U14">~<span class="mxinfo " id="T1:U15"><span class="fcn" id="F85N6:B27">ismonotonic</span>(<span class="var type1" id="S3T4U28">x</span>)</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,10" id="srcline10">10</a></span><span class="line">   <span class="mxinfo " id="T4:U17"><span class="var type1" id="S7T4U31">x1</span> = <span class="var type1" id="S3T4U32">x</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,11" id="srcline11">11</a></span><span class="line">   <span class="mxinfo " id="T1:U20"><span class="var type1" id="S8T1U35">sd</span> = <span class="mxinfo " id="T1:U22">Inf</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,12" id="srcline12">12</a></span><span class="line">   <span class="keyword">while</span> <span class="mxinfo " id="T10:U23">(<span class="mxinfo " id="T10:U24"><span class="var type1" id="S8T1U42">sd</span> &gt; <span class="mxinfo " id="T1:U26">0.1</span></span>) | <span class="mxinfo " id="T10:U27">~<span class="mxinfo " id="T1:U28"><span class="fcn" id="F119N5:B46">isimf</span>(<span class="var type1" id="S7T4U47">x1</span>)</span></span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,13" id="srcline13">13</a></span><span class="line">      <span class="mxinfo " id="T75:U30"><span class="var type1" id="S11T75U50">s1</span> = <span class="mxinfo " id="T75:U32"><span class="fcn" id="F226N4:B52">getspline</span>(<span class="var type1" id="S7T4U53">x1</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,14" id="srcline14">14</a></span><span class="line">      <span class="mxinfo " id="T75:U34"><span class="var type1" id="S13T75U56">s2</span> = <span class="mxinfo " id="T75:U36">-<span class="mxinfo " id="T75:U37"><span class="fcn" id="F226N4:B59">getspline</span>(<span class="mxinfo " id="T4:U38">-<span class="var type1" id="S7T4U61">x1</span></span>)</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,15" id="srcline15">15</a></span><span class="line">      <span class="mxinfo " id="T4:U40"><span class="var type1" id="S14T4U64">x2</span> = <span class="mxinfo " id="T4:U42"><span class="var type1" id="S7T4U66">x1</span>-<span class="mxinfo " id="T75:U44">(<span class="mxinfo " id="T75:U45"><span class="var type1" id="S11T75U70">s1</span>+<span class="var type1" id="S13T75U71">s2</span></span>)/2</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,16" id="srcline16">16</a></span><span class="line">      </span></span>
+<span class="srcline"><span class="lineno"><a href="25,17" id="srcline17">17</a></span><span class="line">      <span class="mxinfo " id="T1:U48"><span class="var type1" id="S8T1U75">sd</span> = <span class="mxinfo " id="T1:U50"><span class="mxinfo " id="T1:U51">sum(<span class="mxinfo " id="T4:U52">(<span class="mxinfo " id="T4:U53"><span class="var type1" id="S7T4U82">x1</span>-<span class="var type1" id="S14T4U83">x2</span></span>).^2</span>)</span>/<span class="mxinfo " id="T1:U56">sum(<span class="mxinfo " id="T4:U57"><span class="var type1" id="S7T4U88">x1</span>.^2</span>)</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,18" id="srcline18">18</a></span><span class="line">      <span class="mxinfo " id="T4:U59"><span class="var type1" id="S7T4U92">x1</span> = <span class="var type1" id="S14T4U93">x2</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,19" id="srcline19">19</a></span><span class="line">   <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,20" id="srcline20">20</a></span><span class="line">   </span></span>
+<span class="srcline"><span class="lineno"><a href="25,21" id="srcline21">21</a></span><span class="line">   <span class="keyword">if</span> (<span class="mxinfo " id="T10:U62"><span class="var type1" id="S5T1U98">N</span> &lt;= <span class="mxinfo " id="T1:U64">7</span></span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="25,22" id="srcline22">22</a></span><span class="line">    <span class="mxinfo " id="T3:U65"><span class="var type1" id="S2T3U102">imf</span> = <span class="var type1" id="S7T4U103">x1</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,23" id="srcline23">23</a></span><span class="line">   <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,24" id="srcline24">24</a></span><span class="line">   <span class="mxinfo " id="T4:U68"><span class="var type1" id="S3T4U106">x</span>          = <span class="mxinfo " id="T4:U70"><span class="var type1" id="S3T4U108">x</span>-<span class="var type1" id="S7T4U109">x1</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,25" id="srcline25">25</a></span><span class="line">   <span class="mxinfo " id="T1:U73"><span class="var type1" id="S5T1U112">N</span> = <span class="mxinfo " id="T1:U75"><span class="var type1" id="S5T1U114">N</span> + <span class="mxinfo " id="T1:U77">1</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,26" id="srcline26">26</a></span><span class="line"><span class="keyword"><span class="keyword">end</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,27" id="srcline27">27</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,28" id="srcline28">28</a></span><span class="line"><span class="comment">% FUNCTIONS</span></span></span>
+<span class="srcline"><span class="lineno"><a href="25,29" id="srcline29">29</a></span><span class="line"></span></span>
+</pre>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="25,30" id="srcline30">30</a></span><span class="line">function u = ismonotonic(x)</span></span>
+<span class="srcline"><span class="lineno"><a href="25,31" id="srcline31">31</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,32" id="srcline32">32</a></span><span class="line">u1 = length(findpeaks(x))*length(findpeaks(-x));</span></span>
+<span class="srcline"><span class="lineno"><a href="25,33" id="srcline33">33</a></span><span class="line">if u1 &gt; 0, u = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,34" id="srcline34">34</a></span><span class="line">else,      u = 1; end</span></span>
+<span class="srcline"><span class="lineno"><a href="25,35" id="srcline35">35</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,36" id="srcline36">36</a></span><span class="line">function u = isimf(x)</span></span>
+<span class="srcline"><span class="lineno"><a href="25,37" id="srcline37">37</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,38" id="srcline38">38</a></span><span class="line">N  = length(x);</span></span>
+<span class="srcline"><span class="lineno"><a href="25,39" id="srcline39">39</a></span><span class="line">u1 = sum(x(1:N-1).*x(2:N) &lt; 0);</span></span>
+<span class="srcline"><span class="lineno"><a href="25,40" id="srcline40">40</a></span><span class="line">u2 = length(findpeaks(x))+length(findpeaks(-x));</span></span>
+<span class="srcline"><span class="lineno"><a href="25,41" id="srcline41">41</a></span><span class="line">if abs(u1-u2) &gt; 1, u = 0;</span></span>
+<span class="srcline"><span class="lineno"><a href="25,42" id="srcline42">42</a></span><span class="line">else,              u = 1; end</span></span>
+<span class="srcline"><span class="lineno"><a href="25,43" id="srcline43">43</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,44" id="srcline44">44</a></span><span class="line">function s = getspline(x)</span></span>
+<span class="srcline"><span class="lineno"><a href="25,45" id="srcline45">45</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="25,46" id="srcline46">46</a></span><span class="line">N = length(x);</span></span>
+<span class="srcline"><span class="lineno"><a href="25,47" id="srcline47">47</a></span><span class="line">p = findpeaks(x);</span></span>
+<span class="srcline"><span class="lineno"><a href="25,48" id="srcline48">48</a></span><span class="line">s = spline([0 p N+1],[0 x(p) 0],1:N);</span></span>
+<span class="srcline"><span class="lineno"><a href="25,49" id="srcline49">49</a></span><span class="line"> </span></span>
+</pre>
+</div>

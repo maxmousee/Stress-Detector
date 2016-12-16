@@ -43,7 +43,6 @@ public class Realtime extends AppCompatActivity {
 
         // Example of a call to a native method
         stressFreqTextView = (TextView) findViewById(R.id.stressFreqTextView);
-        //tv.setText(stringFromJNI());
     }
 
     /**
@@ -126,7 +125,7 @@ public class Realtime extends AppCompatActivity {
             isReadingMic = true;
             vsdThread = new Thread(new Runnable() {
                 public void run() {
-                    stressFrequency = processAudio();
+                    processAudio();
                     Handler mainHandler = new Handler(getApplicationContext().getMainLooper());
                     mainHandler.post(new Runnable() {
 
@@ -192,12 +191,12 @@ public class Realtime extends AppCompatActivity {
         return null;
     }
 
-    private double processAudio() {
+    private void processAudio() {
         // Use MATLAB generated function to process audio read from microphone
 
         float sData[] = new float[RECORDER_SAMPLERATE];
 
-        while (isReadingMic) {
+        //while (isReadingMic) {
             // gets the voice output from microphone to byte format
             recorder.read(sData, 0, RECORDER_SAMPLERATE, READ_BLOCKING);
             //matlab uses double, so we shall convert data to double
@@ -207,10 +206,9 @@ public class Realtime extends AppCompatActivity {
                 sDataDouble[i] = (double) sData[i];
             }
             //Log.d("data from microphone", sData.toString());
-            //double stressFrequency = vsd(sDataDouble);
-            return -1.0d;
-        }
-        return -1.0d;
+            //return -1.0d;
+            //stressFrequency = vsd(sDataDouble);
+        //}
     }
 
     private void stopVSD() {
@@ -229,6 +227,5 @@ public class Realtime extends AppCompatActivity {
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    //public native String stringFromJNI();
-    //public native Double vsd(double[] input);
+    public native Double vsd(double[] jInput);
 }
