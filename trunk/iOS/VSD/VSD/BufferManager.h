@@ -35,12 +35,6 @@ public:
     void            SetCurrentDrawBufferLength ( UInt32 inDrawBufferLen ) { mCurrentDrawBufferLen = inDrawBufferLen; }
     UInt32          GetCurrentDrawBufferLength ()   { return mCurrentDrawBufferLen; }
     
-    bool            HasNewFFTData()     { return static_cast<bool>(mHasNewFFTData); };
-    bool            NeedsNewFFTData()   { return static_cast<bool>(mNeedsNewFFTData); };
-    
-    void            CopyAudioDataToFFTInputBuffer( Float32* inData, UInt32 numFrames );
-    UInt32          GetFFTOutputBufferLength() { return mFFTInputBufferLen / 2; }
-    void            GetFFTOutput ( Float32* outFFTData );
     
 private:
     UInt32          mDisplayMode;
@@ -49,13 +43,6 @@ private:
     UInt32          mDrawBufferIndex;
     UInt32          mCurrentDrawBufferLen;
     
-    Float32*        mFFTInputBuffer;
-    UInt32          mFFTInputBufferFrameIndex;
-    UInt32          mFFTInputBufferLen;
-    volatile int32_t mHasNewFFTData;
-    volatile int32_t mNeedsNewFFTData;
-        
-    //FFTHelper*      mFFTHelper;
 };
 
 #endif /* defined(__aurioTouch3__BufferManager__) */

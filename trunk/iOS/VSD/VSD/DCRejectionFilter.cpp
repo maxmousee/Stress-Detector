@@ -14,18 +14,18 @@
 const Float32 kDefaultPoleDist = 0.975f;
 
 
-DCRejectionFilter::DCRejectionFilter()
+extern "C" DCRejectionFilter::DCRejectionFilter()
 {
 	mY1 = mX1 = 0;
 }
 
 
-DCRejectionFilter::~DCRejectionFilter()
+extern "C" DCRejectionFilter::~DCRejectionFilter()
 {
 }
 
 
-void DCRejectionFilter::ProcessInplace(Float32* ioData, UInt32 numFrames)
+extern "C" void DCRejectionFilter::ProcessInplace(Float32* ioData, UInt32 numFrames)
 {
 	for (UInt32 i=0; i < numFrames; i++)
 	{

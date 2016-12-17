@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var stressedString = "\nstressed";
     var notStressedString = "\nnot stressed";
     var tooNoisyString = "\ntoo noisy, can't process";
-    //var audioController: AudioController!;
+    var audioController: AudioController = AudioController();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //[audioController stopIOUnit];
+        audioController.stopIOUnit();
     }
     
     func setUpAudio() {

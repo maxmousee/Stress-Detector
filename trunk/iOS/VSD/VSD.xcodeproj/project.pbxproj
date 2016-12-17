@@ -13,9 +13,9 @@
 		3E749D7D1E020A4800976521 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E749D7C1E020A4800976521 /* Assets.xcassets */; };
 		3E749D801E020A4800976521 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E749D7E1E020A4800976521 /* LaunchScreen.storyboard */; };
 		3EDC0B711E022F4700E8DC7B /* StressDetectorLib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC0B701E022F4700E8DC7B /* StressDetectorLib */; };
-		3EEFA3601E037F4B0065C079 /* AudioController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFA35B1E037F4B0065C079 /* AudioController.mm */; };
-		3EEFA3611E037F4B0065C079 /* BufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFA35C1E037F4B0065C079 /* BufferManager.cpp */; };
-		3EEFA3621E037F4B0065C079 /* DCRejectionFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFA35E1E037F4B0065C079 /* DCRejectionFilter.cpp */; };
+		3EFC7B4B1E04CC7200574072 /* BufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFA35C1E037F4B0065C079 /* BufferManager.cpp */; };
+		3EFC7B4C1E04CC7200574072 /* DCRejectionFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFA35E1E037F4B0065C079 /* DCRejectionFilter.cpp */; };
+		3EFC7B4D1E04CC7200574072 /* AudioController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EEFA3661E04BC090065C079 /* AudioController.mm */; };
 		3EFCE5731E037AEC0064406C /* PublicUtility in Resources */ = {isa = PBXBuildFile; fileRef = 3EFCE5721E037AEC0064406C /* PublicUtility */; };
 		3EFCE5741E037B2A0064406C /* PublicUtility in Sources */ = {isa = PBXBuildFile; fileRef = 3EFCE5721E037AEC0064406C /* PublicUtility */; };
 		3EFCE5751E037B310064406C /* StressDetectorLib in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC0B701E022F4700E8DC7B /* StressDetectorLib */; };
@@ -32,13 +32,13 @@
 		3E749D7F1E020A4800976521 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E749D811E020A4800976521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EDC0B701E022F4700E8DC7B /* StressDetectorLib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = StressDetectorLib; sourceTree = "<group>"; };
-		3EEFA3591E037F4A0065C079 /* VSD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSD-Bridging-Header.h"; sourceTree = "<group>"; };
-		3EEFA35A1E037F4B0065C079 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
-		3EEFA35B1E037F4B0065C079 /* AudioController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioController.mm; sourceTree = "<group>"; };
 		3EEFA35C1E037F4B0065C079 /* BufferManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BufferManager.cpp; sourceTree = "<group>"; };
 		3EEFA35D1E037F4B0065C079 /* BufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferManager.h; sourceTree = "<group>"; };
 		3EEFA35E1E037F4B0065C079 /* DCRejectionFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DCRejectionFilter.cpp; sourceTree = "<group>"; };
 		3EEFA35F1E037F4B0065C079 /* DCRejectionFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRejectionFilter.h; sourceTree = "<group>"; };
+		3EEFA3651E04BC090065C079 /* AudioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioController.h; sourceTree = "<group>"; };
+		3EEFA3661E04BC090065C079 /* AudioController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioController.mm; sourceTree = "<group>"; };
+		3EEFA36B1E04C69C0065C079 /* VSD-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VSD-Bridging-Header.h"; sourceTree = "<group>"; };
 		3EFCE5721E037AEC0064406C /* PublicUtility */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PublicUtility; sourceTree = "<group>"; };
 		3EFCE5771E037B430064406C /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		3EFCE5791E037B4D0064406C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -82,17 +82,17 @@
 				3EDC0B701E022F4700E8DC7B /* StressDetectorLib */,
 				3E749D751E020A4800976521 /* AppDelegate.swift */,
 				3E749D771E020A4800976521 /* ViewController.swift */,
-				3EEFA35A1E037F4B0065C079 /* AudioController.h */,
-				3EEFA35B1E037F4B0065C079 /* AudioController.mm */,
 				3EEFA35C1E037F4B0065C079 /* BufferManager.cpp */,
 				3EEFA35D1E037F4B0065C079 /* BufferManager.h */,
 				3EEFA35E1E037F4B0065C079 /* DCRejectionFilter.cpp */,
 				3EEFA35F1E037F4B0065C079 /* DCRejectionFilter.h */,
+				3EEFA3651E04BC090065C079 /* AudioController.h */,
+				3EEFA3661E04BC090065C079 /* AudioController.mm */,
+				3EEFA36B1E04C69C0065C079 /* VSD-Bridging-Header.h */,
 				3E749D791E020A4800976521 /* Main.storyboard */,
 				3E749D7C1E020A4800976521 /* Assets.xcassets */,
 				3E749D7E1E020A4800976521 /* LaunchScreen.storyboard */,
 				3E749D811E020A4800976521 /* Info.plist */,
-				3EEFA3591E037F4A0065C079 /* VSD-Bridging-Header.h */,
 			);
 			path = VSD;
 			sourceTree = "<group>";
@@ -183,13 +183,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EFCE5751E037B310064406C /* StressDetectorLib in Sources */,
-				3EEFA3621E037F4B0065C079 /* DCRejectionFilter.cpp in Sources */,
+				3EFC7B4B1E04CC7200574072 /* BufferManager.cpp in Sources */,
+				3EFC7B4C1E04CC7200574072 /* DCRejectionFilter.cpp in Sources */,
+				3EFC7B4D1E04CC7200574072 /* AudioController.mm in Sources */,
 				3EFCE5741E037B2A0064406C /* PublicUtility in Sources */,
+				3EFCE5751E037B310064406C /* StressDetectorLib in Sources */,
 				3E749D781E020A4800976521 /* ViewController.swift in Sources */,
-				3EEFA3611E037F4B0065C079 /* BufferManager.cpp in Sources */,
 				3E749D761E020A4800976521 /* AppDelegate.swift in Sources */,
-				3EEFA3601E037F4B0065C079 /* AudioController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,11 +313,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 656LRSVN44;
 				INFOPLIST_FILE = VSD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfsindustries.VSD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "VSD/VSD-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -329,12 +331,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 656LRSVN44;
 				INFOPLIST_FILE = VSD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nfsindustries.VSD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "VSD/VSD-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

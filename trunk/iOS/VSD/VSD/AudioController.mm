@@ -58,12 +58,6 @@ static OSStatus	performRender (void                         *inRefCon,
             cd.bufferManager->CopyAudioDataToDrawBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
         }
         
-        else if ((cd.bufferManager->GetDisplayMode() == aurioTouchDisplayModeSpectrum) || (cd.bufferManager->GetDisplayMode() == aurioTouchDisplayModeOscilloscopeFFT))
-        {
-            if (cd.bufferManager->NeedsNewFFTData())
-                cd.bufferManager->CopyAudioDataToFFTInputBuffer((Float32*)ioData->mBuffers[0].mData, inNumberFrames);
-        }
-        
         // mute audio if needed
         if (*cd.muteAudio)
         {
@@ -80,7 +74,6 @@ static OSStatus	performRender (void                         *inRefCon,
 
 - (void)setupAudioSession;
 - (void)setupIOUnit;
-- (void)createButtonPressedSound;
 - (void)setupAudioChain;
 
 @end
@@ -197,7 +190,7 @@ static OSStatus	performRender (void                         *inRefCon,
         XThrowIfError((OSStatus)error.code, "couldn't set session's I/O buffer duration");
         
         // set the session's sample rate
-        [sessionInstance setPreferredSampleRate:44100 error:&error];
+        [sessionInstance setPreferredSampleRate:8000 error:&error];
         XThrowIfError((OSStatus)error.code, "couldn't set session's preferred sample rate");
         
         // add interruption handler
@@ -260,7 +253,7 @@ static OSStatus	performRender (void                         *inRefCon,
         // Explicitly set the input and output client formats
         // sample rate = 44100, num channels = 1, format = 32 bit floating point
         
-        CAStreamBasicDescription ioFormat = CAStreamBasicDescription(44100, 1, CAStreamBasicDescription::kPCMFormatFloat32, false);
+        CAStreamBasicDescription ioFormat = CAStreamBasicDescription(8000, 1, CAStreamBasicDescription::kPCMFormatFloat32, false);
         XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 1, &ioFormat, sizeof(ioFormat)), "couldn't set the input client format on AURemoteIO");
         XThrowIfError(AudioUnitSetProperty(_rioUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, 0, &ioFormat, sizeof(ioFormat)), "couldn't set the output client format on AURemoteIO");
         
@@ -309,7 +302,6 @@ static OSStatus	performRender (void                         *inRefCon,
 {
     [self setupAudioSession];
     [self setupIOUnit];
-    [self createButtonPressedSound];
 }
 
 - (OSStatus)startIOUnit

@@ -18,21 +18,11 @@ BufferManager::BufferManager( UInt32 inMaxFramesPerSlice ) :
 mDisplayMode(0 /*aurioTouchDisplayModeOscilloscopeWaveform*/),
 mDrawBuffers(),
 mDrawBufferIndex(0),
-mCurrentDrawBufferLen(kDefaultDrawSamples),
-mFFTInputBuffer(NULL),
-mFFTInputBufferFrameIndex(0),
-mFFTInputBufferLen(inMaxFramesPerSlice),
-mHasNewFFTData(0),
-mNeedsNewFFTData(0)
-//mFFTHelper(NULL)
+mCurrentDrawBufferLen(kDefaultDrawSamples)
 {
     for(UInt32 i=0; i<kNumDrawBuffers; ++i) {
         mDrawBuffers[i] = (Float32*) calloc(inMaxFramesPerSlice, sizeof(Float32));
     }
-    
-    mFFTInputBuffer = (Float32*) calloc(inMaxFramesPerSlice, sizeof(Float32));
-    //mFFTHelper = new FFTHelper(inMaxFramesPerSlice);
-    OSAtomicIncrement32Barrier(&mNeedsNewFFTData);
 }
 
 
@@ -43,8 +33,6 @@ BufferManager::~BufferManager()
         mDrawBuffers[i] = NULL;
     }
     
-    free(mFFTInputBuffer);
-    //delete mFFTHelper; mFFTHelper = NULL;
 }
 
 
@@ -72,23 +60,3 @@ void BufferManager::CycleDrawBuffers()
 		memmove(mDrawBuffers[drawBuffer_i + 1], mDrawBuffers[drawBuffer_i], mCurrentDrawBufferLen);
 }
 
-
-void BufferManager::CopyAudioDataToFFTInputBuffer( Float32* inData, UInt32 numFrames )
-{
-    UInt32 framesToCopy = min(numFrames, mFFTInputBufferLen - mFFTInputBufferFrameIndex);
-    memcpy(mFFTInputBuffer + mFFTInputBufferFrameIndex, inData, framesToCopy * sizeof(Float32));
-    mFFTInputBufferFrameIndex += framesToCopy * sizeof(Float32);
-    if (mFFTInputBufferFrameIndex >= mFFTInputBufferLen) {
-        OSAtomicIncrement32(&mHasNewFFTData);
-        OSAtomicDecrement32(&mNeedsNewFFTData);
-    }
-}
-
-
-void BufferManager::GetFFTOutput( Float32* outFFTData )
-{
-    //mFFTHelper->ComputeFFT(mFFTInputBuffer, outFFTData);
-    mFFTInputBufferFrameIndex = 0;
-    OSAtomicDecrement32Barrier(&mHasNewFFTData);
-    OSAtomicIncrement32Barrier(&mNeedsNewFFTData);
-}
