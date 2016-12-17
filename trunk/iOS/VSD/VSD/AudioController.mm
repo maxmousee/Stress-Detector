@@ -345,8 +345,6 @@ static OSStatus	performRender (void                         *inRefCon,
 {
     delete _bufferManager;      _bufferManager = NULL;
     delete _dcRejectionFilter;  _dcRejectionFilter = NULL;
-    
-    //[super dealloc];
 }
 
 @end
