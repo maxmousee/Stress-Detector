@@ -1,12 +1,12 @@
 /*
- * File: emd.h
+ * File: abs.h
  *
  * MATLAB Coder version            : 3.2
  * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
-#ifndef EMD_H
-#define EMD_H
+#ifndef ABS_H
+#define ABS_H
 
 /* Include Files */
 #include <math.h>
@@ -18,12 +18,12 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void emd(const double x[8192], emxArray_real_T *imf);
+extern void b_abs(const emxArray_creal_T *x, emxArray_real_T *y);
 
 #endif
 
 /*
- * File trailer for emd.h
+ * File trailer for abs.h
  *
  * [EOF]
  */

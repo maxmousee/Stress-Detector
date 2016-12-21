@@ -1,12 +1,12 @@
 /*
- * File: emd.h
+ * File: bsearch.h
  *
  * MATLAB Coder version            : 3.2
  * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
-#ifndef EMD_H
-#define EMD_H
+#ifndef BSEARCH_H
+#define BSEARCH_H
 
 /* Include Files */
 #include <math.h>
@@ -18,12 +18,12 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern void emd(const double x[8192], emxArray_real_T *imf);
+extern int b_bsearch(const emxArray_real_T *x, double xi);
 
 #endif
 
 /*
- * File trailer for emd.h
+ * File trailer for bsearch.h
  *
  * [EOF]
  */

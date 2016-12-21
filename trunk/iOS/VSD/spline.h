@@ -1,24 +1,25 @@
 /*
  * File: spline.h
  *
- * MATLAB Coder version            : 2.6
- * C/C++ source code generated on  : 06-Jun-2014 20:32:45
+ * MATLAB Coder version            : 3.2
+ * C/C++ source code generated on  : 16-Dec-2016 20:24:22
  */
 
-#ifndef __SPLINE_H__
-#define __SPLINE_H__
+#ifndef SPLINE_H
+#define SPLINE_H
 
-/* Include files */
+/* Include Files */
 #include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
+#include "rt_nonfinite.h"
 #include "rtwtypes.h"
-#include "processAudio_types.h"
+#include "vsd_types.h"
 
 /* Function Declarations */
-extern void spline(const emxArray_real_T *x, const emxArray_real_T *y,
-                   emxArray_real_T *output);
+extern void splinepp(const emxArray_real_T *x, const emxArray_real_T *y,
+                     emxArray_real_T *pp_breaks, emxArray_real_T *pp_coefs);
 
 #endif
 
