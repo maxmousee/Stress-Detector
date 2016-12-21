@@ -17,7 +17,7 @@
 
 #include "vsd.h"
 
-#define kBufferLength 8192
+#define kBufferLength 8000
 
 #define kStressProcessedNotification @"stressProcessed"
 #define kStressCoefVarName @"stressCoef"

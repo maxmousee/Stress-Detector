@@ -59,7 +59,6 @@
 #define kBufferCount 1
 #define N 10
 #define kSampleRate 8000.0
-//#define kBufferLength 8096
 #define kMaxFramesPerSlice 4096
 
 @interface AudioController : NSObject {

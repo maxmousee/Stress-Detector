@@ -38,9 +38,12 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             
             double stressCoefficient = 0.0;
-            double inputBufferDouble[kBufferLength];
             
-            inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
+            double inputBufferDouble[kBufferLength];
+            int j = 0;
+            for (j = inputBufferFrameIndex; j < kBufferLength; j++) {
+                inputBufferDouble[j] = inputBuffer[j];
+            }
             
             stressCoefficient = vsd(inputBufferDouble);
             
