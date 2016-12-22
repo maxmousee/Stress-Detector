@@ -15,9 +15,11 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include <libkern/OSAtomic.h>
 
-#include "vsd.h"
+#include "processAudio.h"
+#include "filt.h"
 
-#define kBufferLength 1024
+#define kBufferLength 8192
+#define finalIMF 2
 
 #define kStressProcessedNotification @"stressProcessed"
 #define kStressCoefVarName @"stressCoef"
@@ -25,6 +27,7 @@
 class BufferManager
 {
 private:
+    Filter *my_filter;
 public:
     BufferManager( UInt32 inMaxFramesPerSlice );
     ~BufferManager();

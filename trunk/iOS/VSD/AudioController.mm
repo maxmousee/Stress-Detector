@@ -71,6 +71,11 @@
 
 // Clean up memory
 - (void)dealloc {
+	if (processingGraph)
+    {
+		AUGraphStop(processingGraph);
+	}
+	
 	// Clean up the audio session
 	AVAudioSession *session = [AVAudioSession sharedInstance];
 	[session setActive:NO error:nil];

@@ -80,7 +80,7 @@
     try {
         NSNumber *stressCoefNSNumber = [theNotification.userInfo objectForKey:kStressCoefVarName];
         float stressCoef = [stressCoefNSNumber floatValue];
-        NSMutableString *stressMessage = [[NSMutableString alloc]initWithString:@"\n"];
+        NSMutableString *stressMessage = [[NSMutableString alloc]init];
         if (stressCoef >= 8 && stressCoef <= 12) {
             [stressMessage appendString:@"no stress"];
             stressTL.backgroundColor = [UIColor greenColor].CGColor;
@@ -90,14 +90,14 @@
         } else if(stressCoef > 12 && stressCoef <= 13) {
             [stressMessage appendString:@"marginal stress"];
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
-        } else if(stressCoef <= 3 || stressCoef >= 40) {
+        } else if(stressCoef <= 3 || stressCoef > 40) {
             [stressMessage appendString:@"can't process"];
             stressTL.backgroundColor = [UIColor blackColor].CGColor;
         } else {
             [stressMessage appendString:@"stress"];
             stressTL.backgroundColor = [UIColor redColor].CGColor;
         }
-        //[stressMessage appendFormat:@"\n%.2fHz", stressCoef];
+        [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
         [stressTL setString:stressMessage];
         [stressTL performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:0 waitUntilDone:NO];
         NSLog(@"%@", stressMessage);
