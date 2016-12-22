@@ -1,7 +1,7 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2016a">
-  <configuration build-checksum="3481422133" file="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.prj" location="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="1284467414" file="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.prj" location="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
-      <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
+      <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
       <param.WorkingFolder>option.WorkingFolder.Project</param.WorkingFolder>
       <param.SpecifiedWorkingFolder />
@@ -53,7 +53,7 @@
       <param.ConstantInputs>option.ConstantInputs.CheckValues</param.ConstantInputs>
       <param.EnableCRICodeCoverage>true</param.EnableCRICodeCoverage>
       <param.EnableJIT>false</param.EnableJIT>
-      <param.EnableJITSilentBailOut>false</param.EnableJITSilentBailOut>
+      <param.EnableJITSilentBailOut />
       <param.CheckForIssuesJIT>true</param.CheckForIssuesJIT>
       <unset>
         <param.BuiltInstrumentedMex />
@@ -169,7 +169,7 @@
       <param.CustomSource />
       <param.CustomLibrary />
       <param.PostCodeGenCommand />
-      <param.TargetLangStandard>C89/C90 (ANSI)</param.TargetLangStandard>
+      <param.TargetLangStandard>C++03 (ISO)</param.TargetLangStandard>
       <param.CodeReplacementLibrary>None</param.CodeReplacementLibrary>
       <param.DeprecatedCRLFlag>false</param.DeprecatedCRLFlag>
       <param.SameHardware>true</param.SameHardware>
@@ -231,7 +231,7 @@
       <param.IncludeTerminateFcn>true</param.IncludeTerminateFcn>
       <param.GenerateExampleMain>option.GenerateExampleMain.GenerateCodeOnly</param.GenerateExampleMain>
       <param.PreserveVariableNames>option.PreserveVariableNames.None</param.PreserveVariableNames>
-      <param.TargetLang>option.TargetLang.C</param.TargetLang>
+      <param.TargetLang>option.TargetLang.CPP</param.TargetLang>
       <param.CCompilerOptimization>option.CCompilerOptimization.Off</param.CCompilerOptimization>
       <param.CCompilerCustomOptimizations />
       <param.GenerateMakefile>true</param.GenerateMakefile>
@@ -361,7 +361,6 @@
         <param.IncludeTerminateFcn />
         <param.GenerateExampleMain />
         <param.PreserveVariableNames />
-        <param.TargetLang />
         <param.CCompilerOptimization />
         <param.CCompilerCustomOptimizations />
         <param.GenerateMakefile />
@@ -747,7 +746,7 @@
     <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
     <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <param.EnableScreener>true</param.EnableScreener>
-    <param.AnnotationChecksum>2476562320</param.AnnotationChecksum>
+    <param.AnnotationChecksum>448081885</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
@@ -756,12 +755,12 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen/lib/vsd</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>4105939626</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>1284467414</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen/mex/vsd</var.cfi.lastOutputRoot>
     <var.cfi.preBuildChecksum>3568045644</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>tst</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;3551047631&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;3997735645&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
     <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.configImportActive>false</param.configImportActive>
@@ -890,7 +889,7 @@
     </unset>
     <fileset.entrypoints>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}/vsd.m">
-        <Marker>1481926755823</Marker>
+        <Marker>1482371611357</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench>
@@ -903,10 +902,10 @@
           <idpTable>
             <type typeId="0">
               <Class>double</Class>
-              <Size>8192 x 1</Size>
+              <Size>1024 x 1</Size>
               <Value />
               <InitialValue />
-              <UserDefined>false</UserDefined>
+              <UserDefined>true</UserDefined>
               <Complex>false</Complex>
             </type>
           </idpTable>
