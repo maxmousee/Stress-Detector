@@ -18,9 +18,9 @@ inputBufferLen(inMaxFramesPerSlice)
 {
     inputBuffer = (Float32*) calloc(inMaxFramesPerSlice, sizeof(Float32));
     inputBufferFrameIndex = 0;
-    int num_taps = 950; //950, 0.18
-    double lowPassFreq = 0.018; //0.017
-    my_filter = new Filter(LPF, num_taps, 8, lowPassFreq);
+    int num_taps = 768; //950, 0.18
+    double lowPassFreq = 0.040; //0.017
+    my_filter = new Filter(LPF, num_taps, 8000, lowPassFreq);
 }
 
 BufferManager::~BufferManager()

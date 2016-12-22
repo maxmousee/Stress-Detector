@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3A36280D1942A28700452C7E /* filt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A36280C1942A28700452C7E /* filt.cpp */; };
-		3A40D1C7194A746D0067B456 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A40D1C6194A746D0067B456 /* QuartzCore.framework */; };
 		3AA0878E19428D08004CA829 /* emd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0878719428D08004CA829 /* emd.cpp */; };
 		3AA0878F19428D08004CA829 /* processAudio_emxutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0878819428D08004CA829 /* processAudio_emxutil.cpp */; };
 		3AA0879019428D08004CA829 /* processAudio_initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0878919428D08004CA829 /* processAudio_initialize.cpp */; };
@@ -17,7 +16,6 @@
 		3AA0879319428D08004CA829 /* pwchcore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0878C19428D08004CA829 /* pwchcore.cpp */; };
 		3AA0879419428D08004CA829 /* spline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0878D19428D08004CA829 /* spline.cpp */; };
 		3AD8A2BB19398CC10009D4C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2BA19398CC10009D4C0 /* Foundation.framework */; };
-		3AD8A2BD19398CC10009D4C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2BC19398CC10009D4C0 /* CoreGraphics.framework */; };
 		3AD8A2BF19398CC10009D4C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2BE19398CC10009D4C0 /* UIKit.framework */; };
 		3AD8A2C519398CC20009D4C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AD8A2C319398CC20009D4C0 /* InfoPlist.strings */; };
 		3AD8A2C719398CC20009D4C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A2C619398CC20009D4C0 /* main.m */; };
@@ -35,13 +33,13 @@
 		3AD8A2F8193991010009D4C0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2F5193991010009D4C0 /* Accelerate.framework */; };
 		3AD8A2FA193991010009D4C0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2F7193991010009D4C0 /* AVFoundation.framework */; };
 		3AD8A2FF1939912A0009D4C0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2FC1939912A0009D4C0 /* CoreAudio.framework */; };
-		3AD8A3001939912B0009D4C0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2FD1939912A0009D4C0 /* OpenGLES.framework */; };
 		3AD8A303193995190009D4C0 /* AudioController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A302193995190009D4C0 /* AudioController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3AD8A318193996960009D4C0 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A311193996960009D4C0 /* CADebugMacros.cpp */; };
 		3AD8A319193996960009D4C0 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A314193996960009D4C0 /* CAStreamBasicDescription.cpp */; };
 		3AD8A31A193996960009D4C0 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8A316193996960009D4C0 /* CAXException.cpp */; };
 		3AD8A31D193A3BFC0009D4C0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */; };
 		3AFBA6AD1940119000E8D9F0 /* BufferManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAEF52193EB299001AA2B5 /* BufferManager.mm */; };
+		3E5A90EA1E0B74A90077137B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A40D1C6194A746D0067B456 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,13 +123,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A40D1C7194A746D0067B456 /* QuartzCore.framework in Frameworks */,
+				3E5A90EA1E0B74A90077137B /* QuartzCore.framework in Frameworks */,
 				3AD8A31D193A3BFC0009D4C0 /* AudioToolbox.framework in Frameworks */,
 				3AD8A2FF1939912A0009D4C0 /* CoreAudio.framework in Frameworks */,
-				3AD8A3001939912B0009D4C0 /* OpenGLES.framework in Frameworks */,
 				3AD8A2F8193991010009D4C0 /* Accelerate.framework in Frameworks */,
 				3AD8A2FA193991010009D4C0 /* AVFoundation.framework in Frameworks */,
-				3AD8A2BD19398CC10009D4C0 /* CoreGraphics.framework in Frameworks */,
 				3AD8A2BF19398CC10009D4C0 /* UIKit.framework in Frameworks */,
 				3AD8A2BB19398CC10009D4C0 /* Foundation.framework in Frameworks */,
 			);

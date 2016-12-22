@@ -32,10 +32,10 @@
     stressTL.cornerRadius = 0.0;
     stressTL.alignmentMode = kCAAlignmentCenter;
     stressTL.contentsScale = [[UIScreen mainScreen] scale];
-    stressTL.frame = CGRectMake(00.0f, ((3 * self.view.bounds.size.height)/8), self.view.bounds.size.width,
-                                self.view.bounds.size.height/4);
+    stressTL.frame = CGRectMake(00.0f, ((self.view.bounds.size.height)/4), self.view.bounds.size.width,
+                                self.view.bounds.size.height/2);
     
-    [stressTL setString:@"\nprocessing..."];
+    [stressTL setString:@"\n\n\nprocessing..."];
     [self.view.layer addSublayer:stressTL];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -57,8 +57,8 @@
         if (granted)
         {
             
-            dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
-            dispatch_async(myQueue, ^{
+            dispatch_queue_t vsdQueue = dispatch_queue_create("VSD_Queue",NULL);
+            dispatch_async(vsdQueue, ^{
                 audioController = [[AudioController alloc] init];
                 [audioController startIOUnit];
             });
@@ -81,24 +81,30 @@
         NSNumber *stressCoefNSNumber = [theNotification.userInfo objectForKey:kStressCoefVarName];
         float stressCoef = [stressCoefNSNumber floatValue];
         NSMutableString *stressMessage = [[NSMutableString alloc]init];
-        if (stressCoef >= 8 && stressCoef <= 12) {
-            [stressMessage appendString:@"no stress"];
+        if (stressCoef >= 9 && stressCoef <= 14) {
+            [stressMessage appendString:@"\n\nno stress"];
             stressTL.backgroundColor = [UIColor greenColor].CGColor;
-        } else if(stressCoef < 8 && stressCoef >= 7){
-            [stressMessage appendString:@"marginal stress"];
+            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressTL setString:stressMessage];
+        } else if(stressCoef < 9 && stressCoef >= 7){
+            [stressMessage appendString:@"\n\nmarginal stress"];
+            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressTL setString:stressMessage];
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
-        } else if(stressCoef > 12 && stressCoef <= 13) {
-            [stressMessage appendString:@"marginal stress"];
+        } else if(stressCoef > 14 && stressCoef <= 15) {
+            [stressMessage appendString:@"\n\nmarginal stress"];
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
-        } else if(stressCoef <= 3 || stressCoef > 40) {
-            [stressMessage appendString:@"can't process"];
-            stressTL.backgroundColor = [UIColor blackColor].CGColor;
+            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressTL setString:stressMessage];
+        } else if(stressCoef <= 3 || stressCoef > 42) {
+            //[stressMessage appendString:@"can't process"];
+            //stressTL.backgroundColor = [UIColor blackColor].CGColor;
         } else {
-            [stressMessage appendString:@"stress"];
+            [stressMessage appendString:@"\n\nstress"];
             stressTL.backgroundColor = [UIColor redColor].CGColor;
+            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressTL setString:stressMessage];
         }
-        [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
-        [stressTL setString:stressMessage];
         [stressTL performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:0 waitUntilDone:NO];
         NSLog(@"%@", stressMessage);
     } catch (...) {
