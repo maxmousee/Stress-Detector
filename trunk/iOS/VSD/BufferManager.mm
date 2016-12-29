@@ -40,35 +40,28 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             
-            int stopProcess = 0;
-            while (stopProcess == 0){
-                int nComponent = finalIMF;
-                double stressCoefficient = 0.0;
-                double inputBufferDouble[kBufferLength];
-                if( my_filter->get_error_flag() < 0 ) {
-                    printf("ERR CREATING LOW PASS FILTER\n");
-                    exit(1);
-                }
-                for(int i = 0; i < kBufferLength - 1; i++){
-                    inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
-                }
-                inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
-                
-                stressCoefficient = processAudio(inputBufferDouble, nComponent);
-                nComponent++;
-                //printf("nComponent %d\n", nComponent);
-                
-                stopProcess = 1;
-                //printf("FOUND STRESS COEFICIENT, STOP\n");
-                printf("%.2f \n", stressCoefficient);
-                
-                NSNumber *stressCoefNSNumber = [NSNumber numberWithFloat:stressCoefficient];
-                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:kStressProcessedNotification object:nil userInfo:userInfo];
-                
-                inputBufferFrameIndex = 0;
+            double stressCoefficient = 0.0;
+            double inputBufferDouble[kBufferLength];
+            if( my_filter->get_error_flag() < 0 ) {
+                printf("ERR CREATING LOW PASS FILTER\n");
+                exit(1);
             }
+            for(int i = 0; i < kBufferLength - 1; i++){
+                inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
+            }
+            inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
+            
+            stressCoefficient = processAudio(inputBufferDouble, finalIMF);
+
+            //printf("FOUND STRESS COEFICIENT, STOP\n");
+            printf("%.2f \n", stressCoefficient);
+            
+            NSNumber *stressCoefNSNumber = [NSNumber numberWithFloat:stressCoefficient];
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kStressProcessedNotification object:nil userInfo:userInfo];
+            
+            inputBufferFrameIndex = 0;
         });
     }
 }
