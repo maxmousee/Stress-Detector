@@ -43,7 +43,7 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
             double stressCoefficient = 0.0;
             double inputBufferDouble[kBufferLength];
             if( my_filter->get_error_flag() < 0 ) {
-                printf("ERR CREATING LOW PASS FILTER\n");
+                NSLog(@"ERR CREATING LOW PASS FILTER\n");
                 exit(1);
             }
             for(int i = 0; i < kBufferLength - 1; i++){
@@ -53,8 +53,9 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
             
             stressCoefficient = processAudio(inputBufferDouble, finalIMF);
 
-            //printf("FOUND STRESS COEFICIENT, STOP\n");
-            printf("%.2f \n", stressCoefficient);
+            #ifndef NDEBUG
+            NSLog(@"%.2f Hz \n", stressCoefficient);
+            #endif
             
             NSNumber *stressCoefNSNumber = [NSNumber numberWithFloat:stressCoefficient];
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:stressCoefNSNumber forKey:kStressCoefVarName];

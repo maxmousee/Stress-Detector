@@ -106,7 +106,6 @@
             [stressTL setString:stressMessage];
         }
         [stressTL performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:0 waitUntilDone:NO];
-        NSLog(@"%@", stressMessage);
     } catch (...) {
         NSLog(@"Could not read stress value from NSNotification");
     }
