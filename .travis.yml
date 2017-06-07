@@ -6,4 +6,4 @@ language: objective-c
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=iOS
 script:
-- set -o pipefail && xcodebuild test -project iOS/VSD.xcodeproj -scheme VSD -destination 'platform=Simulator,name=iPhone,OS=10.3'
+- set -o pipefail && xcodebuild test -project iOS/VSD.xcodeproj -scheme VSD -destination 'platform=Simulator,name=iPhone SE'
