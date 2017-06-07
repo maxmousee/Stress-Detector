@@ -7,4 +7,4 @@ language: objective-c
 # - pod install --project-directory=iOS
 script:
 - xcodebuild -project iOS/VSD.xcodeproj -list
-- set -o pipefail && xcodebuild test -project iOS/VSD.xcodeproj -scheme VSD -destination 'platform=Simulator,name=iPhone SE'
+- set -o pipefail && xcodebuild test -project iOS/VSD.xcodeproj -target 'VSD' -destination 'platform=Simulator,name=iPhone SE'
