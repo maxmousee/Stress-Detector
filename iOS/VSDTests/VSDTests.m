@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <KIF/KIF.h>
+
 
 @interface VSDTests : XCTestCase
 
@@ -26,9 +28,17 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testStartUpPerformance
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    CFTimeInterval startTime = CACurrentMediaTime();
+    //Test the performance of this function.
+    [tester waitForAnimationsToFinish];
+    CFTimeInterval elapsedTime = CACurrentMediaTime() - startTime;
+    NSLog(@"startUp Time %f", elapsedTime);
+    if (elapsedTime > 10.0) {
+        XCTFail(@"VSD is taking too long to start");
+    }
 }
+
 
 @end

@@ -1,10 +1,9 @@
 osx_image: xcode8.3
 language: objective-c
-#cache: cocoapods
-#podfile: Example/Podfile
-#before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=iOS
+cache: cocoapods
+podfile: iOS/Podfile
+before_install:
+ - gem install cocoapods # Since Travis is not always on latest version
+ - pod install --project-directory=iOS
 script:
-- xcodebuild -project iOS/VSD.xcodeproj -list
-# - set -o pipefail && xcodebuild test -project iOS/VSD.xcodeproj -scheme 'VSD' -destination 'platform=Simulator,name=iPhone SE'
+ - set -o pipefail && xcodebuild test -workspace iOS/VSD.xcworkspace -scheme VSD -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination "platform=iOS Simulator,name=iPhone SE"
