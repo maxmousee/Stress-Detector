@@ -4,7 +4,5 @@ cache: cocoapods
 podfile: iOS/Podfile
 before_install:
  - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=iOS
 script:
- - xcodebuild -workspace iOS/VSD.xcworkspace test -list
  - set -o pipefail && xcodebuild test -workspace iOS/VSD.xcworkspace -scheme VSD -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -destination "platform=iOS Simulator,name=iPhone SE"
