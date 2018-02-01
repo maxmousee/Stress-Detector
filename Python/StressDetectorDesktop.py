@@ -2,10 +2,6 @@
 Created on 22 Jan 2014
 @author: maxmouse
 '''
-#if __name__ == '__main__':
-#    print "Be careful not to fall off!"
-
-#sp.io.wavfile.read("/Users/maxmouse/Documents/TCC/plot_hht/Hum.wav")
 
 from scipy.io import wavfile
 import emd
