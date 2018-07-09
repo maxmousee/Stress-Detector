@@ -84,7 +84,7 @@ def main(argv):
     plt.show()
     #plt.plot(myemd)
     #plt.show()
-    #get the second to last array. plot only it (penultima)
+    #get the second to last array. plot only it (second to last)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
