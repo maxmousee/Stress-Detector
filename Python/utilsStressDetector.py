@@ -10,6 +10,64 @@ import os
 import sys, getopt
 import matplotlib.pyplot as plt
 
+def getAudioLength(argv):
+    inputfile = getAudioFile(argv)
+    rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
+    return rate1
+
+def getAudioData(argv):
+    inputfile = getAudioFile(argv)
+    rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
+    return dat1
+
+def extractEMD(argv):
+    inputfile = getAudioFile(argv)
+    rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
+    myemd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
+    return myemd
+
+def extractData(myemd, imfCount):
+    mydata = []
+    for freq in myemd:
+        mydata.append(freq[imfCount - 1])
+    return mydata
+
+def getZeroCrossings(myemd):
+    countZeros = 0
+    imfCount = len(myemd[0])
+    if imfCount > 3:
+        imfCount = imfCount - 1
+
+    mydata = extractData(myemd, imfCount)
+
+    for i in xrange(len(mydata)-1):
+        if mydata[i] > 0 and mydata[i+1] < 0:
+            countZeros = countZeros + 1
+        elif mydata[i] < 0 and mydata[i+1] > 0:
+            countZeros = countZeros + 1
+    return countZeros
+
+def getStressTremorAverage(argv):
+    myemd = extractEMD(argv)
+    countZeros = getZeroCrossings(myemd)
+    rate1 = getAudioLength(argv)
+    mydata = getAudioData(argv)
+    audiotimelength = len(mydata)/float(rate1)
+
+    stresstremoravg = countZeros - 1
+    stresstremoravg = stresstremoravg/audiotimelength
+    print "stress microtremor avg freq is {}".format(stresstremoravg)
+    if stresstremoravg > 12:
+        print "subject is under stress"
+    elif stresstremoravg < 8:
+        print "subject is under stress"
+    else:
+        print "subject is NOT under stress"
+
+    #plt.plot(mydata)
+    #plt.show()
+    return stresstremoravg
+
 def getAudioFile(argv):
     inputfile = ''
 
@@ -26,7 +84,6 @@ def getAudioFile(argv):
        elif opt in ("-i", "--ifile"):
            inputfile = arg
 
-    print 'Input file is "', inputfile
     if not os.path.isfile(os.getcwd() + "/" + inputfile):
         # file does NOT exist
         print "File does NOT exist, will exit"
