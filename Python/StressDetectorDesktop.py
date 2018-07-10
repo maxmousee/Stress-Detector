@@ -8,29 +8,10 @@ import emd
 import os
 import sys, getopt
 import matplotlib.pyplot as plt
+import utilsStressDetector
 
 def main(argv):
-    inputfile = ''
-
-    try:
-        opts, args = getopt.getopt(argv,"hi:o:",["ifile="])
-    except getopt.GetoptError:
-        print 'python StressDetectorDesktop.py -i <inputfile>'
-        sys.exit(2)
-
-    for opt, arg in opts:
-       if opt == '-h':
-           print 'python StressDetectorDesktop.py -i <inputfile>'
-           sys.exit()
-       elif opt in ("-i", "--ifile"):
-           inputfile = arg
-
-    print 'Input file is "', inputfile
-    if not os.path.isfile(os.getcwd() + "/" + inputfile):
-        # file does NOT exist
-        print "File does NOT exist, will exit"
-        sys.exit(2)
-
+    inputfile = utilsStressDetector.getAudioFile(argv)
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
     #print dat1
     #print rate1
