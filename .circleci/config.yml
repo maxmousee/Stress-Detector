@@ -25,7 +25,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            pip install -r Python/requirements.txt
+            pip install -r Python/requirements.txt --user
         
       # run tests!
       # this example uses Django's built-in test-runner
