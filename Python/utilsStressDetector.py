@@ -20,9 +20,7 @@ def getAudioData(argv):
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
     return dat1
 
-def extractEMD(argv):
-    inputfile = getAudioFile(argv)
-    rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
+def extractEMD(dat1):
     myemd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
     return myemd
 
@@ -48,10 +46,10 @@ def getZeroCrossings(myemd):
     return countZeros
 
 def getStressTremorAverage(argv):
-    myemd = extractEMD(argv)
+    mydata = getAudioData(argv)
+    myemd = extractEMD(mydata)
     countZeros = getZeroCrossings(myemd)
     rate1 = getAudioLength(argv)
-    mydata = getAudioData(argv)
     audiotimelength = len(mydata)/float(rate1)
 
     stresstremoravg = countZeros - 1
