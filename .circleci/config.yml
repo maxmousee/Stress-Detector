@@ -9,6 +9,7 @@ jobs:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:2.7.15
+    parallelism: 4
 
     working_directory: ~/repo/Python
 
@@ -32,11 +33,10 @@ jobs:
       # other common Python testing frameworks include pytest and nose
       # https://pytest.org
       # https://nose.readthedocs.io
- #     - run:
- #         name: run tests
- #         command: |
- #           . venv/bin/activate
- #           python manage.py test
+      - run:
+          name: run tests
+          command: |
+            python Python/StressDetectorWS.py & sleep 2; curl -H "Content-Type: application/json" --data @Python/audiodata.json http://localhost:8080/processAudio
 
  #     - store_artifacts:
  #         path: test-reports
