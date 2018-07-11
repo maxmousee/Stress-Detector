@@ -8,6 +8,7 @@ import emd
 import web
 import json
 import numpy as np
+import utilsStressDetector
 
 def notfound():
     #return web.notfound("Sorry, the page you were looking for was not found.")
@@ -33,22 +34,8 @@ class processAudio:
 		dat1 = np.fromstring(dat2, dtype=int, sep=', ')
 		rate1 = len(dat1)
 		myemd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
-		countZeros = 0
-		imfCount = len(myemd[0])
-		if imfCount > 3:
-			imfCount = imfCount - 1
-
-		mydata = []
-		for freq in myemd:
-			mydata.append(freq[imfCount - 1])
-		
-		for i in xrange(len(mydata)-1):
-			if mydata[i] > 0 and mydata[i+1] < 0:
-				countZeros = countZeros + 1
-			elif mydata[i] < 0 and mydata[i+1] > 0:
-				countZeros = countZeros + 1
-
-		audiotimelength = len(mydata)/float(rate1)
+		countZeros = utilsStressDetector.getZeroCrossings(myemd)
+		audiotimelength = len(dat1)/float(rate1)
 
 		stresstremoravg = countZeros - 1
 		stresstremoravg = stresstremoravg/audiotimelength
