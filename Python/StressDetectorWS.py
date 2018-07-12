@@ -1,6 +1,9 @@
 '''
-Created on 22 Jan 2014
+To run it just go to the folder and type "python StressDetectorWS.py" without the quotes
+It will run as a http service listening to port 8080
 
+Audio data array should be 8000 samples of wav data, 1 second of a 8KHz sample rate audio
+To send a test request just run "curl -H "Content-Type: application/json" --data @audiodata.json http://localhost:8080/processAudio"
 @author: maxmouse
 '''
 

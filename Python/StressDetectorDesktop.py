@@ -1,5 +1,7 @@
 '''
-Created on 22 Jan 2014
+To use it, you will need a wav file of 1 second length, EXACTLY
+The wav file should have 8KHz sample rate
+Open terminal and type "python StressDetectorDesktop -i <filename>
 @author: maxmouse
 '''
 
