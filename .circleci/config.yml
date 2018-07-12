@@ -32,7 +32,7 @@ jobs:
       - run:
           name: run tests for Python Desktop
           command: |
-            python Python/StressDetectorDesktop.py -i rain_man_driver_8000.wav
+            python Python/StressDetectorDesktop.py -i Python/rain_man_driver_8000.wav
 
       - run:
           name: run tests for Python WebService
