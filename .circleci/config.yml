@@ -37,4 +37,4 @@ jobs:
       - run:
           name: run tests for Python WebService
           command: |
-            python Python/StressDetectorWS.py & sleep 60; curl -H "Content-Type: application/json" --data @Python/audiodata.json http://localhost:8080/processAudio
+            python Python/StressDetectorWS.py & sleep 30; curl -H "Content-Type: application/json" --data @Python/audiodata.json http://localhost:8080/processAudio
