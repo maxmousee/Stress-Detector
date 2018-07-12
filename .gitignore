@@ -2,6 +2,12 @@
 *.apk
 *.ap_
 
+#DAMN MacOS
+.DS_Store
+
+#VS Code
+.vscode/
+
 # files for the dex VM
 *.dex
 
