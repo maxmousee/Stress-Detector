@@ -1,0 +1,4 @@
+exclude:
+- /iOS/VSD/.*
+- .*/Python/emd\.py
+- .*/Python/utils\.py
