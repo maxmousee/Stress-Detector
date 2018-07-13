@@ -8,6 +8,12 @@ from scipy.io import wavfile
 import emd
 import os
 import sys, getopt
+import matplotlib.pyplot as plt
+
+
+def plot_data(the_data):
+    plt.plot(the_data)
+    plt.show()
 
 
 def get_audio_length_from_file(argv):
@@ -50,8 +56,7 @@ def get_zero_crossings(the_emd):
     return count_zeros
 
 
-def get_stress_tremor_average_from_file(argv):
-    the_data = get_audio_data_from_file(argv)
+def get_stress_tremor_average_from_file(the_data, argv):
     the_emd = extract_emd(the_data)
     count_zeros = get_zero_crossings(the_emd)
     rate1 = get_audio_length_from_file(argv)

@@ -7,11 +7,11 @@ Open terminal and type "python StressDetectorDesktop -i <filename>
 
 import sys
 import utils_stress_detector
-import matplotlib.pyplot as plt
 
 
 def main(argv):
-    stress_tremor_average = utils_stress_detector.get_stress_tremor_average_from_file(argv)
+    the_data = utils_stress_detector.get_audio_data_from_file(argv)
+    stress_tremor_average = utils_stress_detector.get_stress_tremor_average_from_file(the_data, argv)
     print "stress microtremor avg freq is {}".format(stress_tremor_average)
     if stress_tremor_average > 12:
         print "subject is under stress"
@@ -19,6 +19,8 @@ def main(argv):
         print "subject is under stress"
     else:
         print "subject is NOT under stress"
+
+    utils_stress_detector.plot_data(the_data)
 
 
 if __name__ == "__main__":
