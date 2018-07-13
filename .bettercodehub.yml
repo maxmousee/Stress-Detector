@@ -1,5 +1,6 @@
 exclude:
 - /iOS/VSD/.*
+- /iOS/Pods/.*
 - .*/Python/emd\.py
 - .*/Python/utils\.py
 - .*/Python/visualization\.py
