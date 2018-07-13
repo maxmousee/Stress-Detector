@@ -1,17 +1,17 @@
-'''
+"""
 To run it just go to the folder and type "python StressDetectorWS.py" without the quotes
 It will run as a http service listening to port 8080
 
 Audio data array should be 8000 samples of wav data, 1 second of a 8KHz sample rate audio
 To send a test request just run "curl -H "Content-Type: application/json" --data @audiodata.json http://localhost:8080/processAudio"
-@author: maxmouse
-'''
+@author: MaxMouse
+"""
 
 import emd
 import web
 import json
 import numpy as np
-import utilsStressDetector
+import utils_stress_detector
 
 
 def not_found():
@@ -38,7 +38,7 @@ class processAudio:
         dat1 = np.fromstring(dat2, dtype=int, sep=', ')
         rate1 = len(dat1)
         the_emd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
-        count_zeros = utilsStressDetector.get_zero_crossings(the_emd)
+        count_zeros = utils_stress_detector.get_zero_crossings(the_emd)
         audio_time_length = len(dat1)/float(rate1)
 
         stress_tremor_avg = count_zeros - 1
@@ -49,9 +49,9 @@ class processAudio:
         elif stress_tremor_avg < 8:
             under_stress = True
 
-        pyDict = {'under_stress':under_stress}
+        response_dict = {'under_stress':under_stress}
         web.header('Content-Type', 'application/json')
-        return json.dumps(pyDict)
+        return json.dumps(response_dict)
 
 
 if __name__ == "__main__":

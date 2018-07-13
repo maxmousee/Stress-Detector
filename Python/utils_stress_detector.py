@@ -1,8 +1,8 @@
-'''
+"""
 Utils for Python Stress Detector
 Created on 10 Jul 2018
-@author: maxmouse
-'''
+@author: MaxMouse
+"""
 
 from scipy.io import wavfile
 import emd
@@ -10,13 +10,13 @@ import os
 import sys, getopt
 
 
-def get_audio_length(argv):
+def get_audio_length_from_file(argv):
     input_file = get_audio_file(argv)
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return rate1
 
 
-def get_audio_data(argv):
+def get_audio_data_from_file(argv):
     input_file = get_audio_file(argv)
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return dat1
@@ -27,20 +27,20 @@ def extract_emd(dat1):
     return the_emd
 
 
-def extract_data(myemd, imfCount):
+def extract_data(myemd, imf_count):
     the_data = []
     for freq in myemd:
-        the_data.append(freq[imfCount - 1])
+        the_data.append(freq[imf_count - 1])
     return the_data
 
 
-def get_zero_crossings(myemd):
+def get_zero_crossings(the_emd):
     count_zeros = 0
-    imf_count = len(myemd[0])
+    imf_count = len(the_emd[0])
     if imf_count > 3:
         imf_count = imf_count - 1
 
-    the_data = extract_data(myemd, imf_count)
+    the_data = extract_data(the_emd, imf_count)
 
     for i in xrange(len(the_data)-1):
         if the_data[i] > 0 and the_data[i+1] < 0:
@@ -50,23 +50,15 @@ def get_zero_crossings(myemd):
     return count_zeros
 
 
-def get_stress_tremor_average(argv):
-    the_data = get_audio_data(argv)
+def get_stress_tremor_average_from_file(argv):
+    the_data = get_audio_data_from_file(argv)
     the_emd = extract_emd(the_data)
     count_zeros = get_zero_crossings(the_emd)
-    rate1 = get_audio_length(argv)
+    rate1 = get_audio_length_from_file(argv)
     audio_time_length = len(the_data)/float(rate1)
 
     stress_tremor_avg = count_zeros - 1
     stress_tremor_avg = stress_tremor_avg/audio_time_length
-    print "stress microtremor avg freq is {}".format(stress_tremor_avg)
-    if stress_tremor_avg > 12:
-        print "subject is under stress"
-    elif stress_tremor_avg < 8:
-        print "subject is under stress"
-    else:
-        print "subject is NOT under stress"
-
     return stress_tremor_avg
 
 
