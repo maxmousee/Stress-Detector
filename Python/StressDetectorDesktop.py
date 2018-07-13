@@ -5,15 +5,12 @@ Open terminal and type "python StressDetectorDesktop -i <filename>
 @author: maxmouse
 '''
 
-from scipy.io import wavfile
-import emd
-import os
-import sys, getopt
-import matplotlib.pyplot as plt
+import sys
 import utilsStressDetector
+import matplotlib.pyplot as plt
 
 def main(argv):
-    stressTremorAverage = utilsStressDetector.getStressTremorAverage(argv)
+    stressTremorAverage = utilsStressDetector.get_stress_tremor_average(argv)
 
 if __name__ == "__main__":
    main(sys.argv[1:])

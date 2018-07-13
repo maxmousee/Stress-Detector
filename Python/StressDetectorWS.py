@@ -38,7 +38,7 @@ class processAudio:
         dat1 = np.fromstring(dat2, dtype=int, sep=', ')
         rate1 = len(dat1)
         the_emd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
-        count_zeros = utilsStressDetector.getZeroCrossings(the_emd)
+        count_zeros = utilsStressDetector.get_zero_crossings(the_emd)
         audio_time_length = len(dat1)/float(rate1)
 
         stress_tremor_avg = count_zeros - 1

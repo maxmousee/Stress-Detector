@@ -8,66 +8,70 @@ from scipy.io import wavfile
 import emd
 import os
 import sys, getopt
-import matplotlib.pyplot as plt
 
-def getAudioLength(argv):
-    inputfile = getAudioFile(argv)
-    rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
+
+def get_audio_length(argv):
+    input_file = get_audio_file(argv)
+    rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return rate1
 
-def getAudioData(argv):
-    inputfile = getAudioFile(argv)
-    rate1,dat1 = wavfile.read(os.getcwd() + "/" + inputfile)
+
+def get_audio_data(argv):
+    input_file = get_audio_file(argv)
+    rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return dat1
 
-def extractEMD(dat1):
-    myemd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
-    return myemd
 
-def extractData(myemd, imfCount):
-    mydata = []
+def extract_emd(dat1):
+    the_emd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
+    return the_emd
+
+
+def extract_data(myemd, imfCount):
+    the_data = []
     for freq in myemd:
-        mydata.append(freq[imfCount - 1])
-    return mydata
+        the_data.append(freq[imfCount - 1])
+    return the_data
 
-def getZeroCrossings(myemd):
-    countZeros = 0
-    imfCount = len(myemd[0])
-    if imfCount > 3:
-        imfCount = imfCount - 1
 
-    mydata = extractData(myemd, imfCount)
+def get_zero_crossings(myemd):
+    count_zeros = 0
+    imf_count = len(myemd[0])
+    if imf_count > 3:
+        imf_count = imf_count - 1
 
-    for i in xrange(len(mydata)-1):
-        if mydata[i] > 0 and mydata[i+1] < 0:
-            countZeros = countZeros + 1
-        elif mydata[i] < 0 and mydata[i+1] > 0:
-            countZeros = countZeros + 1
-    return countZeros
+    the_data = extract_data(myemd, imf_count)
 
-def getStressTremorAverage(argv):
-    mydata = getAudioData(argv)
-    myemd = extractEMD(mydata)
-    countZeros = getZeroCrossings(myemd)
-    rate1 = getAudioLength(argv)
-    audiotimelength = len(mydata)/float(rate1)
+    for i in xrange(len(the_data)-1):
+        if the_data[i] > 0 and the_data[i+1] < 0:
+            count_zeros = count_zeros + 1
+        elif the_data[i] < 0 and the_data[i+1] > 0:
+            count_zeros = count_zeros + 1
+    return count_zeros
 
-    stresstremoravg = countZeros - 1
-    stresstremoravg = stresstremoravg/audiotimelength
-    print "stress microtremor avg freq is {}".format(stresstremoravg)
-    if stresstremoravg > 12:
+
+def get_stress_tremor_average(argv):
+    the_data = get_audio_data(argv)
+    the_emd = extract_emd(the_data)
+    count_zeros = get_zero_crossings(the_emd)
+    rate1 = get_audio_length(argv)
+    audio_time_length = len(the_data)/float(rate1)
+
+    stress_tremor_avg = count_zeros - 1
+    stress_tremor_avg = stress_tremor_avg/audio_time_length
+    print "stress microtremor avg freq is {}".format(stress_tremor_avg)
+    if stress_tremor_avg > 12:
         print "subject is under stress"
-    elif stresstremoravg < 8:
+    elif stress_tremor_avg < 8:
         print "subject is under stress"
     else:
         print "subject is NOT under stress"
 
-    #plt.plot(mydata)
-    #plt.show()
-    return stresstremoravg
+    return stress_tremor_avg
 
-def getAudioFile(argv):
-    inputfile = ''
+
+def get_audio_file(argv):
+    input_file = ''
 
     try:
         opts, args = getopt.getopt(argv,"hi:o:",["ifile="])
@@ -80,10 +84,10 @@ def getAudioFile(argv):
            print 'python StressDetectorDesktop.py -i <inputfile>'
            sys.exit()
        elif opt in ("-i", "--ifile"):
-           inputfile = arg
+           input_file = arg
 
-    if not os.path.isfile(os.getcwd() + "/" + inputfile):
+    if not os.path.isfile(os.getcwd() + "/" + input_file):
         # file does NOT exist
         print "File does NOT exist, will exit"
         sys.exit(2)
-    return inputfile
+    return input_file
