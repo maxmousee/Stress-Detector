@@ -14,44 +14,45 @@ import numpy as np
 import utilsStressDetector
 
 
-def notfound():
-	return json.dumps({'ok':0, 'errcode': 404})
+def not_found():
+    return json.dumps({'ok':0, 'errcode': 404})
 
 
-def internalerror():
-	return json.dumps({'ok':0, 'errcode': 500})
+def internal_error():
+    return json.dumps({'ok':0, 'errcode': 500})
 
 
 urls = (
-	'/(.*)', 'processAudio'
+    '/(.*)', 'processAudio'
 )
 
 app = web.application(urls, globals())
-app.notfound = notfound
-app.internalerror = internalerror
+app.not_found = not_found
+app.internal_error = internal_error
+
 
 class processAudio:
-	def POST(self,  method_id):
-		dat2 = web.data()
-		dat2 = dat2[2:-2]
-		dat1 = np.fromstring(dat2, dtype=int, sep=', ')
-		rate1 = len(dat1)
-		myemd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
-		countzeros = utilsStressDetector.getZeroCrossings(myemd)
-		audiotimelength = len(dat1)/float(rate1)
+    def POST(self,  method_id):
+        dat2 = web.data()
+        dat2 = dat2[2:-2]
+        dat1 = np.fromstring(dat2, dtype=int, sep=', ')
+        rate1 = len(dat1)
+        the_emd = emd.emd(dat1, extrapolation=None, nimfs=8, shifting_distance=0.2)
+        count_zeros = utilsStressDetector.getZeroCrossings(the_emd)
+        audio_time_length = len(dat1)/float(rate1)
 
-		stresstremoravg = countzeros - 1
-		stresstremoravg = stresstremoravg/audiotimelength
-		understress = False
-		if stresstremoravg > 12:
-			understress = True
-		elif stresstremoravg < 8:
-			understress = True
+        stress_tremor_avg = count_zeros - 1
+        stress_tremor_avg = stress_tremor_avg/audio_time_length
+        under_stress = False
+        if stress_tremor_avg > 12:
+            under_stress = True
+        elif stress_tremor_avg < 8:
+            under_stress = True
 
-		pyDict = {'understress':understress}
-		web.header('Content-Type', 'application/json')
-		return json.dumps(pyDict)
+        pyDict = {'under_stress':under_stress}
+        web.header('Content-Type', 'application/json')
+        return json.dumps(pyDict)
 
 
 if __name__ == "__main__":
-	app.run()
+    app.run()
