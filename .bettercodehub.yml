@@ -2,3 +2,4 @@ exclude:
 - /iOS/VSD/.*
 - .*/Python/emd\.py
 - .*/Python/utils\.py
+- .*/Python/visualization\.py
