@@ -12,7 +12,7 @@ import utils_stress_detector
 def main(argv):
     input_file = utils_stress_detector.get_audio_file(argv)
     the_data = utils_stress_detector.get_audio_data_from_file(input_file)
-    sample_rate = utils_stress_detector.get_audio_length_from_file(input_file)
+    sample_rate = utils_stress_detector.get_audio_sample_rate_from_file(input_file)
     stress_tremor_average = utils_stress_detector.get_stress_tremor_average_from_data(the_data, sample_rate)
     print "stress microtremor avg freq is {}".format(stress_tremor_average)
     if stress_tremor_average > 12:

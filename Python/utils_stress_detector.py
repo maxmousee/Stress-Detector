@@ -16,7 +16,7 @@ def plot_data(the_data):
     plt.show()
 
 
-def get_audio_length_from_file(input_file):
+def get_audio_sample_rate_from_file(input_file):
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return rate1
 
