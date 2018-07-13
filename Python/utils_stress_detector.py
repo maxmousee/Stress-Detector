@@ -16,14 +16,12 @@ def plot_data(the_data):
     plt.show()
 
 
-def get_audio_length_from_file(argv):
-    input_file = get_audio_file(argv)
+def get_audio_length_from_file(input_file):
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return rate1
 
 
-def get_audio_data_from_file(argv):
-    input_file = get_audio_file(argv)
+def get_audio_data_from_file(input_file):
     rate1,dat1 = wavfile.read(os.getcwd() + "/" + input_file)
     return dat1
 
@@ -56,10 +54,9 @@ def get_zero_crossings(the_emd):
     return count_zeros
 
 
-def get_stress_tremor_average_from_file(the_data, argv):
+def get_stress_tremor_average_from_data(the_data, rate1):
     the_emd = extract_emd(the_data)
     count_zeros = get_zero_crossings(the_emd)
-    rate1 = get_audio_length_from_file(argv)
     audio_time_length = len(the_data)/float(rate1)
 
     stress_tremor_avg = count_zeros - 1
