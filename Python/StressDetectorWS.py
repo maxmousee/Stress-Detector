@@ -15,15 +15,15 @@ import utils_stress_detector
 
 
 def not_found():
-    return json.dumps({'ok':0, 'errcode': 404})
+    return json.dumps({'ok': 0, 'errcode': 404})
 
 
 def internal_error():
-    return json.dumps({'ok':0, 'errcode': 500})
+    return json.dumps({'ok': 0, 'errcode': 500})
 
 
 urls = (
-    '/(.*)', 'processAudio'
+    '/(.*)', 'ProcessAudio'
 )
 
 app = web.application(urls, globals())
@@ -31,7 +31,10 @@ app.not_found = not_found
 app.internal_error = internal_error
 
 
-class processAudio:
+class ProcessAudio:
+    def __init__(self):
+        return
+
     def POST(self,  method_id):
         dat2 = web.data()
         dat2 = dat2[2:-2]
