@@ -1,8 +1,6 @@
 ## Stress-Detector
 
-Realtime, offline stress detection framework and App sample for iOS.
-
-Writen using MATLAB and converted to C/C++.
+Voice Stress Detector API, Python RESTful Web Service and Mobile Apps.
 
 Sample rate: 8KHz.
 
@@ -15,7 +13,5 @@ Known issues: random crashes on iOS [invalid memory access]
 [![CI Status](https://circleci.com/gh/maxmousee/Stress-Detector.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/maxmousee/Stress-Detector)
 
 [![BCH compliance](https://bettercodehub.com/edge/badge/maxmousee/Stress-Detector?branch=master)](https://bettercodehub.com/)
-
-Voice Stress Detector API, Python RESTful Web Service and Mobile Apps.
 
 Contributions are welcome.
