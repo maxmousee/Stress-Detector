@@ -19,10 +19,12 @@
  %ylabel('|P1(f)|')
  
  [x, Fs] = audioread('rain_man_driver_8000.wav');
- expanded = zeros(8192,1,'double');
+ expanded = zeros(size(8000));
  
  for idx = 1:numel(x)
     expanded(idx) = x(idx);
  end
 
-vsd(expanded);
+ transp = expanded';
+ 
+vsd(transp);

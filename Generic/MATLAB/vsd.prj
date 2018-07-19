@@ -1,7 +1,7 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2016a">
-  <configuration build-checksum="1284467414" file="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.prj" location="/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="4153722237" file="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.prj" location="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
-      <param.BuiltInstrumentedMex />
+      <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
       <param.WorkingFolder>option.WorkingFolder.Project</param.WorkingFolder>
       <param.SpecifiedWorkingFolder />
@@ -16,6 +16,9 @@
       <param.EnableVariableSizing>true</param.EnableVariableSizing>
       <param.DynamicMemoryAllocation>option.DynamicMemoryAllocation.Threshold</param.DynamicMemoryAllocation>
       <param.DynamicMemoryAllocationThreshold>65536</param.DynamicMemoryAllocationThreshold>
+      <param.RowMajor>option.RowMajor.ColumnMajor</param.RowMajor>
+      <param.HighlightPotentialRowMajorIssues>true</param.HighlightPotentialRowMajorIssues>
+      <param.PreserveArrayDimensions>false</param.PreserveArrayDimensions>
       <param.StackUsageMax>200000</param.StackUsageMax>
       <param.FilePartitionMethod>option.FilePartitionMethod.MapMFileToCFile</param.FilePartitionMethod>
       <param.GenerateComments>true</param.GenerateComments>
@@ -24,10 +27,13 @@
       <param.EnableDebugging>false</param.EnableDebugging>
       <param.GenerateReport>true</param.GenerateReport>
       <param.LaunchReport>false</param.LaunchReport>
+      <param.ReportPotentialDifferences>true</param.ReportPotentialDifferences>
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
       <param.VerificationMode>option.VerificationMode.None</param.VerificationMode>
-      <param.VerificationStatus>option.VerificationStatus.FailedTest</param.VerificationStatus>
+      <param.VerificationStatus>option.VerificationStatus.Passed</param.VerificationStatus>
+      <param.EnableMexProfiling>false</param.EnableMexProfiling>
+      <var.BuiltWithMexProfiling>false</var.BuiltWithMexProfiling>
       <param.CustomSourceCode />
       <param.CustomHeaderCode />
       <param.CustomInitializer />
@@ -53,7 +59,7 @@
       <param.ConstantInputs>option.ConstantInputs.CheckValues</param.ConstantInputs>
       <param.EnableCRICodeCoverage>true</param.EnableCRICodeCoverage>
       <param.EnableJIT>false</param.EnableJIT>
-      <param.EnableJITSilentBailOut />
+      <param.EnableJITSilentBailOut>false</param.EnableJITSilentBailOut>
       <param.CheckForIssuesJIT>true</param.CheckForIssuesJIT>
       <unset>
         <param.BuiltInstrumentedMex />
@@ -71,6 +77,9 @@
         <param.EnableVariableSizing />
         <param.DynamicMemoryAllocation />
         <param.DynamicMemoryAllocationThreshold />
+        <param.RowMajor />
+        <param.HighlightPotentialRowMajorIssues />
+        <param.PreserveArrayDimensions />
         <param.StackUsageMax />
         <param.FilePartitionMethod />
         <param.GenerateComments />
@@ -79,9 +88,12 @@
         <param.EnableDebugging />
         <param.GenerateReport />
         <param.LaunchReport />
+        <param.ReportPotentialDifferences />
         <param.DefaultTestFile />
         <param.MergeInstrumentationResults />
         <param.VerificationMode />
+        <param.EnableMexProfiling />
+        <var.BuiltWithMexProfiling />
         <param.CustomSourceCode />
         <param.CustomHeaderCode />
         <param.CustomInitializer />
@@ -124,6 +136,9 @@
       <param.EnableVariableSizing>true</param.EnableVariableSizing>
       <param.DynamicMemoryAllocation>option.DynamicMemoryAllocation.Threshold</param.DynamicMemoryAllocation>
       <param.DynamicMemoryAllocationThreshold>65536</param.DynamicMemoryAllocationThreshold>
+      <param.RowMajor>option.RowMajor.ColumnMajor</param.RowMajor>
+      <param.HighlightPotentialRowMajorIssues>true</param.HighlightPotentialRowMajorIssues>
+      <param.PreserveArrayDimensions>false</param.PreserveArrayDimensions>
       <param.StackUsageMax>200000</param.StackUsageMax>
       <param.MultiInstanceCode>false</param.MultiInstanceCode>
       <param.FilePartitionMethod>option.FilePartitionMethod.MapMFileToCFile</param.FilePartitionMethod>
@@ -154,7 +169,10 @@
       <param.GenerateCodeReplacementReport>false</param.GenerateCodeReplacementReport>
       <param.HighlightPotentialDataTypeIssues>false</param.HighlightPotentialDataTypeIssues>
       <param.LaunchReport>false</param.LaunchReport>
+      <param.ReportPotentialDifferences>true</param.ReportPotentialDifferences>
       <param.SILDebugging>false</param.SILDebugging>
+      <param.SILPILCheckConstantInputs>true</param.SILPILCheckConstantInputs>
+      <param.SILPILSyncGlobalData>true</param.SILPILSyncGlobalData>
       <param.CodeExecutionProfiling>false</param.CodeExecutionProfiling>
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
@@ -169,21 +187,21 @@
       <param.CustomSource />
       <param.CustomLibrary />
       <param.PostCodeGenCommand />
-      <param.TargetLangStandard>C++03 (ISO)</param.TargetLangStandard>
+      <param.TargetLangStandard>C89/C90 (ANSI)</param.TargetLangStandard>
       <param.CodeReplacementLibrary>None</param.CodeReplacementLibrary>
-      <param.DeprecatedCRLFlag>false</param.DeprecatedCRLFlag>
+      <param.DeprecatedCRLFlag />
       <param.SameHardware>true</param.SameHardware>
       <param.Toolchain>Automatically locate an installed toolchain</param.Toolchain>
       <param.BuildConfiguration>Faster Builds</param.BuildConfiguration>
       <param.CustomToolchainOptions />
-      <var.ToolchainSettingsVisible>true</var.ToolchainSettingsVisible>
+      <var.ToolchainSettingsVisible />
       <param.target.Data>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;ctdata&gt;&lt;configuredHardware/&gt;&lt;/ctdata&gt;</param.target.Data>
       <param.target.ActiveType>option.target.TargetType.Custom</param.target.ActiveType>
       <param.target.ActiveTarget />
       <param.HardwareVendor.Production>Generic</param.HardwareVendor.Production>
       <param.HardwareType.Production>Unspecified (assume 32-bit Generic)</param.HardwareType.Production>
       <param.HWDeviceType.Production />
-      <var.instance.enabled.Production>true</var.instance.enabled.Production>
+      <var.instance.enabled.Production />
       <param.HardwareSizeChar.Production>8</param.HardwareSizeChar.Production>
       <param.HardwareSizeShort.Production>16</param.HardwareSizeShort.Production>
       <param.HardwareSizeInt.Production>32</param.HardwareSizeInt.Production>
@@ -204,7 +222,7 @@
       <param.HardwareVendor.Target>Generic</param.HardwareVendor.Target>
       <param.HardwareType.Target>Unspecified (assume 32-bit Generic)</param.HardwareType.Target>
       <param.HWDeviceType.Target />
-      <var.instance.enabled.Target>false</var.instance.enabled.Target>
+      <var.instance.enabled.Target />
       <param.HardwareSizeChar.Target>8</param.HardwareSizeChar.Target>
       <param.HardwareSizeShort.Target>16</param.HardwareSizeShort.Target>
       <param.HardwareSizeInt.Target>32</param.HardwareSizeInt.Target>
@@ -232,12 +250,12 @@
       <param.GenerateExampleMain>option.GenerateExampleMain.GenerateCodeOnly</param.GenerateExampleMain>
       <param.PreserveVariableNames>option.PreserveVariableNames.None</param.PreserveVariableNames>
       <param.TargetLang>option.TargetLang.CPP</param.TargetLang>
-      <param.CCompilerOptimization>option.CCompilerOptimization.Off</param.CCompilerOptimization>
+      <param.CCompilerOptimization />
       <param.CCompilerCustomOptimizations />
       <param.GenerateMakefile>true</param.GenerateMakefile>
       <param.BuildToolEnable>false</param.BuildToolEnable>
-      <param.MakeCommand>make_rtw</param.MakeCommand>
-      <param.TemplateMakefile>default_tmf</param.TemplateMakefile>
+      <param.MakeCommand />
+      <param.TemplateMakefile />
       <param.BuildToolConfiguration />
       <param.InlineThreshold>10</param.InlineThreshold>
       <param.InlineThresholdMax>200</param.InlineThresholdMax>
@@ -249,7 +267,18 @@
       <param.InitFltsAndDblsToZero>true</param.InitFltsAndDblsToZero>
       <param.PassStructByReference>true</param.PassStructByReference>
       <param.CustomLAPACKCallback />
+      <param.CustomFFTCallback />
+      <param.GenerateDefaultInSwitch>false</param.GenerateDefaultInSwitch>
+      <param.EnableTraceability>true</param.EnableTraceability>
       <param.UseECoderFeatures>true</param.UseECoderFeatures>
+      <param.psCustomPrjState>false</param.psCustomPrjState>
+      <param.psCustomProjectFile />
+      <param.psCheckConfValue>option.psCheckConfValue.onWarnCheckConfDlg</param.psCheckConfValue>
+      <param.psUniqueOutPutState>true</param.psUniqueOutPutState>
+      <param.psOpenResultsState>true</param.psOpenResultsState>
+      <param.psProductModeValue>option.psProductModeValue.codeProver</param.psProductModeValue>
+      <param.psQuickConfValue>option.psQuickConfValue.proj</param.psQuickConfValue>
+      <param.psOutputFolder>results_$codegenName$</param.psOutputFolder>
       <unset>
         <param.WorkingFolder />
         <param.SpecifiedWorkingFolder />
@@ -262,6 +291,9 @@
         <param.EnableVariableSizing />
         <param.DynamicMemoryAllocation />
         <param.DynamicMemoryAllocationThreshold />
+        <param.RowMajor />
+        <param.HighlightPotentialRowMajorIssues />
+        <param.PreserveArrayDimensions />
         <param.StackUsageMax />
         <param.MultiInstanceCode />
         <param.FilePartitionMethod />
@@ -292,7 +324,10 @@
         <param.GenerateCodeReplacementReport />
         <param.HighlightPotentialDataTypeIssues />
         <param.LaunchReport />
+        <param.ReportPotentialDifferences />
         <param.SILDebugging />
+        <param.SILPILCheckConstantInputs />
+        <param.SILPILSyncGlobalData />
         <param.CodeExecutionProfiling />
         <param.DefaultTestFile />
         <param.MergeInstrumentationResults />
@@ -378,7 +413,18 @@
         <param.InitFltsAndDblsToZero />
         <param.PassStructByReference />
         <param.CustomLAPACKCallback />
+        <param.CustomFFTCallback />
+        <param.GenerateDefaultInSwitch />
+        <param.EnableTraceability />
         <param.UseECoderFeatures />
+        <param.psCustomPrjState />
+        <param.psCustomProjectFile />
+        <param.psCheckConfValue />
+        <param.psUniqueOutPutState />
+        <param.psOpenResultsState />
+        <param.psProductModeValue />
+        <param.psQuickConfValue />
+        <param.psOutputFolder />
       </unset>
     </profile>
     <profile key="profile.hdl">
@@ -726,16 +772,17 @@
       </unset>
     </profile>
     <param.objective>option.objective.c</param.objective>
-    <param.WorkflowStep>workflowSummary</param.WorkflowStep>
+    <param.WorkflowStep>verifyCompatibility</param.WorkflowStep>
     <param.TestSnippets>
       <item>tst</item>
     </param.TestSnippets>
     <param.DefaultImportExportVariable>config</param.DefaultImportExportVariable>
-    <param.RowMajor>false</param.RowMajor>
+    <param.ExternalFcnMajority>column</param.ExternalFcnMajority>
     <param.UseGlobals>option.UseGlobals.No</param.UseGlobals>
     <param.outputfile>${PROJECT_ROOT}/codegen/lib/vsd/vsd.a</param.outputfile>
     <param.version>R2012a</param.version>
     <param.HasECoderFeatures>true</param.HasECoderFeatures>
+    <param.HasGpuCoder>false</param.HasGpuCoder>
     <param.mex.mainhtml />
     <param.grt.mainhtml />
     <param.CallGeneratedCodeFromTest>true</param.CallGeneratedCodeFromTest>
@@ -746,7 +793,7 @@
     <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
     <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <param.EnableScreener>true</param.EnableScreener>
-    <param.AnnotationChecksum>448081885</param.AnnotationChecksum>
+    <param.AnnotationChecksum>3668093519</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
@@ -757,13 +804,15 @@
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
     <var.gc.preBuildChecksum>1284467414</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen/mex/vsd</var.cfi.lastOutputRoot>
-    <var.cfi.preBuildChecksum>3568045644</var.cfi.preBuildChecksum>
+    <var.cfi.preBuildChecksum>3508765653</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>tst</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
     <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;3997735645&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
-    <param.forceMexBuild>false</param.forceMexBuild>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <param.forceMexBuild>true</param.forceMexBuild>
     <param.configImportActive>false</param.configImportActive>
+    <var.isGpuCoder>false</var.isGpuCoder>
+    <var.notGpuCoder>true</var.notGpuCoder>
     <var.boundToGui>true</var.boundToGui>
     <param.mex.outputfile>vsd_mex</param.mex.outputfile>
     <param.grt.outputfile>vsd</param.grt.outputfile>
@@ -810,18 +859,35 @@
     <param.fpDataRoot />
     <param.fpUserFileChecksum />
     <var.snapshotChecksum />
+    <param.fpLastConvertChecksum />
     <var.functionBlockSid />
     <param.fptSignedness>false</param.fptSignedness>
     <var.FixedPointAnalysisMode>option.FixedPointAnalysisMode.Sim</var.FixedPointAnalysisMode>
     <param.FixedPointUseDesignRanges>false</param.FixedPointUseDesignRanges>
+    <param.gpu.Enabled>false</param.gpu.Enabled>
+    <param.gpu.KernelNamePrefix />
+    <param.gpu.MallocMode />
+    <param.gpu.MallocThreshold>200</param.gpu.MallocThreshold>
+    <param.gpu.StackLimitPerThread>1024</param.gpu.StackLimitPerThread>
+    <param.gpu.EnableCUBLAS>false</param.gpu.EnableCUBLAS>
+    <param.gpu.EnableCUSOLVER>false</param.gpu.EnableCUSOLVER>
+    <param.gpu.EnableCUFFT>false</param.gpu.EnableCUFFT>
+    <param.gpu.Benchmarking>false</param.gpu.Benchmarking>
+    <param.gpu.SafeBuild>true</param.gpu.SafeBuild>
+    <param.gpu.ComputeCapability />
+    <param.gpu.CustomComputeCapability />
+    <param.gpu.CompilerFlags />
+    <var.checkIssuesGpu>false</var.checkIssuesGpu>
+    <var.hasGpu>false</var.hasGpu>
     <unset>
       <param.objective />
       <param.DefaultImportExportVariable />
-      <param.RowMajor />
+      <param.ExternalFcnMajority />
       <param.UseGlobals />
       <param.outputfile />
       <param.version />
       <param.HasECoderFeatures />
+      <param.HasGpuCoder />
       <param.mex.mainhtml />
       <param.grt.mainhtml />
       <param.CallGeneratedCodeFromTest />
@@ -838,8 +904,9 @@
       <var.redirectedInputTypeData />
       <param.unifiedParamStorage />
       <var.outdatedOnRestore />
-      <param.forceMexBuild />
       <param.configImportActive />
+      <var.isGpuCoder />
+      <var.notGpuCoder />
       <param.mex.outputfile />
       <param.grt.outputfile />
       <param.EnableAutoExtrinsicCalls />
@@ -882,14 +949,30 @@
       <param.fpDataRoot />
       <param.fpUserFileChecksum />
       <var.snapshotChecksum />
+      <param.fpLastConvertChecksum />
       <var.functionBlockSid />
       <param.fptSignedness />
       <var.FixedPointAnalysisMode />
       <param.FixedPointUseDesignRanges />
+      <param.gpu.Enabled />
+      <param.gpu.KernelNamePrefix />
+      <param.gpu.MallocMode />
+      <param.gpu.MallocThreshold />
+      <param.gpu.StackLimitPerThread />
+      <param.gpu.EnableCUBLAS />
+      <param.gpu.EnableCUSOLVER />
+      <param.gpu.EnableCUFFT />
+      <param.gpu.Benchmarking />
+      <param.gpu.SafeBuild />
+      <param.gpu.ComputeCapability />
+      <param.gpu.CustomComputeCapability />
+      <param.gpu.CompilerFlags />
+      <var.checkIssuesGpu />
+      <var.hasGpu />
     </unset>
     <fileset.entrypoints>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}/vsd.m">
-        <Marker>1482371611357</Marker>
+        <Marker>1532026536592</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench>
@@ -897,32 +980,34 @@
     </fileset.testbench>
     <fileset.inputtypes>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}/vsd.m">
-        <Inputs fileName="vsd.m" functionName="vsd">
+        <Inputs fileName="vsd.m" functionName="vsd" nargout="1">
           <Input Name="input" typeId="0" />
           <idpTable>
             <type typeId="0">
               <Class>double</Class>
-              <Size>1024 x 1</Size>
+              <Size>:8000 x 1</Size>
               <Value />
               <InitialValue />
-              <UserDefined>true</UserDefined>
+              <UserDefined>false</UserDefined>
               <Complex>false</Complex>
+              <Sparse>false</Sparse>
             </type>
           </idpTable>
         </Inputs>
       </file>
     </fileset.inputtypes>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/codegen/lib/vsd" name="vsd.a" optional="false">/Users/maxmousee/repo/Stress-Detector/trunk/Generic/MATLAB/codegen/lib/vsd/vsd.a</file>
+      <file location="${PROJECT_ROOT}/codegen/lib/vsd" name="vsd.a" optional="false">/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/codegen/lib/vsd/vsd.a</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>/Applications/MATLAB/MATLAB_R2016b.app</root>
+      <root>/Applications/MATLAB_R2018a.app</root>
       <toolboxes>
         <toolbox name="fixedpoint" />
         <toolbox name="matlabcoder" />
         <toolbox name="matlabhdlcoder" />
         <toolbox name="embeddedcoder" />
+        <toolbox name="polyspacebugfinder" />
       </toolboxes>
       <toolbox>
         <fixedpoint>
@@ -944,6 +1029,11 @@
           <enabled>true</enabled>
         </embeddedcoder>
       </toolbox>
+      <toolbox>
+        <polyspacebugfinder>
+          <enabled>true</enabled>
+        </polyspacebugfinder>
+      </toolbox>
     </matlab>
     <platform>
       <unix>true</unix>
@@ -954,7 +1044,7 @@
       <vista>false</vista>
       <linux>false</linux>
       <solaris>false</solaris>
-      <osver>10.12.2</osver>
+      <osver>10.13.6</osver>
       <os32>false</os32>
       <os64>true</os64>
       <arch>maci64</arch>
