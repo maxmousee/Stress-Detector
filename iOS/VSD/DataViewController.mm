@@ -96,7 +96,7 @@
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
             [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
             [stressTL setString:stressMessage];
-        } else if(stressCoef <= 3 || stressCoef > 42) {
+        } else if(stressCoef <= 3 || stressCoef > 50) {
             //[stressMessage appendString:@"can't process"];
             //stressTL.backgroundColor = [UIColor blackColor].CGColor;
         } else {
