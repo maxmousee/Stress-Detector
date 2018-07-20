@@ -59,8 +59,8 @@
             
             dispatch_queue_t vsdQueue = dispatch_queue_create("VSD_Queue",NULL);
             dispatch_async(vsdQueue, ^{
-                audioController = [[AudioController alloc] init];
-                [audioController startIOUnit];
+                self->audioController = [[AudioController alloc] init];
+                [self->audioController startIOUnit];
             });
         }
         else
