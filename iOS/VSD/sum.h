@@ -1,11 +1,11 @@
 //
-// File: emd.h
+// File: sum.h
 //
 // MATLAB Coder version            : 4.0
 // C/C++ source code generated on  : 19-Jul-2018 21:01:46
 //
-#ifndef EMD_H
-#define EMD_H
+#ifndef SUM_H
+#define SUM_H
 
 // Include Files
 #include <stddef.h>
@@ -14,12 +14,13 @@
 #include "vsd_types.h"
 
 // Function Declarations
-extern void emd(const double x[8000], double imf_data[], int imf_size[2]);
+extern double b_sum(const double x[8000]);
+extern double sum(const boolean_T x[7999]);
 
 #endif
 
 //
-// File trailer for emd.h
+// File trailer for sum.h
 //
 // [EOF]
 //

@@ -1,11 +1,11 @@
 //
-// File: emd.h
+// File: vsd.h
 //
 // MATLAB Coder version            : 4.0
 // C/C++ source code generated on  : 19-Jul-2018 21:01:46
 //
-#ifndef EMD_H
-#define EMD_H
+#ifndef VSD_H
+#define VSD_H
 
 // Include Files
 #include <stddef.h>
@@ -14,12 +14,12 @@
 #include "vsd_types.h"
 
 // Function Declarations
-extern void emd(const double x[8000], double imf_data[], int imf_size[2]);
+extern double vsd(const double input_data[], const int input_size);
 
 #endif
 
 //
-// File trailer for emd.h
+// File trailer for vsd.h
 //
 // [EOF]
 //

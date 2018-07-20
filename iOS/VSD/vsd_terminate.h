@@ -1,11 +1,11 @@
 //
-// File: emd.h
+// File: vsd_terminate.h
 //
 // MATLAB Coder version            : 4.0
 // C/C++ source code generated on  : 19-Jul-2018 21:01:46
 //
-#ifndef EMD_H
-#define EMD_H
+#ifndef VSD_TERMINATE_H
+#define VSD_TERMINATE_H
 
 // Include Files
 #include <stddef.h>
@@ -14,12 +14,12 @@
 #include "vsd_types.h"
 
 // Function Declarations
-extern void emd(const double x[8000], double imf_data[], int imf_size[2]);
+extern void vsd_terminate();
 
 #endif
 
 //
-// File trailer for emd.h
+// File trailer for vsd_terminate.h
 //
 // [EOF]
 //

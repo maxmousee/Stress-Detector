@@ -1,11 +1,11 @@
 //
-// File: emd.h
+// File: abs.h
 //
 // MATLAB Coder version            : 4.0
 // C/C++ source code generated on  : 19-Jul-2018 21:01:46
 //
-#ifndef EMD_H
-#define EMD_H
+#ifndef ABS_H
+#define ABS_H
 
 // Include Files
 #include <stddef.h>
@@ -14,12 +14,12 @@
 #include "vsd_types.h"
 
 // Function Declarations
-extern void emd(const double x[8000], double imf_data[], int imf_size[2]);
+extern void b_abs(const emxArray_creal_T *x, double y_data[], int y_size[2]);
 
 #endif
 
 //
-// File trailer for emd.h
+// File trailer for abs.h
 //
 // [EOF]
 //

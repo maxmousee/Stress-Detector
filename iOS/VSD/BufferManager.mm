@@ -18,9 +18,6 @@ inputBufferLen(inMaxFramesPerSlice)
 {
     inputBuffer = (Float32*) calloc(inMaxFramesPerSlice, sizeof(Float32));
     inputBufferFrameIndex = 0;
-    int num_taps = 768; //950, 0.18
-    double lowPassFreq = 0.040; //0.017
-    my_filter = new Filter(LPF, num_taps, 8000, lowPassFreq);
 }
 
 BufferManager::~BufferManager()
@@ -42,16 +39,12 @@ void BufferManager::CopyAudioDataToInputBuffer( Float32* inData, UInt32 numFrame
             
             double stressCoefficient = 0.0;
             double inputBufferDouble[kBufferLength];
-            if( my_filter->get_error_flag() < 0 ) {
-                NSLog(@"ERR CREATING LOW PASS FILTER\n");
-                exit(1);
-            }
-            for(int i = 0; i < kBufferLength - 1; i++){
-                inputBufferDouble[i] = my_filter->do_sample((double)inputBuffer[i+1]);
-            }
-            inputBufferDouble[kBufferLength - 1] = (double)inputBuffer[kBufferLength - 1];
             
-            stressCoefficient = processAudio(inputBufferDouble, finalIMF);
+            for(int i = 0; i < kBufferLength - 1; i++){
+                inputBufferDouble[i] = inputBuffer[i];
+            }
+            
+            stressCoefficient = vsd(inputBufferDouble, kBufferLength);
 
             #ifndef NDEBUG
             NSLog(@"%.2f Hz \n", stressCoefficient);
