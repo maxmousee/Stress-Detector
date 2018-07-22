@@ -22,8 +22,6 @@ def main(argv):
     else:
         print "subject is NOT under stress"
 
-    utils_stress_detector.plot_data(the_data)
-
 
 if __name__ == "__main__":
    main(sys.argv[1:])
