@@ -1,32 +1,32 @@
-//
-// File: pwchcore.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: pwchcore.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <string.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "pwchcore.h"
 #include "vsd_emxutil.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : const double x_data[]
-//                const int x_size[2]
-//                const double y_data[]
-//                int yoffset
-//                const double s_data[]
-//                const double dx_data[]
-//                const double divdif_data[]
-//                double pp_breaks_data[]
-//                int pp_breaks_size[2]
-//                emxArray_real_T *pp_coefs
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x_data[]
+ *                const int x_size[2]
+ *                const double y_data[]
+ *                int yoffset
+ *                const double s_data[]
+ *                const double dx_data[]
+ *                const double divdif_data[]
+ *                double pp_breaks_data[]
+ *                int pp_breaks_size[2]
+ *                emxArray_real_T *pp_coefs
+ * Return Type  : void
+ */
 void b_pwchcore(const double x_data[], const int x_size[2], const double y_data[],
                 int yoffset, const double s_data[], const double dx_data[],
                 const double divdif_data[], double pp_breaks_data[], int
@@ -62,16 +62,16 @@ void b_pwchcore(const double x_data[], const int x_size[2], const double y_data[
   }
 }
 
-//
-// Arguments    : const double x_data[]
-//                const int x_size[2]
-//                const double y_data[]
-//                const double s[2]
-//                double pp_breaks_data[]
-//                int pp_breaks_size[2]
-//                double pp_coefs[4]
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x_data[]
+ *                const int x_size[2]
+ *                const double y_data[]
+ *                const double s[2]
+ *                double pp_breaks_data[]
+ *                int pp_breaks_size[2]
+ *                double pp_coefs[4]
+ * Return Type  : void
+ */
 void pwchcore(const double x_data[], const int x_size[2], const double y_data[],
               const double s[2], double pp_breaks_data[], int pp_breaks_size[2],
               double pp_coefs[4])
@@ -100,8 +100,8 @@ void pwchcore(const double x_data[], const int x_size[2], const double y_data[],
   }
 }
 
-//
-// File trailer for pwchcore.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for pwchcore.c
+ *
+ * [EOF]
+ */

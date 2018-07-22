@@ -1,19 +1,20 @@
-//
-// File: pwchcore.h
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: pwchcore.h
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
+
 #ifndef PWCHCORE_H
 #define PWCHCORE_H
 
-// Include Files
+/* Include Files */
 #include <stddef.h>
 #include <stdlib.h>
 #include "rtwtypes.h"
 #include "vsd_types.h"
 
-// Function Declarations
+/* Function Declarations */
 extern void b_pwchcore(const double x_data[], const int x_size[2], const double
   y_data[], int yoffset, const double s_data[], const double dx_data[], const
   double divdif_data[], double pp_breaks_data[], int pp_breaks_size[2],
@@ -24,8 +25,8 @@ extern void pwchcore(const double x_data[], const int x_size[2], const double
 
 #endif
 
-//
-// File trailer for pwchcore.h
-//
-// [EOF]
-//
+/*
+ * File trailer for pwchcore.h
+ *
+ * [EOF]
+ */

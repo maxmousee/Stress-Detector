@@ -1,22 +1,22 @@
-//
-// File: diff.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: diff.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "diff.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : const boolean_T x[7999]
-//                double y[7998]
-// Return Type  : void
-//
+/*
+ * Arguments    : const boolean_T x[7999]
+ *                double y[7998]
+ * Return Type  : void
+ */
 void b_diff(const boolean_T x[7999], double y[7998])
 {
   int ixLead;
@@ -37,11 +37,11 @@ void b_diff(const boolean_T x[7999], double y[7998])
   }
 }
 
-//
-// Arguments    : const double x[8000]
-//                double y[7999]
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x[8000]
+ *                double y[7999]
+ * Return Type  : void
+ */
 void diff(const double x[8000], double y[7999])
 {
   int ixLead;
@@ -62,8 +62,8 @@ void diff(const double x[8000], double y[7999])
   }
 }
 
-//
-// File trailer for diff.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for diff.c
+ *
+ * [EOF]
+ */

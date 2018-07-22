@@ -1,25 +1,25 @@
-//
-// File: fft.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: fft.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "fft.h"
 #include "vsd_emxutil.h"
 #include "fft1.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : const double x_data[]
-//                const int x_size[2]
-//                emxArray_creal_T *y
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x_data[]
+ *                const int x_size[2]
+ *                emxArray_creal_T *y
+ * Return Type  : void
+ */
 void fft(const double x_data[], const int x_size[2], emxArray_creal_T *y)
 {
   int b_size[2];
@@ -84,8 +84,8 @@ void fft(const double x_data[], const int x_size[2], emxArray_creal_T *y)
   emxFree_creal_T(&b_y1);
 }
 
-//
-// File trailer for fft.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for fft.c
+ *
+ * [EOF]
+ */

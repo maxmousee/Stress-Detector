@@ -1,26 +1,26 @@
-//
-// File: abs.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: abs.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <math.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "abs.h"
 
-// Function Declarations
+/* Function Declarations */
 static double rt_hypotd_snf(double u0, double u1);
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : double u0
-//                double u1
-// Return Type  : double
-//
+/*
+ * Arguments    : double u0
+ *                double u1
+ * Return Type  : double
+ */
 static double rt_hypotd_snf(double u0, double u1)
 {
   double y;
@@ -43,12 +43,12 @@ static double rt_hypotd_snf(double u0, double u1)
   return y;
 }
 
-//
-// Arguments    : const emxArray_creal_T *x
-//                double y_data[]
-//                int y_size[2]
-// Return Type  : void
-//
+/*
+ * Arguments    : const emxArray_creal_T *x
+ *                double y_data[]
+ *                int y_size[2]
+ * Return Type  : void
+ */
 void b_abs(const emxArray_creal_T *x, double y_data[], int y_size[2])
 {
   int nx;
@@ -61,8 +61,8 @@ void b_abs(const emxArray_creal_T *x, double y_data[], int y_size[2])
   }
 }
 
-//
-// File trailer for abs.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for abs.c
+ *
+ * [EOF]
+ */

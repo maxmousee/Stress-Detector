@@ -1,11 +1,11 @@
-//
-// File: fft1.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: fft1.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <math.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
@@ -13,7 +13,7 @@
 #include "vsd_emxutil.h"
 #include "bluesteinSetup.h"
 
-// Function Declarations
+/* Function Declarations */
 static void b_r2br_r2dit_trig(const creal_T x[16384], const double costab[8193],
   const double sintab[8193], creal_T y[16384]);
 static void bluestein(const double x_data[], const int x_size[2], const double
@@ -25,15 +25,15 @@ static void r2br_r2dit_trig(const creal_T x[15999], const double costab[8193],
 static void r2br_r2dit_trig_impl(const creal_T x[8000], const double costab[8193],
   const double sintab[8193], creal_T y[16384]);
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : const creal_T x[16384]
-//                const double costab[8193]
-//                const double sintab[8193]
-//                creal_T y[16384]
-// Return Type  : void
-//
+/*
+ * Arguments    : const creal_T x[16384]
+ *                const double costab[8193]
+ *                const double sintab[8193]
+ *                creal_T y[16384]
+ * Return Type  : void
+ */
 static void b_r2br_r2dit_trig(const creal_T x[16384], const double costab[8193],
   const double sintab[8193], creal_T y[16384])
 {
@@ -122,17 +122,17 @@ static void b_r2br_r2dit_trig(const creal_T x[16384], const double costab[8193],
   }
 }
 
-//
-// Arguments    : const double x_data[]
-//                const int x_size[2]
-//                const double costab[8193]
-//                const double sintab[8193]
-//                const double costabinv[8193]
-//                const double sintabinv[8193]
-//                const creal_T wwc[15999]
-//                creal_T y[8000]
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x_data[]
+ *                const int x_size[2]
+ *                const double costab[8193]
+ *                const double sintab[8193]
+ *                const double costabinv[8193]
+ *                const double sintabinv[8193]
+ *                const creal_T wwc[15999]
+ *                creal_T y[8000]
+ * Return Type  : void
+ */
 static void bluestein(const double x_data[], const int x_size[2], const double
                       costab[8193], const double sintab[8193], const double
                       costabinv[8193], const double sintabinv[8193], const
@@ -180,13 +180,13 @@ static void bluestein(const double x_data[], const int x_size[2], const double
   }
 }
 
-//
-// Arguments    : const creal_T x[15999]
-//                const double costab[8193]
-//                const double sintab[8193]
-//                creal_T y[16384]
-// Return Type  : void
-//
+/*
+ * Arguments    : const creal_T x[15999]
+ *                const double costab[8193]
+ *                const double sintab[8193]
+ *                creal_T y[16384]
+ * Return Type  : void
+ */
 static void r2br_r2dit_trig(const creal_T x[15999], const double costab[8193],
   const double sintab[8193], creal_T y[16384])
 {
@@ -275,13 +275,13 @@ static void r2br_r2dit_trig(const creal_T x[15999], const double costab[8193],
   }
 }
 
-//
-// Arguments    : const creal_T x[8000]
-//                const double costab[8193]
-//                const double sintab[8193]
-//                creal_T y[16384]
-// Return Type  : void
-//
+/*
+ * Arguments    : const creal_T x[8000]
+ *                const double costab[8193]
+ *                const double sintab[8193]
+ *                creal_T y[16384]
+ * Return Type  : void
+ */
 static void r2br_r2dit_trig_impl(const creal_T x[8000], const double costab[8193],
   const double sintab[8193], creal_T y[16384])
 {
@@ -370,15 +370,15 @@ static void r2br_r2dit_trig_impl(const creal_T x[8000], const double costab[8193
   }
 }
 
-//
-// Arguments    : const double x_data[]
-//                const int x_size[2]
-//                const double costab[8193]
-//                const double sintab[8193]
-//                const double sintabinv[8193]
-//                emxArray_creal_T *y
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x_data[]
+ *                const int x_size[2]
+ *                const double costab[8193]
+ *                const double sintab[8193]
+ *                const double sintabinv[8193]
+ *                emxArray_creal_T *y
+ * Return Type  : void
+ */
 void dobluesteinfft(const double x_data[], const int x_size[2], const double
                     costab[8193], const double sintab[8193], const double
                     sintabinv[8193], emxArray_creal_T *y)
@@ -424,12 +424,12 @@ void dobluesteinfft(const double x_data[], const int x_size[2], const double
   }
 }
 
-//
-// Arguments    : double costab[8193]
-//                double sintab[8193]
-//                double sintabinv[8193]
-// Return Type  : void
-//
+/*
+ * Arguments    : double costab[8193]
+ *                double sintab[8193]
+ *                double sintabinv[8193]
+ * Return Type  : void
+ */
 void generate_twiddle_tables(double costab[8193], double sintab[8193], double
   sintabinv[8193])
 {
@@ -458,8 +458,8 @@ void generate_twiddle_tables(double costab[8193], double sintab[8193], double
   }
 }
 
-//
-// File trailer for fft1.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for fft1.c
+ *
+ * [EOF]
+ */

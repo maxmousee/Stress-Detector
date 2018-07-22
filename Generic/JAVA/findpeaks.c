@@ -2,7 +2,7 @@
  * File: findpeaks.c
  *
  * MATLAB Coder version            : 4.0
- * C/C++ source code generated on  : 20-Jul-2018 00:14:01
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
  */
 
 /* Include Files */
@@ -27,7 +27,7 @@ void findpeaks(const double x[8000], double n_data[], int n_size[2])
   static double dv2[7999];
   int i2;
   boolean_T bv0[7999];
-  double dv3[7998];
+  static double dv3[7998];
   int idx;
   boolean_T b_x[7998];
   int ii;

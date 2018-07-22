@@ -2,7 +2,7 @@
  * File: vsd.c
  *
  * MATLAB Coder version            : 4.0
- * C/C++ source code generated on  : 20-Jul-2018 00:14:01
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
  */
 
 /* Include Files */
@@ -34,7 +34,7 @@ double vsd(const double input_data[], const int input_size[1])
   int loop_ub;
   double re;
   double im;
-  double P1[513];
+  double P1[4001];
   boolean_T exitg1;
   (void)input_size;
   emxInit_creal_T(&r0, 2);
@@ -57,22 +57,22 @@ double vsd(const double input_data[], const int input_size[1])
     re = r0->data[idx].re;
     im = r0->data[idx].im;
     if (im == 0.0) {
-      r1->data[idx].re = re / 1024.0;
+      r1->data[idx].re = re / 8000.0;
       r1->data[idx].im = 0.0;
     } else if (re == 0.0) {
       r1->data[idx].re = 0.0;
-      r1->data[idx].im = im / 1024.0;
+      r1->data[idx].im = im / 8000.0;
     } else {
-      r1->data[idx].re = re / 1024.0;
-      r1->data[idx].im = im / 1024.0;
+      r1->data[idx].re = re / 8000.0;
+      r1->data[idx].im = im / 8000.0;
     }
   }
 
   emxFree_creal_T(&r0);
   b_abs(r1, imf_data, imf_size);
   emxFree_creal_T(&r1);
-  memcpy(&P1[0], &imf_data[0], 513U * sizeof(double));
-  for (idx = 0; idx < 511; idx++) {
+  memcpy(&P1[0], &imf_data[0], 4001U * sizeof(double));
+  for (idx = 0; idx < 3999; idx++) {
     P1[1 + idx] *= 2.0;
   }
 
@@ -82,7 +82,7 @@ double vsd(const double input_data[], const int input_size[1])
     idx = 0;
     loop_ub = 2;
     exitg1 = false;
-    while ((!exitg1) && (loop_ub < 514)) {
+    while ((!exitg1) && (loop_ub < 4002)) {
       if (!rtIsNaN(P1[loop_ub - 1])) {
         idx = loop_ub;
         exitg1 = true;
@@ -96,7 +96,7 @@ double vsd(const double input_data[], const int input_size[1])
     idx = 1;
   } else {
     re = P1[idx - 1];
-    for (loop_ub = idx; loop_ub + 1 < 514; loop_ub++) {
+    for (loop_ub = idx; loop_ub + 1 < 4002; loop_ub++) {
       if (re < P1[loop_ub]) {
         re = P1[loop_ub];
         idx = loop_ub + 1;

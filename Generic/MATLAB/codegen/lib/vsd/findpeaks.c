@@ -1,33 +1,33 @@
-//
-// File: findpeaks.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: findpeaks.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <string.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "findpeaks.h"
 #include "diff.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Find peaks.
-//  n = findpeaks(x)
-// Arguments    : const double x[8000]
-//                double n_data[]
-//                int n_size[2]
-// Return Type  : void
-//
+/*
+ * Find peaks.
+ *  n = findpeaks(x)
+ * Arguments    : const double x[8000]
+ *                double n_data[]
+ *                int n_size[2]
+ * Return Type  : void
+ */
 void findpeaks(const double x[8000], double n_data[], int n_size[2])
 {
   static double dv2[7999];
   int i2;
   boolean_T bv0[7999];
-  double dv3[7998];
+  static double dv3[7998];
   int idx;
   boolean_T b_x[7998];
   int ii;
@@ -126,8 +126,8 @@ void findpeaks(const double x[8000], double n_data[], int n_size[2])
   }
 }
 
-//
-// File trailer for findpeaks.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for findpeaks.c
+ *
+ * [EOF]
+ */

@@ -1,11 +1,11 @@
-//
-// File: spline.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: spline.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <string.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
@@ -13,18 +13,18 @@
 #include "vsd_emxutil.h"
 #include "pwchcore.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : const double x_data[]
-//                const int x_size[2]
-//                const double y_data[]
-//                const int y_size[2]
-//                double pp_breaks_data[]
-//                int pp_breaks_size[2]
-//                emxArray_real_T *pp_coefs
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x_data[]
+ *                const int x_size[2]
+ *                const double y_data[]
+ *                const int y_size[2]
+ *                double pp_breaks_data[]
+ *                int pp_breaks_size[2]
+ *                emxArray_real_T *pp_coefs
+ * Return Type  : void
+ */
 void splinepp(const double x_data[], const int x_size[2], const double y_data[],
               const int y_size[2], double pp_breaks_data[], int pp_breaks_size[2],
               emxArray_real_T *pp_coefs)
@@ -45,7 +45,7 @@ void splinepp(const double x_data[], const int x_size[2], const double y_data[],
   double dvdf_data[7999];
   static double md_data[8000];
   double r;
-  double t2_breaks_data[8000];
+  static double t2_breaks_data[8000];
   nx = x_size[1] - 1;
   has_endslopes = (y_size[1] == x_size[1] + 2);
   if (x_size[1] <= 2) {
@@ -196,8 +196,8 @@ void splinepp(const double x_data[], const int x_size[2], const double y_data[],
   }
 }
 
-//
-// File trailer for spline.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for spline.c
+ *
+ * [EOF]
+ */

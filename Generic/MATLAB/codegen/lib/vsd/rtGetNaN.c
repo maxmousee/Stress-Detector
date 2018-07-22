@@ -1,8 +1,8 @@
 /*
- * File: rtGetNaN.cpp
+ * File: rtGetNaN.c
  *
  * MATLAB Coder version            : 4.0
- * C/C++ source code generated on  : 19-Jul-2018 21:01:46
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
  */
 
 /*
@@ -87,7 +87,7 @@ real32_T rtGetNaNF(void)
 }
 
 /*
- * File trailer for rtGetNaN.cpp
+ * File trailer for rtGetNaN.c
  *
  * [EOF]
  */

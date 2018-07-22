@@ -2,7 +2,7 @@
 ## Makefile generated for MATLAB file/project 'vsd'. 
 ## 
 ## Makefile     : vsd_rtw.mk
-## Generated on : Fri Jul 20 00:14:13 2018
+## Generated on : Fri Jul 20 23:08:24 2018
 ## MATLAB Coder version: 4.0 (R2018a)
 ## 
 ## Build Info:
@@ -118,15 +118,15 @@ ECHO                = @echo
 MV                  = @mv
 RUN                 =
 
-#----------------------------------------
-# "Faster Builds" Build Configuration
-#----------------------------------------
+#--------------------------------------
+# "Faster Runs" Build Configuration
+#--------------------------------------
 
 ARFLAGS              = ruvs
 CFLAGS               = -c -isysroot $(XCODE_SDK_ROOT) -arch $(ARCHS) $(C_STANDARD_OPTS) \
-                       -O0
+                       -O3
 CPPFLAGS             = -c -isysroot $(XCODE_SDK_ROOT) -arch $(ARCHS) $(CPP_STANDARD_OPTS) \
-                       -O0
+                       -O3
 CPP_LDFLAGS          = -arch $(ARCHS) -isysroot $(XCODE_SDK_ROOT) -Wl,-rpath,$(MATLAB_ARCH_BIN) -Wl,-rpath,@executable_path -Wl,-rpath,@executable_path/$(RELATIVE_PATH_TO_ANCHOR) -L"$(MATLAB_ARCH_BIN)"
 CPP_SHAREDLIB_LDFLAGS  = -dynamiclib -install_name @rpath/$(notdir $(PRODUCT)) -isysroot $(XCODE_SDK_ROOT) -L"$(MATLAB_ARCH_BIN)" \
                          -Wl,$(LD_NAMESPACE) $(LD_UNDEFS)

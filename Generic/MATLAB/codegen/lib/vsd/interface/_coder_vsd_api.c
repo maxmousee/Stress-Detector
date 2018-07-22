@@ -2,7 +2,7 @@
  * File: _coder_vsd_api.c
  *
  * MATLAB Coder version            : 4.0
- * C/C++ source code generated on  : 19-Jul-2018 21:01:46
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
  */
 
 /* Include Files */
@@ -67,8 +67,8 @@ static void c_emlrt_marshallIn(const emlrtStack *sp, const mxArray *src, const
   const boolean_T bv0[1] = { true };
 
   int32_T iv0[1];
-  emlrtCheckVsBuiltInR2012b(sp, (const emlrtMsgIdentifier *)msgId, src, "double",
-    false, 1U, *(int32_T (*)[1])&dims[0], (boolean_T *)&bv0[0], iv0);
+  emlrtCheckVsBuiltInR2012b(sp, msgId, src, "double", false, 1U, dims, &bv0[0],
+    iv0);
   ret_size[0] = iv0[0];
   *ret_data = (real_T *)emlrtMxGetData(src);
   emlrtDestroyArray(&src);

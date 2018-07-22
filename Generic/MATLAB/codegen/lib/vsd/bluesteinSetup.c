@@ -1,22 +1,22 @@
-//
-// File: bluesteinSetup.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: bluesteinSetup.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <math.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "bluesteinSetup.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : creal_T wwc[15999]
-// Return Type  : void
-//
+/*
+ * Arguments    : creal_T wwc[15999]
+ * Return Type  : void
+ */
 void bluesteinSetup(creal_T wwc[15999])
 {
   int idx;
@@ -58,8 +58,8 @@ void bluesteinSetup(creal_T wwc[15999])
   }
 }
 
-//
-// File trailer for bluesteinSetup.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for bluesteinSetup.c
+ *
+ * [EOF]
+ */

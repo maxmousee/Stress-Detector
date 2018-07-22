@@ -1,24 +1,24 @@
-//
-// File: vsd_emxutil.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: vsd_emxutil.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <stdlib.h>
 #include <string.h>
 #include "rt_nonfinite.h"
 #include "vsd.h"
 #include "vsd_emxutil.h"
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : emxArray_creal_T *emxArray
-//                int oldNumel
-// Return Type  : void
-//
+/*
+ * Arguments    : emxArray_creal_T *emxArray
+ *                int oldNumel
+ * Return Type  : void
+ */
 void emxEnsureCapacity_creal_T(emxArray_creal_T *emxArray, int oldNumel)
 {
   int newNumel;
@@ -61,11 +61,11 @@ void emxEnsureCapacity_creal_T(emxArray_creal_T *emxArray, int oldNumel)
   }
 }
 
-//
-// Arguments    : emxArray_real_T *emxArray
-//                int oldNumel
-// Return Type  : void
-//
+/*
+ * Arguments    : emxArray_real_T *emxArray
+ *                int oldNumel
+ * Return Type  : void
+ */
 void emxEnsureCapacity_real_T(emxArray_real_T *emxArray, int oldNumel)
 {
   int newNumel;
@@ -108,10 +108,10 @@ void emxEnsureCapacity_real_T(emxArray_real_T *emxArray, int oldNumel)
   }
 }
 
-//
-// Arguments    : emxArray_creal_T **pEmxArray
-// Return Type  : void
-//
+/*
+ * Arguments    : emxArray_creal_T **pEmxArray
+ * Return Type  : void
+ */
 void emxFree_creal_T(emxArray_creal_T **pEmxArray)
 {
   if (*pEmxArray != (emxArray_creal_T *)NULL) {
@@ -125,10 +125,10 @@ void emxFree_creal_T(emxArray_creal_T **pEmxArray)
   }
 }
 
-//
-// Arguments    : emxArray_real_T **pEmxArray
-// Return Type  : void
-//
+/*
+ * Arguments    : emxArray_real_T **pEmxArray
+ * Return Type  : void
+ */
 void emxFree_real_T(emxArray_real_T **pEmxArray)
 {
   if (*pEmxArray != (emxArray_real_T *)NULL) {
@@ -142,11 +142,11 @@ void emxFree_real_T(emxArray_real_T **pEmxArray)
   }
 }
 
-//
-// Arguments    : emxArray_creal_T **pEmxArray
-//                int numDimensions
-// Return Type  : void
-//
+/*
+ * Arguments    : emxArray_creal_T **pEmxArray
+ *                int numDimensions
+ * Return Type  : void
+ */
 void emxInit_creal_T(emxArray_creal_T **pEmxArray, int numDimensions)
 {
   emxArray_creal_T *emxArray;
@@ -163,11 +163,11 @@ void emxInit_creal_T(emxArray_creal_T **pEmxArray, int numDimensions)
   }
 }
 
-//
-// Arguments    : emxArray_real_T **pEmxArray
-//                int numDimensions
-// Return Type  : void
-//
+/*
+ * Arguments    : emxArray_real_T **pEmxArray
+ *                int numDimensions
+ * Return Type  : void
+ */
 void emxInit_real_T(emxArray_real_T **pEmxArray, int numDimensions)
 {
   emxArray_real_T *emxArray;
@@ -184,8 +184,8 @@ void emxInit_real_T(emxArray_real_T **pEmxArray, int numDimensions)
   }
 }
 
-//
-// File trailer for vsd_emxutil.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for vsd_emxutil.c
+ *
+ * [EOF]
+ */

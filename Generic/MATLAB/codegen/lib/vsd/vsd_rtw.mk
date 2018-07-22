@@ -2,7 +2,7 @@
 ## Makefile generated for MATLAB file/project 'vsd'. 
 ## 
 ## Makefile     : vsd_rtw.mk
-## Generated on : Thu Jul 19 21:01:56 2018
+## Generated on : Fri Jul 20 23:08:24 2018
 ## MATLAB Coder version: 4.0 (R2018a)
 ## 
 ## Build Info:
@@ -118,15 +118,15 @@ ECHO                = @echo
 MV                  = @mv
 RUN                 =
 
-#----------------------------------------
-# "Faster Builds" Build Configuration
-#----------------------------------------
+#--------------------------------------
+# "Faster Runs" Build Configuration
+#--------------------------------------
 
 ARFLAGS              = ruvs
 CFLAGS               = -c -isysroot $(XCODE_SDK_ROOT) -arch $(ARCHS) $(C_STANDARD_OPTS) \
-                       -O0
+                       -O3
 CPPFLAGS             = -c -isysroot $(XCODE_SDK_ROOT) -arch $(ARCHS) $(CPP_STANDARD_OPTS) \
-                       -O0
+                       -O3
 CPP_LDFLAGS          = -arch $(ARCHS) -isysroot $(XCODE_SDK_ROOT) -Wl,-rpath,$(MATLAB_ARCH_BIN) -Wl,-rpath,@executable_path -Wl,-rpath,@executable_path/$(RELATIVE_PATH_TO_ANCHOR) -L"$(MATLAB_ARCH_BIN)"
 CPP_SHAREDLIB_LDFLAGS  = -dynamiclib -install_name @rpath/$(notdir $(PRODUCT)) -isysroot $(XCODE_SDK_ROOT) -L"$(MATLAB_ARCH_BIN)" \
                          -Wl,$(LD_NAMESPACE) $(LD_UNDEFS)
@@ -200,7 +200,7 @@ DEFINES = $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/codegen/lib/vsd/vsd_initialize.cpp $(START_DIR)/codegen/lib/vsd/vsd_terminate.cpp $(START_DIR)/codegen/lib/vsd/vsd.cpp $(START_DIR)/codegen/lib/vsd/emd.cpp $(START_DIR)/codegen/lib/vsd/findpeaks.cpp $(START_DIR)/codegen/lib/vsd/diff.cpp $(START_DIR)/codegen/lib/vsd/sum.cpp $(START_DIR)/codegen/lib/vsd/abs.cpp $(START_DIR)/codegen/lib/vsd/spline.cpp $(START_DIR)/codegen/lib/vsd/pwchcore.cpp $(START_DIR)/codegen/lib/vsd/power.cpp $(START_DIR)/codegen/lib/vsd/fft.cpp $(START_DIR)/codegen/lib/vsd/fft1.cpp $(START_DIR)/codegen/lib/vsd/bluesteinSetup.cpp $(START_DIR)/codegen/lib/vsd/vsd_emxutil.cpp $(START_DIR)/codegen/lib/vsd/rt_nonfinite.cpp $(START_DIR)/codegen/lib/vsd/rtGetNaN.cpp $(START_DIR)/codegen/lib/vsd/rtGetInf.cpp
+SRCS = $(START_DIR)/codegen/lib/vsd/vsd_initialize.c $(START_DIR)/codegen/lib/vsd/vsd_terminate.c $(START_DIR)/codegen/lib/vsd/vsd.c $(START_DIR)/codegen/lib/vsd/emd.c $(START_DIR)/codegen/lib/vsd/findpeaks.c $(START_DIR)/codegen/lib/vsd/diff.c $(START_DIR)/codegen/lib/vsd/sum.c $(START_DIR)/codegen/lib/vsd/abs.c $(START_DIR)/codegen/lib/vsd/spline.c $(START_DIR)/codegen/lib/vsd/pwchcore.c $(START_DIR)/codegen/lib/vsd/power.c $(START_DIR)/codegen/lib/vsd/fft.c $(START_DIR)/codegen/lib/vsd/fft1.c $(START_DIR)/codegen/lib/vsd/bluesteinSetup.c $(START_DIR)/codegen/lib/vsd/vsd_emxutil.c $(START_DIR)/codegen/lib/vsd/rt_nonfinite.c $(START_DIR)/codegen/lib/vsd/rtGetNaN.c $(START_DIR)/codegen/lib/vsd/rtGetInf.c
 
 ALL_SRCS = $(SRCS)
 
@@ -228,7 +228,7 @@ LIBS =
 ## SYSTEM LIBRARIES
 ###########################################################################
 
-SYSTEM_LIBS =  -lm -lstdc++
+SYSTEM_LIBS =  -lm
 
 ###########################################################################
 ## ADDITIONAL TOOLCHAIN FLAGS

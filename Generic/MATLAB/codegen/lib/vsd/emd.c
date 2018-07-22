@@ -1,11 +1,11 @@
-//
-// File: emd.cpp
-//
-// MATLAB Coder version            : 4.0
-// C/C++ source code generated on  : 19-Jul-2018 21:01:46
-//
+/*
+ * File: emd.c
+ *
+ * MATLAB Coder version            : 4.0
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
+ */
 
-// Include Files
+/* Include Files */
 #include <math.h>
 #include <string.h>
 #include "rt_nonfinite.h"
@@ -17,19 +17,19 @@
 #include "spline.h"
 #include "findpeaks.h"
 
-// Function Declarations
+/* Function Declarations */
 static void getspline(const double x[8000], double s_data[], int s_size[2]);
 static double isimf(const double x[8000]);
 static double ismonotonic(const double x[8000]);
 
-// Function Definitions
+/* Function Definitions */
 
-//
-// Arguments    : const double x[8000]
-//                double s_data[]
-//                int s_size[2]
-// Return Type  : void
-//
+/*
+ * Arguments    : const double x[8000]
+ *                double s_data[]
+ *                int s_size[2]
+ * Return Type  : void
+ */
 static void getspline(const double x[8000], double s_data[], int s_size[2])
 {
   static double p_data[7998];
@@ -105,10 +105,10 @@ static void getspline(const double x[8000], double s_data[], int s_size[2])
   emxFree_real_T(&pp_coefs);
 }
 
-//
-// Arguments    : const double x[8000]
-// Return Type  : double
-//
+/*
+ * Arguments    : const double x[8000]
+ * Return Type  : double
+ */
 static double isimf(const double x[8000])
 {
   static double tmp_data[7998];
@@ -1340,10 +1340,10 @@ static double isimf(const double x[8000])
   return !(fabs(sum(c_x) - (double)(tmp_size[1] + b_tmp_size[1])) > 1.0);
 }
 
-//
-// Arguments    : const double x[8000]
-// Return Type  : double
-//
+/*
+ * Arguments    : const double x[8000]
+ * Return Type  : double
+ */
 static double ismonotonic(const double x[8000])
 {
   static double tmp_data[7998];
@@ -1352,7 +1352,7 @@ static double ismonotonic(const double x[8000])
   static double b_x[8000];
   int b_tmp_size[2];
 
-  //  FUNCTIONS
+  /*  FUNCTIONS */
   findpeaks(x, tmp_data, tmp_size);
   for (i1 = 0; i1 < 8000; i1++) {
     b_x[i1] = -x[i1];
@@ -1362,15 +1362,15 @@ static double ismonotonic(const double x[8000])
   return !(tmp_size[1] * b_tmp_size[1] > 0);
 }
 
-//
-// Empiricial Mode Decomposition (Hilbert-Huang Transform)
-//  imf = emd(x)
-//  Func : findpeaks
-// Arguments    : const double x[8000]
-//                double imf_data[]
-//                int imf_size[2]
-// Return Type  : void
-//
+/*
+ * Empiricial Mode Decomposition (Hilbert-Huang Transform)
+ *  imf = emd(x)
+ *  Func : findpeaks
+ * Arguments    : const double x[8000]
+ *                double imf_data[]
+ *                int imf_size[2]
+ * Return Type  : void
+ */
 void emd(const double x[8000], double imf_data[], int imf_size[2])
 {
   static double b_x[8000];
@@ -1425,8 +1425,8 @@ void emd(const double x[8000], double imf_data[], int imf_size[2])
   }
 }
 
-//
-// File trailer for emd.cpp
-//
-// [EOF]
-//
+/*
+ * File trailer for emd.c
+ *
+ * [EOF]
+ */

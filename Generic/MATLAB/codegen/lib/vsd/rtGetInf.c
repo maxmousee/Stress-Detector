@@ -1,8 +1,8 @@
 /*
- * File: rtGetInf.cpp
+ * File: rtGetInf.c
  *
  * MATLAB Coder version            : 4.0
- * C/C++ source code generated on  : 19-Jul-2018 21:01:46
+ * C/C++ source code generated on  : 20-Jul-2018 23:11:40
  */
 
 /*
@@ -120,7 +120,7 @@ real32_T rtGetMinusInfF(void)
 }
 
 /*
- * File trailer for rtGetInf.cpp
+ * File trailer for rtGetInf.c
  *
  * [EOF]
  */
