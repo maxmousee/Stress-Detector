@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2016a">
-  <configuration build-checksum="2641488502" file="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.prj" location="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="4158108796" file="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.prj" location="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -192,7 +192,7 @@
       <param.DeprecatedCRLFlag>false</param.DeprecatedCRLFlag>
       <param.SameHardware>true</param.SameHardware>
       <param.Toolchain>Automatically locate an installed toolchain</param.Toolchain>
-      <param.BuildConfiguration>Faster Builds</param.BuildConfiguration>
+      <param.BuildConfiguration>Faster Runs</param.BuildConfiguration>
       <param.CustomToolchainOptions />
       <var.ToolchainSettingsVisible>true</var.ToolchainSettingsVisible>
       <param.target.Data>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;ctdata&gt;&lt;configuredHardware/&gt;&lt;/ctdata&gt;</param.target.Data>
@@ -249,7 +249,7 @@
       <param.IncludeTerminateFcn>true</param.IncludeTerminateFcn>
       <param.GenerateExampleMain>option.GenerateExampleMain.GenerateCodeOnly</param.GenerateExampleMain>
       <param.PreserveVariableNames>option.PreserveVariableNames.None</param.PreserveVariableNames>
-      <param.TargetLang>option.TargetLang.CPP</param.TargetLang>
+      <param.TargetLang>option.TargetLang.C</param.TargetLang>
       <param.CCompilerOptimization>option.CCompilerOptimization.Off</param.CCompilerOptimization>
       <param.CCompilerCustomOptimizations />
       <param.GenerateMakefile>true</param.GenerateMakefile>
@@ -347,7 +347,6 @@
         <param.DeprecatedCRLFlag />
         <param.SameHardware />
         <param.Toolchain />
-        <param.BuildConfiguration />
         <param.CustomToolchainOptions />
         <var.ToolchainSettingsVisible />
         <param.target.ActiveTarget />
@@ -396,6 +395,7 @@
         <param.IncludeTerminateFcn />
         <param.GenerateExampleMain />
         <param.PreserveVariableNames />
+        <param.TargetLang />
         <param.CCompilerOptimization />
         <param.CCompilerCustomOptimizations />
         <param.GenerateMakefile />
@@ -802,12 +802,12 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen/lib/vsd</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>2391534983</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>4158108796</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen/mex/vsd</var.cfi.lastOutputRoot>
-    <var.cfi.preBuildChecksum>3508765653</var.cfi.preBuildChecksum>
+    <var.cfi.preBuildChecksum>432683158</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>tst</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;2967463548&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;561016892&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
     <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.configImportActive>false</param.configImportActive>

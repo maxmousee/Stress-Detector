@@ -5,7 +5,7 @@ function stressFreq = vsd(input)
  Fs = 8000;
  imf = emd(input(1:Fs));
  stressComponentArray = imf;
- L = 1024;
+ L = 8000;
  %fft starts here
  Y = complex(zeros(size(stressComponentArray),class(stressComponentArray)));
  %dirty hack because matlab only generates fft code for power of 2
