@@ -81,8 +81,6 @@
 	[session setActive:NO error:nil];
     
     delete _bufferManager;      _bufferManager = NULL;
-	
-	[super dealloc];
 }
 
 - (OSStatus)startIOUnit
