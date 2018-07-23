@@ -21,10 +21,10 @@
  * The code has fixed length anyway, so it wont work with different
  * sample rate anyway
  * Arguments    : const double input_data[]
- *                const int input_size[1]
+ *                const int input_size
  * Return Type  : double
  */
-double vsd(const double input_data[], const int input_size[1])
+double vsd(const double input_data[], const int input_size)
 {
   emxArray_creal_T *r0;
   emxArray_creal_T *r1;
