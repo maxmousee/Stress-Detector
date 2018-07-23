@@ -184,7 +184,7 @@ BUILD_TYPE = "Static Library"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR)/codegen/lib/vsd -I$(START_DIR) -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert
+INCLUDES_BUILDINFO = -I$(START_DIR)/codegen/lib/vsd -I$(START_DIR) -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I $(JAVA_HOME)/include/ -I $(JAVA_HOME)/include/darwin -I $(JAVA_HOME)/include/linux
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -343,7 +343,7 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS)
 ## DEPENDENCIES
 ###########################################################################
 
-$(ALL_OBJS) : $(MAKEFILE) rtw_proj.tmw
+#$(ALL_OBJS) : $(MAKEFILE) rtw_proj.tmw
 
 
 ###########################################################################
