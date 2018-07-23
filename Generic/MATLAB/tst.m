@@ -17,14 +17,6 @@
  %title('Single-Sided Amplitude Spectrum of X(t)')
  %xlabel('f (Hz)')
  %ylabel('|P1(f)|')
- 
+ x = zeros(8000);
  [x, Fs] = audioread('rain_man_driver_8000.wav');
- expanded = zeros(size(8000));
- 
- for idx = 1:numel(x)
-    expanded(idx) = x(idx);
- end
-
- transp = expanded';
- 
-vsd(transp);
+ vsd(x);
