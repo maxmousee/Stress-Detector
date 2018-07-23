@@ -34,24 +34,24 @@
 		3AD8A31D193A3BFC0009D4C0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */; };
 		3AFBA6AD1940119000E8D9F0 /* BufferManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3ADAEF52193EB299001AA2B5 /* BufferManager.mm */; };
 		3E5A90EA1E0B74A90077137B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A40D1C6194A746D0067B456 /* QuartzCore.framework */; };
-		E85764012105E70500D5EABD /* vsd_initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763DB2105E70200D5EABD /* vsd_initialize.cpp */; };
-		E85764022105E70500D5EABD /* bluesteinSetup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763DD2105E70200D5EABD /* bluesteinSetup.cpp */; };
-		E85764032105E70500D5EABD /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763E12105E70200D5EABD /* fft.cpp */; };
-		E85764042105E70500D5EABD /* emd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763E22105E70200D5EABD /* emd.cpp */; };
-		E85764052105E70500D5EABD /* rtGetInf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763E42105E70200D5EABD /* rtGetInf.cpp */; };
-		E85764062105E70500D5EABD /* vsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763E62105E70200D5EABD /* vsd.cpp */; };
-		E85764072105E70500D5EABD /* rt_nonfinite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763E82105E70200D5EABD /* rt_nonfinite.cpp */; };
-		E85764082105E70500D5EABD /* fft1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763ED2105E70300D5EABD /* fft1.cpp */; };
-		E85764092105E70500D5EABD /* sum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763EE2105E70300D5EABD /* sum.cpp */; };
-		E857640A2105E70500D5EABD /* spline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763EF2105E70300D5EABD /* spline.cpp */; };
-		E857640B2105E70500D5EABD /* abs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763F22105E70300D5EABD /* abs.cpp */; };
-		E857640C2105E70500D5EABD /* diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763F32105E70300D5EABD /* diff.cpp */; };
-		E857640D2105E70500D5EABD /* findpeaks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763F52105E70300D5EABD /* findpeaks.cpp */; };
-		E857640E2105E70500D5EABD /* pwchcore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763F62105E70300D5EABD /* pwchcore.cpp */; };
-		E857640F2105E70500D5EABD /* vsd_terminate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763F82105E70400D5EABD /* vsd_terminate.cpp */; };
-		E85764102105E70500D5EABD /* power.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763FA2105E70400D5EABD /* power.cpp */; };
-		E85764112105E70500D5EABD /* rtGetNaN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763FB2105E70400D5EABD /* rtGetNaN.cpp */; };
-		E85764122105E70500D5EABD /* vsd_emxutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E85763FE2105E70400D5EABD /* vsd_emxutil.cpp */; };
+		E887B1162105F04C00FE97CB /* fft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0F12105F04900FE97CB /* fft.cpp */; };
+		E887B1172105F04C00FE97CB /* vsd_initialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0F22105F04900FE97CB /* vsd_initialize.cpp */; };
+		E887B1182105F04C00FE97CB /* vsd_emxutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0F32105F04900FE97CB /* vsd_emxutil.cpp */; };
+		E887B1192105F04C00FE97CB /* diff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0F42105F04900FE97CB /* diff.cpp */; };
+		E887B11A2105F04C00FE97CB /* bluesteinSetup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0F62105F04900FE97CB /* bluesteinSetup.cpp */; };
+		E887B11B2105F04C00FE97CB /* vsd_terminate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0FC2105F04A00FE97CB /* vsd_terminate.cpp */; };
+		E887B11C2105F04C00FE97CB /* vsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0FE2105F04A00FE97CB /* vsd.cpp */; };
+		E887B11D2105F04C00FE97CB /* emd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B0FF2105F04A00FE97CB /* emd.cpp */; };
+		E887B11E2105F04C00FE97CB /* rtGetInf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1032105F04A00FE97CB /* rtGetInf.cpp */; };
+		E887B11F2105F04C00FE97CB /* findpeaks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1082105F04B00FE97CB /* findpeaks.cpp */; };
+		E887B1202105F04C00FE97CB /* sum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B10A2105F04B00FE97CB /* sum.cpp */; };
+		E887B1212105F04C00FE97CB /* abs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B10E2105F04B00FE97CB /* abs.cpp */; };
+		E887B1222105F04C00FE97CB /* power.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B10F2105F04B00FE97CB /* power.cpp */; };
+		E887B1232105F04C00FE97CB /* pwchcore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1102105F04B00FE97CB /* pwchcore.cpp */; };
+		E887B1242105F04C00FE97CB /* rtGetNaN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1122105F04C00FE97CB /* rtGetNaN.cpp */; };
+		E887B1252105F04C00FE97CB /* spline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1132105F04C00FE97CB /* spline.cpp */; };
+		E887B1262105F04C00FE97CB /* fft1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1142105F04C00FE97CB /* fft1.cpp */; };
+		E887B1272105F04C00FE97CB /* rt_nonfinite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E887B1152105F04C00FE97CB /* rt_nonfinite.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,44 +116,44 @@
 		A6A2F7B99FA881EE943C0318 /* Pods-VSD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSD/Pods-VSD.release.xcconfig"; sourceTree = "<group>"; };
 		ACD3E194D2087CD3BE5B8FF0 /* Pods-VSD-VSDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD-VSDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests.release.xcconfig"; sourceTree = "<group>"; };
 		BD8B080CAD59E0F61942574B /* Pods_VSD_VSDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VSD_VSDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E85763DB2105E70200D5EABD /* vsd_initialize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd_initialize.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_initialize.cpp; sourceTree = "<group>"; };
-		E85763DC2105E70200D5EABD /* vsd_terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_terminate.h; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_terminate.h; sourceTree = "<group>"; };
-		E85763DD2105E70200D5EABD /* bluesteinSetup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bluesteinSetup.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/bluesteinSetup.cpp; sourceTree = "<group>"; };
-		E85763DE2105E70200D5EABD /* vsd_emxutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_emxutil.h; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_emxutil.h; sourceTree = "<group>"; };
-		E85763DF2105E70200D5EABD /* sum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sum.h; path = ../../Generic/MATLAB/codegen/lib/vsd/sum.h; sourceTree = "<group>"; };
-		E85763E02105E70200D5EABD /* rtGetInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetInf.h; path = ../../Generic/MATLAB/codegen/lib/vsd/rtGetInf.h; sourceTree = "<group>"; };
-		E85763E12105E70200D5EABD /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fft.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/fft.cpp; sourceTree = "<group>"; };
-		E85763E22105E70200D5EABD /* emd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = emd.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/emd.cpp; sourceTree = "<group>"; };
-		E85763E32105E70200D5EABD /* vsd_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_types.h; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_types.h; sourceTree = "<group>"; };
-		E85763E42105E70200D5EABD /* rtGetInf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rtGetInf.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/rtGetInf.cpp; sourceTree = "<group>"; };
-		E85763E52105E70200D5EABD /* power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = power.h; path = ../../Generic/MATLAB/codegen/lib/vsd/power.h; sourceTree = "<group>"; };
-		E85763E62105E70200D5EABD /* vsd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd.cpp; sourceTree = "<group>"; };
-		E85763E72105E70200D5EABD /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../Generic/MATLAB/codegen/lib/vsd/spline.h; sourceTree = "<group>"; };
-		E85763E82105E70200D5EABD /* rt_nonfinite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rt_nonfinite.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/rt_nonfinite.cpp; sourceTree = "<group>"; };
-		E85763E92105E70200D5EABD /* rtwtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtwtypes.h; path = ../../Generic/MATLAB/codegen/lib/vsd/rtwtypes.h; sourceTree = "<group>"; };
-		E85763EA2105E70200D5EABD /* abs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = abs.h; path = ../../Generic/MATLAB/codegen/lib/vsd/abs.h; sourceTree = "<group>"; };
-		E85763EB2105E70300D5EABD /* pwchcore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pwchcore.h; path = ../../Generic/MATLAB/codegen/lib/vsd/pwchcore.h; sourceTree = "<group>"; };
-		E85763EC2105E70300D5EABD /* vsd_initialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_initialize.h; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_initialize.h; sourceTree = "<group>"; };
-		E85763ED2105E70300D5EABD /* fft1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fft1.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/fft1.cpp; sourceTree = "<group>"; };
-		E85763EE2105E70300D5EABD /* sum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sum.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/sum.cpp; sourceTree = "<group>"; };
-		E85763EF2105E70300D5EABD /* spline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spline.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/spline.cpp; sourceTree = "<group>"; };
-		E85763F02105E70300D5EABD /* vsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd.h; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd.h; sourceTree = "<group>"; };
-		E85763F12105E70300D5EABD /* emd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emd.h; path = ../../Generic/MATLAB/codegen/lib/vsd/emd.h; sourceTree = "<group>"; };
-		E85763F22105E70300D5EABD /* abs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = abs.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/abs.cpp; sourceTree = "<group>"; };
-		E85763F32105E70300D5EABD /* diff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = diff.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/diff.cpp; sourceTree = "<group>"; };
-		E85763F42105E70300D5EABD /* findpeaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = findpeaks.h; path = ../../Generic/MATLAB/codegen/lib/vsd/findpeaks.h; sourceTree = "<group>"; };
-		E85763F52105E70300D5EABD /* findpeaks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = findpeaks.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/findpeaks.cpp; sourceTree = "<group>"; };
-		E85763F62105E70300D5EABD /* pwchcore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pwchcore.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/pwchcore.cpp; sourceTree = "<group>"; };
-		E85763F72105E70400D5EABD /* rt_nonfinite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rt_nonfinite.h; path = ../../Generic/MATLAB/codegen/lib/vsd/rt_nonfinite.h; sourceTree = "<group>"; };
-		E85763F82105E70400D5EABD /* vsd_terminate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd_terminate.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_terminate.cpp; sourceTree = "<group>"; };
-		E85763F92105E70400D5EABD /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft.h; path = ../../Generic/MATLAB/codegen/lib/vsd/fft.h; sourceTree = "<group>"; };
-		E85763FA2105E70400D5EABD /* power.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = power.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/power.cpp; sourceTree = "<group>"; };
-		E85763FB2105E70400D5EABD /* rtGetNaN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rtGetNaN.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/rtGetNaN.cpp; sourceTree = "<group>"; };
-		E85763FC2105E70400D5EABD /* rtGetNaN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetNaN.h; path = ../../Generic/MATLAB/codegen/lib/vsd/rtGetNaN.h; sourceTree = "<group>"; };
-		E85763FD2105E70400D5EABD /* diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diff.h; path = ../../Generic/MATLAB/codegen/lib/vsd/diff.h; sourceTree = "<group>"; };
-		E85763FE2105E70400D5EABD /* vsd_emxutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd_emxutil.cpp; path = ../../Generic/MATLAB/codegen/lib/vsd/vsd_emxutil.cpp; sourceTree = "<group>"; };
-		E85763FF2105E70400D5EABD /* bluesteinSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bluesteinSetup.h; path = ../../Generic/MATLAB/codegen/lib/vsd/bluesteinSetup.h; sourceTree = "<group>"; };
-		E85764002105E70500D5EABD /* fft1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft1.h; path = ../../Generic/MATLAB/codegen/lib/vsd/fft1.h; sourceTree = "<group>"; };
+		E887B0F02105F04900FE97CB /* rtwtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtwtypes.h; path = ../../Generic/C/rtwtypes.h; sourceTree = "<group>"; };
+		E887B0F12105F04900FE97CB /* fft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fft.cpp; path = ../../Generic/C/fft.cpp; sourceTree = "<group>"; };
+		E887B0F22105F04900FE97CB /* vsd_initialize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd_initialize.cpp; path = ../../Generic/C/vsd_initialize.cpp; sourceTree = "<group>"; };
+		E887B0F32105F04900FE97CB /* vsd_emxutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd_emxutil.cpp; path = ../../Generic/C/vsd_emxutil.cpp; sourceTree = "<group>"; };
+		E887B0F42105F04900FE97CB /* diff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = diff.cpp; path = ../../Generic/C/diff.cpp; sourceTree = "<group>"; };
+		E887B0F52105F04900FE97CB /* fft1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft1.h; path = ../../Generic/C/fft1.h; sourceTree = "<group>"; };
+		E887B0F62105F04900FE97CB /* bluesteinSetup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bluesteinSetup.cpp; path = ../../Generic/C/bluesteinSetup.cpp; sourceTree = "<group>"; };
+		E887B0F72105F04900FE97CB /* sum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sum.h; path = ../../Generic/C/sum.h; sourceTree = "<group>"; };
+		E887B0F82105F04900FE97CB /* vsd_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_types.h; path = ../../Generic/C/vsd_types.h; sourceTree = "<group>"; };
+		E887B0F92105F04A00FE97CB /* bluesteinSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bluesteinSetup.h; path = ../../Generic/C/bluesteinSetup.h; sourceTree = "<group>"; };
+		E887B0FA2105F04A00FE97CB /* abs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = abs.h; path = ../../Generic/C/abs.h; sourceTree = "<group>"; };
+		E887B0FB2105F04A00FE97CB /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../Generic/C/spline.h; sourceTree = "<group>"; };
+		E887B0FC2105F04A00FE97CB /* vsd_terminate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd_terminate.cpp; path = ../../Generic/C/vsd_terminate.cpp; sourceTree = "<group>"; };
+		E887B0FD2105F04A00FE97CB /* pwchcore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pwchcore.h; path = ../../Generic/C/pwchcore.h; sourceTree = "<group>"; };
+		E887B0FE2105F04A00FE97CB /* vsd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vsd.cpp; path = ../../Generic/C/vsd.cpp; sourceTree = "<group>"; };
+		E887B0FF2105F04A00FE97CB /* emd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = emd.cpp; path = ../../Generic/C/emd.cpp; sourceTree = "<group>"; };
+		E887B1002105F04A00FE97CB /* rt_nonfinite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rt_nonfinite.h; path = ../../Generic/C/rt_nonfinite.h; sourceTree = "<group>"; };
+		E887B1012105F04A00FE97CB /* vsd_terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_terminate.h; path = ../../Generic/C/vsd_terminate.h; sourceTree = "<group>"; };
+		E887B1022105F04A00FE97CB /* rtGetInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetInf.h; path = ../../Generic/C/rtGetInf.h; sourceTree = "<group>"; };
+		E887B1032105F04A00FE97CB /* rtGetInf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rtGetInf.cpp; path = ../../Generic/C/rtGetInf.cpp; sourceTree = "<group>"; };
+		E887B1042105F04A00FE97CB /* rtGetNaN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetNaN.h; path = ../../Generic/C/rtGetNaN.h; sourceTree = "<group>"; };
+		E887B1052105F04A00FE97CB /* vsd_emxutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_emxutil.h; path = ../../Generic/C/vsd_emxutil.h; sourceTree = "<group>"; };
+		E887B1062105F04A00FE97CB /* vsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd.h; path = ../../Generic/C/vsd.h; sourceTree = "<group>"; };
+		E887B1072105F04A00FE97CB /* power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = power.h; path = ../../Generic/C/power.h; sourceTree = "<group>"; };
+		E887B1082105F04B00FE97CB /* findpeaks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = findpeaks.cpp; path = ../../Generic/C/findpeaks.cpp; sourceTree = "<group>"; };
+		E887B1092105F04B00FE97CB /* findpeaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = findpeaks.h; path = ../../Generic/C/findpeaks.h; sourceTree = "<group>"; };
+		E887B10A2105F04B00FE97CB /* sum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sum.cpp; path = ../../Generic/C/sum.cpp; sourceTree = "<group>"; };
+		E887B10B2105F04B00FE97CB /* vsd_initialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_initialize.h; path = ../../Generic/C/vsd_initialize.h; sourceTree = "<group>"; };
+		E887B10C2105F04B00FE97CB /* diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diff.h; path = ../../Generic/C/diff.h; sourceTree = "<group>"; };
+		E887B10D2105F04B00FE97CB /* emd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emd.h; path = ../../Generic/C/emd.h; sourceTree = "<group>"; };
+		E887B10E2105F04B00FE97CB /* abs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = abs.cpp; path = ../../Generic/C/abs.cpp; sourceTree = "<group>"; };
+		E887B10F2105F04B00FE97CB /* power.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = power.cpp; path = ../../Generic/C/power.cpp; sourceTree = "<group>"; };
+		E887B1102105F04B00FE97CB /* pwchcore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pwchcore.cpp; path = ../../Generic/C/pwchcore.cpp; sourceTree = "<group>"; };
+		E887B1112105F04B00FE97CB /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft.h; path = ../../Generic/C/fft.h; sourceTree = "<group>"; };
+		E887B1122105F04C00FE97CB /* rtGetNaN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rtGetNaN.cpp; path = ../../Generic/C/rtGetNaN.cpp; sourceTree = "<group>"; };
+		E887B1132105F04C00FE97CB /* spline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = spline.cpp; path = ../../Generic/C/spline.cpp; sourceTree = "<group>"; };
+		E887B1142105F04C00FE97CB /* fft1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fft1.cpp; path = ../../Generic/C/fft1.cpp; sourceTree = "<group>"; };
+		E887B1152105F04C00FE97CB /* rt_nonfinite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rt_nonfinite.cpp; path = ../../Generic/C/rt_nonfinite.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,44 +196,44 @@
 		3AA5242619400E6700838171 /* AudioProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				E85763F22105E70300D5EABD /* abs.cpp */,
-				E85763EA2105E70200D5EABD /* abs.h */,
-				E85763DD2105E70200D5EABD /* bluesteinSetup.cpp */,
-				E85763FF2105E70400D5EABD /* bluesteinSetup.h */,
-				E85763F32105E70300D5EABD /* diff.cpp */,
-				E85763FD2105E70400D5EABD /* diff.h */,
-				E85763E22105E70200D5EABD /* emd.cpp */,
-				E85763F12105E70300D5EABD /* emd.h */,
-				E85763E12105E70200D5EABD /* fft.cpp */,
-				E85763F92105E70400D5EABD /* fft.h */,
-				E85763ED2105E70300D5EABD /* fft1.cpp */,
-				E85764002105E70500D5EABD /* fft1.h */,
-				E85763F52105E70300D5EABD /* findpeaks.cpp */,
-				E85763F42105E70300D5EABD /* findpeaks.h */,
-				E85763FA2105E70400D5EABD /* power.cpp */,
-				E85763E52105E70200D5EABD /* power.h */,
-				E85763F62105E70300D5EABD /* pwchcore.cpp */,
-				E85763EB2105E70300D5EABD /* pwchcore.h */,
-				E85763E82105E70200D5EABD /* rt_nonfinite.cpp */,
-				E85763F72105E70400D5EABD /* rt_nonfinite.h */,
-				E85763E42105E70200D5EABD /* rtGetInf.cpp */,
-				E85763E02105E70200D5EABD /* rtGetInf.h */,
-				E85763FB2105E70400D5EABD /* rtGetNaN.cpp */,
-				E85763FC2105E70400D5EABD /* rtGetNaN.h */,
-				E85763E92105E70200D5EABD /* rtwtypes.h */,
-				E85763EF2105E70300D5EABD /* spline.cpp */,
-				E85763E72105E70200D5EABD /* spline.h */,
-				E85763EE2105E70300D5EABD /* sum.cpp */,
-				E85763DF2105E70200D5EABD /* sum.h */,
-				E85763FE2105E70400D5EABD /* vsd_emxutil.cpp */,
-				E85763DE2105E70200D5EABD /* vsd_emxutil.h */,
-				E85763DB2105E70200D5EABD /* vsd_initialize.cpp */,
-				E85763EC2105E70300D5EABD /* vsd_initialize.h */,
-				E85763F82105E70400D5EABD /* vsd_terminate.cpp */,
-				E85763DC2105E70200D5EABD /* vsd_terminate.h */,
-				E85763E32105E70200D5EABD /* vsd_types.h */,
-				E85763E62105E70200D5EABD /* vsd.cpp */,
-				E85763F02105E70300D5EABD /* vsd.h */,
+				E887B10E2105F04B00FE97CB /* abs.cpp */,
+				E887B0FA2105F04A00FE97CB /* abs.h */,
+				E887B0F62105F04900FE97CB /* bluesteinSetup.cpp */,
+				E887B0F92105F04A00FE97CB /* bluesteinSetup.h */,
+				E887B0F42105F04900FE97CB /* diff.cpp */,
+				E887B10C2105F04B00FE97CB /* diff.h */,
+				E887B0FF2105F04A00FE97CB /* emd.cpp */,
+				E887B10D2105F04B00FE97CB /* emd.h */,
+				E887B0F12105F04900FE97CB /* fft.cpp */,
+				E887B1112105F04B00FE97CB /* fft.h */,
+				E887B1142105F04C00FE97CB /* fft1.cpp */,
+				E887B0F52105F04900FE97CB /* fft1.h */,
+				E887B1082105F04B00FE97CB /* findpeaks.cpp */,
+				E887B1092105F04B00FE97CB /* findpeaks.h */,
+				E887B10F2105F04B00FE97CB /* power.cpp */,
+				E887B1072105F04A00FE97CB /* power.h */,
+				E887B1102105F04B00FE97CB /* pwchcore.cpp */,
+				E887B0FD2105F04A00FE97CB /* pwchcore.h */,
+				E887B1152105F04C00FE97CB /* rt_nonfinite.cpp */,
+				E887B1002105F04A00FE97CB /* rt_nonfinite.h */,
+				E887B1032105F04A00FE97CB /* rtGetInf.cpp */,
+				E887B1022105F04A00FE97CB /* rtGetInf.h */,
+				E887B1122105F04C00FE97CB /* rtGetNaN.cpp */,
+				E887B1042105F04A00FE97CB /* rtGetNaN.h */,
+				E887B0F02105F04900FE97CB /* rtwtypes.h */,
+				E887B1132105F04C00FE97CB /* spline.cpp */,
+				E887B0FB2105F04A00FE97CB /* spline.h */,
+				E887B10A2105F04B00FE97CB /* sum.cpp */,
+				E887B0F72105F04900FE97CB /* sum.h */,
+				E887B0F32105F04900FE97CB /* vsd_emxutil.cpp */,
+				E887B1052105F04A00FE97CB /* vsd_emxutil.h */,
+				E887B0F22105F04900FE97CB /* vsd_initialize.cpp */,
+				E887B10B2105F04B00FE97CB /* vsd_initialize.h */,
+				E887B0FC2105F04A00FE97CB /* vsd_terminate.cpp */,
+				E887B1012105F04A00FE97CB /* vsd_terminate.h */,
+				E887B0F82105F04900FE97CB /* vsd_types.h */,
+				E887B0FE2105F04A00FE97CB /* vsd.cpp */,
+				E887B1062105F04A00FE97CB /* vsd.h */,
 			);
 			name = AudioProcessing;
 			sourceTree = "<group>";
@@ -577,34 +577,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E887B1272105F04C00FE97CB /* rt_nonfinite.cpp in Sources */,
+				E887B1232105F04C00FE97CB /* pwchcore.cpp in Sources */,
 				3AFBA6AD1940119000E8D9F0 /* BufferManager.mm in Sources */,
-				E85764052105E70500D5EABD /* rtGetInf.cpp in Sources */,
+				E887B1262105F04C00FE97CB /* fft1.cpp in Sources */,
+				E887B1172105F04C00FE97CB /* vsd_initialize.cpp in Sources */,
 				3AD8A31A193996960009D4C0 /* CAXException.cpp in Sources */,
-				E857640B2105E70500D5EABD /* abs.cpp in Sources */,
-				E85764062105E70500D5EABD /* vsd.cpp in Sources */,
-				E85764102105E70500D5EABD /* power.cpp in Sources */,
-				E85764122105E70500D5EABD /* vsd_emxutil.cpp in Sources */,
 				3AD8A2D119398CC20009D4C0 /* DataViewController.mm in Sources */,
 				3AD8A2CB19398CC20009D4C0 /* AppDelegate.mm in Sources */,
+				E887B1182105F04C00FE97CB /* vsd_emxutil.cpp in Sources */,
+				E887B1192105F04C00FE97CB /* diff.cpp in Sources */,
+				E887B11C2105F04C00FE97CB /* vsd.cpp in Sources */,
+				E887B11B2105F04C00FE97CB /* vsd_terminate.cpp in Sources */,
 				3AD8A2D419398CC20009D4C0 /* ModelController.mm in Sources */,
-				E85764022105E70500D5EABD /* bluesteinSetup.cpp in Sources */,
-				E857640F2105E70500D5EABD /* vsd_terminate.cpp in Sources */,
-				E857640A2105E70500D5EABD /* spline.cpp in Sources */,
-				E85764092105E70500D5EABD /* sum.cpp in Sources */,
-				E85764032105E70500D5EABD /* fft.cpp in Sources */,
-				E85764072105E70500D5EABD /* rt_nonfinite.cpp in Sources */,
+				E887B1212105F04C00FE97CB /* abs.cpp in Sources */,
 				3AD8A2C719398CC20009D4C0 /* main.m in Sources */,
+				E887B1162105F04C00FE97CB /* fft.cpp in Sources */,
+				E887B11D2105F04C00FE97CB /* emd.cpp in Sources */,
+				E887B1222105F04C00FE97CB /* power.cpp in Sources */,
 				3AD8A319193996960009D4C0 /* CAStreamBasicDescription.cpp in Sources */,
+				E887B1242105F04C00FE97CB /* rtGetNaN.cpp in Sources */,
 				3AD8A303193995190009D4C0 /* AudioController.mm in Sources */,
-				E857640C2105E70500D5EABD /* diff.cpp in Sources */,
-				E85764042105E70500D5EABD /* emd.cpp in Sources */,
-				E85764082105E70500D5EABD /* fft1.cpp in Sources */,
-				E85764012105E70500D5EABD /* vsd_initialize.cpp in Sources */,
+				E887B1202105F04C00FE97CB /* sum.cpp in Sources */,
+				E887B1252105F04C00FE97CB /* spline.cpp in Sources */,
+				E887B11A2105F04C00FE97CB /* bluesteinSetup.cpp in Sources */,
+				E887B11E2105F04C00FE97CB /* rtGetInf.cpp in Sources */,
 				3AD8A318193996960009D4C0 /* CADebugMacros.cpp in Sources */,
 				3AD8A2CE19398CC20009D4C0 /* RootViewController.mm in Sources */,
-				E857640E2105E70500D5EABD /* pwchcore.cpp in Sources */,
-				E85764112105E70500D5EABD /* rtGetNaN.cpp in Sources */,
-				E857640D2105E70500D5EABD /* findpeaks.cpp in Sources */,
+				E887B11F2105F04C00FE97CB /* findpeaks.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
