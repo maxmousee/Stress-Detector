@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2016a">
-  <configuration build-checksum="4158108796" file="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.prj" location="/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="4293660438" file="/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.prj" location="/home/maxmouse/repo/Stress-Detector/Generic/MATLAB" name="vsd" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -782,7 +782,7 @@
     <param.outputfile>${PROJECT_ROOT}/codegen/lib/vsd/vsd.a</param.outputfile>
     <param.version>R2012a</param.version>
     <param.HasECoderFeatures>true</param.HasECoderFeatures>
-    <param.HasGpuCoder>false</param.HasGpuCoder>
+    <param.HasGpuCoder>true</param.HasGpuCoder>
     <param.mex.mainhtml />
     <param.grt.mainhtml />
     <param.CallGeneratedCodeFromTest>true</param.CallGeneratedCodeFromTest>
@@ -802,13 +802,13 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen/lib/vsd</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>4158108796</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>129139549</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen/mex/vsd</var.cfi.lastOutputRoot>
-    <var.cfi.preBuildChecksum>432683158</var.cfi.preBuildChecksum>
+    <var.cfi.preBuildChecksum>746063900</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>tst</var.lastCfiTestSnippet>
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;561016892&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;612949993&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/emd.m&lt;/file&gt;&lt;file&gt;/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/findpeaks.m&lt;/file&gt;&lt;file&gt;/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/vsd.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.configImportActive>false</param.configImportActive>
     <var.isGpuCoder>false</var.isGpuCoder>
@@ -866,15 +866,15 @@
     <param.FixedPointUseDesignRanges>false</param.FixedPointUseDesignRanges>
     <param.gpu.Enabled>false</param.gpu.Enabled>
     <param.gpu.KernelNamePrefix />
-    <param.gpu.MallocMode />
+    <param.gpu.MallocMode>discrete</param.gpu.MallocMode>
     <param.gpu.MallocThreshold>200</param.gpu.MallocThreshold>
     <param.gpu.StackLimitPerThread>1024</param.gpu.StackLimitPerThread>
-    <param.gpu.EnableCUBLAS>false</param.gpu.EnableCUBLAS>
-    <param.gpu.EnableCUSOLVER>false</param.gpu.EnableCUSOLVER>
-    <param.gpu.EnableCUFFT>false</param.gpu.EnableCUFFT>
+    <param.gpu.EnableCUBLAS>true</param.gpu.EnableCUBLAS>
+    <param.gpu.EnableCUSOLVER>true</param.gpu.EnableCUSOLVER>
+    <param.gpu.EnableCUFFT>true</param.gpu.EnableCUFFT>
     <param.gpu.Benchmarking>false</param.gpu.Benchmarking>
     <param.gpu.SafeBuild>false</param.gpu.SafeBuild>
-    <param.gpu.ComputeCapability />
+    <param.gpu.ComputeCapability>3.5</param.gpu.ComputeCapability>
     <param.gpu.CustomComputeCapability />
     <param.gpu.CompilerFlags />
     <var.checkIssuesGpu>false</var.checkIssuesGpu>
@@ -998,16 +998,17 @@
       </file>
     </fileset.inputtypes>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/codegen/lib/vsd" name="vsd.a" optional="false">/Users/maxmouse/repo/Stress-Detector/Generic/MATLAB/codegen/lib/vsd/vsd.a</file>
+      <file location="${PROJECT_ROOT}/codegen/lib/vsd" name="vsd.a" optional="false">/home/maxmouse/repo/Stress-Detector/Generic/MATLAB/codegen/lib/vsd/vsd.a</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>/Applications/MATLAB_R2018a.app</root>
+      <root>/usr/local/MATLAB/R2018a</root>
       <toolboxes>
         <toolbox name="fixedpoint" />
         <toolbox name="matlabcoder" />
         <toolbox name="matlabhdlcoder" />
         <toolbox name="embeddedcoder" />
+        <toolbox name="gpucoder" />
         <toolbox name="polyspacebugfinder" />
       </toolboxes>
       <toolbox>
@@ -1031,6 +1032,11 @@
         </embeddedcoder>
       </toolbox>
       <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
         <polyspacebugfinder>
           <enabled>true</enabled>
         </polyspacebugfinder>
@@ -1038,17 +1044,17 @@
     </matlab>
     <platform>
       <unix>true</unix>
-      <mac>true</mac>
+      <mac>false</mac>
       <windows>false</windows>
       <win2k>false</win2k>
       <winxp>false</winxp>
       <vista>false</vista>
-      <linux>false</linux>
+      <linux>true</linux>
       <solaris>false</solaris>
-      <osver>10.13.6</osver>
+      <osver>4.15.0-29-generic</osver>
       <os32>false</os32>
       <os64>true</os64>
-      <arch>maci64</arch>
+      <arch>glnxa64</arch>
       <matlab>true</matlab>
     </platform>
   </configuration>
