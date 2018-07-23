@@ -24,6 +24,8 @@
 
 class BufferManager
 {
+private:
+    int buffSize[1];
 public:
     BufferManager( UInt32 inMaxFramesPerSlice );
     ~BufferManager();

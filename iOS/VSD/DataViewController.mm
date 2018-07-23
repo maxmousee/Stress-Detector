@@ -84,17 +84,17 @@
         if (stressCoef >= 9 && stressCoef <= 14) {
             [stressMessage appendString:@"\n\nno stress"];
             stressTL.backgroundColor = [UIColor greenColor].CGColor;
-            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressMessage appendFormat:@"\n\n%dHz", (int)stressCoef];
             [stressTL setString:stressMessage];
         } else if(stressCoef < 9 && stressCoef >= 7){
             [stressMessage appendString:@"\n\nmarginal stress"];
-            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressMessage appendFormat:@"\n\n%dHz", (int)stressCoef];
             [stressTL setString:stressMessage];
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
         } else if(stressCoef > 14 && stressCoef <= 15) {
             [stressMessage appendString:@"\n\nmarginal stress"];
             stressTL.backgroundColor = [UIColor orangeColor].CGColor;
-            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressMessage appendFormat:@"\n\n%dHz", (int)stressCoef];
             [stressTL setString:stressMessage];
         } else if(stressCoef <= 3 || stressCoef > 50) {
             //[stressMessage appendString:@"can't process"];
@@ -102,7 +102,7 @@
         } else {
             [stressMessage appendString:@"\n\nstress"];
             stressTL.backgroundColor = [UIColor redColor].CGColor;
-            [stressMessage appendFormat:@"\n\n%.2fHz", stressCoef];
+            [stressMessage appendFormat:@"\n\n%dHz", (int)stressCoef];
             [stressTL setString:stressMessage];
         }
         [stressTL performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:0 waitUntilDone:NO];

@@ -18,6 +18,7 @@ inputBufferLen(inMaxFramesPerSlice)
 {
     inputBuffer = (Float32*) calloc(inMaxFramesPerSlice, sizeof(Float32));
     inputBufferFrameIndex = 0;
+    buffSize[0] = kBufferLength;
 }
 
 BufferManager::~BufferManager()
