@@ -6,8 +6,6 @@ Sample rate: 8KHz.
 
 Ts = 1 second.
 
-Known issues: random crashes on iOS [invalid memory access]
-
 [![Build Status](https://travis-ci.org/maxmousee/Stress-Detector.svg?branch=master)](https://travis-ci.org/maxmousee/Stress-Detector)
 
 [![CI Status](https://circleci.com/gh/maxmousee/Stress-Detector.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/maxmousee/Stress-Detector)
