@@ -7,7 +7,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-node-browsers
     parallelism: 4
 
-    working_directory: ~/repo/Generic/C/Linux/
+    working_directory: $CIRCLE_WORKING_DIRECTORY/Generic/C/Linux/
 
     steps:
       - checkout
