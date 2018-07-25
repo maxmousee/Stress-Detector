@@ -7,7 +7,7 @@ jobs:
       - image: circleci/openjdk:8-jdk-node-browsers
     parallelism: 4
 
-    working_directory: ~/repo/
+    working_directory: ~/repo/Generic/C/Linux/
 
     steps:
       - checkout
@@ -16,4 +16,4 @@ jobs:
       - run:
           name: build C Linux lib
           command: |
-            make -f Generic/C/Linux/Makefile
+            make all
