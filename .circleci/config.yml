@@ -1,38 +1,19 @@
-# Python CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-python/ for more details
+# CircleCI 2.0 configuration file
 #
 version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:2.7.15
+      - image: circleci/ubuntu:16.04
     parallelism: 4
 
-    working_directory: ~/repo/Python
+    working_directory: ~/repo/
 
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Python/requirements.txt" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run:
-          name: install dependencies
-          command: |
-            pip install -r Python/requirements.txt --user
         
-      # run tests!
+      # build!
       - run:
-          name: run tests for Python Desktop
+          name: build C Linux lib
           command: |
-            python Python/StressDetectorDesktop.py -i Python/rain_man_driver_8000.wav
-
-      - run:
-          name: run tests for Python WebService
-          command: |
-            sh Python/testws.sh
+            make -f Generic/C/Linux/Makefile
