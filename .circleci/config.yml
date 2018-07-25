@@ -7,19 +7,12 @@ jobs:
       - image: circleci/openjdk:8-jdk-node-browsers
     parallelism: 4
 
-    working_directory: ~/project/Generic/C/Linux/
+    working_directory: ~/project
 
     steps:
       - checkout
         
-
-      # ls!
-      - run:
-          name: List Dir
-          command: |
-            ls -lah
-
-      # build!
+      # build Linux Lib
       - run:
           name: build C Linux lib
           command: |
