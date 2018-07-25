@@ -12,8 +12,15 @@ jobs:
     steps:
       - checkout
         
+
+      # ls!
+      - run:
+          name: List Dir
+          command: |
+            ls -lah
+
       # build!
       - run:
           name: build C Linux lib
           command: |
-            make all
+            cd Generic/C/Linux/; make all
