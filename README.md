@@ -1,6 +1,6 @@
 ## Stress-Detector
 
-Voice Stress Detector API, Python RESTful Web Service and Mobile Apps.
+Voice Stress Detector API written in C, MATLAB and iOS App.
 
 Sample rate: 8KHz.
 
