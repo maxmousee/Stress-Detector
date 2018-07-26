@@ -197,7 +197,7 @@ DEFINES = $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/codegen/lib/vsd/vsd_rtwutil.c $(START_DIR)/codegen/lib/vsd/vsd_data.c $(START_DIR)/codegen/lib/vsd/vsd_initialize.c $(START_DIR)/codegen/lib/vsd/vsd_terminate.c $(START_DIR)/codegen/lib/vsd/vsd.c $(START_DIR)/codegen/lib/vsd/emd.c $(START_DIR)/codegen/lib/vsd/findpeaks.c $(START_DIR)/codegen/lib/vsd/diff.c $(START_DIR)/codegen/lib/vsd/sum.c $(START_DIR)/codegen/lib/vsd/abs.c $(START_DIR)/codegen/lib/vsd/pwchcore.c $(START_DIR)/codegen/lib/vsd/ppval.c $(START_DIR)/codegen/lib/vsd/power.c $(START_DIR)/codegen/lib/vsd/fft.c $(START_DIR)/codegen/lib/vsd/fft1.c $(START_DIR)/codegen/lib/vsd/bluesteinSetup.c $(START_DIR)/codegen/lib/vsd/vsd_emxutil.c $(START_DIR)/codegen/lib/vsd/rt_nonfinite.c $(START_DIR)/codegen/lib/vsd/rtGetNaN.c $(START_DIR)/codegen/lib/vsd/rtGetInf.c
+SRCS = $(START_DIR)/codegen/lib/vsd/vsd_initialize.c $(START_DIR)/codegen/lib/vsd/vsd_terminate.c $(START_DIR)/codegen/lib/vsd/vsd.c $(START_DIR)/codegen/lib/vsd/emd.c $(START_DIR)/codegen/lib/vsd/findpeaks.c $(START_DIR)/codegen/lib/vsd/diff.c $(START_DIR)/codegen/lib/vsd/sum.c $(START_DIR)/codegen/lib/vsd/abs.c $(START_DIR)/codegen/lib/vsd/spline.c $(START_DIR)/codegen/lib/vsd/pwchcore.c $(START_DIR)/codegen/lib/vsd/power.c $(START_DIR)/codegen/lib/vsd/fft.c $(START_DIR)/codegen/lib/vsd/fft1.c $(START_DIR)/codegen/lib/vsd/bluesteinSetup.c $(START_DIR)/codegen/lib/vsd/vsd_emxutil.c $(START_DIR)/codegen/lib/vsd/rt_nonfinite.c $(START_DIR)/codegen/lib/vsd/rtGetNaN.c $(START_DIR)/codegen/lib/vsd/rtGetInf.c
 
 ALL_SRCS = $(SRCS)
 
@@ -205,7 +205,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = vsd_rtwutil.o vsd_data.o vsd_initialize.o vsd_terminate.o vsd.o emd.o findpeaks.o diff.o sum.o abs.o pwchcore.o ppval.o power.o fft.o fft1.o bluesteinSetup.o vsd_emxutil.o rt_nonfinite.o rtGetNaN.o rtGetInf.o
+OBJS = vsd_initialize.o vsd_terminate.o vsd.o emd.o findpeaks.o diff.o sum.o abs.o spline.o pwchcore.o power.o fft.o fft1.o bluesteinSetup.o vsd_emxutil.o rt_nonfinite.o rtGetNaN.o rtGetInf.o
 
 ALL_OBJS = $(OBJS)
 
@@ -374,7 +374,7 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS)
 ## DEPENDENCIES
 ###########################################################################
 
-$(ALL_OBJS) : $(MAKEFILE) rtw_proj.tmw
+#$(ALL_OBJS) : $(MAKEFILE) rtw_proj.tmw
 
 
 ###########################################################################
