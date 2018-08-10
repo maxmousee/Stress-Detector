@@ -1,4 +1,4 @@
-LIB_NAME = VSD_JNI
+LIB_NAME = VSDJNI
 CFLAGS = -Iinclude -fPIC
 LFLAGS = -Llib -l$(LIB_NAME) -Wl,-rpath,\$$ORIGIN/../lib
 

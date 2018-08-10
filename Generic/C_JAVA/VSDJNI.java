@@ -1,7 +1,11 @@
-public class VSD_JNI {
+public class VSDJNI {
+
+    static {
+        System.loadLibrary("VSDJNI");
+    }
 
     // --- Native VSD method
-    public native double processAudio(double[] intArray, int input_size);
+    public native double processAudio(double[] inputArray, int sampleRate);
 
 
     // --- Main method to test our native library
@@ -9,9 +13,7 @@ public class VSD_JNI {
         int sampleRate = 8000;
         double[] inputData = new double[sampleRate];
         
-        System.loadLibrary("VSD_JNI");
-        
-        VSD_JNI theVSD = new VSD_JNI();
+        VSDJNI theVSD = new VSDJNI();
         double stressFreq = theVSD.processAudio(inputData, sampleRate);
 
         System.out.println("stressFreq: " + stressFreq);
