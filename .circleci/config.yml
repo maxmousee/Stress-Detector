@@ -21,4 +21,4 @@ jobs:
       - run:
           name: build Java Linux lib
           command: |
-            cd Generic/C_JAVA/; make all -f Makefile_java
+            cd Generic/C_JAVA/; make all -f Makefile_java_linux
