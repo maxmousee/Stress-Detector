@@ -15,7 +15,7 @@ bin/%: build/%.o | lib/lib$(LIB_NAME).so
 
 lib/lib$(LIB_NAME).so: $(O_FILES)
 	mkdir -p $(@D)
-	g++ $^ -shared -Wl -o $@
+	g++ $^ -shared -o $@
 
 build/%.o: %.cpp
 	mkdir -p $(@D)

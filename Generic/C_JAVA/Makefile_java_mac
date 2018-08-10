@@ -15,7 +15,7 @@ bin/%: build/%.o | lib/lib$(LIB_NAME).dylib
 
 lib/lib$(LIB_NAME).dylib: $(O_FILES)
 	mkdir -p $(@D)
-	g++ $^ -dynamiclib -Wl -o $@
+	g++ $^ -dynamiclib -o $@
 
 build/%.o: %.cpp
 	mkdir -p $(@D)
