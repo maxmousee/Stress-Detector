@@ -1,6 +1,6 @@
 LIB_NAME = VSDJNI
 CFLAGS = -I $(JAVA_HOME)/include/ -I $(JAVA_HOME)/include/darwin/ -I $(JAVA_HOME)/include/linux/ -Iinclude -fPIC
-LFLAGS = -I $(JAVA_HOME)/include/ -I $(JAVA_HOME)/include/darwin/ -I $(JAVA_HOME)/include/linux/ -Llib -l$(LIB_NAME) -Wl,-rpath,\$$ORIGIN/../lib
+LFLAGS = -I $(JAVA_HOME)/include/ -I $(JAVA_HOME)/include/darwin/ -I $(JAVA_HOME)/include/linux/ -Llib -Wl,-rpath,\$$ORIGIN/../lib
 
 EXE_SRC_FILES = $(wildcard *.cpp)
 EXECUTABLES = $(patsubst %.cpp,bin/%,$(EXE_SRC_FILES))
@@ -11,11 +11,11 @@ all: $(EXECUTABLES) lib/lib$(LIB_NAME).dylib
 
 bin/%: build/%.o | lib/lib$(LIB_NAME).dylib
 	mkdir -p $(@D)
-	g++ $< $(LFLAGS) -o $@
+	g++ -c $< $(LFLAGS) -o $@
 
 lib/lib$(LIB_NAME).dylib: $(O_FILES)
 	mkdir -p $(@D)
-	g++ $^ -c -dynamiclib -o $@
+	g++ $^ -dynamiclib -Wl -o $@
 
 build/%.o: %.cpp
 	mkdir -p $(@D)
