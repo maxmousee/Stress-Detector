@@ -16,4 +16,4 @@ jobs:
       - run:
           name: build C Linux lib
           command: |
-            cd Generic/C_ANSI/; make -f Makefile_linux all
+            cd Generic/C_JAVA/; make -f Makefile_linux all
