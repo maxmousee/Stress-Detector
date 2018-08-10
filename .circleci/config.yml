@@ -12,13 +12,24 @@ jobs:
     steps:
       - checkout
         
-      # build C Linux Lib
+      # Build C Linux Lib
       - run:
-          name: build C Linux lib
+          name: Build C Linux lib
           command: |
             cd Generic/C_JAVA/; make all -f Makefile_linux
-      # build Java Linux Lib
+      # Build Java Linux Lib
       - run:
-          name: build Java Linux lib
+          name: Build Java Linux lib
           command: |
-            cd Generic/C_JAVA/; make all -f Makefile_java_linux
+            cd Generic/C_JAVA/; make all -f Makefile_java_linux; cp lib/libVSDJNI.so
+      # Build Java Test App
+      - run:
+          name: Build Java Test App
+          command: |
+            cd Generic/C_JAVA/; javac VSDJNI.java -h .;
+      # Run Java Test App
+      - run:
+          name: Run Java Test App
+          command: |
+            cd Generic/C_JAVA/; java -cp . -Djava.library.path=$(pwd) VSDJNI 
+            
