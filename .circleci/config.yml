@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build Java Linux lib
           command: |
-            cd Generic/C_JAVA/; make all -f Makefile_java_linux; cp lib/libVSDJNI.so
+            cd Generic/C_JAVA/; make all -f Makefile_java_linux; cp lib/libVSDJNI.so libVSDJNI.so
       # Build Java Test App
       - run:
           name: Build Java Test App
