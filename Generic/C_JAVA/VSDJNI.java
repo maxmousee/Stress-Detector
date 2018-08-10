@@ -14,7 +14,7 @@ public class VSDJNI {
 
     // --- Main method to test our native library
     public static void main(String[] args) {
-        double[] inputData = new double[] {0};
+        double[] inputData = new double[8000];
 
         VSDJNI theVSD = new VSDJNI();
         double stressFreq = theVSD.processAudio(inputData);

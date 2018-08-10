@@ -3,7 +3,7 @@
 
 JNIEXPORT jdouble JNICALL Java_VSDJNI_processAudio(JNIEnv* env, jobject obj, jdoubleArray array)
 {
-      jdouble* body = env->GetIntArrayElements(array, 0);
+      jdouble* body = env->GetDoubleArrayElements(array, 0);
       jsize len = env->GetArrayLength(array);
       printf("1\n");
       jdouble* inputAudioBuffer = env->GetDoubleArrayElements(array, 0);

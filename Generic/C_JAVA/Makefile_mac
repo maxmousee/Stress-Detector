@@ -151,7 +151,7 @@ MEX_CFLAGS           = -R2018a -MATLAB_ARCH=$(ARCH) $(INCLUDES) \
 MEX_LDFLAGS          = LDFLAGS=='$$LDFLAGS'
 MAKE_FLAGS           = -f $(MAKEFILE)
 SHAREDLIB_LDFLAGS    = -dynamiclib -install_name @rpath/$(notdir $(PRODUCT)) -isysroot $(XCODE_SDK_ROOT) -L"$(MATLAB_ARCH_BIN)" \
-                       -Wl,$(LD_NAMESPACE) $(LD_UNDEFS)
+                       -Wl $(LD_UNDEFS)
 
 #--------------------
 # File extensions
