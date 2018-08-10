@@ -12,8 +12,13 @@ jobs:
     steps:
       - checkout
         
-      # build Linux Lib
+      # build C Linux Lib
       - run:
           name: build C Linux lib
           command: |
-            cd Generic/C_JAVA/; make -f Makefile_linux all
+            cd Generic/C_JAVA/; make all -f Makefile_linux
+      # build Java Linux Lib
+      - run:
+          name: build Java Linux lib
+          command: |
+            cd Generic/C_JAVA/; make all -f Makefile_java
