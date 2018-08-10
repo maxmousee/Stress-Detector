@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     VSDJNI
  * Method:    processAudio
- * Signature: ([DI)D
+ * Signature: ([D)D
  */
 JNIEXPORT jdouble JNICALL Java_VSDJNI_processAudio
-  (JNIEnv *, jobject, jdoubleArray, jint);
+  (JNIEnv *, jobject, jdoubleArray);
 
 #ifdef __cplusplus
 }

@@ -1,21 +1,23 @@
 public class VSDJNI {
 
-    static {
-        System.loadLibrary("VSDJNI");
+    static{
+        try{
+            System.loadLibrary("VSDJNI");
+        }catch(UnsatisfiedLinkError e){
+            e.printStackTrace();
+        }
     }
 
     // --- Native VSD method
-    public native double processAudio(double[] inputArray, int sampleRate);
+    public native double processAudio(double[] inputArray);
 
 
     // --- Main method to test our native library
     public static void main(String[] args) {
-        int sampleRate = 8000;
-        double[] inputData = new double[sampleRate];
-        
-        VSDJNI theVSD = new VSDJNI();
-        double stressFreq = theVSD.processAudio(inputData, sampleRate);
+        double[] inputData = new double[] {0};
 
+        VSDJNI theVSD = new VSDJNI();
+        double stressFreq = theVSD.processAudio(inputData);
         System.out.println("stressFreq: " + stressFreq);
     }
 }
