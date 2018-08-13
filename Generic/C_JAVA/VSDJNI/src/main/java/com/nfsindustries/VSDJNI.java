@@ -1,3 +1,5 @@
+package com.nfsindustries;
+
 public class VSDJNI {
 
     static{
@@ -11,13 +13,11 @@ public class VSDJNI {
     // --- Native VSD method
     public native double processAudio(double[] inputArray);
 
-
     // --- Main method to test our native library
     public static void main(String[] args) {
         double[] inputData = new double[8000];
-
-        VSDJNI theVSD = new VSDJNI();
-        double stressFreq = theVSD.processAudio(inputData);
-        System.out.println("stressFreq: " + stressFreq);
+        VSDJNI vsdjni = new VSDJNI();
+        double stressFreq = vsdjni.processAudio(inputData);
+        System.out.println("Stress Frequency " + stressFreq);
     }
 }

@@ -17,19 +17,24 @@ jobs:
           name: Build C Linux lib
           command: |
             cd Generic/C_JAVA/; make all -f Makefile_linux
-      # Build Java Linux Lib
+      # Build JNI Linux Lib
       - run:
-          name: Build Java Linux lib
+          name: Build JNI Linux lib
           command: |
-            cd Generic/C_JAVA/; make all -f Makefile_java_linux; cp lib/libVSDJNI.so libVSDJNI.so
+            cd Generic/C_JAVA/; make all -f Makefile_java_linux; cp lib/libVSDJNI.so libVSDJNI.so; cp lib/libVSDJNI.so VSDJNI/src/main/java/com/nfsindustries/libVSDJNI.so;
+      # Build Maven
+      - run:
+          name: Build Maven
+          command: |
+            cd Generic/C_JAVA/VSDJNI/; mvn clean install surefire-report:report-only -Dskip.unit.tests=false -Djava.library.path=/Users/nfacchin/dev/maxmouse/Stress-Detector/Generic/C_JAVA/lib/;
       # Build Java Test App
       - run:
           name: Build Java Test App
           command: |
-            cd Generic/C_JAVA/; javac VSDJNI.java -h .;
+            cd Generic/C_JAVA/VSDJNI/src/main/java/com/nfsindustries/; javac VSDJNI.java -h .;
       # Run Java Test App
       - run:
           name: Run Java Test App
           command: |
-            cd Generic/C_JAVA/; java -cp . -Djava.library.path=$(pwd) VSDJNI 
+            Generic/C_JAVA/VSDJNI/src/main/java/com/nfsindustries/; java -cp . -Djava.library.path=$(pwd) VSDJNI 
             
