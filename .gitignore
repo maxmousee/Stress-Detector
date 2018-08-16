@@ -47,3 +47,5 @@ trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/User
 Generic/C_JAVA/build/
 Generic/C_JAVA/lib/
 Generic/C_JAVA/bin/
+Generic/C_JAVA/*.o
+Generic/C_JAVA/vsd.a
