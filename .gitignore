@@ -42,3 +42,8 @@ trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/User
 trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.pyc
+
+# C and JNI build files
+Generic/C_JAVA/build/
+Generic/C_JAVA/lib/
+Generic/C_JAVA/bin/
