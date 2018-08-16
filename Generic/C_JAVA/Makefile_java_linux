@@ -1,6 +1,6 @@
 LIB_NAME = VSDJNI
 CFLAGS = -I $(JAVA_HOME)/include/ -I $(JAVA_HOME)/include/darwin/ -I $(JAVA_HOME)/include/linux/ -Iinclude -fPIC
-LFLAGS = -I $(JAVA_HOME)/include/ -I $(JAVA_HOME)/include/darwin/ -I $(JAVA_HOME)/include/linux/ -Llib -Wl,-rpath,\$$ORIGIN/../lib
+LFLAGS = 
 
 EXE_SRC_FILES = $(wildcard *.cpp)
 EXECUTABLES = $(patsubst %.cpp,bin/%,$(EXE_SRC_FILES))
