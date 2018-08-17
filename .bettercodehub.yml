@@ -2,14 +2,7 @@ exclude:
 - /iOS/Pods/.*
 - /Generic/C_JAVA/.*
 - /iOS/VSD/Base\.lproj
-- /iOS/VSD/CABitOperations\.h
-- /iOS/VSD/CADebugMacros\.cpp
-- /iOS/VSD/CADebugMacros\.h
-- /iOS/VSD/CAMath\.h
-- /iOS/VSD/CAStreamBasicDescription\.cpp
-- /iOS/VSD/CAStreamBasicDescription\.h
-- /iOS/VSD/CAXException\.cpp
-- /iOS/VSD/CAXException\.h
+- /iOS/VSD/PublicUtitily/.*
 - /iOS/VSD/Images\.xcassets
 - /iOS/VSD/VSD-Info\.plist
 - /iOS/VSD/VSD-Prefix\.pch
