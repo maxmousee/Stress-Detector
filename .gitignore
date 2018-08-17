@@ -49,3 +49,6 @@ Generic/C_JAVA/lib/
 Generic/C_JAVA/bin/
 Generic/C_JAVA/*.o
 Generic/C_JAVA/vsd.a
+
+# iOS PODS
+iOS/Pods/
