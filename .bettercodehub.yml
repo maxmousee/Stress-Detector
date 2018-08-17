@@ -2,7 +2,7 @@ exclude:
 - /iOS/Pods/.*
 - /Generic/C_JAVA/.*
 - /iOS/VSD/Base\.lproj
-- /iOS/VSD/PublicUtitily/.*
+- /iOS/VSD/PublicUtility/.*
 - /iOS/VSD/Images\.xcassets
 - /iOS/VSD/VSD-Info\.plist
 - /iOS/VSD/VSD-Prefix\.pch
