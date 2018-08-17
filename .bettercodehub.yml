@@ -1,6 +1,6 @@
 exclude:
 - /iOS/Pods/.*
-- /Generic/C/.*
+- /Generic/C_JAVA/.*
 - /iOS/VSD/Base\.lproj
 - /iOS/VSD/CABitOperations\.h
 - /iOS/VSD/CADebugMacros\.cpp
@@ -13,6 +13,3 @@ exclude:
 - /iOS/VSD/Images\.xcassets
 - /iOS/VSD/VSD-Info\.plist
 - /iOS/VSD/VSD-Prefix\.pch
-- .*/Python/emd\.py
-- .*/Python/utils\.py
-- .*/Python/visualization\.py
