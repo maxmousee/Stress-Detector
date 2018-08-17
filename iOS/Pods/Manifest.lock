@@ -1,14 +1,18 @@
 PODS:
-  - KIF (3.6.0):
-    - KIF/Core (= 3.6.0)
-  - KIF/Core (3.6.0)
+  - KIF (3.7.4):
+    - KIF/Core (= 3.7.4)
+  - KIF/Core (3.7.4)
 
 DEPENDENCIES:
-  - KIF (~> 3.6.0)
+  - KIF (~> 3.7.4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KIF
 
 SPEC CHECKSUMS:
-  KIF: bd770edd8ce49bc7308501e4871e58a02d137be3
+  KIF: f3d01c109ee9d1cfe6b0f2bb2aa278e807e971e2
 
-PODFILE CHECKSUM: 6ed8078d5c96642c2672f2fc0f5faa8b10143da3
+PODFILE CHECKSUM: bbee59205ede6bce6a83f11e6619cdd7b9194889
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

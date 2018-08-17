@@ -10,7 +10,7 @@
 #import <KIF/KIF.h>
 
 
-@interface VSDTests : XCTestCase
+@interface VSDTests : KIFTestCase
 
 @end
 

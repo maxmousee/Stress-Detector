@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		148C746F33C2AB3FDDC5644B /* Pods_VSD_VSDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8B080CAD59E0F61942574B /* Pods_VSD_VSDTests.framework */; };
 		28D349B5833CCF806B34449E /* Pods_VSD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F331FAFE3E0BCCFC3E60F6F /* Pods_VSD.framework */; };
+		3A41B68E21277ACC001351CB /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A41B68D21277ACC001351CB /* KIF.framework */; };
 		3AD8A2BB19398CC10009D4C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2BA19398CC10009D4C0 /* Foundation.framework */; };
 		3AD8A2BF19398CC10009D4C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2BE19398CC10009D4C0 /* UIKit.framework */; };
 		3AD8A2C519398CC20009D4C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AD8A2C319398CC20009D4C0 /* InfoPlist.strings */; };
@@ -69,6 +69,7 @@
 		3A2C17CA1979E93D00DF5FE9 /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_80.png; path = ../icons/icon_80.png; sourceTree = "<group>"; };
 		3A2C17CB1979E95300DF5FE9 /* icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_58.png; path = ../icons/icon_58.png; sourceTree = "<group>"; };
 		3A40D1C6194A746D0067B456 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3A41B68D21277ACC001351CB /* KIF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KIF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD8A2B719398CC10009D4C0 /* VSD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD8A2BA19398CC10009D4C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3AD8A2BC19398CC10009D4C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -107,7 +108,6 @@
 		88B89D53E871FE5132F15505 /* Pods-VSD-VSDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD-VSDTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6A2F7B99FA881EE943C0318 /* Pods-VSD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSD/Pods-VSD.release.xcconfig"; sourceTree = "<group>"; };
 		ACD3E194D2087CD3BE5B8FF0 /* Pods-VSD-VSDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD-VSDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests.release.xcconfig"; sourceTree = "<group>"; };
-		BD8B080CAD59E0F61942574B /* Pods_VSD_VSDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VSD_VSDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80CA953211C6B6100ACF035 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAMath.h; path = PublicUtility/CAMath.h; sourceTree = "<group>"; };
 		E80CA954211C6B6100ACF035 /* CADebugMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CADebugMacros.cpp; path = PublicUtility/CADebugMacros.cpp; sourceTree = "<group>"; };
 		E80CA955211C6B6100ACF035 /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CABitOperations.h; path = PublicUtility/CABitOperations.h; sourceTree = "<group>"; };
@@ -176,10 +176,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A41B68E21277ACC001351CB /* KIF.framework in Frameworks */,
 				3AD8A2E019398CC20009D4C0 /* XCTest.framework in Frameworks */,
 				3AD8A2E219398CC20009D4C0 /* UIKit.framework in Frameworks */,
 				3AD8A2E119398CC20009D4C0 /* Foundation.framework in Frameworks */,
-				148C746F33C2AB3FDDC5644B /* Pods_VSD_VSDTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +261,7 @@
 		3AD8A2B919398CC10009D4C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A41B68D21277ACC001351CB /* KIF.framework */,
 				3A40D1C6194A746D0067B456 /* QuartzCore.framework */,
 				3AD8A31C193A3BFC0009D4C0 /* AudioToolbox.framework */,
 				3AD8A2FC1939912A0009D4C0 /* CoreAudio.framework */,
@@ -273,7 +274,6 @@
 				3AD8A2BE19398CC10009D4C0 /* UIKit.framework */,
 				3AD8A2DF19398CC20009D4C0 /* XCTest.framework */,
 				3F331FAFE3E0BCCFC3E60F6F /* Pods_VSD.framework */,
-				BD8B080CAD59E0F61942574B /* Pods_VSD_VSDTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -380,8 +380,6 @@
 				3AD8A2B319398CC10009D4C0 /* Sources */,
 				3AD8A2B419398CC10009D4C0 /* Frameworks */,
 				3AD8A2B519398CC10009D4C0 /* Resources */,
-				3B9EF50A1C8AE7F5201FC863 /* [CP] Embed Pods Frameworks */,
-				8853A40DF253580D193C3C31 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -401,7 +399,6 @@
 				3AD8A2DB19398CC20009D4C0 /* Frameworks */,
 				3AD8A2DC19398CC20009D4C0 /* Resources */,
 				664D754BCF1D9966ECF2EC53 /* [CP] Embed Pods Frameworks */,
-				81284CD9A87A5F9D61BDB476 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -507,21 +504,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3B9EF50A1C8AE7F5201FC863 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSD/Pods-VSD-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		664D754BCF1D9966ECF2EC53 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,36 +520,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		81284CD9A87A5F9D61BDB476 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8853A40DF253580D193C3C31 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VSD/Pods-VSD-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
