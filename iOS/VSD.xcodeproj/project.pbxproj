@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D26046CE12F3CCA5AEDB19C /* Pods_VSD_VSDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691F379A38FDA55537638C8A /* Pods_VSD_VSDTests.framework */; };
 		28D349B5833CCF806B34449E /* Pods_VSD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F331FAFE3E0BCCFC3E60F6F /* Pods_VSD.framework */; };
 		3A41B68E21277ACC001351CB /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A41B68D21277ACC001351CB /* KIF.framework */; };
 		3AD8A2BB19398CC10009D4C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AD8A2BA19398CC10009D4C0 /* Foundation.framework */; };
@@ -105,6 +106,7 @@
 		3ADAEF53193EB299001AA2B5 /* BufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferManager.h; sourceTree = "<group>"; };
 		3F331FAFE3E0BCCFC3E60F6F /* Pods_VSD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VSD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F5979D1A7CC6EE59CF5BDD /* Pods-VSD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VSD/Pods-VSD.debug.xcconfig"; sourceTree = "<group>"; };
+		691F379A38FDA55537638C8A /* Pods_VSD_VSDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VSD_VSDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B89D53E871FE5132F15505 /* Pods-VSD-VSDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD-VSDTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6A2F7B99FA881EE943C0318 /* Pods-VSD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSD/Pods-VSD.release.xcconfig"; sourceTree = "<group>"; };
 		ACD3E194D2087CD3BE5B8FF0 /* Pods-VSD-VSDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VSD-VSDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VSD-VSDTests/Pods-VSD-VSDTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				3AD8A2E019398CC20009D4C0 /* XCTest.framework in Frameworks */,
 				3AD8A2E219398CC20009D4C0 /* UIKit.framework in Frameworks */,
 				3AD8A2E119398CC20009D4C0 /* Foundation.framework in Frameworks */,
+				0D26046CE12F3CCA5AEDB19C /* Pods_VSD_VSDTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +277,7 @@
 				3AD8A2BE19398CC10009D4C0 /* UIKit.framework */,
 				3AD8A2DF19398CC20009D4C0 /* XCTest.framework */,
 				3F331FAFE3E0BCCFC3E60F6F /* Pods_VSD.framework */,
+				691F379A38FDA55537638C8A /* Pods_VSD_VSDTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
