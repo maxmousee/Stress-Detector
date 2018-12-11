@@ -11,14 +11,14 @@ class RealTime : AppCompatActivity() {
         setContentView(R.layout.activity_real_time)
 
         // Example of a call to a native method
-        freq_tv.text = stringFromJNI()
+        freq_tv.text = "done"
     }
 
     /**
-     * A native method that is implemented by the 'native-lib' native library,
+     * A native method that is implemented by the 'vsd' native library,
      * which is packaged with this application.
      */
-    external fun stringFromJNI(): String
+    external fun processAudio(array: Array<Double>): Double
 
     companion object {
 

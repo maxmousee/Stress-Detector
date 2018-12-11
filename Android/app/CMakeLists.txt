@@ -17,7 +17,25 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        src/main/cpp/native-lib.cpp)
+        src/main/cpp/abs.cpp
+        src/main/cpp/bluesteinSetup.cpp
+        src/main/cpp/diff.cpp
+        src/main/cpp/emd.cpp
+        src/main/cpp/fft.cpp
+        src/main/cpp/fft1.cpp
+        src/main/cpp/findpeaks.cpp
+        src/main/cpp/power.cpp
+        src/main/cpp/pwchcore.cpp
+        src/main/cpp/rt_nonfinite.cpp
+        src/main/cpp/rtGetInf.cpp
+        src/main/cpp/rtGetNaN.cpp
+        src/main/cpp/spline.cpp
+        src/main/cpp/sum.cpp
+        src/main/cpp/vsd_emxutil.cpp
+        src/main/cpp/vsd_initialize.cpp
+        src/main/cpp/vsd_terminate.cpp
+        src/main/cpp/vsd.cpp
+        src/main/cpp/VSDJNI.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
