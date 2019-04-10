@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8023C16225E30EE00E17432 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C15225E30EE00E17432 /* QuartzCore.framework */; };
+		E8023C18225E30F200E17432 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C17225E30F200E17432 /* AudioToolbox.framework */; };
+		E8023C1A225E310500E17432 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C19225E310500E17432 /* CoreAudio.framework */; };
+		E8023C1C225E310800E17432 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C1B225E310800E17432 /* Accelerate.framework */; };
+		E8023C1E225E311500E17432 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C1D225E311500E17432 /* AVFoundation.framework */; };
+		E8023C20225E312100E17432 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C1F225E312100E17432 /* UIKit.framework */; };
+		E8023C22225E312700E17432 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C21225E312600E17432 /* Foundation.framework */; };
+		E8023C2E225E319700E17432 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8023C27225E319700E17432 /* CADebugMacros.cpp */; };
+		E8023C2F225E319700E17432 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8023C28225E319700E17432 /* CAXException.cpp */; };
+		E8023C30225E319700E17432 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8023C2C225E319700E17432 /* CAStreamBasicDescription.cpp */; };
+		E8023C32225E322F00E17432 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8023C31225E322F00E17432 /* AudioController.swift */; };
 		E88607CB225E04FA00E57513 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88607CA225E04FA00E57513 /* AppDelegate.swift */; };
 		E88607CD225E04FA00E57513 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88607CC225E04FA00E57513 /* ViewController.swift */; };
 		E88607D0225E04FA00E57513 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E88607CE225E04FA00E57513 /* Main.storyboard */; };
@@ -34,6 +45,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E8023C15225E30EE00E17432 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E8023C17225E30F200E17432 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E8023C19225E310500E17432 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		E8023C1B225E310800E17432 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		E8023C1D225E311500E17432 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E8023C1F225E312100E17432 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E8023C21225E312600E17432 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E8023C26225E319700E17432 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
+		E8023C27225E319700E17432 /* CADebugMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugMacros.cpp; sourceTree = "<group>"; };
+		E8023C28225E319700E17432 /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
+		E8023C29225E319700E17432 /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABitOperations.h; sourceTree = "<group>"; };
+		E8023C2A225E319700E17432 /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
+		E8023C2B225E319700E17432 /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
+		E8023C2C225E319700E17432 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
+		E8023C2D225E319700E17432 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMath.h; sourceTree = "<group>"; };
+		E8023C31225E322F00E17432 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		E88607C7225E04FA00E57513 /* VSD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E88607CA225E04FA00E57513 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E88607CC225E04FA00E57513 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +81,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8023C22225E312700E17432 /* Foundation.framework in Frameworks */,
+				E8023C20225E312100E17432 /* UIKit.framework in Frameworks */,
+				E8023C1E225E311500E17432 /* AVFoundation.framework in Frameworks */,
+				E8023C1C225E310800E17432 /* Accelerate.framework in Frameworks */,
+				E8023C1A225E310500E17432 /* CoreAudio.framework in Frameworks */,
+				E8023C18225E30F200E17432 /* AudioToolbox.framework in Frameworks */,
+				E8023C16225E30EE00E17432 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +108,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8023C13225E2EF700E17432 /* AudioProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				E8023C31225E322F00E17432 /* AudioController.swift */,
+			);
+			path = AudioProcessor;
+			sourceTree = "<group>";
+		};
+		E8023C14225E30ED00E17432 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8023C21225E312600E17432 /* Foundation.framework */,
+				E8023C1F225E312100E17432 /* UIKit.framework */,
+				E8023C1D225E311500E17432 /* AVFoundation.framework */,
+				E8023C1B225E310800E17432 /* Accelerate.framework */,
+				E8023C19225E310500E17432 /* CoreAudio.framework */,
+				E8023C17225E30F200E17432 /* AudioToolbox.framework */,
+				E8023C15225E30EE00E17432 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8023C25225E319700E17432 /* PublicUtility */ = {
+			isa = PBXGroup;
+			children = (
+				E8023C26225E319700E17432 /* CAStreamBasicDescription.h */,
+				E8023C27225E319700E17432 /* CADebugMacros.cpp */,
+				E8023C28225E319700E17432 /* CAXException.cpp */,
+				E8023C29225E319700E17432 /* CABitOperations.h */,
+				E8023C2A225E319700E17432 /* CAXException.h */,
+				E8023C2B225E319700E17432 /* CADebugMacros.h */,
+				E8023C2C225E319700E17432 /* CAStreamBasicDescription.cpp */,
+				E8023C2D225E319700E17432 /* CAMath.h */,
+			);
+			name = PublicUtility;
+			path = VSD/PublicUtility;
+			sourceTree = SOURCE_ROOT;
+		};
 		E88607BE225E04FA00E57513 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +153,7 @@
 				E88607DE225E04FB00E57513 /* VSDTests */,
 				E88607E9225E04FB00E57513 /* VSDUITests */,
 				E88607C8225E04FA00E57513 /* Products */,
+				E8023C14225E30ED00E17432 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +170,8 @@
 		E88607C9225E04FA00E57513 /* VSD */ = {
 			isa = PBXGroup;
 			children = (
+				E8023C25225E319700E17432 /* PublicUtility */,
+				E8023C13225E2EF700E17432 /* AudioProcessor */,
 				E88607CA225E04FA00E57513 /* AppDelegate.swift */,
 				E88607CC225E04FA00E57513 /* ViewController.swift */,
 				E88607CE225E04FA00E57513 /* Main.storyboard */,
@@ -256,8 +331,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8023C2F225E319700E17432 /* CAXException.cpp in Sources */,
 				E88607CD225E04FA00E57513 /* ViewController.swift in Sources */,
+				E8023C2E225E319700E17432 /* CADebugMacros.cpp in Sources */,
 				E88607CB225E04FA00E57513 /* AppDelegate.swift in Sources */,
+				E8023C32225E322F00E17432 /* AudioController.swift in Sources */,
+				E8023C30225E319700E17432 /* CAStreamBasicDescription.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +512,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 656LRSVN44;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				INFOPLIST_FILE = VSD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 656LRSVN44;
 				INFOPLIST_FILE = VSD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
