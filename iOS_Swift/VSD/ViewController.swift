@@ -25,6 +25,30 @@ class ViewController: UIViewController {
         stressTL.string = "\n\n\nprocessing..."
         self.view.layer.addSublayer(stressTL)
     }
+    
+    func updateStressView(stressCoeficient: Double) {
+        let displayMessage = NSMutableString()
+        displayMessage.appendFormat("\n\n%dHz", Int(stressCoeficient))
+        if (stressCoeficient >= 9 && stressCoeficient <= 14) {
+            displayMessage.append("\n\nno stress")
+            stressTL.backgroundColor = UIColor.green.cgColor
+            stressTL.string = displayMessage
+        } else if(stressCoeficient < 9 && stressCoeficient >= 7){
+            displayMessage.append("\n\nmarginal stress")
+            stressTL.backgroundColor = UIColor.orange.cgColor
+            stressTL.string = displayMessage
+        } else if(stressCoeficient > 14 && stressCoeficient <= 15) {
+            displayMessage.append("\n\nmarginal stress")
+            stressTL.backgroundColor = UIColor.orange.cgColor
+            stressTL.string = displayMessage
+        } else if(stressCoeficient <= 3 || stressCoeficient > 50) {
+            //Out of the threshold
+        } else {
+            displayMessage.append("\n\nstress")
+            stressTL.backgroundColor = UIColor.red.cgColor
+            stressTL.string = displayMessage
+        }
+    }
 
 }
 
