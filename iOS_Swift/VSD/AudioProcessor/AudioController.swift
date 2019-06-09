@@ -25,7 +25,6 @@ final class AudioController: NSObject {
     var circInIdx  : Int =  0
     var audioLevel : Float  = 0.0
     
-    private var hwSRate = 48000.0   // guess of device hardware sample rate
     private var micPermissionDispatchToken = 0
     private var interrupted = false     // for restart from audio interruption notification
     
@@ -43,7 +42,7 @@ final class AudioController: NSObject {
     private let outputBus: UInt32   =  0
     private let inputBus: UInt32    =  1
     
-    func startAudioUnit() {
+    private func startAudioUnit() {
         var err: OSStatus = noErr
         
         if self.audioUnit == nil {
@@ -63,7 +62,7 @@ final class AudioController: NSObject {
         }
     }
     
-    func startAudioSession() {
+    private func startAudioSession() {
         if (sessionActive == false) {
             // set and activate Audio Session
             do {
@@ -90,10 +89,7 @@ final class AudioController: NSObject {
                 
                 try audioSession.setCategory(AVAudioSession.Category.record)
                 // sampleRate = 8000.0
-                var preferredIOBufferDuration = 1.0         // 1 second = 8000 samples
-                hwSRate = audioSession.sampleRate           // get native hardware rate
-                if hwSRate == 48000.0 { sampleRate = 8000.0 }  // set session to hardware rate
-                if hwSRate == 48000.0 { preferredIOBufferDuration = 1.0 }
+                let preferredIOBufferDuration = 1.0         // 1 second = 8000 samples
                 let desiredSampleRate = sampleRate
                 try audioSession.setPreferredSampleRate(desiredSampleRate)
                 try audioSession.setPreferredIOBufferDuration(preferredIOBufferDuration)
@@ -226,7 +222,7 @@ final class AudioController: NSObject {
         return 0
     }
     
-    func processMicrophoneBuffer(   // process RemoteIO Buffer from mic input
+    private func processMicrophoneBuffer(   // process RemoteIO Buffer from mic input
         inputDataList : UnsafeMutablePointer<AudioBufferList>,
         frameCount : UInt32 )
     {
@@ -253,6 +249,7 @@ final class AudioController: NSObject {
                 let tmp = 5.0 * (logf(sum / Float(count)) + 20.0)
                 let r : Float = 0.2
                 audioLevel = r * tmp + (1.0 - r) * audioLevel
+                //calculate VSD here
             }
         }
     }
@@ -262,7 +259,7 @@ final class AudioController: NSObject {
         isRecording = false
     }
     
-    func myAudioSessionInterruptionHandler(notification: Notification) -> Void {
+    private func myAudioSessionInterruptionHandler(notification: Notification) -> Void {
         let interuptionDict = notification.userInfo
         if let interuptionType = interuptionDict?[AVAudioSessionInterruptionTypeKey] {
             let interuptionVal = AVAudioSession.InterruptionType(
