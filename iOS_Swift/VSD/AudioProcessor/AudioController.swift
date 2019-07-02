@@ -23,7 +23,8 @@ final class AudioController: NSObject {
     let circBuffSize = 32768        // lock-free circular fifo/buffer size
     var circBuffer   = [Float](repeating: 0, count: 32768)  // for incoming samples
     var circInIdx  : Int =  0
-    var audioLevel : Float  = 0.0
+    var inputAudioBuffer: [Float] = []
+
     
     private var micPermissionDispatchToken = 0
     private var interrupted = false     // for restart from audio interruption notification
@@ -239,18 +240,18 @@ final class AudioController: NSObject {
             for i in 0..<(count/2) {
                 let x = Float(dataArray[i+i  ])   // copy left  channel sample
                 let y = Float(dataArray[i+i+1])   // copy right channel sample
+                if (inputAudioBuffer.count == Int(sampleRate)) {
+                    //calculate VSD and clear buffer
+                    inputAudioBuffer.removeAll()
+                }
+                inputAudioBuffer.append(x) //Using left channel because reasons
+                //we do not expect left channel to be significantly different from the right channel
                 self.circBuffer[j    ] = x
                 self.circBuffer[j + 1] = y
                 j += 2 ; if j >= m { j = 0 }                // into circular buffer
                 sum += x * x + y * y
             }
             self.circInIdx = j              // circular index will always be less than size
-            if sum > 0.0 && count > 0 {
-                let tmp = 5.0 * (logf(sum / Float(count)) + 20.0)
-                let r : Float = 0.2
-                audioLevel = r * tmp + (1.0 - r) * audioLevel
-                //calculate VSD here
-            }
         }
     }
     
@@ -287,5 +288,4 @@ final class AudioController: NSObject {
     
 }
 
-var gTmp0 = 0 //  temporary variable for debugger viewing
-
+var gTmp0 = 0 //  variable for debugger viewing

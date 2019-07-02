@@ -10,27 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/AudioProcessor/AudioController.swift"
-            timestampString = "581796647.8573"
+            timestampString = "583795193.999078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "processMicrophoneBuffer(inputDataList:frameCount:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VSD/AudioProcessor/AudioController.swift"
-            timestampString = "581796647.857657"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "processMicrophoneBuffer(inputDataList:frameCount:)"
             landmarkType = "7">
          </BreakpointContent>
