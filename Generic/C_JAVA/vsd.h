@@ -15,6 +15,6 @@
 #include "vsd_types.h"
 
 /* Function Declarations */
-extern double vsd(const double input_data[], const int input_size);
+double vsd(double input_data[], int input_size);
 
 #endif

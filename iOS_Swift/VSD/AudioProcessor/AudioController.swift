@@ -23,7 +23,7 @@ final class AudioController: NSObject {
     let circBuffSize = 32768        // lock-free circular fifo/buffer size
     var circBuffer   = [Float](repeating: 0, count: 32768)  // for incoming samples
     var circInIdx  : Int =  0
-    var inputAudioBuffer: [Float] = []
+    var inputAudioBuffer: Array<Double> = []
 
     
     private var micPermissionDispatchToken = 0
@@ -242,9 +242,13 @@ final class AudioController: NSObject {
                 let y = Float(dataArray[i+i+1])   // copy right channel sample
                 if (inputAudioBuffer.count == Int(sampleRate)) {
                     //calculate VSD and clear buffer
+                    let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: Int(sampleRate))
+                    inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
+                    let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+                    print(stressFreq)
                     inputAudioBuffer.removeAll()
                 }
-                inputAudioBuffer.append(x) //Using left channel because reasons
+                inputAudioBuffer.append(Double(x)) //Using left channel because reasons
                 //we do not expect left channel to be significantly different from the right channel
                 self.circBuffer[j    ] = x
                 self.circBuffer[j + 1] = y
