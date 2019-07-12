@@ -148,28 +148,15 @@ final class AudioController: NSObject {
         
         osErr = AudioUnitSetProperty(au, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, inputBus, &streamFormatDesc, UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         
-        var inputCallbackStruct
-            = AURenderCallbackStruct(inputProc: recordingCallback,
-                                     inputProcRefCon:
-                UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
+        var inputCallbackStruct = AURenderCallbackStruct(inputProc: captureCallback, inputProcRefCon: UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
         
-        osErr = AudioUnitSetProperty(au,
-                                     AudioUnitPropertyID(kAudioOutputUnitProperty_SetInputCallback),
-                                     AudioUnitScope(kAudioUnitScope_Global),
-                                     inputBus,
-                                     &inputCallbackStruct,
-                                     UInt32(MemoryLayout<AURenderCallbackStruct>.size))
+        osErr = AudioUnitSetProperty(au, AudioUnitPropertyID(kAudioOutputUnitProperty_SetInputCallback), AudioUnitScope(kAudioUnitScope_Global), inputBus, &inputCallbackStruct, UInt32(MemoryLayout<AURenderCallbackStruct>.size))
         
         // Ask CoreAudio to allocate buffers on render.
-        osErr = AudioUnitSetProperty(au,
-                                     AudioUnitPropertyID(kAudioUnitProperty_ShouldAllocateBuffer),
-                                     AudioUnitScope(kAudioUnitScope_Output),
-                                     inputBus,
-                                     &one_ui32,
-                                     UInt32(MemoryLayout<UInt32>.size))
+        osErr = AudioUnitSetProperty(au, AudioUnitPropertyID(kAudioUnitProperty_ShouldAllocateBuffer), AudioUnitScope(kAudioUnitScope_Output), inputBus, &one_ui32, UInt32(MemoryLayout<UInt32>.size))
     }
     
-    let recordingCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, frameCount, ioData ) -> OSStatus in
+    let captureCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, frameCount, ioData ) -> OSStatus in
         
         let audioObject = unsafeBitCast(inRefCon, to: AudioController.self)
         var err: OSStatus = noErr
