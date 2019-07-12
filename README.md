@@ -34,7 +34,7 @@ vsd.m contains the code itself and tst.m contains test code
 This project is under Generic/C
 
 If you want to use the C library, you are very brave!
-But if you still feel lucky, just copy all .h and .cpp files under this directory to your project (except for VSDJNI.h and VSDJNI.cpp).
+But if you still feel lucky, just copy all .h and .c files under this directory to your project.
 
 To call it, just use
 double stressCoefficient = vsd(INPUT_AUDIO_DATA_ARRAY, BUFFER_LENGTH);
