@@ -68,7 +68,8 @@ final class AudioController: NSObject {
                         return
                         // check for this flag and call from UI loop if needed
                     } else {
-                        // dispatch in main/UI thread an alert informing that mic permission is not switched on
+                        // Mic access denied, dispatch Notification for ViewController to handle
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
                     }
                 })
             }
@@ -206,7 +207,9 @@ final class AudioController: NSObject {
     }
     
     func stopRecording() {
-        AudioUnitUninitialize(self.audioUnit!)
+        if (self.audioUnit != nil) {
+            AudioUnitUninitialize(self.audioUnit!)
+        }
         isRecording = false
     }
     

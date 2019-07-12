@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupTextLayer()
         NotificationCenter.default.addObserver(self, selector: #selector(updateStressView(notification:)), name: NSNotification.Name(rawValue: STRESS_NOTIFICATION_NAME), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(askForMicrophonePermission(notification:)), name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
     }
     
     func setupTextLayer() {
@@ -34,6 +35,21 @@ class ViewController: UIViewController {
         DispatchQueue.main.async {
             self.stressTL.backgroundColor = self.stress.color
             self.stressTL.string = self.stress.displayMessage
+        }
+    }
+    
+    @objc func askForMicrophonePermission(notification: NSNotification) {
+        DispatchQueue.main.async {
+            let errorMessage = "Please enable microphone access to monitor your stress level"
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Open Settings", style: UIAlertAction.Style.default, handler: self.openSettings))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openSettings(alert: UIAlertAction!) {
+        if let url = URL.init(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }
