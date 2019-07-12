@@ -28,28 +28,8 @@ class ViewController: UIViewController {
     }
     
     func updateStressView(stressCoeficient: Double) {
-        let displayMessage = NSMutableString()
-        displayMessage.appendFormat("%dHz", Int(stressCoeficient))
-        if (stressCoeficient >= 9 && stressCoeficient <= 14) {
-            displayMessage.append("\nno stress")
-            stressTL.backgroundColor = UIColor.green.cgColor
-            stressTL.string = displayMessage
-        } else if(stressCoeficient < 9 && stressCoeficient >= 7){
-            displayMessage.append("\nmarginal stress")
-            stressTL.backgroundColor = UIColor.orange.cgColor
-            stressTL.string = displayMessage
-        } else if(stressCoeficient > 14 && stressCoeficient <= 15) {
-            displayMessage.append("\nmarginal stress")
-            stressTL.backgroundColor = UIColor.orange.cgColor
-            stressTL.string = displayMessage
-        } else if(stressCoeficient <= 3 || stressCoeficient > 50) {
-            //Out of the threshold
-        } else {
-            displayMessage.append("\nstress")
-            stressTL.backgroundColor = UIColor.red.cgColor
-            stressTL.string = displayMessage
-        }
+        let stress = Stress(stressCoeficient: stressCoeficient)
+        stressTL.backgroundColor = stress.color
+        stressTL.string = stress.displayMessage
     }
-
 }
-
