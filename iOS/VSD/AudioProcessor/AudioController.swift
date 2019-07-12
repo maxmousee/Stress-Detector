@@ -188,7 +188,6 @@ final class AudioController: NSObject {
                     let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: Int(sampleRate))
                     inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
                     let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
-                    print(stressFreq)
                     inputAudioBuffer.removeAll()
                     let stress = Stress(stressCoeficient: stressFreq)
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_NAME), object: stress)

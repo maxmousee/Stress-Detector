@@ -23,6 +23,9 @@ class Stress {
         stressLvl = self.getStressLevel(stressCoeficient: stressCoeficient)
         displayMessage = self.getDisplayMessage(stressCoeficient: stressCoeficient)
         color = self.getColor()
+        #if DEBUG
+        print(stressCoeficient)
+        #endif
     }
     
     func getStressLevel(stressCoeficient: Double) -> StressLevel {
