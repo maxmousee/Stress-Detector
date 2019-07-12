@@ -11,24 +11,40 @@ import XCTest
 
 class VSDTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testWithZeros() {
+        let sampleRate = 8000
+        var inputAudioBuffer: Array<Double> = Array(repeating: 0, count: sampleRate)
+        let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: sampleRate)
+        inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
+        let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+        XCTAssertEqual(0, stressFreq)
+    }
+    
+    func testWithOnes() {
+        let sampleRate = 8000
+        var inputAudioBuffer: Array<Double> = Array(repeating: 1, count: sampleRate)
+        let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: sampleRate)
+        inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
+        let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+        XCTAssertEqual(0, stressFreq)
+    }
+    
+    func testWithNegativeOnes() {
+        let sampleRate = 8000
+        var inputAudioBuffer: Array<Double> = Array(repeating: -1, count: sampleRate)
+        let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: sampleRate)
+        inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
+        let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+        XCTAssertEqual(0, stressFreq)
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
+    func testPerformanceWithZeros() {
+        let sampleRate = 8000
+        var inputAudioBuffer: Array<Double> = Array(repeating: 0, count: sampleRate)
+        let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: sampleRate)
+        inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
         self.measure {
-            // Put the code you want to measure the time of here.
+            _ = vsd(inputAudioUMP, Int32(sampleRate))
         }
     }
-
 }
