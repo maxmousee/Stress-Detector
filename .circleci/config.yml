@@ -16,20 +16,5 @@ jobs:
       - run:
           name: Build C Linux lib
           command: |
-            cd Generic/C_JAVA/; make all -f Makefile_linux
-      # Build Java Linux Lib
-      - run:
-          name: Build Java Linux lib
-          command: |
-            cd Generic/C_JAVA/; make all -f Makefile_java_linux; cp lib/libVSDJNI.so libVSDJNI.so
-      # Build Java Test App
-      - run:
-          name: Build Java Test App
-          command: |
-            cd Generic/C_JAVA/; javac VSDJNI.java -h .;
-      # Run Java Test App
-      - run:
-          name: Run Java Test App
-          command: |
-            cd Generic/C_JAVA/; java -cp . -Djava.library.path=$(pwd) VSDJNI 
+            cd Generic/C/; make all -f Makefile_linux
             

@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		3A95C950226B31C300D7DDFB /* CenterTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C94F226B31C300D7DDFB /* CenterTextLayer.swift */; };
-		3AF1C6EF22CFE3880073A073 /* fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6C922CFE3860073A073 /* fft.c */; };
-		3AF1C6F022CFE3880073A073 /* vsd.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6CB22CFE3860073A073 /* vsd.c */; };
-		3AF1C6F122CFE3880073A073 /* abs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6CD22CFE3860073A073 /* abs.c */; };
-		3AF1C6F222CFE3880073A073 /* diff.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6CE22CFE3860073A073 /* diff.c */; };
-		3AF1C6F322CFE3880073A073 /* fft1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6CF22CFE3860073A073 /* fft1.c */; };
-		3AF1C6F422CFE3880073A073 /* sum.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6D722CFE3870073A073 /* sum.c */; };
-		3AF1C6F522CFE3880073A073 /* vsd_emxutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6D922CFE3870073A073 /* vsd_emxutil.c */; };
-		3AF1C6F622CFE3880073A073 /* rtGetInf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6DA22CFE3870073A073 /* rtGetInf.c */; };
-		3AF1C6F722CFE3880073A073 /* bluesteinSetup.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6DD22CFE3870073A073 /* bluesteinSetup.c */; };
-		3AF1C6F822CFE3880073A073 /* emd.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6DE22CFE3870073A073 /* emd.c */; };
-		3AF1C6F922CFE3880073A073 /* rtGetNaN.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6DF22CFE3870073A073 /* rtGetNaN.c */; };
-		3AF1C6FA22CFE3880073A073 /* findpeaks.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6E222CFE3870073A073 /* findpeaks.c */; };
-		3AF1C6FB22CFE3880073A073 /* vsd_initialize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6E522CFE3870073A073 /* vsd_initialize.c */; };
-		3AF1C6FC22CFE3880073A073 /* rt_nonfinite.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6E622CFE3870073A073 /* rt_nonfinite.c */; };
-		3AF1C6FD22CFE3880073A073 /* vsd_terminate.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6E922CFE3870073A073 /* vsd_terminate.c */; };
-		3AF1C6FE22CFE3880073A073 /* pwchcore.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6EC22CFE3880073A073 /* pwchcore.c */; };
-		3AF1C6FF22CFE3880073A073 /* spline.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6ED22CFE3880073A073 /* spline.c */; };
-		3AF1C70022CFE3880073A073 /* power.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1C6EE22CFE3880073A073 /* power.c */; };
+		3AA1BC4922D891E200479260 /* emd.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2222D891E000479260 /* emd.c */; };
+		3AA1BC4A22D891E200479260 /* abs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2522D891E000479260 /* abs.c */; };
+		3AA1BC4B22D891E200479260 /* findpeaks.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2622D891E000479260 /* findpeaks.c */; };
+		3AA1BC4C22D891E200479260 /* bluesteinSetup.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2822D891E000479260 /* bluesteinSetup.c */; };
+		3AA1BC4D22D891E200479260 /* sum.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2A22D891E000479260 /* sum.c */; };
+		3AA1BC4E22D891E200479260 /* fft.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2B22D891E000479260 /* fft.c */; };
+		3AA1BC4F22D891E200479260 /* vsd_emxutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2D22D891E000479260 /* vsd_emxutil.c */; };
+		3AA1BC5022D891E200479260 /* power.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2F22D891E000479260 /* power.c */; };
+		3AA1BC5122D891E200479260 /* rt_nonfinite.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC3022D891E000479260 /* rt_nonfinite.c */; };
+		3AA1BC5222D891E200479260 /* fft1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC3422D891E100479260 /* fft1.c */; };
+		3AA1BC5322D891E200479260 /* spline.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC3722D891E100479260 /* spline.c */; };
+		3AA1BC5422D891E200479260 /* vsd_terminate.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC3922D891E100479260 /* vsd_terminate.c */; };
+		3AA1BC5522D891E200479260 /* rtGetNaN.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC3D22D891E100479260 /* rtGetNaN.c */; };
+		3AA1BC5622D891E200479260 /* diff.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC4222D891E200479260 /* diff.c */; };
+		3AA1BC5722D891E200479260 /* vsd_initialize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC4322D891E200479260 /* vsd_initialize.c */; };
+		3AA1BC5822D891E200479260 /* vsd.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC4622D891E200479260 /* vsd.c */; };
+		3AA1BC5922D891E200479260 /* pwchcore.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC4722D891E200479260 /* pwchcore.c */; };
+		3AA1BC5A22D891E200479260 /* rtGetInf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC4822D891E200479260 /* rtGetInf.c */; };
 		E8023C16225E30EE00E17432 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C15225E30EE00E17432 /* QuartzCore.framework */; };
 		E8023C18225E30F200E17432 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C17225E30F200E17432 /* AudioToolbox.framework */; };
 		E8023C1A225E310500E17432 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C19225E310500E17432 /* CoreAudio.framework */; };
@@ -65,44 +65,45 @@
 
 /* Begin PBXFileReference section */
 		3A95C94F226B31C300D7DDFB /* CenterTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTextLayer.swift; sourceTree = "<group>"; };
-		3AF1C6C922CFE3860073A073 /* fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fft.c; path = ../../../Generic/C_JAVA/fft.c; sourceTree = "<group>"; };
-		3AF1C6CA22CFE3860073A073 /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../../Generic/C_JAVA/spline.h; sourceTree = "<group>"; };
-		3AF1C6CB22CFE3860073A073 /* vsd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd.c; path = ../../../Generic/C_JAVA/vsd.c; sourceTree = "<group>"; };
-		3AF1C6CC22CFE3860073A073 /* rtGetNaN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetNaN.h; path = ../../../Generic/C_JAVA/rtGetNaN.h; sourceTree = "<group>"; };
-		3AF1C6CD22CFE3860073A073 /* abs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = abs.c; path = ../../../Generic/C_JAVA/abs.c; sourceTree = "<group>"; };
-		3AF1C6CE22CFE3860073A073 /* diff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = diff.c; path = ../../../Generic/C_JAVA/diff.c; sourceTree = "<group>"; };
-		3AF1C6CF22CFE3860073A073 /* fft1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fft1.c; path = ../../../Generic/C_JAVA/fft1.c; sourceTree = "<group>"; };
-		3AF1C6D022CFE3860073A073 /* sum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sum.h; path = ../../../Generic/C_JAVA/sum.h; sourceTree = "<group>"; };
-		3AF1C6D122CFE3870073A073 /* vsd_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_types.h; path = ../../../Generic/C_JAVA/vsd_types.h; sourceTree = "<group>"; };
-		3AF1C6D222CFE3870073A073 /* vsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd.h; path = ../../../Generic/C_JAVA/vsd.h; sourceTree = "<group>"; };
-		3AF1C6D322CFE3870073A073 /* findpeaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = findpeaks.h; path = ../../../Generic/C_JAVA/findpeaks.h; sourceTree = "<group>"; };
-		3AF1C6D422CFE3870073A073 /* rtGetInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetInf.h; path = ../../../Generic/C_JAVA/rtGetInf.h; sourceTree = "<group>"; };
-		3AF1C6D522CFE3870073A073 /* pwchcore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pwchcore.h; path = ../../../Generic/C_JAVA/pwchcore.h; sourceTree = "<group>"; };
-		3AF1C6D622CFE3870073A073 /* emd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emd.h; path = ../../../Generic/C_JAVA/emd.h; sourceTree = "<group>"; };
-		3AF1C6D722CFE3870073A073 /* sum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sum.c; path = ../../../Generic/C_JAVA/sum.c; sourceTree = "<group>"; };
-		3AF1C6D822CFE3870073A073 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft.h; path = ../../../Generic/C_JAVA/fft.h; sourceTree = "<group>"; };
-		3AF1C6D922CFE3870073A073 /* vsd_emxutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_emxutil.c; path = ../../../Generic/C_JAVA/vsd_emxutil.c; sourceTree = "<group>"; };
-		3AF1C6DA22CFE3870073A073 /* rtGetInf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rtGetInf.c; path = ../../../Generic/C_JAVA/rtGetInf.c; sourceTree = "<group>"; };
-		3AF1C6DB22CFE3870073A073 /* rt_nonfinite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rt_nonfinite.h; path = ../../../Generic/C_JAVA/rt_nonfinite.h; sourceTree = "<group>"; };
-		3AF1C6DC22CFE3870073A073 /* bluesteinSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bluesteinSetup.h; path = ../../../Generic/C_JAVA/bluesteinSetup.h; sourceTree = "<group>"; };
-		3AF1C6DD22CFE3870073A073 /* bluesteinSetup.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bluesteinSetup.c; path = ../../../Generic/C_JAVA/bluesteinSetup.c; sourceTree = "<group>"; };
-		3AF1C6DE22CFE3870073A073 /* emd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = emd.c; path = ../../../Generic/C_JAVA/emd.c; sourceTree = "<group>"; };
-		3AF1C6DF22CFE3870073A073 /* rtGetNaN.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rtGetNaN.c; path = ../../../Generic/C_JAVA/rtGetNaN.c; sourceTree = "<group>"; };
-		3AF1C6E022CFE3870073A073 /* power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = power.h; path = ../../../Generic/C_JAVA/power.h; sourceTree = "<group>"; };
-		3AF1C6E122CFE3870073A073 /* fft1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft1.h; path = ../../../Generic/C_JAVA/fft1.h; sourceTree = "<group>"; };
-		3AF1C6E222CFE3870073A073 /* findpeaks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = findpeaks.c; path = ../../../Generic/C_JAVA/findpeaks.c; sourceTree = "<group>"; };
-		3AF1C6E322CFE3870073A073 /* rtwtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtwtypes.h; path = ../../../Generic/C_JAVA/rtwtypes.h; sourceTree = "<group>"; };
-		3AF1C6E422CFE3870073A073 /* vsd_initialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_initialize.h; path = ../../../Generic/C_JAVA/vsd_initialize.h; sourceTree = "<group>"; };
-		3AF1C6E522CFE3870073A073 /* vsd_initialize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_initialize.c; path = ../../../Generic/C_JAVA/vsd_initialize.c; sourceTree = "<group>"; };
-		3AF1C6E622CFE3870073A073 /* rt_nonfinite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rt_nonfinite.c; path = ../../../Generic/C_JAVA/rt_nonfinite.c; sourceTree = "<group>"; };
-		3AF1C6E722CFE3870073A073 /* vsd_terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_terminate.h; path = ../../../Generic/C_JAVA/vsd_terminate.h; sourceTree = "<group>"; };
-		3AF1C6E822CFE3870073A073 /* vsd_emxutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_emxutil.h; path = ../../../Generic/C_JAVA/vsd_emxutil.h; sourceTree = "<group>"; };
-		3AF1C6E922CFE3870073A073 /* vsd_terminate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_terminate.c; path = ../../../Generic/C_JAVA/vsd_terminate.c; sourceTree = "<group>"; };
-		3AF1C6EA22CFE3870073A073 /* diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diff.h; path = ../../../Generic/C_JAVA/diff.h; sourceTree = "<group>"; };
-		3AF1C6EB22CFE3880073A073 /* abs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = abs.h; path = ../../../Generic/C_JAVA/abs.h; sourceTree = "<group>"; };
-		3AF1C6EC22CFE3880073A073 /* pwchcore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pwchcore.c; path = ../../../Generic/C_JAVA/pwchcore.c; sourceTree = "<group>"; };
-		3AF1C6ED22CFE3880073A073 /* spline.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = spline.c; path = ../../../Generic/C_JAVA/spline.c; sourceTree = "<group>"; };
-		3AF1C6EE22CFE3880073A073 /* power.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = power.c; path = ../../../Generic/C_JAVA/power.c; sourceTree = "<group>"; };
+		3AA1BC2222D891E000479260 /* emd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = emd.c; path = ../../../Generic/C/emd.c; sourceTree = "<group>"; };
+		3AA1BC2322D891E000479260 /* bluesteinSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bluesteinSetup.h; path = ../../../Generic/C/bluesteinSetup.h; sourceTree = "<group>"; };
+		3AA1BC2422D891E000479260 /* rt_nonfinite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rt_nonfinite.h; path = ../../../Generic/C/rt_nonfinite.h; sourceTree = "<group>"; };
+		3AA1BC2522D891E000479260 /* abs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = abs.c; path = ../../../Generic/C/abs.c; sourceTree = "<group>"; };
+		3AA1BC2622D891E000479260 /* findpeaks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = findpeaks.c; path = ../../../Generic/C/findpeaks.c; sourceTree = "<group>"; };
+		3AA1BC2722D891E000479260 /* vsd_initialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_initialize.h; path = ../../../Generic/C/vsd_initialize.h; sourceTree = "<group>"; };
+		3AA1BC2822D891E000479260 /* bluesteinSetup.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bluesteinSetup.c; path = ../../../Generic/C/bluesteinSetup.c; sourceTree = "<group>"; };
+		3AA1BC2922D891E000479260 /* diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = diff.h; path = ../../../Generic/C/diff.h; sourceTree = "<group>"; };
+		3AA1BC2A22D891E000479260 /* sum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sum.c; path = ../../../Generic/C/sum.c; sourceTree = "<group>"; };
+		3AA1BC2B22D891E000479260 /* fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fft.c; path = ../../../Generic/C/fft.c; sourceTree = "<group>"; };
+		3AA1BC2C22D891E000479260 /* pwchcore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pwchcore.h; path = ../../../Generic/C/pwchcore.h; sourceTree = "<group>"; };
+		3AA1BC2D22D891E000479260 /* vsd_emxutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_emxutil.c; path = ../../../Generic/C/vsd_emxutil.c; sourceTree = "<group>"; };
+		3AA1BC2E22D891E000479260 /* fft1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft1.h; path = ../../../Generic/C/fft1.h; sourceTree = "<group>"; };
+		3AA1BC2F22D891E000479260 /* power.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = power.c; path = ../../../Generic/C/power.c; sourceTree = "<group>"; };
+		3AA1BC3022D891E000479260 /* rt_nonfinite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rt_nonfinite.c; path = ../../../Generic/C/rt_nonfinite.c; sourceTree = "<group>"; };
+		3AA1BC3122D891E000479260 /* vsd_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_types.h; path = ../../../Generic/C/vsd_types.h; sourceTree = "<group>"; };
+		3AA1BC3222D891E000479260 /* abs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = abs.h; path = ../../../Generic/C/abs.h; sourceTree = "<group>"; };
+		3AA1BC3322D891E100479260 /* fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fft.h; path = ../../../Generic/C/fft.h; sourceTree = "<group>"; };
+		3AA1BC3422D891E100479260 /* fft1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fft1.c; path = ../../../Generic/C/fft1.c; sourceTree = "<group>"; };
+		3AA1BC3522D891E100479260 /* findpeaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = findpeaks.h; path = ../../../Generic/C/findpeaks.h; sourceTree = "<group>"; };
+		3AA1BC3622D891E100479260 /* emd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emd.h; path = ../../../Generic/C/emd.h; sourceTree = "<group>"; };
+		3AA1BC3722D891E100479260 /* spline.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = spline.c; path = ../../../Generic/C/spline.c; sourceTree = "<group>"; };
+		3AA1BC3822D891E100479260 /* vsd_emxutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_emxutil.h; path = ../../../Generic/C/vsd_emxutil.h; sourceTree = "<group>"; };
+		3AA1BC3922D891E100479260 /* vsd_terminate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_terminate.c; path = ../../../Generic/C/vsd_terminate.c; sourceTree = "<group>"; };
+		3AA1BC3A22D891E100479260 /* rtwtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtwtypes.h; path = ../../../Generic/C/rtwtypes.h; sourceTree = "<group>"; };
+		3AA1BC3B22D891E100479260 /* sum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sum.h; path = ../../../Generic/C/sum.h; sourceTree = "<group>"; };
+		3AA1BC3C22D891E100479260 /* rtGetNaN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetNaN.h; path = ../../../Generic/C/rtGetNaN.h; sourceTree = "<group>"; };
+		3AA1BC3D22D891E100479260 /* rtGetNaN.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rtGetNaN.c; path = ../../../Generic/C/rtGetNaN.c; sourceTree = "<group>"; };
+		3AA1BC3E22D891E100479260 /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../../Generic/C/spline.h; sourceTree = "<group>"; };
+		3AA1BC3F22D891E100479260 /* vsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd.h; path = ../../../Generic/C/vsd.h; sourceTree = "<group>"; };
+		3AA1BC4022D891E100479260 /* VSDJNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSDJNI.h; path = ../../../Generic/C/VSDJNI.h; sourceTree = "<group>"; };
+		3AA1BC4122D891E200479260 /* power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = power.h; path = ../../../Generic/C/power.h; sourceTree = "<group>"; };
+		3AA1BC4222D891E200479260 /* diff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = diff.c; path = ../../../Generic/C/diff.c; sourceTree = "<group>"; };
+		3AA1BC4322D891E200479260 /* vsd_initialize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_initialize.c; path = ../../../Generic/C/vsd_initialize.c; sourceTree = "<group>"; };
+		3AA1BC4422D891E200479260 /* rtGetInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rtGetInf.h; path = ../../../Generic/C/rtGetInf.h; sourceTree = "<group>"; };
+		3AA1BC4522D891E200479260 /* vsd_terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd_terminate.h; path = ../../../Generic/C/vsd_terminate.h; sourceTree = "<group>"; };
+		3AA1BC4622D891E200479260 /* vsd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd.c; path = ../../../Generic/C/vsd.c; sourceTree = "<group>"; };
+		3AA1BC4722D891E200479260 /* pwchcore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pwchcore.c; path = ../../../Generic/C/pwchcore.c; sourceTree = "<group>"; };
+		3AA1BC4822D891E200479260 /* rtGetInf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rtGetInf.c; path = ../../../Generic/C/rtGetInf.c; sourceTree = "<group>"; };
 		3AF1C70422CFE7430073A073 /* VSD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VSD-Bridging-Header.h"; sourceTree = "<group>"; };
 		E8023C15225E30EE00E17432 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E8023C17225E30F200E17432 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -170,44 +171,45 @@
 		E8023C13225E2EF700E17432 /* AudioProcessor */ = {
 			isa = PBXGroup;
 			children = (
-				3AF1C6CD22CFE3860073A073 /* abs.c */,
-				3AF1C6EB22CFE3880073A073 /* abs.h */,
-				3AF1C6DD22CFE3870073A073 /* bluesteinSetup.c */,
-				3AF1C6DC22CFE3870073A073 /* bluesteinSetup.h */,
-				3AF1C6CE22CFE3860073A073 /* diff.c */,
-				3AF1C6EA22CFE3870073A073 /* diff.h */,
-				3AF1C6DE22CFE3870073A073 /* emd.c */,
-				3AF1C6D622CFE3870073A073 /* emd.h */,
-				3AF1C6C922CFE3860073A073 /* fft.c */,
-				3AF1C6D822CFE3870073A073 /* fft.h */,
-				3AF1C6CF22CFE3860073A073 /* fft1.c */,
-				3AF1C6E122CFE3870073A073 /* fft1.h */,
-				3AF1C6E222CFE3870073A073 /* findpeaks.c */,
-				3AF1C6D322CFE3870073A073 /* findpeaks.h */,
-				3AF1C6EE22CFE3880073A073 /* power.c */,
-				3AF1C6E022CFE3870073A073 /* power.h */,
-				3AF1C6EC22CFE3880073A073 /* pwchcore.c */,
-				3AF1C6D522CFE3870073A073 /* pwchcore.h */,
-				3AF1C6E622CFE3870073A073 /* rt_nonfinite.c */,
-				3AF1C6DB22CFE3870073A073 /* rt_nonfinite.h */,
-				3AF1C6DA22CFE3870073A073 /* rtGetInf.c */,
-				3AF1C6D422CFE3870073A073 /* rtGetInf.h */,
-				3AF1C6DF22CFE3870073A073 /* rtGetNaN.c */,
-				3AF1C6CC22CFE3860073A073 /* rtGetNaN.h */,
-				3AF1C6E322CFE3870073A073 /* rtwtypes.h */,
-				3AF1C6ED22CFE3880073A073 /* spline.c */,
-				3AF1C6CA22CFE3860073A073 /* spline.h */,
-				3AF1C6D722CFE3870073A073 /* sum.c */,
-				3AF1C6D022CFE3860073A073 /* sum.h */,
-				3AF1C6D922CFE3870073A073 /* vsd_emxutil.c */,
-				3AF1C6E822CFE3870073A073 /* vsd_emxutil.h */,
-				3AF1C6E522CFE3870073A073 /* vsd_initialize.c */,
-				3AF1C6E422CFE3870073A073 /* vsd_initialize.h */,
-				3AF1C6E922CFE3870073A073 /* vsd_terminate.c */,
-				3AF1C6E722CFE3870073A073 /* vsd_terminate.h */,
-				3AF1C6D122CFE3870073A073 /* vsd_types.h */,
-				3AF1C6CB22CFE3860073A073 /* vsd.c */,
-				3AF1C6D222CFE3870073A073 /* vsd.h */,
+				3AA1BC2522D891E000479260 /* abs.c */,
+				3AA1BC3222D891E000479260 /* abs.h */,
+				3AA1BC2822D891E000479260 /* bluesteinSetup.c */,
+				3AA1BC2322D891E000479260 /* bluesteinSetup.h */,
+				3AA1BC4222D891E200479260 /* diff.c */,
+				3AA1BC2922D891E000479260 /* diff.h */,
+				3AA1BC2222D891E000479260 /* emd.c */,
+				3AA1BC3622D891E100479260 /* emd.h */,
+				3AA1BC2B22D891E000479260 /* fft.c */,
+				3AA1BC3322D891E100479260 /* fft.h */,
+				3AA1BC3422D891E100479260 /* fft1.c */,
+				3AA1BC2E22D891E000479260 /* fft1.h */,
+				3AA1BC2622D891E000479260 /* findpeaks.c */,
+				3AA1BC3522D891E100479260 /* findpeaks.h */,
+				3AA1BC2F22D891E000479260 /* power.c */,
+				3AA1BC4122D891E200479260 /* power.h */,
+				3AA1BC4722D891E200479260 /* pwchcore.c */,
+				3AA1BC2C22D891E000479260 /* pwchcore.h */,
+				3AA1BC3022D891E000479260 /* rt_nonfinite.c */,
+				3AA1BC2422D891E000479260 /* rt_nonfinite.h */,
+				3AA1BC4822D891E200479260 /* rtGetInf.c */,
+				3AA1BC4422D891E200479260 /* rtGetInf.h */,
+				3AA1BC3D22D891E100479260 /* rtGetNaN.c */,
+				3AA1BC3C22D891E100479260 /* rtGetNaN.h */,
+				3AA1BC3A22D891E100479260 /* rtwtypes.h */,
+				3AA1BC3722D891E100479260 /* spline.c */,
+				3AA1BC3E22D891E100479260 /* spline.h */,
+				3AA1BC2A22D891E000479260 /* sum.c */,
+				3AA1BC3B22D891E100479260 /* sum.h */,
+				3AA1BC2D22D891E000479260 /* vsd_emxutil.c */,
+				3AA1BC3822D891E100479260 /* vsd_emxutil.h */,
+				3AA1BC4322D891E200479260 /* vsd_initialize.c */,
+				3AA1BC2722D891E000479260 /* vsd_initialize.h */,
+				3AA1BC3922D891E100479260 /* vsd_terminate.c */,
+				3AA1BC4522D891E200479260 /* vsd_terminate.h */,
+				3AA1BC3122D891E000479260 /* vsd_types.h */,
+				3AA1BC4622D891E200479260 /* vsd.c */,
+				3AA1BC3F22D891E100479260 /* vsd.h */,
+				3AA1BC4022D891E100479260 /* VSDJNI.h */,
 				E8023C31225E322F00E17432 /* AudioController.swift */,
 				3AF1C70422CFE7430073A073 /* VSD-Bridging-Header.h */,
 			);
@@ -433,31 +435,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AF1C6FC22CFE3880073A073 /* rt_nonfinite.c in Sources */,
-				3AF1C6F422CFE3880073A073 /* sum.c in Sources */,
-				3AF1C6EF22CFE3880073A073 /* fft.c in Sources */,
-				3AF1C6F322CFE3880073A073 /* fft1.c in Sources */,
-				3AF1C6F522CFE3880073A073 /* vsd_emxutil.c in Sources */,
 				E8023C2F225E319700E17432 /* CAXException.cpp in Sources */,
-				3AF1C6F822CFE3880073A073 /* emd.c in Sources */,
+				3AA1BC4C22D891E200479260 /* bluesteinSetup.c in Sources */,
+				3AA1BC4B22D891E200479260 /* findpeaks.c in Sources */,
+				3AA1BC4D22D891E200479260 /* sum.c in Sources */,
 				E8023C2E225E319700E17432 /* CADebugMacros.cpp in Sources */,
-				3AF1C6F222CFE3880073A073 /* diff.c in Sources */,
-				3AF1C6FE22CFE3880073A073 /* pwchcore.c in Sources */,
-				3AF1C6FA22CFE3880073A073 /* findpeaks.c in Sources */,
-				3AF1C6FF22CFE3880073A073 /* spline.c in Sources */,
-				3AF1C6FD22CFE3880073A073 /* vsd_terminate.c in Sources */,
-				3AF1C6F122CFE3880073A073 /* abs.c in Sources */,
-				3AF1C6F922CFE3880073A073 /* rtGetNaN.c in Sources */,
-				3AF1C70022CFE3880073A073 /* power.c in Sources */,
-				3AF1C6F622CFE3880073A073 /* rtGetInf.c in Sources */,
-				3AF1C6FB22CFE3880073A073 /* vsd_initialize.c in Sources */,
-				3AF1C6F022CFE3880073A073 /* vsd.c in Sources */,
 				3A95C950226B31C300D7DDFB /* CenterTextLayer.swift in Sources */,
+				3AA1BC5A22D891E200479260 /* rtGetInf.c in Sources */,
+				3AA1BC5522D891E200479260 /* rtGetNaN.c in Sources */,
+				3AA1BC5022D891E200479260 /* power.c in Sources */,
+				3AA1BC5822D891E200479260 /* vsd.c in Sources */,
+				3AA1BC5222D891E200479260 /* fft1.c in Sources */,
+				3AA1BC5322D891E200479260 /* spline.c in Sources */,
+				3AA1BC4F22D891E200479260 /* vsd_emxutil.c in Sources */,
+				3AA1BC4E22D891E200479260 /* fft.c in Sources */,
+				3AA1BC4A22D891E200479260 /* abs.c in Sources */,
 				E88607CD225E04FA00E57513 /* ViewController.swift in Sources */,
+				3AA1BC4922D891E200479260 /* emd.c in Sources */,
 				E88607CB225E04FA00E57513 /* AppDelegate.swift in Sources */,
 				E8023C32225E322F00E17432 /* AudioController.swift in Sources */,
+				3AA1BC5622D891E200479260 /* diff.c in Sources */,
+				3AA1BC5422D891E200479260 /* vsd_terminate.c in Sources */,
+				3AA1BC5722D891E200479260 /* vsd_initialize.c in Sources */,
+				3AA1BC5122D891E200479260 /* rt_nonfinite.c in Sources */,
+				3AA1BC5922D891E200479260 /* pwchcore.c in Sources */,
 				E8023C30225E319700E17432 /* CAStreamBasicDescription.cpp in Sources */,
-				3AF1C6F722CFE3880073A073 /* bluesteinSetup.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
