@@ -59,7 +59,7 @@ final class AudioController: NSObject {
         }
     }
     
-    fileprivate func checkRecordPermission(_ audioSession: AVAudioSession) {
+    func checkRecordPermission(_ audioSession: AVAudioSession) {
         if (micPermission == false) {
             if (micPermissionDispatchToken == 0) {
                 micPermissionDispatchToken = 1
@@ -103,7 +103,7 @@ final class AudioController: NSObject {
         }
     }
     
-    fileprivate func setupAudioUnitProperties(_ osErr: inout Int32, _ au: AudioUnit) {
+    private func setupAudioUnitProperties(_ osErr: inout Int32, _ au: AudioUnit) {
         // Enable I/O for input.
         
         osErr = AudioUnitSetProperty(au, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, inputBus, &one_ui32, UInt32(MemoryLayout<UInt32>.size))
@@ -171,6 +171,15 @@ final class AudioController: NSObject {
     }
     
     // process RemoteIO Buffer from mic input
+    private func calculateStressFrequencyAndPostUpdateNotification() {
+        //calculate VSD
+        let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: Int(sampleRate))
+        inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
+        let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+        let stress = Stress(stressCoeficient: stressFreq)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_NAME), object: stress)
+    }
+    
     private func processMicrophoneBuffer(inputDataList : UnsafeMutablePointer<AudioBufferList>,frameCount : UInt32)
     {
         let inputDataPtr = UnsafeMutableAudioBufferListPointer(inputDataList)
@@ -184,13 +193,9 @@ final class AudioController: NSObject {
             for i in 0..<(Int(frameCount)/2) {
                 let x = Float(dataArray[i+i])   // copy left  channel sample
                 if (inputAudioBuffer.count == Int(sampleRate)) {
-                    //calculate VSD and clear buffer
-                    let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: Int(sampleRate))
-                    inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
-                    let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+                    calculateStressFrequencyAndPostUpdateNotification()
                     inputAudioBuffer.removeAll()
-                    let stress = Stress(stressCoeficient: stressFreq)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_NAME), object: stress)
+                    // clear buffer
                 }
                 inputAudioBuffer.append(Double(x)) //Using left channel because reasons
                 //we do not expect left channel to be significantly different from the right channel
