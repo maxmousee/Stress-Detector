@@ -35,9 +35,6 @@
 		E8023C1E225E311500E17432 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C1D225E311500E17432 /* AVFoundation.framework */; };
 		E8023C20225E312100E17432 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C1F225E312100E17432 /* UIKit.framework */; };
 		E8023C22225E312700E17432 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8023C21225E312600E17432 /* Foundation.framework */; };
-		E8023C2E225E319700E17432 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8023C27225E319700E17432 /* CADebugMacros.cpp */; };
-		E8023C2F225E319700E17432 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8023C28225E319700E17432 /* CAXException.cpp */; };
-		E8023C30225E319700E17432 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8023C2C225E319700E17432 /* CAStreamBasicDescription.cpp */; };
 		E8023C32225E322F00E17432 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8023C31225E322F00E17432 /* AudioController.swift */; };
 		E88607CB225E04FA00E57513 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88607CA225E04FA00E57513 /* AppDelegate.swift */; };
 		E88607CD225E04FA00E57513 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88607CC225E04FA00E57513 /* ViewController.swift */; };
@@ -116,14 +113,6 @@
 		E8023C1D225E311500E17432 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E8023C1F225E312100E17432 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E8023C21225E312600E17432 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E8023C26225E319700E17432 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
-		E8023C27225E319700E17432 /* CADebugMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CADebugMacros.cpp; sourceTree = "<group>"; };
-		E8023C28225E319700E17432 /* CAXException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAXException.cpp; sourceTree = "<group>"; };
-		E8023C29225E319700E17432 /* CABitOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CABitOperations.h; sourceTree = "<group>"; };
-		E8023C2A225E319700E17432 /* CAXException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAXException.h; sourceTree = "<group>"; };
-		E8023C2B225E319700E17432 /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
-		E8023C2C225E319700E17432 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
-		E8023C2D225E319700E17432 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMath.h; sourceTree = "<group>"; };
 		E8023C31225E322F00E17432 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		E88607C7225E04FA00E57513 /* VSD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VSD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E88607CA225E04FA00E57513 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -234,22 +223,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E8023C25225E319700E17432 /* PublicUtility */ = {
-			isa = PBXGroup;
-			children = (
-				E8023C26225E319700E17432 /* CAStreamBasicDescription.h */,
-				E8023C27225E319700E17432 /* CADebugMacros.cpp */,
-				E8023C28225E319700E17432 /* CAXException.cpp */,
-				E8023C29225E319700E17432 /* CABitOperations.h */,
-				E8023C2A225E319700E17432 /* CAXException.h */,
-				E8023C2B225E319700E17432 /* CADebugMacros.h */,
-				E8023C2C225E319700E17432 /* CAStreamBasicDescription.cpp */,
-				E8023C2D225E319700E17432 /* CAMath.h */,
-			);
-			name = PublicUtility;
-			path = VSD/PublicUtility;
-			sourceTree = SOURCE_ROOT;
-		};
 		E88607BE225E04FA00E57513 = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +247,6 @@
 		E88607C9225E04FA00E57513 /* VSD */ = {
 			isa = PBXGroup;
 			children = (
-				E8023C25225E319700E17432 /* PublicUtility */,
 				E8023C13225E2EF700E17432 /* AudioProcessor */,
 				E88607CA225E04FA00E57513 /* AppDelegate.swift */,
 				E88607CC225E04FA00E57513 /* ViewController.swift */,
@@ -441,11 +413,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8023C2F225E319700E17432 /* CAXException.cpp in Sources */,
 				3AA1BC4C22D891E200479260 /* bluesteinSetup.c in Sources */,
 				3AA1BC4B22D891E200479260 /* findpeaks.c in Sources */,
 				3AA1BC4D22D891E200479260 /* sum.c in Sources */,
-				E8023C2E225E319700E17432 /* CADebugMacros.cpp in Sources */,
 				3A95C950226B31C300D7DDFB /* CenterTextLayer.swift in Sources */,
 				3AA1BC5A22D891E200479260 /* rtGetInf.c in Sources */,
 				3AA1BC5522D891E200479260 /* rtGetNaN.c in Sources */,
@@ -466,7 +436,6 @@
 				3AA1BC5722D891E200479260 /* vsd_initialize.c in Sources */,
 				3AA1BC5122D891E200479260 /* rt_nonfinite.c in Sources */,
 				3AA1BC5922D891E200479260 /* pwchcore.c in Sources */,
-				E8023C30225E319700E17432 /* CAStreamBasicDescription.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
