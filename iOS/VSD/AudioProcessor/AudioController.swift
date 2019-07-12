@@ -150,9 +150,7 @@ final class AudioController: NSObject {
         
         let component: AudioComponent! = AudioComponentFindNext(nil, &componentDesc)
         
-        var tempAudioUnit: AudioUnit?
-        osErr = AudioComponentInstanceNew(component, &tempAudioUnit)
-        self.audioUnit = tempAudioUnit
+        osErr = AudioComponentInstanceNew(component, &self.audioUnit)
         
         guard let au = self.audioUnit
             else { return }
@@ -181,15 +179,14 @@ final class AudioController: NSObject {
     {
         let inputDataPtr = UnsafeMutableAudioBufferListPointer(inputDataList)
         let mBuffers : AudioBuffer = inputDataPtr[0]
-        let count = Int(frameCount)
         
         let bufferPointer = UnsafeMutableRawPointer(mBuffers.mData)
         if let bptr = bufferPointer {
             let dataArray = bptr.assumingMemoryBound(to: Float.self)
             var j = self.circInIdx
             let m = self.circBuffSize
-            for i in 0..<(count/2) {
-                let x = Float(dataArray[i+i  ])   // copy left  channel sample
+            for i in 0..<(Int(frameCount)/2) {
+                let x = Float(dataArray[i+i])   // copy left  channel sample
                 if (inputAudioBuffer.count == Int(sampleRate)) {
                     //calculate VSD and clear buffer
                     let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: Int(sampleRate))
@@ -201,7 +198,6 @@ final class AudioController: NSObject {
                 inputAudioBuffer.append(Double(x)) //Using left channel because reasons
                 //we do not expect left channel to be significantly different from the right channel
                 self.circBuffer[j    ] = x
-                self.circBuffer[j + 1] = 0 //we can ignore the right channel
                 j += 2 ; if j >= m { j = 0 }                // into circular buffer
             }
             self.circInIdx = j              // circular index will always be less than size
