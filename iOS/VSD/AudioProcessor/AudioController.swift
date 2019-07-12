@@ -19,6 +19,7 @@ final class AudioController: NSObject {
     var isRecording     =  false
     
     let sampleRate : Double = 8000.0    // default audio sample rate
+    let nc = 2  // 2 channel stereo
     
     let circBuffSize = 32768        // lock-free circular fifo/buffer size
     var one_ui32: UInt32 = 1
@@ -106,32 +107,12 @@ final class AudioController: NSObject {
         }
     }
     
-    private func setupAudioUnit() {
-        
-        var componentDesc:  AudioComponentDescription = AudioComponentDescription(
-                componentType:          OSType(kAudioUnitType_Output),
-                componentSubType:       OSType(kAudioUnitSubType_RemoteIO),
-                componentManufacturer:  OSType(kAudioUnitManufacturer_Apple),
-                componentFlags:         UInt32(0),
-                componentFlagsMask:     UInt32(0) )
-        
-        var osErr: OSStatus = noErr
-        
-        let component: AudioComponent! = AudioComponentFindNext(nil, &componentDesc)
-        
-        var tempAudioUnit: AudioUnit?
-        osErr = AudioComponentInstanceNew(component, &tempAudioUnit)
-        self.audioUnit = tempAudioUnit
-        
-        guard let au = self.audioUnit
-            else { return }
-        
+    fileprivate func setupAudioUnitProperties(_ osErr: inout Int32, _ au: AudioUnit) {
         // Enable I/O for input.
         
         osErr = AudioUnitSetProperty(au, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, inputBus, &one_ui32, UInt32(MemoryLayout<UInt32>.size))
         
         // Set format to 32-bit Floats, linear PCM
-        let nc = 2  // 2 channel stereo
         var streamFormatDesc:AudioStreamBasicDescription = AudioStreamBasicDescription(
             mSampleRate:        Double(sampleRate),
             mFormatID:          kAudioFormatLinearPCM,
@@ -154,6 +135,29 @@ final class AudioController: NSObject {
         
         // Ask CoreAudio to allocate buffers on render.
         osErr = AudioUnitSetProperty(au, AudioUnitPropertyID(kAudioUnitProperty_ShouldAllocateBuffer), AudioUnitScope(kAudioUnitScope_Output), inputBus, &one_ui32, UInt32(MemoryLayout<UInt32>.size))
+    }
+    
+    private func setupAudioUnit() {
+        
+        var componentDesc:  AudioComponentDescription = AudioComponentDescription(
+                componentType:          OSType(kAudioUnitType_Output),
+                componentSubType:       OSType(kAudioUnitSubType_RemoteIO),
+                componentManufacturer:  OSType(kAudioUnitManufacturer_Apple),
+                componentFlags:         UInt32(0),
+                componentFlagsMask:     UInt32(0) )
+        
+        var osErr: OSStatus = noErr
+        
+        let component: AudioComponent! = AudioComponentFindNext(nil, &componentDesc)
+        
+        var tempAudioUnit: AudioUnit?
+        osErr = AudioComponentInstanceNew(component, &tempAudioUnit)
+        self.audioUnit = tempAudioUnit
+        
+        guard let au = self.audioUnit
+            else { return }
+        
+        setupAudioUnitProperties(&osErr, au)
     }
     
     let captureCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, frameCount, ioData ) -> OSStatus in
@@ -186,7 +190,6 @@ final class AudioController: NSObject {
             let m = self.circBuffSize
             for i in 0..<(count/2) {
                 let x = Float(dataArray[i+i  ])   // copy left  channel sample
-                let y = Float(dataArray[i+i+1])   // copy right channel sample
                 if (inputAudioBuffer.count == Int(sampleRate)) {
                     //calculate VSD and clear buffer
                     let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: Int(sampleRate))
@@ -198,7 +201,7 @@ final class AudioController: NSObject {
                 inputAudioBuffer.append(Double(x)) //Using left channel because reasons
                 //we do not expect left channel to be significantly different from the right channel
                 self.circBuffer[j    ] = x
-                self.circBuffer[j + 1] = y
+                self.circBuffer[j + 1] = 0 //we can ignore the right channel
                 j += 2 ; if j >= m { j = 0 }                // into circular buffer
             }
             self.circInIdx = j              // circular index will always be less than size
