@@ -1,2 +1,3 @@
 exclude:
 - /Generic/C/.*
+- /iOS/PublicUtility/.*
