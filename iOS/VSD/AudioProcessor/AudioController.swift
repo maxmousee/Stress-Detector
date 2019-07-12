@@ -18,19 +18,18 @@ final class AudioController: NSObject {
     var sessionActive   =  false
     var isRecording     =  false
     
-    let sampleRate : Double = 8000.0    // default audio sample rate
-    let nc = 2  // 2 channel stereo
-    
-    let circBuffSize = 32768        // lock-free circular fifo/buffer size
     var one_ui32: UInt32 = 1
     var circBuffer   = [Float](repeating: 0, count: 32768)  // for incoming samples
     var circInIdx  : Int =  0
     var inputAudioBuffer: Array<Double> = []
     var numberOfChannels: Int       =  2
+    private var micPermissionDispatchToken = 0
+    private var interrupted = false             // for restart from audio interruption notification
+    private let sampleRate : Double = 8000.0    // default audio sample rate
+    private let nc = 2                          // 2 channel stereo
+    private let circBuffSize = 32768            // lock-free circular fifo/buffer size
     private let outputBus: UInt32   =  0
     private let inputBus: UInt32    =  1
-    private var micPermissionDispatchToken = 0
-    private var interrupted = false     // for restart from audio interruption notification
     
     func startRecording() {
         if isRecording { return }
@@ -177,7 +176,7 @@ final class AudioController: NSObject {
         inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
         let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
         let stress = Stress(stressCoeficient: stressFreq)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_NAME), object: stress)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: STRESS_NOTIFICATION_NAME), object: stress)
     }
     
     private func processMicrophoneBuffer(inputDataList : UnsafeMutablePointer<AudioBufferList>,frameCount : UInt32)
