@@ -190,6 +190,8 @@ final class AudioController: NSObject {
                     let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
                     print(stressFreq)
                     inputAudioBuffer.removeAll()
+                    let stress = Stress(stressCoeficient: stressFreq)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION_NAME), object: stress)
                 }
                 inputAudioBuffer.append(Double(x)) //Using left channel because reasons
                 //we do not expect left channel to be significantly different from the right channel

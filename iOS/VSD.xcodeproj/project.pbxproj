@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A49D35122D8AC5700FF12F7 /* Stress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A49D35022D8AC5700FF12F7 /* Stress.swift */; };
 		3A49D35322D8CFB300FF12F7 /* StressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A49D35222D8CFB300FF12F7 /* StressTests.swift */; };
+		3A6967FB22D8FABB006920E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6967FA22D8FABB006920E2 /* Constants.swift */; };
 		3A95C950226B31C300D7DDFB /* CenterTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A95C94F226B31C300D7DDFB /* CenterTextLayer.swift */; };
 		3AA1BC4922D891E200479260 /* emd.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2222D891E000479260 /* emd.c */; };
 		3AA1BC4A22D891E200479260 /* abs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA1BC2522D891E000479260 /* abs.c */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		3A49D35022D8AC5700FF12F7 /* Stress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stress.swift; sourceTree = "<group>"; };
 		3A49D35222D8CFB300FF12F7 /* StressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTests.swift; sourceTree = "<group>"; };
+		3A6967FA22D8FABB006920E2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3A95C94F226B31C300D7DDFB /* CenterTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTextLayer.swift; sourceTree = "<group>"; };
 		3AA1BC2222D891E000479260 /* emd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = emd.c; path = ../../../Generic/C/emd.c; sourceTree = "<group>"; };
 		3AA1BC2322D891E000479260 /* bluesteinSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bluesteinSetup.h; path = ../../../Generic/C/bluesteinSetup.h; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				E88607D6225E04FB00E57513 /* Info.plist */,
 				3A95C94F226B31C300D7DDFB /* CenterTextLayer.swift */,
 				3A49D35022D8AC5700FF12F7 /* Stress.swift */,
+				3A6967FA22D8FABB006920E2 /* Constants.swift */,
 			);
 			path = VSD;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				3AA1BC5722D891E200479260 /* vsd_initialize.c in Sources */,
 				3AA1BC5122D891E200479260 /* rt_nonfinite.c in Sources */,
 				3AA1BC5922D891E200479260 /* pwchcore.c in Sources */,
+				3A6967FB22D8FABB006920E2 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
