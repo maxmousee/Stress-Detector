@@ -93,11 +93,7 @@ final class AudioController: NSObject {
                 try audioSession.setPreferredSampleRate(desiredSampleRate)
                 try audioSession.setPreferredIOBufferDuration(preferredIOBufferDuration)
                 
-                NotificationCenter.default.addObserver(
-                    forName: AVAudioSession.interruptionNotification,
-                    object: nil,
-                    queue: nil,
-                    using: myAudioSessionInterruptionHandler )
+                NotificationCenter.default.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: nil, using: myAudioSessionInterruptionHandler)
                 
                 try audioSession.setActive(true)
                 sessionActive = true
@@ -197,7 +193,7 @@ final class AudioController: NSObject {
                 }
                 inputAudioBuffer.append(Double(x)) //Using left channel because reasons
                 //we do not expect left channel to be significantly different from the right channel
-                self.circBuffer[j    ] = x
+                self.circBuffer[j] = x
                 j += 2 ; if j >= m { j = 0 }                // into circular buffer
             }
             self.circInIdx = j              // circular index will always be less than size
