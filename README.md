@@ -1,6 +1,6 @@
 ## Stress-Detector
 
-Voice Stress Detector API written in C, Java (JNI), MATLAB and Objective-C (iOS).
+Voice Stress Detector API written in C, MATLAB and Swift (iOS).
 
 Sample rate: 8KHz.
 
