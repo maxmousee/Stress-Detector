@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VSD/AudioProcessor/AudioController.swift"
-            timestampString = "584618636.661631"
+            timestampString = "584620791.054535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "processMicrophoneBuffer(inputDataList:frameCount:)"
             landmarkType = "7">
          </BreakpointContent>

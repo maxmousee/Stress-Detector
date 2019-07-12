@@ -24,8 +24,9 @@ final class AudioController: NSObject {
     var circBuffer   = [Float](repeating: 0, count: 32768)  // for incoming samples
     var circInIdx  : Int =  0
     var inputAudioBuffer: Array<Double> = []
-
-    
+    var numberOfChannels: Int       =  2
+    private let outputBus: UInt32   =  0
+    private let inputBus: UInt32    =  1
     private var micPermissionDispatchToken = 0
     private var interrupted = false     // for restart from audio interruption notification
     
@@ -37,11 +38,6 @@ final class AudioController: NSObject {
             startAudioUnit()
         }
     }
-    
-    var numberOfChannels: Int       =  2
-    
-    private let outputBus: UInt32   =  0
-    private let inputBus: UInt32    =  1
     
     private func startAudioUnit() {
         var err: OSStatus = noErr
@@ -63,6 +59,25 @@ final class AudioController: NSObject {
         }
     }
     
+    fileprivate func checkRecordPermission(_ audioSession: AVAudioSession) {
+        if (micPermission == false) {
+            if (micPermissionDispatchToken == 0) {
+                micPermissionDispatchToken = 1
+                audioSession.requestRecordPermission({(granted: Bool)-> Void in
+                    if granted {
+                        self.micPermission = true
+                        return
+                        // check for this flag and call from UI loop if needed
+                    } else {
+                        gTmp0 += 1
+                        // dispatch in main/UI thread an alert
+                        //   informing that mic permission is not switched on
+                    }
+                })
+            }
+        }
+    }
+    
     private func startAudioSession() {
         if (sessionActive == false) {
             // set and activate Audio Session
@@ -70,22 +85,7 @@ final class AudioController: NSObject {
                 
                 let audioSession = AVAudioSession.sharedInstance()
                 
-                if (micPermission == false) {
-                    if (micPermissionDispatchToken == 0) {
-                        micPermissionDispatchToken = 1
-                        audioSession.requestRecordPermission({(granted: Bool)-> Void in
-                            if granted {
-                                self.micPermission = true
-                                return
-                                // check for this flag and call from UI loop if needed
-                            } else {
-                                gTmp0 += 1
-                                // dispatch in main/UI thread an alert
-                                //   informing that mic permission is not switched on
-                            }
-                        })
-                    }
-                }
+                checkRecordPermission(audioSession)
                 if micPermission == false { return }
                 
                 try audioSession.setCategory(AVAudioSession.Category.record)
@@ -223,9 +223,8 @@ final class AudioController: NSObject {
         return 0
     }
     
-    private func processMicrophoneBuffer(   // process RemoteIO Buffer from mic input
-        inputDataList : UnsafeMutablePointer<AudioBufferList>,
-        frameCount : UInt32 )
+    // process RemoteIO Buffer from mic input
+    private func processMicrophoneBuffer(inputDataList : UnsafeMutablePointer<AudioBufferList>,frameCount : UInt32)
     {
         let inputDataPtr = UnsafeMutableAudioBufferListPointer(inputDataList)
         let mBuffers : AudioBuffer = inputDataPtr[0]
@@ -234,7 +233,6 @@ final class AudioController: NSObject {
         let bufferPointer = UnsafeMutableRawPointer(mBuffers.mData)
         if let bptr = bufferPointer {
             let dataArray = bptr.assumingMemoryBound(to: Float.self)
-            var sum : Float = 0.0
             var j = self.circInIdx
             let m = self.circBuffSize
             for i in 0..<(count/2) {
@@ -253,7 +251,6 @@ final class AudioController: NSObject {
                 self.circBuffer[j    ] = x
                 self.circBuffer[j + 1] = y
                 j += 2 ; if j >= m { j = 0 }                // into circular buffer
-                sum += x * x + y * y
             }
             self.circInIdx = j              // circular index will always be less than size
         }
@@ -277,19 +274,12 @@ final class AudioController: NSObject {
                     do {
                         try audioSession.setActive(false)
                         sessionActive = false
-                    } catch {
-                    }
+                    } catch { }
                     interrupted = true
-                }
-            } else if (interuptionVal == AVAudioSession.InterruptionType.ended) {
-                if (interrupted) {
-                    // potentially restart here
                 }
             }
         }
     }
-    
-    
 }
 
 var gTmp0 = 0 //  variable for debugger viewing
