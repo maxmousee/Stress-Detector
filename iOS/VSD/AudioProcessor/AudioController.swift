@@ -18,9 +18,10 @@ final class AudioController: NSObject {
     var sessionActive   =  false
     var isRecording     =  false
     
-    var sampleRate : Double = 8000.0    // default audio sample rate
+    let sampleRate : Double = 8000.0    // default audio sample rate
     
     let circBuffSize = 32768        // lock-free circular fifo/buffer size
+    var one_ui32: UInt32 = 1
     var circBuffer   = [Float](repeating: 0, count: 32768)  // for incoming samples
     var circInIdx  : Int =  0
     var inputAudioBuffer: Array<Double> = []
@@ -49,11 +50,9 @@ final class AudioController: NSObject {
             else { return }
         
         err = AudioUnitInitialize(au)
-        gTmp0 = Int(err)
         if err != noErr { return }
         err = AudioOutputUnitStart(au)  // start
         
-        gTmp0 = Int(err)
         if err == noErr {
             isRecording = true
         }
@@ -69,9 +68,7 @@ final class AudioController: NSObject {
                         return
                         // check for this flag and call from UI loop if needed
                     } else {
-                        gTmp0 += 1
-                        // dispatch in main/UI thread an alert
-                        //   informing that mic permission is not switched on
+                        // dispatch in main/UI thread an alert informing that mic permission is not switched on
                     }
                 })
             }
@@ -111,8 +108,7 @@ final class AudioController: NSObject {
     
     private func setupAudioUnit() {
         
-        var componentDesc:  AudioComponentDescription
-            = AudioComponentDescription(
+        var componentDesc:  AudioComponentDescription = AudioComponentDescription(
                 componentType:          OSType(kAudioUnitType_Output),
                 componentSubType:       OSType(kAudioUnitSubType_RemoteIO),
                 componentManufacturer:  OSType(kAudioUnitManufacturer_Apple),
@@ -132,14 +128,7 @@ final class AudioController: NSObject {
         
         // Enable I/O for input.
         
-        var one_ui32: UInt32 = 1
-        
-        osErr = AudioUnitSetProperty(au,
-                                     kAudioOutputUnitProperty_EnableIO,
-                                     kAudioUnitScope_Input,
-                                     inputBus,
-                                     &one_ui32,
-                                     UInt32(MemoryLayout<UInt32>.size))
+        osErr = AudioUnitSetProperty(au, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input, inputBus, &one_ui32, UInt32(MemoryLayout<UInt32>.size))
         
         // Set format to 32-bit Floats, linear PCM
         let nc = 2  // 2 channel stereo
@@ -155,18 +144,9 @@ final class AudioController: NSObject {
             mReserved:          UInt32(0)
         )
         
-        osErr = AudioUnitSetProperty(au,
-                                     kAudioUnitProperty_StreamFormat,
-                                     kAudioUnitScope_Input, outputBus,
-                                     &streamFormatDesc,
-                                     UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
+        osErr = AudioUnitSetProperty(au, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, outputBus, &streamFormatDesc, UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         
-        osErr = AudioUnitSetProperty(au,
-                                     kAudioUnitProperty_StreamFormat,
-                                     kAudioUnitScope_Output,
-                                     inputBus,
-                                     &streamFormatDesc,
-                                     UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
+        osErr = AudioUnitSetProperty(au, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, inputBus, &streamFormatDesc, UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         
         var inputCallbackStruct
             = AURenderCallbackStruct(inputProc: recordingCallback,
@@ -187,39 +167,21 @@ final class AudioController: NSObject {
                                      inputBus,
                                      &one_ui32,
                                      UInt32(MemoryLayout<UInt32>.size))
-        gTmp0 = Int(osErr)
     }
     
-    let recordingCallback: AURenderCallback = { (
-        inRefCon,
-        ioActionFlags,
-        inTimeStamp,
-        inBusNumber,
-        frameCount,
-        ioData ) -> OSStatus in
+    let recordingCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, frameCount, ioData ) -> OSStatus in
         
         let audioObject = unsafeBitCast(inRefCon, to: AudioController.self)
         var err: OSStatus = noErr
         
         // set mData to nil, AudioUnitRender() should be allocating buffers
-        var bufferList = AudioBufferList(
-            mNumberBuffers: 1,
-            mBuffers: AudioBuffer(
-                mNumberChannels: UInt32(2),
-                mDataByteSize: 2048,
-                mData: nil))
+        var bufferList = AudioBufferList(mNumberBuffers: 1, mBuffers: AudioBuffer(mNumberChannels: UInt32(2), mDataByteSize: 2048, mData: nil))
         
         if let au = audioObject.audioUnit {
-            err = AudioUnitRender(au,
-                                  ioActionFlags,
-                                  inTimeStamp,
-                                  inBusNumber,
-                                  frameCount,
-                                  &bufferList)
+            err = AudioUnitRender(au, ioActionFlags, inTimeStamp, inBusNumber, frameCount, &bufferList)
         }
         
-        audioObject.processMicrophoneBuffer( inputDataList: &bufferList,
-                                             frameCount: UInt32(frameCount) )
+        audioObject.processMicrophoneBuffer( inputDataList: &bufferList, frameCount: UInt32(frameCount) )
         return 0
     }
     
@@ -281,5 +243,3 @@ final class AudioController: NSObject {
         }
     }
 }
-
-var gTmp0 = 0 //  variable for debugger viewing
