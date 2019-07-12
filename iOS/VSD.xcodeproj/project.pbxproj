@@ -96,7 +96,6 @@
 		3AA1BC3D22D891E100479260 /* rtGetNaN.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rtGetNaN.c; path = ../../../Generic/C/rtGetNaN.c; sourceTree = "<group>"; };
 		3AA1BC3E22D891E100479260 /* spline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = spline.h; path = ../../../Generic/C/spline.h; sourceTree = "<group>"; };
 		3AA1BC3F22D891E100479260 /* vsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vsd.h; path = ../../../Generic/C/vsd.h; sourceTree = "<group>"; };
-		3AA1BC4022D891E100479260 /* VSDJNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSDJNI.h; path = ../../../Generic/C/VSDJNI.h; sourceTree = "<group>"; };
 		3AA1BC4122D891E200479260 /* power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = power.h; path = ../../../Generic/C/power.h; sourceTree = "<group>"; };
 		3AA1BC4222D891E200479260 /* diff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = diff.c; path = ../../../Generic/C/diff.c; sourceTree = "<group>"; };
 		3AA1BC4322D891E200479260 /* vsd_initialize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vsd_initialize.c; path = ../../../Generic/C/vsd_initialize.c; sourceTree = "<group>"; };
@@ -202,7 +201,6 @@
 				3AA1BC3122D891E000479260 /* vsd_types.h */,
 				3AA1BC4622D891E200479260 /* vsd.c */,
 				3AA1BC3F22D891E100479260 /* vsd.h */,
-				3AA1BC4022D891E100479260 /* VSDJNI.h */,
 				E8023C31225E322F00E17432 /* AudioController.swift */,
 				3AF1C70422CFE7430073A073 /* VSD-Bridging-Header.h */,
 			);
