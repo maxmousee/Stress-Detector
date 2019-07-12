@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Darwin
 @testable import VSD
 
 class VSDTests: XCTestCase {
@@ -27,6 +28,16 @@ class VSDTests: XCTestCase {
         inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
         let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
         XCTAssertEqual(0, stressFreq)
+    }
+    
+    func testWithMaxDouble() {
+        let sampleRate = 8000
+        var inputAudioBuffer: Array<Double> = Array(repeating: Double.greatestFiniteMagnitude, count: sampleRate)
+        let inputAudioUMP = UnsafeMutablePointer<Double>.allocate(capacity: sampleRate)
+        inputAudioUMP.initialize(from: &inputAudioBuffer, count: Int(sampleRate))
+        let stressFreq = vsd(inputAudioUMP, Int32(sampleRate))
+        XCTAssertEqual(0, stressFreq)
+        //it doesnt matter that the stress is zero, max double value is not a valid input, but it should NOT crash the lib
     }
     
     func testWithNegativeOnes() {

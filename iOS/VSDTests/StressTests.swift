@@ -52,5 +52,18 @@ class StressTests: XCTestCase {
         XCTAssertEqual(StressLevel.marginalstress, stress.stressLvl)
         XCTAssertEqual("14.99Hz\nmarginal stress", stress.displayMessage)
     }
-
+    
+    func testStressHighestFreq() {
+        let stress = Stress(stressCoeficient: 4000)
+        XCTAssertEqual(UIColor.red.cgColor, stress.color)
+        XCTAssertEqual(StressLevel.stress, stress.stressLvl)
+        XCTAssertEqual("4000.00Hz\nstress", stress.displayMessage)
+    }
+    
+    func testStressZeroFreq() {
+        let stress = Stress(stressCoeficient: 0)
+        XCTAssertEqual(UIColor.red.cgColor, stress.color)
+        XCTAssertEqual(StressLevel.stress, stress.stressLvl)
+        XCTAssertEqual("0.00Hz\nstress", stress.displayMessage)
+    }
 }
