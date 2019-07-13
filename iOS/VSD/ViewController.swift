@@ -17,6 +17,12 @@ class ViewController: UIViewController {
         setupTextLayer()
         NotificationCenter.default.addObserver(self, selector: #selector(updateStressView(notification:)), name: NSNotification.Name(rawValue: STRESS_NOTIFICATION_NAME), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(askForMicrophonePermission(notification:)), name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
+        self.view.layer.addSublayer(stressTL)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        stressTL.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     }
     
     func setupTextLayer() {
@@ -25,9 +31,8 @@ class ViewController: UIViewController {
         stressTL.contentsScale = UIScreen.main.scale
         stressTL.masksToBounds = true
         stressTL.backgroundColor = UIColor.gray.cgColor
-        stressTL.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        stressTL.frame = UIScreen.main.bounds
         stressTL.string = "processing..."
-        self.view.layer.addSublayer(stressTL)
     }
     
     @objc func updateStressView(notification: NSNotification) {
