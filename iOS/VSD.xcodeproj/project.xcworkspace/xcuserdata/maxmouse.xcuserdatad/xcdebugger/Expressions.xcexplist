@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AudioController.checkRecordPermission(_:):AudioController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AudioController.startAudioSession():AudioController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

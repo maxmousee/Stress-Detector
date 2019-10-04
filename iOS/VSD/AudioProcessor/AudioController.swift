@@ -9,6 +9,8 @@
 import Foundation
 import AVFoundation
 import AudioUnit
+import CoreAudio
+import UIKit
 
 final class AudioController: NSObject {
     
@@ -58,21 +60,28 @@ final class AudioController: NSObject {
         }
     }
     
-    func checkRecordPermission(_ audioSession: AVAudioSession) {
-        if (micPermission == false) {
-            if (micPermissionDispatchToken == 0) {
-                micPermissionDispatchToken = 1
-                audioSession.requestRecordPermission({(granted: Bool)-> Void in
+    private func checkRecordAudioPermission() {
+        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+            case .authorized: // The user has previously granted access to the microphone.
+                micPermission = true
+            
+            case .notDetermined: // The user has not yet been asked for microphone access.
+                AVCaptureDevice.requestAccess(for: .audio) { granted in
                     if granted {
                         self.micPermission = true
-                        return
-                        // check for this flag and call from UI loop if needed
-                    } else {
-                        // Mic access denied, dispatch Notification for ViewController to handle
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
                     }
-                })
-            }
+                }
+            
+            case .denied: // The user has previously denied access.
+                micPermission = false
+
+            case .restricted: // The user can't grant access due to restrictions.
+                micPermission = false
+        @unknown default:
+            micPermission = false
+        }
+        if micPermission == false {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
         }
     }
     
@@ -82,8 +91,7 @@ final class AudioController: NSObject {
             do {
                 
                 let audioSession = AVAudioSession.sharedInstance()
-                
-                checkRecordPermission(audioSession)
+                checkRecordAudioPermission()
                 if micPermission == false { return }
                 
                 try audioSession.setCategory(AVAudioSession.Category.record)
@@ -136,11 +144,11 @@ final class AudioController: NSObject {
     private func setupAudioUnit() {
         
         var componentDesc:  AudioComponentDescription = AudioComponentDescription(
-                componentType:          OSType(kAudioUnitType_Output),
-                componentSubType:       OSType(kAudioUnitSubType_RemoteIO),
-                componentManufacturer:  OSType(kAudioUnitManufacturer_Apple),
-                componentFlags:         UInt32(0),
-                componentFlagsMask:     UInt32(0) )
+            componentType:          OSType(kAudioUnitType_Output),
+            componentSubType:       OSType(kAudioUnitSubType_RemoteIO),
+            componentManufacturer:  OSType(kAudioUnitManufacturer_Apple),
+            componentFlags:         UInt32(0),
+            componentFlagsMask:     UInt32(0) )
         
         var osErr: OSStatus = noErr
         
