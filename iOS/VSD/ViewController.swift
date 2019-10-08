@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioUnit
+import CoreAudio
+
 
 class ViewController: UIViewController {
     var stressTL = CenterTextLayer()
