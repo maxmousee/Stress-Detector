@@ -37,9 +37,9 @@ proguard/
 
 *.xcuserstate
 
-trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
+Apple/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
 
-trunk/iOS/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
+Apple/VSD.xcodeproj/project.xcworkspace/xcuserdata/maxmouse.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.pyc
 
@@ -51,4 +51,4 @@ Generic/C_JAVA/*.o
 Generic/C_JAVA/vsd.a
 
 # iOS Pods
-iOS/Pods/
+Apple/Pods/
