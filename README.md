@@ -13,13 +13,14 @@ Ts = 1 second.
 [![BCH compliance](https://bettercodehub.com/edge/badge/maxmousee/Stress-Detector?branch=master)](https://bettercodehub.com/)
 
 
-# iOS
+# iOS and MacOS
 
-This project is under iOS
+This project is under Apple
  
 Now you can run:
 "open VSD.xcodeproj" using terminal or XCode
 
+This works in MacOS, iOS and iPadOS
 
 # MATLAB
 
