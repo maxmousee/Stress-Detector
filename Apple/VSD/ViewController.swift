@@ -57,8 +57,13 @@ class ViewController: UIViewController {
     }
     
     func openSettings(alert: UIAlertAction!) {
-        if let url = URL.init(string: UIApplication.openSettingsURLString) {
+        #if targetEnvironment(macCatalyst)
+            let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Microphone")!
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        #else
+            if let url = URL.init(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        #endif
     }
 }
