@@ -52,3 +52,4 @@ Generic/C_JAVA/vsd.a
 
 # iOS Pods
 Apple/Pods/
++*.xcbkptlist
