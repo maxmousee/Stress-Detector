@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateStressView(notification:)), name: NSNotification.Name(rawValue: STRESS_NOTIFICATION_NAME), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(askForMicrophonePermission(notification:)), name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
         self.view.layer.addSublayer(stressTL)
+        stressTL.setNeedsDisplay()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
