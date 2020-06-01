@@ -50,7 +50,11 @@ class ViewController: UIViewController {
     
     @objc func askForMicrophonePermission(notification: NSNotification) {
         DispatchQueue.main.async {
-            let errorMessage = "Please enable microphone access to monitor your stress level"
+            #if targetEnvironment(macCatalyst)
+                let errorMessage = "Please enable microphone access and restart the app to monitor your stress level"
+            #else
+                 let errorMessage = "Please enable microphone access to monitor your stress level"
+            #endif
             let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Open Settings", style: UIAlertAction.Style.default, handler: self.openSettings))
             self.present(alert, animated: true, completion: nil)
