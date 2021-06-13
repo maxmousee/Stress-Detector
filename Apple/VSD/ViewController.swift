@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         stressTL.contentsScale = UIScreen.main.scale
         stressTL.masksToBounds = true
         stressTL.backgroundColor = UIColor.gray.cgColor
-        stressTL.frame = UIScreen.main.bounds
+        stressTL.frame = self.view.frame
         stressTL.string = "processing..."
     }
     
