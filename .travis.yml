@@ -1,4 +1,4 @@
-osx_image: xcode11
+osx_image: xcode12
 language: swift
 script:
  - set -o pipefail && xcodebuild -workspace Apple/VSD.xcodeproj/project.xcworkspace -scheme "VSDUITests" -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.0' test
