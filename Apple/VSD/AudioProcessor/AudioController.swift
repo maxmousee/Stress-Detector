@@ -61,24 +61,28 @@ final class AudioController: NSObject {
     }
     
     private func checkRecordAudioPermission() {
-        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+        if #available(macCatalyst 14.0, *) {
+            switch AVCaptureDevice.authorizationStatus(for: .audio) {
             case .authorized: // The user has previously granted access to the microphone.
                 micPermission = true
-            
+                
             case .notDetermined: // The user has not yet been asked for microphone access.
                 AVCaptureDevice.requestAccess(for: .audio) { granted in
                     if granted {
                         self.micPermission = true
                     }
                 }
-            
+                
             case .denied: // The user has previously denied access.
                 micPermission = false
-
+                
             case .restricted: // The user can't grant access due to restrictions.
                 micPermission = false
-        @unknown default:
-            micPermission = false
+            @unknown default:
+                micPermission = false
+            }
+        } else {
+            // Fallback on earlier versions
         }
         if micPermission == false {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: NO_MIC_PERMISSION_NOTIFICATION_NAME), object: nil)
