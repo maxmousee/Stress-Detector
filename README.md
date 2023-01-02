@@ -10,9 +10,6 @@ Ts = 1 second.
 
 [![CI Status](https://circleci.com/gh/maxmousee/Stress-Detector.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/maxmousee/Stress-Detector)
 
-[![BCH compliance](https://bettercodehub.com/edge/badge/maxmousee/Stress-Detector?branch=master)](https://bettercodehub.com/)
-
-
 # iOS and MacOS
 
 This project is under Apple
